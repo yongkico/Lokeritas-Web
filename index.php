@@ -1,23 +1,7 @@
 <?php 
-
 session_start();
 
 require ("functions.php");
-
-
-// if(!isset($_SESSION["login"])){
-//     header("Location: login.php");
-//     exit;
-// }
-
-if(isset($_POST["masuk"])){
-    
-    $email = $_POST["email"];
-
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
-    $row = mysqli_fetch_assoc($result);
-    echo $row["nama"];die;
-}
 
 ?>
 <!DOCTYPE html>
@@ -111,9 +95,20 @@ if(isset($_POST["masuk"])){
                 </a>
             </div>                 
             <div class="buy-button">
-                <a href="login.php" class="btn btn-primary">Masuk</a>
-                <a href="register.php" class="btn btn-primary">Daftar</a>
-                <a href="profile.php" class="btn btn-primary">Akun Saya</a>
+                    <?php if(!isset($_SESSION["login"])) : ?>
+                        <a href="login.php" class="btn btn-primary">Masuk</a>
+                        <a href="register.php" class="btn btn-primary">Daftar</a>
+                    <?php endif; ?> 
+
+                    <?php if(isset($_SESSION["login"])) : ?>
+                        <?php 
+                            $id = $_SESSION["id"];
+                            $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
+                            $row = mysqli_fetch_assoc($result);    
+                        ?>
+                        <a href="profile.php" style="color: white; font-size:15px"><i class="mdi mdi-account mr-2" style="color: white; font-size:16px"></i><?= $row["nama"] ?></a>
+                        <a href="logout.php" class="href">Logout</a>
+                    <?php endif; ?>                                                       
             </div>
             <!--end login button-->
             <!-- End Logo container-->

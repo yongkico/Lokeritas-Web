@@ -2,24 +2,24 @@
 session_start();
 require("functions.php");
 
-if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
+// if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
     
-    $id = $_COOKIE['id'];
-    $key = $_COOKIE['key'];
+//     $id = $_COOKIE['id'];
+//     $key = $_COOKIE['key'];
 
-    $result = mysqli_query($conn, "SELECT email FROM user WHERE id=$id");
-    $row = mysqli_fetch_assoc($result);
+//     $result = mysqli_query($conn, "SELECT email FROM user WHERE id=$id");
+//     $row = mysqli_fetch_assoc($result);
 
-    if($key == hash('sha256', $row["email"])){
-        $_SESSION['login'] = true;
-    }
+//     if($key == hash('sha256', $row["email"])){
+//         $_SESSION['login'] = true;
+//     }
 
-}
+// }
 
-if(isset($_SESSION["login"])){
-    header("Location: index.php");
-    exit;
-}
+// if(isset($_SESSION["login"])){
+//     header("Location: index.php");
+//     exit;
+// }
 
 if (isset($_POST["masuk"])) {
 
@@ -36,12 +36,8 @@ if (isset($_POST["masuk"])) {
             
             // set session
             $_SESSION["login"] = true;
+            $_SESSION["id"] = $row["id"];
 
-
-            if (isset($_POST["remember"])) {
-                setcookie('id', $row['id'], time() + 60);
-                setcookie('key', hash('sha256', $row["email"]), time() + 60);
-            }
             header("Location: index.php");
             exit;
         }
