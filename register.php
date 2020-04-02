@@ -8,7 +8,7 @@ if (isset($_POST["daftar"])) {
             alert('User baru berhasil didaftar');
         </script>
         ";
-        header("Location:index.php");
+        header("Location:login.php");
     } else {
         echo "
         <script>
