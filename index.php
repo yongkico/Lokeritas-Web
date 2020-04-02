@@ -106,8 +106,19 @@ require ("functions.php");
                             $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
                             $row = mysqli_fetch_assoc($result);    
                         ?>
-                        <a href="profile.php" style="color: white; font-size:15px"><i class="mdi mdi-account mr-2" style="color: white; font-size:16px"></i><?= $row["nama"] ?></a>
-                        <a href="logout.php" class="href">Logout</a>
+                        <div class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" style="color: white; font-size:15px"><?= $row["nama"] ?></a>
+                                <ul class="dropdown-menu" style="color:black; font-size:15px; min-width: 180px;">
+                                    
+                                    <li style="line-height:30px;padding-left:20px;padding-bottom:5px"><a href="profile.php" style="color:black; font-size:13px;"><i class="mdi mdi-account mr-2" style="color: black; font-size:16px"></i>Profile</a></li>
+                                    <li style="line-height:30px;padding-left:20px;padding-bottom:5px"><a href="#" style="color:black; font-size:13px;"><i class="mdi mdi-send mr-2" style="color: black; font-size:16px"></i>Lamaran dikirim</a></li>
+                                    <li style="line-height:30px;padding-left:20px;"><a href="logout.php" style="color:black; font-size:13px;"><i class="mdi mdi-logout mr-2" style="color: black; font-size:16px"></i>Logout</a></li>  
+                                </ul>
+                            </div>
+
+                        <!-- <a href="profile.php" style="color: white; font-size:15px"><i class="mdi mdi-account mr-2" style="color: white; font-size:16px"></i><?= $row["nama"] ?></a>
+                         <span style="margin-left:4px;margin-right:4px; color: white; font-size:15px">|</span>
+                        <a href="logout.php" style="color: white; font-size:15px">Logout</a> -->
                     <?php endif; ?>                                                       
             </div>
             <!--end login button-->
