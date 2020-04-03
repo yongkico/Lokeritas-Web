@@ -93,7 +93,7 @@ require("functions.php");
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
                         <li><a href="index.html">Beranda</a></li>
-                        <li><a href="contact.html">Lowongan</a></li>
+                        <li><a href="lowongan.php">Lowongan</a></li>
                         <li><a href="index.html">Tips Karir</a></li>
                         <li><a href="contact.html">Daftar Perusahaan</a></li>
                         <li><a href="index.html">Karyaku</a></li>
