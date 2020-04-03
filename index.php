@@ -1408,7 +1408,7 @@ require("functions.php");
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-briefcase"></i>
-                                                        <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Job keybords...">
+                                                        <input type="text" width="200px" class="form-control rounded registration-input-box" placeholder="Job keybords...">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
