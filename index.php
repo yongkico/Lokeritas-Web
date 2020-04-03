@@ -2657,6 +2657,34 @@ require("functions.php");
         </section>
         <!-- testimonial end -->
 
+        <!-- DOWNLOAD APP START -->
+        <section class="section pb-0" style="background: url('https://via.placeholder.com/2000X1333//88929f/5a6270C/O https://placeholder.com/') center center;">
+            <div class="bg-overlay"></div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-md-1 order-2">
+                        <div class="job-about-app-img mt-40">
+                            <img src="images/app-download-img.png" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 order-md-2 order-1">
+                        <div class="app-about-content">
+                            <div class="app-about-desc text-white">
+                                <h4 class="text-white mb-3">Get Job App For Your Mobile</h4>
+                                <p class="font-weight-light text-white-50">Etiam ultricies nisi vel that augue Curabitur ullamcorper ultricies adipiscing Nam at Etiam rhoncus Maecenas tempus tellus rhoncus ultricies eget condimentum rhoncus massa Sed cursus semquam.</p>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="list-inline-item"><a href="javascript:void(0)"><img src="images/apple.png" class="mt-2" height="60" alt=""></a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)"><img src="images/google.png" class="mt-2" height="60" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- DOWNLOAD APP END -->
+
     <?php endif; ?>
 
     <!-- footer start -->

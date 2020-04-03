@@ -1,395 +1,598 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jobya - Responsive Job Board HTML Template</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Themesdesign" />
 
-	<title>Profile - Ninja Admin Template</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
 
-	<!-- Main Styles -->
-	<link rel="stylesheet" href="css/styles/style-horizontal.min.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 
-	<!-- mCustomScrollbar -->
-	<link rel="stylesheet" href="css/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
 
-	<!-- Waves Effect -->
-	<link rel="stylesheet" href="css/plugin/waves/waves.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome.css" />
 
-	<!-- Sweet Alert -->
-	<link rel="stylesheet" href="css/plugin/sweet-alert/sweetalert.css">
-	
-	<!-- Color Picker -->
-	<link rel="stylesheet" href="css/color-switcher/color-switcher.min.css">
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="css/selectize.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/nice-select.css" />
+
+    <!-- Custom  Css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
 </head>
 
 <body>
-<div id="wrapper">
-	<div class="main-content container">
-		<div class="row small-spacing">
-			<div class="col-md-3 col-xs-12">
-				<div class="box-content bordered primary margin-bottom-20">
-					<div class="profile-avatar">
-						<img src="http://placehold.it/450x450" alt="">
-						<a href="#" class="btn btn-block btn-friend"><i class="fa fa-check-circle"></i> Friends</a>
-						<a href="#" class="btn btn-block btn-inbox"><i class="fa fa-envelope"></i> Send Messages</a>
-						<h3><strong>Betty Simmons</strong></h3>
-						<h4>Owner at Our Company, Inc.</h4>
-						<p>Ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-					</div>
-					<!-- .profile-avatar -->
-					<table class="table table-hover no-margin">
-						<tbody>
-							<tr>
-								<td>Status</td>
-								<td><span class="notice notice-danger">Active</span></td>
-							</tr>
-							<tr>
-								<td>User Rating</td>
-								<td><i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i> <i class="fa fa-star text-warning"></i></td>
-							</tr>
-							<tr>
-								<td>Member Since</td>
-								<td>Jan 07, 2014</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<!-- /.col-md-3 col-xs-12 -->
-			<div class="col-md-9 col-xs-12">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="box-content card">
-							<h4 class="box-title"><i class="fa fa-user ico"></i>About</h4>
-							<!-- /.box-title -->
-							<div class="dropdown js__drop_down">
-								<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-								<ul class="sub-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else there</a></li>
-									<li class="split"></li>
-									<li><a href="#">Separated link</a></li>
-								</ul>
-								<!-- /.sub-menu -->
-							</div>
-							<!-- /.dropdown js__dropdown -->
-							<div class="card-content">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>First Name:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">Betty</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>Last Name:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">Simmons</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>User Name:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">Betty</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>Email:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">youremail@gmail.com</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>City:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">Los Angeles</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>Country:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">United States</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>Birthday:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">Jan 22, 1984</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>Interests:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">Basketball, Web, Design, etc.</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>Website:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7"><a href="#">yourwebsite.com</a></div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-									<div class="col-md-6">
-										<div class="row">
-											<div class="col-xs-5"><label>Phone:</label></div>
-											<!-- /.col-xs-5 -->
-											<div class="col-xs-7">+1-234-5678</div>
-											<!-- /.col-xs-7 -->
-										</div>
-										<!-- /.row -->
-									</div>
-									<!-- /.col-md-6 -->
-								</div>
-								<!-- /.row -->
-							</div>
-							<!-- /.card-content -->
-						</div>
-						<!-- /.box-content card -->
-					</div>
-					<!-- /.col-md-12 -->
-					<div class="col-md-6 col-xs-12">
-						<div class="box-content card">
-							<h4 class="box-title"><i class="fa fa-file-text ico"></i> Experience</h4>
-							<!-- /.box-title -->
-							<div class="dropdown js__drop_down">
-								<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-								<ul class="sub-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else there</a></li>
-									<li class="split"></li>
-									<li><a href="#">Separated link</a></li>
-								</ul>
-								<!-- /.sub-menu -->
-							</div>
-							<!-- /.dropdown js__dropdown -->
-							<div class="card-content">
-								<ul class="dot-list">
-									<li><a href="#">Owner</a> at <a href="#">NinjaTeam</a>.<span class="date">March 2013 ~ Now</span></li>
-									<li><a href="#">CEO</a> at <a href="#">CEO Company</a>.<span class="date"> March 2011 ~ February 2013</span></li>
-									<li><a href="#">Web Designer</a> at <a href="#">Web Design Company Ltd.</a>.<span class="date"> March 2010 ~ February 2011</span></li>
-									<li><a href="#">Sales</a> at <a href="#">Sales Company Ltd.</a>.<span class="date"> March 2009 ~ February 2010</span></li>
-								</ul>
-							</div>
-							<!-- /.card-content -->
-						</div>
-						<!-- /.box-content card -->
-					</div>
-					<!-- /.col-md-6 -->
-					<div class="col-md-6 col-xs-12">
-						<div class="box-content card">
-							<h4 class="box-title"><i class="fa fa-trophy ico"></i> Education</h4>
-							<!-- /.box-title -->
-							<div class="dropdown js__drop_down">
-								<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-								<ul class="sub-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else there</a></li>
-									<li class="split"></li>
-									<li><a href="#">Separated link</a></li>
-								</ul>
-								<!-- /.sub-menu -->
-							</div>
-							<!-- /.dropdown js__dropdown -->
-							<div class="card-content">
-								<ul class="dot-list">
-									<li><a href="#">Students</a> at <a href="#">CEO Education</a>.<span class="date">March 2013 ~ Now</span></li>
-									<li><a href="#">Students</a> at <a href="#">Web Design Education</a>.<span class="date">March 2011 ~ February 2013</span></li>
-									<li><a href="#">Students</a> at <a href="#">Sales School</a>.<span class="date"> March 2010 ~ February 2011</span></li>
-									<li><a href="#">Students</a> at <a href="#">High School</a>.<span class="date"> March 2009 ~ February 2010</span></li>
-								</ul>
-							</div>
-							<!-- /.card-content -->
-						</div>
-						<!-- /.box-content card -->
-					</div>
-					<!-- /.col-md-6 -->
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-xs-12">
-						<div class="box-content card">
-							<h4 class="box-title"><i class="fa fa-globe ico"></i> Activity</h4>
-							<!-- /.box-title -->
-							<div class="dropdown js__drop_down">
-								<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-								<ul class="sub-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else there</a></li>
-									<li class="split"></li>
-									<li><a href="#">Separated link</a></li>
-								</ul>
-								<!-- /.sub-menu -->
-							</div>
-							<!-- /.dropdown js__dropdown -->
-							<div class="card-content">
-								<ul class="notice-list">
-									<li>
-										<a href="#">
-											<span class="avatar"><img src="http://placehold.it/128x128" alt=""></span>
-											<span class="name">Betty Simmons</span>
-											<span class="desc">There are new settings available</span>
-											<span class="time">2 hours ago</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="avatar bg-success"><i class="glyphicon glyphicon-user"></i></span>
-											<span class="name">New Signup</span>
-											<span class="desc">There are new settings available</span>
-											<span class="time">5 hours ago</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="avatar bg-warning"><img src="http://placehold.it/128x128" alt=""></span>
-											<span class="name">Settings</span>
-											<span class="desc">There are new settings available</span>
-											<span class="time">1 year ago</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="avatar bg-warning"><i class="fa fa-flag"></i></span>
-											<span class="name">New Message received</span>
-											<span class="desc">There are new settings available</span>
-											<span class="time">1 day ago</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="avatar bg-pink"><i class="fa fa-gear"></i></span>
-											<span class="name">Settings</span>
-											<span class="desc">There are new settings available</span>
-											<span class="time">1 year ago</span>
-										</a>
-									</li>
-								</ul>
-								<!-- /.notice-list -->
-								<div class="text-center margin-top-20"><a href="#" class="btn btn-default">See All Activities <i class="fa fa-angle-double-right"></i></a></div>
-							</div>
-							<!-- /.card-content -->
-						</div>
-						<!-- /.box-content card -->
-					</div>
-					<!-- /.col-md-6 -->
-					<div class="col-md-6 col-xs-12">
-						<div class="box-content card">
-							<h4 class="box-title"><i class="fa fa-flask ico"></i> Skill</h4>
-							<!-- /.box-title -->
-							<div class="dropdown js__drop_down">
-								<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
-								<ul class="sub-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else there</a></li>
-									<li class="split"></li>
-									<li><a href="#">Separated link</a></li>
-								</ul>
-								<!-- /.sub-menu -->
-							</div>
-							<!-- /.dropdown js__dropdown -->
-							<div class="card-content">
-								<p>Photoshop</p>
-								<div class="progress">
-									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-										<span class="sr-only">40% Complete (success)</span>
-									</div>
-								</div>
-								<p>Illustrator</p>
-								<div class="progress">
-									<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-										<span class="sr-only">20% Complete</span>
-									</div>
-								</div>
-								<p>PHP</p>
-								<div class="progress">
-									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-										<span class="sr-only">60% Complete (warning)</span>
-									</div>
-								</div>
-								<p>Javascript</p>
-								<div class="progress">
-									<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-										<span class="sr-only">80% Complete (danger)</span>
-									</div>
-								</div>
-								<p>Communication</p>
-								<div class="progress">
-									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
-										<span class="sr-only">95% Complete (success)</span>
-									</div>
-								</div>
-								<p>Writing</p>
-								<div class="progress">
-									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-										<span class="sr-only">45% Complete (warning)</span>
-									</div>
-								</div>
-							</div>
-							<!-- /.card-content -->
-						</div>
-						<!-- /.box-content card -->
-					</div>
-					<!-- /.col-md-6 -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /.col-md-9 col-xs-12 -->
-		</div>
-		<!-- /.row small-spacing -->		
-		<!-- <footer class="footer">
-			<ul class="list-inline">
-				<li>2016 © NinjaAdmin.</li>
-				<li><a href="#">Privacy</a></li>
-				<li><a href="#">Terms</a></li>
-				<li><a href="#">Help</a></li>
-			</ul>
-		</footer> -->
-	</div>
-	<!-- /.main-content -->
-</div><!--/#wrapper -->
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader -->
 
+    <!-- Navigation Bar-->
+    <header id="topnav" class="defaultscroll scroll-active">
+        <!-- Tagline STart -->
+        <div class="tagline">
+            <div class="container">
+                <div class="float-left">
+                    <div class="phone">
+                        <i class="mdi mdi-phone-classic"></i> +1 800 123 45 67
+                    </div>
+                    <div class="email">
+                        <a href="#">
+                            <i class="mdi mdi-email"></i> Support@mail.com
+                        </a>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
+                        <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Benny Simpson</a></li>
+                        <li class="list-inline-item">
+                            <select id="select-lang" class="demo-default">
+                                    <option value="">Language</option>
+                                    <option value="4">English</option>
+                                    <option value="1">Spanish</option>
+                                    <option value="3">French</option>
+                                    <option value="5">Hindi</option>
+                                </select>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Tagline End -->
+
+        <!-- Menu Start -->
+        <div class="container">
+            <!-- Logo container-->
+            <div>
+                <a href="index.html" class="logo">
+                    <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
+                    <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                </a>
+            </div>                 
+            <div class="buy-button">
+                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+            </div><!--end login button-->
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- End mobile menu toggle-->
+                </div>
+            </div>
+    
+            <div id="navigation">
+                <!-- Navigation Menu-->   
+                <ul class="navigation-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="job-list.html">Job List</a></li>
+                            <li><a href="job-grid.html">Job Grid</a></li>
+                            <li><a href="job-details.html">Job Details</a></li>
+                            <li><a href="job-details-2.html">Job Details-2</a></li>
+                        </ul>
+                    </li>
+    
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="about.html">About us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="faq.html">Faqs</a></li>
+                            <li><a href="pricing.html">Pricing plans</a></li>
+                            <li class="has-submenu"><a href="javascript:void(0)"> Candidates</a><span class="submenu-arrow"></span>
+                                <ul class="submenu">
+                                    <li><a href="candidates-listing.html">Candidates Listing</a></li>
+                                    <li><a href="candidates-profile.html">Candidates Profile</a></li>
+                                    <li><a href="create-resume.html">Create Resume</a></li>
+                                </ul>  
+                            </li>
+                            <li class="has-submenu"><a href="javascript:void(0)"> Blog</a><span class="submenu-arrow"></span>
+                                <ul class="submenu">
+                                    <li><a href="blog-grid.html">Blogs</a></li>
+                                    <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
+                                    <li><a href="blog-details.html">Blog Details</a></li>
+                                </ul>  
+                            </li>
+                            <li class="has-submenu"><a href="javascript:void(0)"> Employers</a><span class="submenu-arrow"></span>
+                                <ul class="submenu">
+                                    <li><a href="employers-list.html">Employers List</a></li>
+                                    <li><a href="company-detail.html">Company Detail</a></li>
+                                </ul>  
+                            </li>
+                            <li class="has-submenu"><a href="javascript:void(0)"> User Pages</a><span class="submenu-arrow"></span>
+                                <ul class="submenu">
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="signup.html">Signup</a></li>
+                                    <li><a href="recovery_passward.html">Forgot Password</a></li>
+                                </ul>  
+                            </li>
+                            <li><a href="components.html"> Components</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="contact.html">contact</a>
+                    </li>
+                </ul><!--end navigation menu-->
+            </div><!--end navigation-->
+        </div><!--end container-->
+        <!--end end-->
+    </header><!--end header-->
+    <!-- Navbar End -->
+    
+    <!-- Start home -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="candidates-profile-details text-center">
+                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                        <h5 class="text-white mb-2">Michael Brown</h5>
+                        <p class="text-white-50 h6 mb-2"><i class="mdi mdi-bank mr-2"></i>Web Themes.pvt.Ltd</p>
+                        <p class="text-white-50 h6 mb-2">PHP Developer</p>
+                        <ul class="candidates-profile-icons list-inline mb-3">
+                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
+                        </ul>
+
+                        <ul class="list-unstyled social-icon social mb-0">
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end home -->
+
+    <!-- CANDIDATES PROFILE START -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="text-dark">About Us :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-3">
+                    <div class="border rounded p-4">
+                        <p class="text-muted">Aliquam erat volutpat Etiam vitae tortor Morbi vestibulum volutpat enim Aliquam nunc Nunc sed turpis sed mollis eros et ultrices tempus mauris ipsum aliquam libero non adipiscing dolor urna a orci Nulla porta dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra inceptos hymenaeos pellentesque dapibus hendrerit tortor Praesent egestas tristique nibh sed a libero cras us varius donec vitae orci sed dolor rutrum auctor fusce egestas elit eget lorem.</p>
+
+                        <p class="text-muted">Libero venenatis faucibus ullam quis ante tiam sit amet orci eget eros faucibus tincidunt ed fringilla mauris sit amet nibh Donec sodales sagittis magna ed consequat leo eget bibendum sodales augue velit cursus nunc quis gravida magna mi libero usce vulputate eleifend sapien estibulum purus qua scelerisque ut mollis sed nonummy id metus ullam accumsan lorem Vivamus elementum semper enean vulputate eleifend tellus enean leo ligula porttitor.</p>
+                        
+                        <ul class="list-inline pt-3 border-top mb-0">
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>3659 Turkey Pen Road Manhattan, NY 10016</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-web mr-2"></i>Www.webthemes.co.in</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-email mr-2"></i>Webthemes.ltd@gmail.com</a>
+                            </li>
+
+                            <li class="list-inline-item mr-3">
+                                <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>123 456 7890</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Overview :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-3">
+                    <div class="border rounded p-4">
+                        <div class="job-detail-desc">
+                            <p class="text-muted f-14 mb-3">Cras dapibus Vivamus elementum semper nisi Aenean vulputate eleifend tellus Aenean leo ligula porttitor eu consequat vitae eleifend ac enim aliquam lorem ante dapibus in viverra quis feugiat a tellus phasellus viverra nulla ut metus variuse laoreet quisque rutrum aenean imperdiet etiam ultricies nisi that is maecenas tempus tini tellus eget condimentum rhoncus sem semper libero sit amet adipiscing sem neque sed ipsum nam quam nunc blandit vel luctus pulvinar hendrerit lorem maecenas nec odio et ante tincidunt tempus donec vitae libero venenatis faucibus nullam quis ante etiam sit amet orci eget eros faucibus tincidunt Duis leo Sed fringilla a mauris sit amet nibh donec sodales sagittis magna vel augue curabitur ullamcorper ultricies nisi nam eget dui etiame rhoncus ut enim as minima veniam quis nostrum exercitationem ullam corporis suscipit laboriosam nisi ut aliquid commodi.</p>
+
+                            <p class="text-muted f-14 mb-0">Sed consequat eget bibendum augue cursus nunc quis gravida magna mi a Itaque earum rerum hic tenetur a sapiente delectus ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat liber fusce vulputate eleifend sapien vestibulum purus quam scelerisque ut mollis sed nonummy id metus nullam accumsan lorem in dui cras ultricies mi eu turpis hendrerit fringilla vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia in dui quis consectetuer lacinia nam pretium turpis arcu duis arcu tortor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Education :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4 pt-5">
+                    <div class="border rounded candidates-profile-education text-center text-muted">
+                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
+                            <i class="mdi mdi-36px mdi-school"></i>
+                        </div>
+                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">University Of USA</a></h6>
+                        <p class="f-14 mb-1">May 2016 - April 2017</p>
+                        <p class="pb-3 mb-0">Diploma In Management Studies</p>
+                        
+                        <p class="pt-3 border-top mb-0">Suspendisse faucibus et pellentesque egestas lacus ante convallis.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 pt-5">
+                    <div class="border rounded candidates-profile-education text-center text-muted">
+                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
+                            <i class="mdi mdi-36px mdi-library"></i>
+                        </div>
+                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">University Of USA</a></h6>
+                        <p class="f-14 mb-1">May 2017 - April 2018</p>
+                        <p class="pb-3 mb-0">Diploma In Management</p>
+                        
+                        <p class="pt-3 border-top mb-0">Suspendisse faucibus et pellentesque egestas lacus ante convallis.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 pt-5">
+                    <div class="border rounded candidates-profile-education text-center text-muted">
+                        <div class="profile-education-icon border rounded-pill bg-white text-primary">
+                            <i class="mdi mdi-36px mdi-briefcase-check"></i>
+                        </div>
+                        <h6 class="text-uppercase f-17"><a href="#" class="text-muted">University Of USA</a></h6>
+                        <p class="f-14 mb-1">May 2018 - April 2019</p>
+                        <p class="pb-3 mb-0">Management Of Company</p>
+                        
+                        <p class="pt-3 border-top mb-0">Suspendisse faucibus et pellentesque egestas lacus ante convallis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Experience :</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mt-3 mt-md-0 pt-3">
+                    <div class="border rounded job-list-box p-4">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="company-brand-logo text-center mb-4">
+                                    <img src="images/featured-job/img-2.png" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="job-list-desc candidates-profile-exp-desc">
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark">Web Themes Pvt.Ltd</a></h5>
+                                    <p class="text-muted mb-0 f-16">PHP Developer</p>
+                                    <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
+                                    <p class="text-muted mb-0 f-16">Salary : $950</p>
+                                    <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.webthemesltd.co.in</p>
+                                    <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>1919 Ward Road West Nyack, NY 10994</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-3 mt-md-0 pt-3">
+                    <div class="border rounded job-list-box p-4">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="company-brand-logo text-center mb-4">
+                                    <img src="images/featured-job/img-3.png" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="job-list-desc candidates-profile-exp-desc">
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark">Web code Pvt.Ltd</a></h5>
+                                    <p class="text-muted mb-0 f-16">Web Developer</p>
+                                    <p class="text-muted mb-0 f-16">Fab 2015 - July 2018</p>
+                                    <p class="text-muted mb-0 f-16">Salary : $1100</p>
+                                    <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.webcodeltd.co.in</p>
+                                    <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>519 Leo Street Butler, PA 16001</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mt-3 mt-md-0 pt-3">
+                    <div class="border rounded job-list-box p-4">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="company-brand-logo text-center mb-4">
+                                    <img src="images/featured-job/img-5.png" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="job-list-desc candidates-profile-exp-desc">
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark">Brand Themes Pvt.Ltd</a></h5>
+                                    <p class="text-muted mb-0 f-16">PHP Developer</p>
+                                    <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
+                                    <p class="text-muted mb-0 f-16">Salary : $1000</p>
+                                    <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.brandthemesltd.co.in</p>
+                                    <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>519 Leo Street Butler, PA 16001</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-3 mt-md-0 pt-3">
+                    <div class="border rounded job-list-box p-4">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="company-brand-logo text-center mb-4">
+                                    <img src="images/featured-job/img-7.png" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="job-list-desc candidates-profile-exp-desc">
+                                    <h5 class="f-19 mb-2"><a href="#" class="text-dark">Small Themes Pvt.Ltd</a></h5>
+                                    <p class="text-muted mb-0 f-16">PHP Developer</p>
+                                    <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
+                                    <p class="text-muted mb-0 f-16">Salary : $900</p>
+                                    <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.smallthemesltd.co.in</p>
+                                    <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>519 Leo Street Butler, PA 16001</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mt-4 pt-2">
+                    <h4 class="text-dark">Skills :</h4>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mt-4 pt-2">
+                    <h6 class="mb-0 text-uppercase">Language Knowledge :</h6>
+                    <div class="progress-box mt-4">
+                        <h6 class="title text-muted">Spanish</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped position-relative bg-primary" style="width:84%;">
+                                <div class="progress-value d-block text-muted h6">84%</div>
+                            </div>
+                        </div>
+                    </div><!--end process box-->
+                    <div class="progress-box mt-4">
+                        <h6 class="title text-muted">Japanese</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped position-relative bg-primary" style="width:75%;">
+                                <div class="progress-value d-block text-muted h6">75%</div>
+                            </div>
+                        </div>
+                    </div><!--end process box-->
+                    <div class="progress-box mt-4">
+                        <h6 class="title text-muted">Arabic</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped position-relative bg-primary" style="width:79%;">
+                                <div class="progress-value d-block text-muted h6">79%</div>
+                            </div>
+                        </div>
+                    </div><!--end process box-->
+                    <div class="progress-box mt-4">
+                        <h6 class="title text-muted">English</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped position-relative bg-primary" style="width:95%;">
+                                <div class="progress-value d-block text-muted h6">95%</div>
+                            </div>
+                        </div>
+                    </div><!--end process box-->
+                </div>
+
+                <div class="col-md-6 mt-4 pt-2">
+                    <h6 class="mb-0 text-uppercase">Coding Expertise :</h6>
+                    <div class="progress-box mt-4">
+                        <h6 class="title text-muted">WordPress</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped position-relative bg-primary" style="width:84%;">
+                                <div class="progress-value d-block text-muted h6">84%</div>
+                            </div>
+                        </div>
+                    </div><!--end process box-->
+                    <div class="progress-box mt-4">
+                        <h6 class="title text-muted">PHP / MYSQL</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped position-relative bg-primary" style="width:75%;">
+                                <div class="progress-value d-block text-muted h6">75%</div>
+                            </div>
+                        </div>
+                    </div><!--end process box-->
+                    <div class="progress-box mt-4">
+                        <h6 class="title text-muted">Angular / JavaScript</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped position-relative bg-primary" style="width:79%;">
+                                <div class="progress-value d-block text-muted h6">79%</div>
+                            </div>
+                        </div>
+                    </div><!--end process box-->
+                    <div class="progress-box mt-4">
+                        <h6 class="title text-muted">HTML / CSS</h6>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped position-relative bg-primary" style="width:95%;">
+                                <div class="progress-value d-block text-muted h6">95%</div>
+                            </div>
+                        </div>
+                    </div><!--end process box-->
+                </div>
+            </div>         
+        </div>
+    </section>
+    <!-- CANDIDATES PROFILE END -->
+
+    <!-- subscribe start -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="float-left position-relative notification-icon mr-2">
+                        <i class="mdi mdi-bell-outline text-primary"></i>
+                        <span class="badge badge-pill badge-danger">1</span>
+                    </div>
+                    <h5 class="mt-2 mb-0">Your Job Notification</h5>
+                </div>
+                <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
+                    <form>
+                        <div class="form-group mb-0">
+                            <div class="input-group mb-0">
+                                <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribe end -->
+
+    <!-- footer start -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
+                    <p class="mt-4">At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium</p>
+                    <ul class="social-icon social list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Company</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Media & Press</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Career</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Marketing</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> CEOs </a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Agencies</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Our Apps</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Resources</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Support</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Terms</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Accounting </a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Billing</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
+                    </ul>
+                </div>
+            
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
+                    <ul class="list-unstyled text-foot mt-4 mb-0">
+                        <li>Monday - Friday : 9:00 to 17:00</li>
+                        <li class="mt-2">Saturday : 10:00 to 15:00</li>
+                        <li class="mt-2">Sunday : Day Off (Holiday)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <hr>
+    <footer class="footer footer-bar">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="">
+                        <p class="mb-0">© 2019 -2020 Jobya. Design with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.</p>
+                    </div>
+                </div>
+            </div>
+        </div><!--end container-->
+    </footer><!--end footer-->
+    <!-- Footer End -->
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Back to top -->
+
+    <!-- javascript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/plugins.js"></script>
+
+    <!-- selectize js -->
+    <script src="js/selectize.min.js"></script>
+
+    <script src="js/jquery.nice-select.min.js"></script>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
