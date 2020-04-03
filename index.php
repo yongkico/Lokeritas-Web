@@ -2661,7 +2661,7 @@ require("functions.php");
         <section class="section pb-0" style="background: url('https://via.placeholder.com/2000X1333//88929f/5a6270C/O https://placeholder.com/') center center;">
             <div class="bg-overlay"></div>
             <div class="container">
-                <div class="row align-items-center">
+                <div class="row align-items-center">    
                     <div class="col-md-6 order-md-1 order-2">
                         <div class="job-about-app-img mt-40">
                             <img src="images/app-download-img.png" alt="" class="img-fluid mx-auto d-block">
