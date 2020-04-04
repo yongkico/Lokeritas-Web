@@ -201,14 +201,14 @@ require("functions.php");
                         <div class="tab-content mt-2" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="recent-job" role="tabpanel" aria-labelledby="recent-job-tab">
                                 <div class="row">
-                                    
+
                                     <div class="col-lg-12">
-                                        <div  class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                            <div class="lable text-center pt-2 pb-2">
+                                        <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                            <!-- <div class="lable text-center pt-2 pb-2">
                                                 <ul class="list-unstyled best text-white mb-0 text-uppercase">
                                                     <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                             <div class="p-4">
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
@@ -218,7 +218,7 @@ require("functions.php");
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
-                                                            <h5 class="f-18"><a href="#" class="text-dark">Web Developer</a></h5>
+                                                            <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Web Developer</a></h5>
                                                             <p class="text-muted mb-0">Web Technology pvt.Ltd</p>
                                                         </div>
                                                     </div>
@@ -1971,7 +1971,7 @@ require("functions.php");
         <section class="section pb-0" style="background: url('https://via.placeholder.com/2000X1333//88929f/5a6270C/O https://placeholder.com/') center center;">
             <div class="bg-overlay"></div>
             <div class="container">
-                <div class="row align-items-center">    
+                <div class="row align-items-center">
                     <div class="col-md-6 order-md-1 order-2">
                         <div class="job-about-app-img mt-40">
                             <img src="images/app-download-img.png" alt="" class="img-fluid mx-auto d-block">
