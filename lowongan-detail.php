@@ -1,3 +1,9 @@
+<?php
+session_start();
+require("functions.php");
+
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -41,131 +47,125 @@
     </div>
     <!-- Loader -->
 
-    <!-- Navigation Bar-->
-    <header id="topnav" class="defaultscroll scroll-active">
-        <!-- Tagline STart -->
-        <div class="tagline">
+    <?php if (isset($_SESSION["login"])) : ?>
+        <?php
+        $id = $_SESSION["id"];
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
+        $row = mysqli_fetch_assoc($result);
+        ?>
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll scroll-active">
+
+            <!-- Menu Start -->
             <div class="container">
-                <div class="float-left">
-                    <div class="phone">
-                        <i class="mdi mdi-phone-classic"></i> +1 800 123 45 67
-                    </div>
-                    <div class="email">
-                        <a href="#">
-                            <i class="mdi mdi-email"></i> Support@mail.com
+                <!-- Logo container-->
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                    </a>
+                </div>
+                <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </a>
+                        <!-- End mobile menu toggle-->
                     </div>
                 </div>
-                <div class="float-right">
-                    <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                        <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Benny Simpson</a></li>
-                        <li class="list-inline-item">
-                            <select id="select-lang" class="demo-default">
-                                    <option value="">Language</option>
-                                    <option value="4">English</option>
-                                    <option value="1">Spanish</option>
-                                    <option value="3">French</option>
-                                    <option value="5">Hindi</option>
-                                </select>
+
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="lowongan.php">Lowongan</a></li>
+                        <li><a href="index.html">Tips Karir</a></li>
+                        <li><a href="contact.html">Daftar Perusahaan</a></li>
+                        <li><a href="index.html">Karyaku</a></li>
+                        <li><a href="#" style="font-size: 30px">|</a></li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="#">Profil</a></li>
+                                <li><a href="#">Lamaran dikirim</a></li>
+                                <li><a href="logout.php">Logout</a></li>
+                            </ul>
                         </li>
                     </ul>
+                    <!--end navigation menu-->
                 </div>
-                <div class="clearfix"></div>
+                <!--end navigation-->
             </div>
-        </div>
-        <!-- Tagline End -->
+            <!--end container-->
+            <!--end end-->
+        </header>
+        <!--end header-->
+        <!-- Navbar End -->
+    <?php else : ?>
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll scroll-active">
 
-        <!-- Menu Start -->
-        <div class="container">
-            <!-- Logo container-->
-            <div>
-                <a href="index.html" class="logo">
-                    <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                    <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
-                </a>
-            </div>                 
-            <div class="buy-button">
-                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
-            </div><!--end login button-->
-            <!-- End Logo container-->
-            <div class="menu-extras">
-                <div class="menu-item">
-                    <!-- Mobile menu toggle-->
-                    <a class="navbar-toggle">
-                        <div class="lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+            <!-- Menu Start -->
+            <div class="container">
+                <!-- Logo container-->
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
                     </a>
-                    <!-- End mobile menu toggle-->
                 </div>
+                <!-- <div class="buy-button">
+                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+            </div> -->
+                <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="contact.html">Cari Lowongan</a></li>
+                        <li><a href="index.html">Tips Karir</a></li>
+                        <li><a href="contact.html">Daftar Perusahaan</a></li>
+                        <li><a href="index.html">Karyaku</a></li>
+                        <div class="buy-button">
+                            <a href="login.php" class="btn btn-primary">Masuk</a>
+                            <a href="register.php" class="btn btn-primary">Daftar</a>
+                        </div>
+                    </ul>
+                    <!--end navigation menu-->
+                </div>
+                <!--end navigation-->
             </div>
-    
-            <div id="navigation">
-                <!-- Navigation Menu-->   
-                <ul class="navigation-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="has-submenu">
-                        <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="job-list.html">Job List</a></li>
-                            <li><a href="job-grid.html">Job Grid</a></li>
-                            <li><a href="job-details.html">Job Details</a></li>
-                            <li><a href="job-details-2.html">Job Details-2</a></li>
-                        </ul>
-                    </li>
-    
-                    <li class="has-submenu">
-                        <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="team.html">Team</a></li>
-                            <li><a href="faq.html">Faqs</a></li>
-                            <li><a href="pricing.html">Pricing plans</a></li>
-                            <li class="has-submenu"><a href="javascript:void(0)"> Candidates</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="candidates-listing.html">Candidates Listing</a></li>
-                                    <li><a href="candidates-profile.html">Candidates Profile</a></li>
-                                    <li><a href="create-resume.html">Create Resume</a></li>
-                                </ul>  
-                            </li>
-                            <li class="has-submenu"><a href="javascript:void(0)"> Blog</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="blog-grid.html">Blogs</a></li>
-                                    <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                </ul>  
-                            </li>
-                            <li class="has-submenu"><a href="javascript:void(0)"> Employers</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="employers-list.html">Employers List</a></li>
-                                    <li><a href="company-detail.html">Company Detail</a></li>
-                                </ul>  
-                            </li>
-                            <li class="has-submenu"><a href="javascript:void(0)"> User Pages</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="signup.html">Signup</a></li>
-                                    <li><a href="recovery_passward.html">Forgot Password</a></li>
-                                </ul>  
-                            </li>
-                            <li><a href="components.html"> Components</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="contact.html">contact</a>
-                    </li>
-                </ul><!--end navigation menu-->
-            </div><!--end navigation-->
-        </div><!--end container-->
-        <!--end end-->
-    </header><!--end header-->
-    <!-- Navbar End -->
-    
+            <!--end container-->
+            <!--end end-->
+        </header>
+        <!--end header-->
+        <!-- Navbar End -->
+    <?php endif; ?>
+
+
     <!-- Start home -->
-    <section class="bg-half page-next-level"> 
+    <section class="bg-half page-next-level">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -174,10 +174,10 @@
                         <h4 class="text-uppercase title mb-4">Job Detail</h4>
                         <ul class="page-next d-inline-block mb-0">
                             <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
-                            <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li> 
+                            <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li>
                             <li>
-                                <span class="text-uppercase text-white font-weight-bold">Job Detail</span> 
-                            </li> 
+                                <span class="text-uppercase text-white font-weight-bold">Job Detail</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -550,7 +550,7 @@
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
-            
+
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
                     <ul class="list-unstyled text-foot mt-4 mb-0">
@@ -573,13 +573,15 @@
                     </div>
                 </div>
             </div>
-        </div><!--end container-->
-    </footer><!--end footer-->
+        </div>
+        <!--end container-->
+    </footer>
+    <!--end footer-->
     <!-- Footer End -->
 
     <!-- Back to top -->
-    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
-        <i class="mdi mdi-chevron-up d-block"> </i> 
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top">
+        <i class="mdi mdi-chevron-up d-block"> </i>
     </a>
     <!-- Back to top -->
 
@@ -597,4 +599,5 @@
     <script src="js/app.js"></script>
 
 </body>
+
 </html>
