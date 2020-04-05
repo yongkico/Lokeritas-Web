@@ -165,7 +165,7 @@ require("functions.php");
 
 
     <!-- Start home -->
-    <section class="bg-half page-next-level">
+    <section class="bg-half page-next-level" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -475,7 +475,45 @@ require("functions.php");
                     </div>
 
                     <div class="job-detail border rounded mt-4">
-                        <a href="#" class="btn btn-primary btn-block">Apply For Job</a>
+
+                        <?php if (isset($_SESSION["login"])) : ?>
+                            <button style="width:100%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalku"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
+                            <!-- The Modal -->
+                            <div class="modal fade" id="modalku">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Ini adalah Bagian Header Modal -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Upload File lamaran</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Ini adalah Bagian Body Modal -->
+                                        <div class="modal-body">
+                                            <form>
+                                                <p>Silahkan upload file lamaran anda</p>
+                                                <input type="file" name="file"><br><br>
+                                                <div class="form-group purple-border">
+                                                    <label for="exampleFormControlTextarea4">Catatan tambahan</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <!-- Ini adalah Bagian Footer Modal -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Kirim</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- The End Modal -->
+                        <?php else : ?>
+                            <button onclick="loginEx();" style="width:100%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalku"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -483,33 +521,6 @@ require("functions.php");
     </section>
     <!-- JOB DETAILS END -->
 
-    <!-- subscribe start -->
-    <section class="section bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-5">
-                    <div class="float-left position-relative notification-icon mr-2">
-                        <i class="mdi mdi-bell-outline text-primary"></i>
-                        <span class="badge badge-pill badge-danger">1</span>
-                    </div>
-                    <h5 class="mt-2 mb-0">Your Job Notification</h5>
-                </div>
-                <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
-                    <form>
-                        <div class="form-group mb-0">
-                            <div class="input-group mb-0">
-                                <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- subscribe end -->
 
     <!-- footer start -->
     <footer class="footer">
@@ -586,10 +597,17 @@ require("functions.php");
     <!-- Back to top -->
 
     <!-- javascript -->
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+    <script>
+        function loginEx() {
+            swal("Yongki Babi!", "Anda harus login terlebih dahulu!", "warning");
+        }
+    </script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>
