@@ -92,7 +92,7 @@ require("functions.php");
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="#">Beranda</a></li>
                         <li><a href="lowongan.php">Lowongan</a></li>
                         <li><a href="index.html">Tips Karir</a></li>
                         <li><a href="contact.html">Daftar Perusahaan</a></li>
@@ -168,8 +168,10 @@ require("functions.php");
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
-                                                    <div class="registration-form-box">
-                                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary btn-block" value="Submit">
+                                                    <div class="registration-form-box"> 
+                                                        <a href="lowongan.php">
+                                                            <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -676,7 +678,7 @@ require("functions.php");
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="contact.html">Cari Lowongan</a></li>
+                        <li><a href="lowongan.php">Cari Lowongan</a></li>
                         <li><a href="index.html">Tips Karir</a></li>
                         <li><a href="contact.html">Daftar Perusahaan</a></li>
                         <li><a href="index.html">Karyaku</a></li>
@@ -715,39 +717,18 @@ require("functions.php");
                                     <div class="home-registration-form p-4 mb-3">
                                         <form class="registration-form">
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-6">
+                                                <div class="col-lg-9 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-briefcase"></i>
                                                         <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Job keybords...">
                                                     </div>
                                                 </div>
+                                               
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
-                                                        <i class="fa fa-location-arrow"></i>
-                                                        <select id="select-country" class="demo-default">
-                                                            <option value="">Location</option>
-                                                            <option value="AF">Afghanistan</option>
-                                                            <option value="AX">&Aring;land Islands</option>
-                                                            <option value="ZM">Zambia</option>
-                                                            <option value="ZW">Zimbabwe</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="registration-form-box">
-                                                        <i class="fa fa-list-alt"></i>
-                                                        <select id="select-category" class="demo-default">
-                                                            <option value="">Categories...</option>
-                                                            <option value="4">Accounting</option>
-                                                            <option value="1">IT & Software</option>
-                                                            <option value="3">Marketing</option>
-                                                            <option value="5">Banking</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="registration-form-box">
-                                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary btn-block" value="Submit">
+                                                         <a href="lowongan.php">
+                                                            <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
