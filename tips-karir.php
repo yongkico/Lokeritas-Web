@@ -30,8 +30,8 @@
 </head>
 
 <body>
-    <!-- Loader -->
-    <div id="preloader">
+   <!-- Loader -->
+   <div id="preloader">
         <div id="status">
             <div class="spinner">
                 <div class="double-bounce1"></div>
@@ -44,7 +44,7 @@
     <!-- Navigation Bar-->
     <header id="topnav" class="defaultscroll scroll-active">
         <!-- Tagline STart -->
-        <div class="tagline">
+        <!-- <div class="tagline">
             <div class="container">
                 <div class="float-left">
                     <div class="phone">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-        </div>
+        </div> -->
         <!-- Tagline End -->
 
         <!-- Menu Start -->
@@ -85,8 +85,33 @@
                 </a>
             </div>                 
             <div class="buy-button">
-                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
-            </div><!--end login button-->
+                    <?php if(!isset($_SESSION["login"])) : ?>
+                        <a href="login.php" class="btn btn-primary">Masuk</a>
+                        <a href="register.php" class="btn btn-primary">Daftar</a>
+                    <?php endif; ?> 
+
+                    <?php if(isset($_SESSION["login"])) : ?>
+                        <?php 
+                            $id = $_SESSION["id"];
+                            $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
+                            $row = mysqli_fetch_assoc($result);    
+                        ?>
+                        <div class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" style="color: white; font-size:15px"><?= $row["nama"] ?></a>
+                                <ul class="dropdown-menu" style="color:black; font-size:15px; min-width: 180px;">
+                                    
+                                    <li style="line-height:30px;padding-left:20px;padding-bottom:5px"><a href="profile.php" style="color:black; font-size:13px;"><i class="mdi mdi-account mr-2" style="color: black; font-size:16px"></i>Profile</a></li>
+                                    <li style="line-height:30px;padding-left:20px;padding-bottom:5px"><a href="#" style="color:black; font-size:13px;"><i class="mdi mdi-send mr-2" style="color: black; font-size:16px"></i>Lamaran dikirim</a></li>
+                                    <li style="line-height:30px;padding-left:20px;"><a href="logout.php" style="color:black; font-size:13px;"><i class="mdi mdi-logout mr-2" style="color: black; font-size:16px"></i>Logout</a></li>  
+                                </ul>
+                            </div>
+
+                        <!-- <a href="profile.php" style="color: white; font-size:15px"><i class="mdi mdi-account mr-2" style="color: white; font-size:16px"></i><?= $row["nama"] ?></a>
+                         <span style="margin-left:4px;margin-right:4px; color: white; font-size:15px">|</span>
+                        <a href="logout.php" style="color: white; font-size:15px">Logout</a> -->
+                    <?php endif; ?>                                                       
+            </div>
+            <!--end login button-->
             <!-- End Logo container-->
             <div class="menu-extras">
                 <div class="menu-item">
@@ -105,57 +130,15 @@
             <div id="navigation">
                 <!-- Navigation Menu-->   
                 <ul class="navigation-menu">
-                    <li><a href="index.html">Home</a></li>
                     <li class="has-submenu">
-                        <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="job-list.html">Job List</a></li>
-                            <li><a href="job-grid.html">Job Grid</a></li>
-                            <li><a href="job-details.html">Job Details</a></li>
-                            <li><a href="job-details-2.html">Job Details-2</a></li>
-                        </ul>
+                        <a href="job-list.php">CARI LOWONGAN</a>
                     </li>
     
-                    <li class="has-submenu">
-                        <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="team.html">Team</a></li>
-                            <li><a href="faq.html">Faqs</a></li>
-                            <li><a href="pricing.html">Pricing plans</a></li>
-                            <li class="has-submenu"><a href="javascript:void(0)"> Candidates</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="candidates-listing.html">Candidates Listing</a></li>
-                                    <li><a href="candidates-profile.html">Candidates Profile</a></li>
-                                    <li><a href="create-resume.html">Create Resume</a></li>
-                                </ul>  
-                            </li>
-                            <li class="has-submenu"><a href="javascript:void(0)"> Blog</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="blog-grid.html">Blogs</a></li>
-                                    <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                </ul>  
-                            </li>
-                            <li class="has-submenu"><a href="javascript:void(0)"> Employers</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="employers-list.html">Employers List</a></li>
-                                    <li><a href="company-detail.html">Company Detail</a></li>
-                                </ul>  
-                            </li>
-                            <li class="has-submenu"><a href="javascript:void(0)"> User Pages</a><span class="submenu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="signup.html">Signup</a></li>
-                                    <li><a href="recovery_passward.html">Forgot Password</a></li>
-                                </ul>  
-                            </li>
-                            <li><a href="components.html"> Components</a></li>
-                        </ul>
+                    <li>
+                        <a href="#">DAFTAR PERUSAHAAN</a>
                     </li>
                     <li>
-                        <a href="contact.html">contact</a>
+                        <a href="tips-karir.php">TIPS KARIR</a>
                     </li>
                 </ul><!--end navigation menu-->
             </div><!--end navigation-->
@@ -171,14 +154,8 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">Blog</h4>
-                        <ul class="page-next d-inline-block mb-0">
-                            <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
-                            <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li> 
-                            <li>
-                                <span class="text-uppercase text-white font-weight-bold">Job List</span> 
-                            </li> 
-                        </ul>
+                        <h4 class="text-uppercase title mb-4">TIPS KARIR</h4>
+                        <p>Seputar tips untuk karir yang lebih baik</p>
                     </div>
                 </div>
             </div>
@@ -203,9 +180,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">How apps is the IT world</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -227,9 +204,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -251,9 +228,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Maecenas tempus tellus eget</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -275,9 +252,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">How apps is the IT world</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -299,9 +276,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -323,9 +300,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Maecenas tempus tellus eget</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -347,9 +324,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">How apps is the IT world</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -371,9 +348,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -395,9 +372,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Maecenas tempus tellus eget</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -419,9 +396,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">How apps is the IT world</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -443,9 +420,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -467,9 +444,9 @@
                             </div>
                         </div>
                         <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Maecenas tempus tellus eget</a></h4>
-                            <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
+                            <h4><a href="javascript:void(0)" class="title text-dark">Bekal yang Harus Dibawa Sebelum ke Job Fair</a></h4>
+                            <p class="text-muted">Banyak sekali informasi mengenai lowongan pekerjaan dapat kita peroleh darimana saja, bisa dalam bentuk media masa baik cetak…</p>
+                            <a href="tips-karir-details.php" class="text-dark readmore">Baca selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                         <div class="author">
                             <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
@@ -502,35 +479,6 @@
         </div>
     </section>
     <!-- blog end -->
-
-    <!-- subscribe start -->
-    <section class="section bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-5">
-                    <div class="float-left position-relative notification-icon mr-2">
-                        <i class="mdi mdi-bell-outline text-primary"></i>
-                        <span class="badge badge-pill badge-danger">1</span>
-                    </div>
-                    <h5 class="mt-2 mb-0">Your Job Notification</h5>
-                </div>
-                <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
-                    <form>
-                        <div class="form-group mb-0">
-                            <div class="input-group mb-0">
-                                <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- subscribe end -->
-
     <!-- footer start -->
     <footer class="footer">
         <div class="container">
