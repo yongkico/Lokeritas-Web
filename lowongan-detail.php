@@ -93,8 +93,8 @@ require("functions.php");
                         <li class="has-submenu">
                             <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
-                                <li><a href="#">Profil</a></li>
-                                <li><a href="#">Lamaran dikirim</a></li>
+                                <li><a href="profile.php">Profil</a></li>
+                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
                                 <li><a href="logout.php">Logout</a></li>
                             </ul>
                         </li>

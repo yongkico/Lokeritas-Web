@@ -1,3 +1,10 @@
+<?php
+session_start();
+require("functions.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -41,114 +48,144 @@
     </div>
     <!-- Loader -->
 
-   
-    <!-- Navigation Bar-->
-    <header id="topnav" class="defaultscroll scroll-active">
-        <!-- Tagline STart -->
-        <!-- <div class="tagline">
+    <?php if (isset($_SESSION["login"])) : ?>
+        <?php
+        $id = $_SESSION["id"];
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
+        $row = mysqli_fetch_assoc($result);
+        ?>
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll scroll-active">
+
+            <!-- Menu Start -->
             <div class="container">
-                <div class="float-left">
-                    <div class="phone">
-                        <i class="mdi mdi-phone-classic"></i> +1 800 123 45 67
-                    </div>
-                    <div class="email">
-                        <a href="#">
-                            <i class="mdi mdi-email"></i> Support@mail.com
+                <!-- Logo container-->
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                    </a>
+                </div>
+                <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </a>
+                        <!-- End mobile menu toggle-->
                     </div>
                 </div>
-                <div class="float-right">
-                    <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                        <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Benny Simpson</a></li>
-                        <li class="list-inline-item">
-                            <select id="select-lang" class="demo-default">
-                                <option value="">Language</option>
-                                <option value="4">English</option>
-                                <option value="1">Spanish</option>
-                                <option value="3">French</option>
-                                <option value="5">Hindi</option>
-                            </select>
+
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="lowongan.php">Lowongan</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
+                        <li><a href="#" style="font-size: 30px">|</a></li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="profile.php">Profil</a></li>
+                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
+                                <li><a href="logout.php">Logout</a></li>
+                            </ul>
                         </li>
                     </ul>
+                    <!--end navigation menu-->
                 </div>
-                <div class="clearfix"></div>
+                <!--end navigation-->
             </div>
-        </div> -->
-        <!-- Tagline End -->
+            <!--end container-->
+            <!--end end-->
+        </header>
+        <!--end header-->
+        <!-- Navbar End -->
+    <?php else : ?>
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll scroll-active">
 
-        <!-- Menu Start -->
-        <div class="container">
-            <!-- Logo container-->
-            <div>
-                <a href="index.php" class="logo">
-                    <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                    <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
-                </a>
-            </div>                 
-            <div class="buy-button">
-                    <?php if(!isset($_SESSION["login"])) : ?>
-                        <a href="login.php" class="btn btn-primary">Masuk</a>
-                        <a href="register.php" class="btn btn-primary">Daftar</a>
-                    <?php endif; ?> 
-
-                    <?php if(isset($_SESSION["login"])) : ?>
-                        <?php 
-                            $id = $_SESSION["id"];
-                            $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
-                            $row = mysqli_fetch_assoc($result);    
-                        ?>
-                        <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" style="color: white; font-size:15px"><?= $row["nama"] ?></a>
-                                <ul class="dropdown-menu" style="color:black; font-size:15px; min-width: 180px;">
-                                    
-                                    <li style="line-height:30px;padding-left:20px;padding-bottom:5px"><a href="profile.php" style="color:black; font-size:13px;"><i class="mdi mdi-account mr-2" style="color: black; font-size:16px"></i>Profile</a></li>
-                                    <li style="line-height:30px;padding-left:20px;padding-bottom:5px"><a href="#" style="color:black; font-size:13px;"><i class="mdi mdi-send mr-2" style="color: black; font-size:16px"></i>Lamaran dikirim</a></li>
-                                    <li style="line-height:30px;padding-left:20px;"><a href="logout.php" style="color:black; font-size:13px;"><i class="mdi mdi-logout mr-2" style="color: black; font-size:16px"></i>Logout</a></li>  
-                                </ul>
-                            </div>
-
-                        <!-- <a href="profile.php" style="color: white; font-size:15px"><i class="mdi mdi-account mr-2" style="color: white; font-size:16px"></i><?= $row["nama"] ?></a>
-                         <span style="margin-left:4px;margin-right:4px; color: white; font-size:15px">|</span>
-                        <a href="logout.php" style="color: white; font-size:15px">Logout</a> -->
-                    <?php endif; ?>                                                       
-            </div>
-            <!--end login button-->
-            <!-- End Logo container-->
-            <div class="menu-extras">
-                <div class="menu-item">
-                    <!-- Mobile menu toggle-->
-                    <a class="navbar-toggle">
-                        <div class="lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+            <!-- Menu Start -->
+            <div class="container">
+                <!-- Logo container-->
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
                     </a>
-                    <!-- End mobile menu toggle-->
+                </div>
+                <!-- <div class="buy-button">
+                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+            </div> -->
+                <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="contact.html">Cari Lowongan</a></li>
+                        <li><a href="index.html">Tips Karir</a></li>
+                        <li><a href="contact.html">Daftar Perusahaan</a></li>
+                        <li><a href="index.html">Karyaku</a></li>
+                        <div class="buy-button">
+                            <a href="login.php" class="btn btn-primary">Masuk</a>
+                            <a href="register.php" class="btn btn-primary">Daftar</a>
+                        </div>
+                    </ul>
+                    <!--end navigation menu-->
+                </div>
+                <!--end navigation-->
+            </div>
+            <!--end container-->
+            <!--end end-->
+        </header>
+        <!--end header-->
+        <!-- Navbar End -->
+    <?php endif; ?>
+
+    <!-- Start home -->
+    <section class="bg-half page-next-level">
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Blog Detail</h4>
+                        <ul class="page-next d-inline-block mb-0">
+                            <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
+                            <li><a href="#" class="text-uppercase font-weight-bold">Pages</a></li>
+                            <li><a href="#" class="text-uppercase font-weight-bold">Blog</a></li>
+                            <li>
+                                <span class="text-uppercase text-white font-weight-bold">Blog Detail</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-    
-            <div id="navigation">
-                <!-- Navigation Menu-->   
-                <ul class="navigation-menu">
-                    <li class="has-submenu">
-                        <a href="job-list.php">CARI LOWONGAN</a>
-                    </li>
-    
-                    <li>
-                        <a href="#">DAFTAR PERUSAHAAN</a>
-                    </li>
-                    <li>
-                        <a href="tips-karir.php">TIPS KARIR</a>
-                    </li>
-                </ul><!--end navigation menu-->
-            </div><!--end navigation-->
-        </div><!--end container-->
-        <!--end end-->
-    </header><!--end header-->
-    <!-- Navbar End -->
-    
-   
+        </div>
+    </section>
+    <!-- end home -->
 
     <!-- BLOG LIST START -->
     <section class="section">
@@ -161,16 +198,30 @@
                             <div id="search2" class="widget-search mb-0">
                                 <form role="search" method="get" id="searchform" class="searchform">
                                     <div>
-                                        <input type="text" class="border rounded" name="s" id="s" placeholder="Judul...">
+                                        <input type="text" class="border rounded" name="s" id="s" placeholder="Search Keywords...">
                                         <input type="submit" id="searchsubmit" value="Search">
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <!-- SEARCH -->
+
+                        <!-- CATAGORIES -->
+                        <div class="widget mb-4 pb-2">
+                            <h4 class="widget-title">Catagories</h4>
+                            <ul class="list-unstyled mt-4 mb-0 catagories">
+                                <li><a href="jvascript:void(0)">Finance</a> <span class="float-right">13</span></li>
+                                <li><a href="jvascript:void(0)">Business</a> <span class="float-right">09</span></li>
+                                <li><a href="jvascript:void(0)">Blog</a> <span class="float-right">18</span></li>
+                                <li><a href="jvascript:void(0)">Corporate</a> <span class="float-right">20</span></li>
+                                <li><a href="jvascript:void(0)">Investment</a> <span class="float-right">22</span></li>
+                            </ul>
+                        </div>
+                        <!-- CATAGORIES -->
+
                         <!-- RECENT POST -->
                         <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Tips Terbaru</h4>
+                            <h4 class="widget-title">Recent Post</h4>
                             <div class="mt-4">
                                 <div class="clearfix post-recent">
                                     <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://via.placeholder.com/800X800//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded"></a></div>
@@ -187,8 +238,40 @@
                             </div>
                         </div>
                         <!-- RECENT POST -->
+
+                        <!-- TAG CLOUDS -->
+                        <div class="widget mb-4 pb-2">
+                            <h4 class="widget-title">Tags Cloud</h4>
+                            <div class="tagcloud mt-4">
+                                <a href="jvascript:void(0)" class="rounded">Business</a>
+                                <a href="jvascript:void(0)" class="rounded">Finance</a>
+                                <a href="jvascript:void(0)" class="rounded">Marketing</a>
+                                <a href="jvascript:void(0)" class="rounded">Fashion</a>
+                                <a href="jvascript:void(0)" class="rounded">Bride</a>
+                                <a href="jvascript:void(0)" class="rounded">Lifestyle</a>
+                                <a href="jvascript:void(0)" class="rounded">Travel</a>
+                                <a href="jvascript:void(0)" class="rounded">Beauty</a>
+                                <a href="jvascript:void(0)" class="rounded">Video</a>
+                                <a href="jvascript:void(0)" class="rounded">Audio</a>
+                            </div>
+                        </div>
+                        <!-- TAG CLOUDS -->
+
+                        <!-- SOCIAL -->
+                        <div class="widget">
+                            <h4 class="widget-title">Follow us</h4>
+                            <ul class="list-unstyled social-icon mt-4 mb-0">
+                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-vimeo"></i></a></li>
+                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-dribbble"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- SOCIAL -->
                     </div>
-                </div><!--end col-->
+                </div>
+                <!--end col-->
 
                 <div class="col-lg-8 col-md-6 col-12 order-1 order-md-2">
                     <div class="shadow rounded p-4">
@@ -223,7 +306,7 @@
                                 <p class="mb-2 font-italic f-14 text-dark">It is a paradisematic country in which roasted parts of sentences fly into your mouth Even the all-powerful Pointing has control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name as of Lorem Ipsum decided to leave.</p>
                                 <h6 class="mb-0"><a href="#" class="text-dark">By : Maude J. McDowell</a></h6>
                             </blockquote>
-                            
+
                             <ul class="list-inline mb-0">
                                 <li class="list-inline-item mt-1">
                                     <a href="" class="text-dark">
@@ -245,7 +328,7 @@
                                 <p class="text-muted mb-0">08-Sep-2018 at 02:15 pm</p>
                                 <p class="text-muted f-14 mb-2">The Big Oxmox advised her not to do so, because there were thousands of bad a Commas wild Question Marks and devious Semikoli.</p>
                                 <p class="mb-0"><a href="" class="text-muted"><i class="mdi mdi-reply-all mr-2"></i>Reply</a></p>
-                                
+
 
                                 <div class="media mt-4">
                                     <div class="blog-comment-img">
@@ -260,7 +343,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="media mt-4">
                             <div class="blog-comment-img">
                                 <img class="d-block mx-auto rounded-pill" height="60" alt="" src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/">
@@ -273,7 +356,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="media mt-4">
                             <div class="blog-comment-img">
                                 <img class="d-block mx-auto rounded-pill" height="60" alt="" src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/">
@@ -307,13 +390,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                    <div class="form-group blog-details-form">
-                                        <i class="mdi mdi-web text-muted f-17"></i>
-                                        <input name="url" id="url" type="url" class="form-control blog-details" placeholder="url">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-web text-muted f-17"></i>
+                                            <input name="url" id="url" type="url" class="form-control blog-details" placeholder="url">
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group blog-details-form">
@@ -336,6 +419,37 @@
         </div>
     </section>
     <!-- BLOG LIST END -->
+
+    <!-- subscribe start -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="float-left position-relative notification-icon mr-2">
+                        <i class="mdi mdi-bell-outline text-primary h2"></i>
+                        <span class="badge badge-pill badge-danger">1</span>
+                    </div>
+                    <h5 class="mt-2 mb-0">Your Job Notification</h5>
+                </div>
+                <div class="col-lg-8">
+                    <div class="subscribe">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Enter your E-mail address">
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary">Subscribe Us</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribe end -->
+
     <!-- footer start -->
     <footer class="footer">
         <div class="container">
@@ -375,7 +489,7 @@
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
-            
+
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
                     <ul class="list-unstyled text-foot mt-4 mb-0">
@@ -388,7 +502,7 @@
         </div>
     </footer>
     <!-- footer end -->
-    
+
     <footer class="footer footer-bar">
         <div class="container text-center">
             <div class="row justify-content-center">
@@ -398,13 +512,15 @@
                     </div>
                 </div>
             </div>
-        </div><!--end container-->
-    </footer><!--end footer-->
+        </div>
+        <!--end container-->
+    </footer>
+    <!--end footer-->
     <!-- Footer End -->
 
     <!-- Back to top -->
-    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
-        <i class="mdi mdi-chevron-up d-block"> </i> 
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top">
+        <i class="mdi mdi-chevron-up d-block"> </i>
     </a>
     <!-- Back to top -->
 
@@ -422,4 +538,5 @@
     <script src="js/app.js"></script>
 
 </body>
+
 </html>

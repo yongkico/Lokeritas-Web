@@ -94,15 +94,15 @@ require("functions.php");
                     <ul class="navigation-menu">
                         <li><a href="#">Beranda</a></li>
                         <li><a href="lowongan.php">Lowongan</a></li>
-                        <li><a href="index.html">Tips Karir</a></li>
-                        <li><a href="contact.html">Daftar Perusahaan</a></li>
-                        <li><a href="index.html">Karyaku</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
                             <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
-                                <li><a href="#">Profil</a></li>
-                                <li><a href="#">Lamaran dikirim</a></li>
+                                <li><a href="profile.php">Profil</a></li>
+                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
                                 <li><a href="logout.php">Logout</a></li>
                             </ul>
                         </li>
@@ -168,7 +168,7 @@ require("functions.php");
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
-                                                    <div class="registration-form-box"> 
+                                                    <div class="registration-form-box">
                                                         <a href="lowongan.php">
                                                             <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
                                                         </a>
@@ -723,10 +723,10 @@ require("functions.php");
                                                         <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Job keybords...">
                                                     </div>
                                                 </div>
-                                               
+
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
-                                                         <a href="lowongan.php">
+                                                        <a href="lowongan.php">
                                                             <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
                                                         </a>
                                                     </div>
@@ -984,7 +984,7 @@ require("functions.php");
                                 </div>
                             </div>
 
-                            
+
                         </div>
                     </div>
                 </div>
@@ -1364,11 +1364,11 @@ require("functions.php");
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script>
-		function loginEx(){
-			swal("Perhatian!", "Anda harus login terlebih dahulu!", "warning");
-		}
-	</script>
+    <script>
+        function loginEx() {
+            swal("Perhatian!", "Anda harus login terlebih dahulu!", "warning");
+        }
+    </script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>

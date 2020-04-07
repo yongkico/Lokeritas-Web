@@ -1,3 +1,10 @@
+<?php
+session_start();
+require("functions.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -41,117 +48,127 @@
     </div>
     <!-- Loader -->
 
-   <!-- Navigation Bar-->
-   <header id="topnav" class="defaultscroll scroll-active">
-        <!-- Tagline STart -->
-        <!-- <div class="tagline">
+    <?php if (isset($_SESSION["login"])) : ?>
+        <?php
+        $id = $_SESSION["id"];
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
+        $row = mysqli_fetch_assoc($result);
+        ?>
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll scroll-active">
+
+            <!-- Menu Start -->
             <div class="container">
-                <div class="float-left">
-                    <div class="phone">
-                        <i class="mdi mdi-phone-classic"></i> +1 800 123 45 67
-                    </div>
-                    <div class="email">
-                        <a href="#">
-                            <i class="mdi mdi-email"></i> Support@mail.com
+                <!-- Logo container-->
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                    </a>
+                </div>
+                <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </a>
+                        <!-- End mobile menu toggle-->
                     </div>
                 </div>
-                <div class="float-right">
-                    <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
-                        <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Benny Simpson</a></li>
-                        <li class="list-inline-item">
-                            <select id="select-lang" class="demo-default">
-                                <option value="">Language</option>
-                                <option value="4">English</option>
-                                <option value="1">Spanish</option>
-                                <option value="3">French</option>
-                                <option value="5">Hindi</option>
-                            </select>
+
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="index.php">Beranda</a></li>
+                        <li><a href="lowongan.php">Lowongan</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
+                        <li><a href="#" style="font-size: 30px">|</a></li>
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="profile.php">Profil</a></li>
+                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
+                                <li><a href="logout.php">Logout</a></li>
+                            </ul>
                         </li>
                     </ul>
+                    <!--end navigation menu-->
                 </div>
-                <div class="clearfix"></div>
+                <!--end navigation-->
             </div>
-        </div> -->
-        <!-- Tagline End -->
+            <!--end container-->
+            <!--end end-->
+        </header>
+        <!--end header-->
+        <!-- Navbar End -->
+    <?php else : ?>
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll scroll-active">
 
-        <!-- Menu Start -->
-        <div class="container">
-            <!-- Logo container-->
-            <div>
-                <a href="index.html" class="logo">
-                    <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                    <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
-                </a>
-            </div>                 
-            <div class="buy-button">
-                    <?php if(!isset($_SESSION["login"])) : ?>
-                        <a href="login.php" class="btn btn-primary">Masuk</a>
-                        <a href="register.php" class="btn btn-primary">Daftar</a>
-                    <?php endif; ?> 
-
-                    <?php if(isset($_SESSION["login"])) : ?>
-                        <?php 
-                            $id = $_SESSION["id"];
-                            $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
-                            $row = mysqli_fetch_assoc($result);    
-                        ?>
-                        <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" style="color: white; font-size:15px"><?= $row["nama"] ?></a>
-                                <ul class="dropdown-menu" style="color:black; font-size:15px; min-width: 180px;">
-                                    
-                                    <li style="line-height:30px;padding-left:20px;padding-bottom:5px"><a href="profile.php" style="color:black; font-size:13px;"><i class="mdi mdi-account mr-2" style="color: black; font-size:16px"></i>Profile</a></li>
-                                    <li style="line-height:30px;padding-left:20px;padding-bottom:5px"><a href="#" style="color:black; font-size:13px;"><i class="mdi mdi-send mr-2" style="color: black; font-size:16px"></i>Lamaran dikirim</a></li>
-                                    <li style="line-height:30px;padding-left:20px;"><a href="logout.php" style="color:black; font-size:13px;"><i class="mdi mdi-logout mr-2" style="color: black; font-size:16px"></i>Logout</a></li>  
-                                </ul>
-                            </div>
-
-                        <!-- <a href="profile.php" style="color: white; font-size:15px"><i class="mdi mdi-account mr-2" style="color: white; font-size:16px"></i><?= $row["nama"] ?></a>
-                         <span style="margin-left:4px;margin-right:4px; color: white; font-size:15px">|</span>
-                        <a href="logout.php" style="color: white; font-size:15px">Logout</a> -->
-                    <?php endif; ?>                                                       
-            </div>
-            <!--end login button-->
-            <!-- End Logo container-->
-            <div class="menu-extras">
-                <div class="menu-item">
-                    <!-- Mobile menu toggle-->
-                    <a class="navbar-toggle">
-                        <div class="lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+            <!-- Menu Start -->
+            <div class="container">
+                <!-- Logo container-->
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
                     </a>
-                    <!-- End mobile menu toggle-->
                 </div>
+                <!-- <div class="buy-button">
+                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+            </div> -->
+                <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="contact.html">Cari Lowongan</a></li>
+                        <li><a href="index.html">Tips Karir</a></li>
+                        <li><a href="contact.html">Daftar Perusahaan</a></li>
+                        <li><a href="index.html">Karyaku</a></li>
+                        <div class="buy-button">
+                            <a href="login.php" class="btn btn-primary">Masuk</a>
+                            <a href="register.php" class="btn btn-primary">Daftar</a>
+                        </div>
+                    </ul>
+                    <!--end navigation menu-->
+                </div>
+                <!--end navigation-->
             </div>
-    
-            <div id="navigation">
-                <!-- Navigation Menu-->   
-                <ul class="navigation-menu">
-                    <li class="has-submenu">
-                        <a href="job-list.php">CARI LOWONGAN</a>
-                    </li>
-    
-                    <li>
-                        <a href="#">DAFTAR PERUSAHAAN</a>
-                    </li>
-                    <li>
-                        <a href="tips-karir.php">TIPS KARIR</a>
-                    </li>
-                </ul><!--end navigation menu-->
-            </div><!--end navigation-->
-        </div><!--end container-->
-        <!--end end-->
-    </header><!--end header-->
-    <!-- Navbar End -->
-    
+            <!--end container-->
+            <!--end end-->
+        </header>
+        <!--end header-->
+        <!-- Navbar End -->
+    <?php endif; ?>
+
     <!-- Start home -->
-    <section class="bg-half page-next-level"> 
+    <section class="bg-half page-next-level">
         <div class="bg-overlay"></div>
         <div class="container">
-        <div class="row">
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="text-sm-center">
                         <img src="images/featured-job/img-3.png" alt="" class="img-fluid mx-md-auto d-block">
@@ -184,7 +201,7 @@
 
     <!-- EMPLOYERS DETAILS START -->
     <section class="section">
-        <div class="container">          
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12 mt-4 pt-2">
                     <h4>Deskripsi Perusahaan :</h4>
@@ -213,12 +230,12 @@
                 </div>
             </div>
 
-            
+
         </div>
     </section>
     <!-- EMPLOYERS DETAILS END -->
 
-   
+
 
     <!-- footer start -->
     <footer class="footer">
@@ -259,7 +276,7 @@
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
-            
+
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
                     <ul class="list-unstyled text-foot mt-4 mb-0">
@@ -282,13 +299,15 @@
                     </div>
                 </div>
             </div>
-        </div><!--end container-->
-    </footer><!--end footer-->
+        </div>
+        <!--end container-->
+    </footer>
+    <!--end footer-->
     <!-- Footer End -->
 
     <!-- Back to top -->
-    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
-        <i class="mdi mdi-chevron-up d-block"> </i> 
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top">
+        <i class="mdi mdi-chevron-up d-block"> </i>
     </a>
     <!-- Back to top -->
 
@@ -306,4 +325,5 @@
     <script src="js/app.js"></script>
 
 </body>
+
 </html>
