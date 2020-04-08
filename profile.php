@@ -61,8 +61,8 @@ require("functions.php");
                 <!-- Logo container-->
                 <div>
                     <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                        <img src="images/logo-lokeritas-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-lokeritas-dark.png" alt="" class="logo-dark" height="18" />
                     </a>
                 </div>
                 <!--end login button-->
@@ -162,9 +162,9 @@ require("functions.php");
         <!--end header-->
         <!-- Navbar End -->
     <?php endif; ?>
-    
+
     <!-- Start home -->
-    <section class="bg-half page-next-level"> 
+    <section class="bg-half page-next-level">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -210,7 +210,7 @@ require("functions.php");
                         <p class="text-muted">Aliquam erat volutpat Etiam vitae tortor Morbi vestibulum volutpat enim Aliquam nunc Nunc sed turpis sed mollis eros et ultrices tempus mauris ipsum aliquam libero non adipiscing dolor urna a orci Nulla porta dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra inceptos hymenaeos pellentesque dapibus hendrerit tortor Praesent egestas tristique nibh sed a libero cras us varius donec vitae orci sed dolor rutrum auctor fusce egestas elit eget lorem.</p>
 
                         <p class="text-muted">Libero venenatis faucibus ullam quis ante tiam sit amet orci eget eros faucibus tincidunt ed fringilla mauris sit amet nibh Donec sodales sagittis magna ed consequat leo eget bibendum sodales augue velit cursus nunc quis gravida magna mi libero usce vulputate eleifend sapien estibulum purus qua scelerisque ut mollis sed nonummy id metus ullam accumsan lorem Vivamus elementum semper enean vulputate eleifend tellus enean leo ligula porttitor.</p>
-                        
+
                         <ul class="list-inline pt-3 border-top mb-0">
                             <li class="list-inline-item mr-3">
                                 <a href="" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>3659 Turkey Pen Road Manhattan, NY 10016</a>
@@ -265,7 +265,7 @@ require("functions.php");
                         <h6 class="text-uppercase f-17"><a href="#" class="text-muted">University Of USA</a></h6>
                         <p class="f-14 mb-1">May 2016 - April 2017</p>
                         <p class="pb-3 mb-0">Diploma In Management Studies</p>
-                        
+
                         <p class="pt-3 border-top mb-0">Suspendisse faucibus et pellentesque egestas lacus ante convallis.</p>
                     </div>
                 </div>
@@ -278,7 +278,7 @@ require("functions.php");
                         <h6 class="text-uppercase f-17"><a href="#" class="text-muted">University Of USA</a></h6>
                         <p class="f-14 mb-1">May 2017 - April 2018</p>
                         <p class="pb-3 mb-0">Diploma In Management</p>
-                        
+
                         <p class="pt-3 border-top mb-0">Suspendisse faucibus et pellentesque egestas lacus ante convallis.</p>
                     </div>
                 </div>
@@ -291,7 +291,7 @@ require("functions.php");
                         <h6 class="text-uppercase f-17"><a href="#" class="text-muted">University Of USA</a></h6>
                         <p class="f-14 mb-1">May 2018 - April 2019</p>
                         <p class="pb-3 mb-0">Management Of Company</p>
-                        
+
                         <p class="pt-3 border-top mb-0">Suspendisse faucibus et pellentesque egestas lacus ante convallis.</p>
                     </div>
                 </div>
@@ -404,7 +404,7 @@ require("functions.php");
                     <h4 class="text-dark">Skills :</h4>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-6 mt-4 pt-2">
                     <h6 class="mb-0 text-uppercase">Language Knowledge :</h6>
@@ -415,7 +415,8 @@ require("functions.php");
                                 <div class="progress-value d-block text-muted h6">84%</div>
                             </div>
                         </div>
-                    </div><!--end process box-->
+                    </div>
+                    <!--end process box-->
                     <div class="progress-box mt-4">
                         <h6 class="title text-muted">Japanese</h6>
                         <div class="progress">
@@ -423,7 +424,8 @@ require("functions.php");
                                 <div class="progress-value d-block text-muted h6">75%</div>
                             </div>
                         </div>
-                    </div><!--end process box-->
+                    </div>
+                    <!--end process box-->
                     <div class="progress-box mt-4">
                         <h6 class="title text-muted">Arabic</h6>
                         <div class="progress">
@@ -431,7 +433,8 @@ require("functions.php");
                                 <div class="progress-value d-block text-muted h6">79%</div>
                             </div>
                         </div>
-                    </div><!--end process box-->
+                    </div>
+                    <!--end process box-->
                     <div class="progress-box mt-4">
                         <h6 class="title text-muted">English</h6>
                         <div class="progress">
@@ -439,7 +442,8 @@ require("functions.php");
                                 <div class="progress-value d-block text-muted h6">95%</div>
                             </div>
                         </div>
-                    </div><!--end process box-->
+                    </div>
+                    <!--end process box-->
                 </div>
 
                 <div class="col-md-6 mt-4 pt-2">
@@ -451,7 +455,8 @@ require("functions.php");
                                 <div class="progress-value d-block text-muted h6">84%</div>
                             </div>
                         </div>
-                    </div><!--end process box-->
+                    </div>
+                    <!--end process box-->
                     <div class="progress-box mt-4">
                         <h6 class="title text-muted">PHP / MYSQL</h6>
                         <div class="progress">
@@ -459,7 +464,8 @@ require("functions.php");
                                 <div class="progress-value d-block text-muted h6">75%</div>
                             </div>
                         </div>
-                    </div><!--end process box-->
+                    </div>
+                    <!--end process box-->
                     <div class="progress-box mt-4">
                         <h6 class="title text-muted">Angular / JavaScript</h6>
                         <div class="progress">
@@ -467,7 +473,8 @@ require("functions.php");
                                 <div class="progress-value d-block text-muted h6">79%</div>
                             </div>
                         </div>
-                    </div><!--end process box-->
+                    </div>
+                    <!--end process box-->
                     <div class="progress-box mt-4">
                         <h6 class="title text-muted">HTML / CSS</h6>
                         <div class="progress">
@@ -475,9 +482,10 @@ require("functions.php");
                                 <div class="progress-value d-block text-muted h6">95%</div>
                             </div>
                         </div>
-                    </div><!--end process box-->
+                    </div>
+                    <!--end process box-->
                 </div>
-            </div>         
+            </div>
         </div>
     </section>
     <!-- CANDIDATES PROFILE END -->
@@ -521,7 +529,7 @@ require("functions.php");
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
-            
+
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
                     <ul class="list-unstyled text-foot mt-4 mb-0">
@@ -544,13 +552,15 @@ require("functions.php");
                     </div>
                 </div>
             </div>
-        </div><!--end container-->
-    </footer><!--end footer-->
+        </div>
+        <!--end container-->
+    </footer>
+    <!--end footer-->
     <!-- Footer End -->
 
     <!-- Back to top -->
-    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
-        <i class="mdi mdi-chevron-up d-block"> </i> 
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top">
+        <i class="mdi mdi-chevron-up d-block"> </i>
     </a>
     <!-- Back to top -->
 
@@ -566,4 +576,5 @@ require("functions.php");
 
     <script src="js/app.js"></script>
 </body>
+
 </html>

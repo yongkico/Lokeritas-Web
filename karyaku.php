@@ -61,8 +61,8 @@ require("functions.php");
                 <!-- Logo container-->
                 <div>
                     <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                        <img src="images/logo-lokeritas-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-lokeritas-dark.png" alt="" class="logo-dark" height="18" />
                     </a>
                 </div>
                 <!--end login button-->
@@ -93,7 +93,7 @@ require("functions.php");
                         <li class="has-submenu">
                             <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
-                            <li><a href="profile.php">Profil</a></li>
+                                <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
                                 <li><a href="logout.php">Logout</a></li>
                             </ul>
@@ -163,9 +163,9 @@ require("functions.php");
         <!-- Navbar End -->
     <?php endif; ?>
 
-    
+
     <!-- Start home -->
-    <section class="bg-half page-next-level" style="height:100px"> 
+    <section class="bg-half page-next-level" style="height:100px">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -181,7 +181,7 @@ require("functions.php");
     <!-- end home -->
 
     <!-- blog start -->
-    <section class="section " >
+    <section class="section ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
@@ -204,8 +204,9 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
-                
+                </div>
+                <!--end col-->
+
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
@@ -226,8 +227,9 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
-                
+                </div>
+                <!--end col-->
+
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
@@ -248,7 +250,8 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
+                </div>
+                <!--end col-->
 
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
@@ -270,8 +273,9 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
-                
+                </div>
+                <!--end col-->
+
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
@@ -292,8 +296,9 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
-                
+                </div>
+                <!--end col-->
+
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
@@ -314,73 +319,8 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
-                
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-                            <div class="likes">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">How apps is the IT world</a></h4>
-                        </div>
-                        <div class="author">
-                            <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                        </div>
-                    </div>
-                </div><!--end col-->
-                
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-                            <div class="likes">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
-                        </div>
-                        <div class="author">
-                            <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                        </div>
-                    </div>
-                </div><!--end col-->
-                
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-                            <div class="likes">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="javascript:void(0)" class="title text-dark">Maecenas tempus tellus eget</a></h4>
-                        </div>
-                        <div class="author">
-                            <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                        </div>
-                    </div>
-                </div><!--end col-->
+                </div>
+                <!--end col-->
 
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
@@ -402,8 +342,9 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
-                
+                </div>
+                <!--end col-->
+
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
@@ -424,8 +365,9 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
-                
+                </div>
+                <!--end col-->
+
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
@@ -446,7 +388,77 @@ require("functions.php");
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                         </div>
                     </div>
-                </div><!--end col-->
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <div class="overlay rounded-top bg-dark"></div>
+                            <div class="likes">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="content p-4">
+                            <h4><a href="javascript:void(0)" class="title text-dark">How apps is the IT world</a></h4>
+                        </div>
+                        <div class="author">
+                            <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
+                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <div class="overlay rounded-top bg-dark"></div>
+                            <div class="likes">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="content p-4">
+                            <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
+                        </div>
+                        <div class="author">
+                            <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
+                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <div class="overlay rounded-top bg-dark"></div>
+                            <div class="likes">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="content p-4">
+                            <h4><a href="javascript:void(0)" class="title text-dark">Maecenas tempus tellus eget</a></h4>
+                        </div>
+                        <div class="author">
+                            <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
+                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
 
                 <div class="col-lg-12">
                     <nav aria-label="Page navigation example">
@@ -466,7 +478,7 @@ require("functions.php");
                                 </a>
                             </li>
                         </ul>
-                    </nav>  
+                    </nav>
                 </div>
             </div>
         </div>
@@ -513,7 +525,7 @@ require("functions.php");
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
-            
+
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title">Business Hours</p>
                     <ul class="list-unstyled text-foot mt-4 mb-0">
@@ -535,13 +547,15 @@ require("functions.php");
                     </div>
                 </div>
             </div>
-        </div><!--end container-->
-    </footer><!--end footer-->
+        </div>
+        <!--end container-->
+    </footer>
+    <!--end footer-->
     <!-- Footer End -->
 
     <!-- Back to top -->
-    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
-        <i class="mdi mdi-chevron-up d-block"> </i> 
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top">
+        <i class="mdi mdi-chevron-up d-block"> </i>
     </a>
     <!-- Back to top -->
 
@@ -559,4 +573,5 @@ require("functions.php");
     <script src="js/app.js"></script>
 
 </body>
+
 </html>

@@ -12,7 +12,7 @@ require("functions.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jobya - Responsive Job Board HTML Template</title>
+    <title>Lokeritas - Lowongan Kerja Disabilitas</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="Themesdesign" />
@@ -66,8 +66,8 @@ require("functions.php");
                 <!-- Logo container-->
                 <div>
                     <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                        <img src="images/logo-lokeritas-light.png" alt="" class="logo-light" height="18" />
+                        <img src="images/logo-lokeritas-dark.png" alt="" class="logo-dark" height="18" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
@@ -126,8 +126,8 @@ require("functions.php");
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
                                 <div class="title-heading text-center text-white">
-                                    <h6 class="small-title text-uppercase text-light mb-3">Find jobs, create trackable resumes and enrich your applications.</h6>
-                                    <h1 class="heading font-weight-bold mb-4">The Easiest Way to Get Your New Job</h1>
+                                    <h6 class="small-title text-uppercase text-light mb-3">Bangun Kemampuanmu dan Tunjukan Keahlianmu</h6>
+                                    <h1 class="heading font-weight-bold mb-4">Satu langkah mudah menemukan pekerjaanmu</h1>
                                 </div>
                             </div>
                         </div>
@@ -140,14 +140,14 @@ require("functions.php");
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-briefcase"></i>
-                                                        <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Job keybords...">
+                                                        <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan...">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-location-arrow"></i>
                                                         <select id="select-country" class="demo-default">
-                                                            <option value="">Location</option>
+                                                            <option value="">Lokasi</option>
                                                             <option value="AF">Afghanistan</option>
                                                             <option value="AX">&Aring;land Islands</option>
                                                             <option value="ZM">Zambia</option>
@@ -159,7 +159,7 @@ require("functions.php");
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-list-alt"></i>
                                                         <select id="select-category" class="demo-default">
-                                                            <option value="">Categories...</option>
+                                                            <option value="">Bidang...</option>
                                                             <option value="4">Accounting</option>
                                                             <option value="1">IT & Software</option>
                                                             <option value="3">Marketing</option>
