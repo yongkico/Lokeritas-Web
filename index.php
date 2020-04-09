@@ -65,9 +65,9 @@ require("functions.php");
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-lokeritas-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-lokeritas-dark.png" alt="" class="logo-dark" height="18" />
+                    <a href="#" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
@@ -133,14 +133,51 @@ require("functions.php");
                         </div>
                         <div class="home-form-position">
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="home-registration-form p-4 mb-3">
+                                <div class="col-lg-12" >
+                                    <div class="home-registration-form p-4 mb-3 " >
                                         <form class="registration-form">
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-briefcase"></i>
-                                                        <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan...">
+                                                        <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan">
+                                                    </div>
+                                                </div>                                                
+                                                <div class="col-lg-3 col-md-6">
+                                                    <div class="registration-form-box">
+                                                        <i class="fa fa-list-alt"></i>
+                                                        <select id="select-category" class="demo-default">
+                                                        <option value="">Bidang</option>
+                                                        <option value="ABC">Semua Bidang</option>
+                                                        <option value="Administrasi">Administrasi</option>
+                                                        <option value="Desain dan Arsitektur">Desain dan Arsitektur</option>
+                                                        <option value="Editing, Media dan Informasi">Editing, Media dan Informasi</option>
+                                                        <option value="Elektronik">Elektronik</option>
+                                                        <option value="Hotel dan Katering">Hotel dan Katering</option>
+                                                        <option value="House Keeping">House Keeping</option>
+                                                        <option value="IT dan Telekomunikasi">IT dan Telekomunikasi</option>
+                                                        <option value="Keamanan dan Perlindungan Sipil">Keamanan dan Perlindungan Sipil</option>
+                                                        <option value="Kesehatan dan Kecantikan">Kesehatan dan Kecantikan</option>
+                                                        <option value="Keuangan dan Akuntansi">Keuangan dan Akuntansi</option>
+                                                        <option value="Layanan Sipil / Asosiasi">Layanan Sipil / Asosiasi</option>
+                                                        <option value="Legal">Legal</option>
+                                                        <option value="Manajemen, Manajemen Eksekutif dan Strategis">Manajemen, Manajemen Eksekutif dan Strategis</option>
+                                                        <option value="Pelatihan / Instruksi">Pelatihan / Instruksi</option>
+                                                        <option value="Pelayanan Pelanggan">Pelayanan Pelanggan</option>
+                                                        <option value="Pemasaran dan Periklanan">Pemasaran dan Periklanan</option>
+                                                        <option value="Pemeliharaan">Pemeliharaan</option>
+                                                        <option value="Penelitian, Pengembangan dan Ilmu Pengetahuan">Penelitian, Pengembangan dan Ilmu Pengetahuan</option>
+                                                        <option value="Penjualan dan Perdagangan">Penjualan dan Perdagangan</option>
+                                                        <option value="Perbankan, Asuransi dan Keuangan">Perbankan, Asuransi dan Keuangan</option>
+                                                        <option value="Pertanian, Kehutanan, Laut dan Lingkungan">Pertanian, Kehutanan, Laut dan Lingkungan</option>
+                                                        <option value="Produksi, Konstruksi dan Perdagangan">Produksi, Konstruksi dan Perdagangan</option>
+                                                        <option value="Quality Control">Quality Control</option>
+                                                        <option value="Seni, Budaya dan Hiburan">Seni, Budaya dan Hiburan</option>
+                                                        <option value="Sosial">Sosial</option>
+                                                        <option value="Sumber Daya Manusia">Sumber Daya Manusia</option>
+                                                        <option value="Teknik">Teknik</option>
+                                                        <option value="Transportasi dan Logistik">Transportasi dan Logistik</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
@@ -148,22 +185,40 @@ require("functions.php");
                                                         <i class="fa fa-location-arrow"></i>
                                                         <select id="select-country" class="demo-default">
                                                             <option value="">Lokasi</option>
-                                                            <option value="AF">Afghanistan</option>
-                                                            <option value="AX">&Aring;land Islands</option>
-                                                            <option value="ZM">Zambia</option>
-                                                            <option value="ZW">Zimbabwe</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="registration-form-box">
-                                                        <i class="fa fa-list-alt"></i>
-                                                        <select id="select-category" class="demo-default">
-                                                            <option value="">Bidang...</option>
-                                                            <option value="4">Accounting</option>
-                                                            <option value="1">IT & Software</option>
-                                                            <option value="3">Marketing</option>
-                                                            <option value="5">Banking</option>
+                                                            <option value="Semua Wilayah Sumut">Semua Wilayah Sumut</option>
+                                                            <option value="Kab. Asahan">Kab. Asahan</option>
+                                                            <option value="Kab. Batu Bara">Kab. Batu Bara</option>
+                                                            <option value="Kab. Dairi">Kab. Dairi</option>
+                                                            <option value="Kab. Deli Serdang">Kab. Deli Serdang</option>
+                                                            <option value="Kab. Humbang Hasundutan">Kab. Humbang Hasundutan</option>
+                                                            <option value="Kab. Karo">Kab. Karo</option>
+                                                            <option value="Kab. Labuhan Batu">Kab. Labuhan Batu</option>
+                                                            <option value="Kab. Labuhan Batu Selatan">Kab. Labuhan Batu Selatan</option>
+                                                            <option value="Kab. Labuhan Batu Utara">Kab. Labuhan Batu Utara</option>
+                                                            <option value="Kab. Langkat">Kab. Langkat</option>
+                                                            <option value="Kab. Mandailing Natal">Kab. Mandailing Natal</option>
+                                                            <option value="Kab. Nias">Kab. Nias</option>
+                                                            <option value="Kab. Nias Barat">Kab. Nias Barat</option>
+                                                            <option value="Kab. Nias Selatan">Kab. Nias Selatan</option>
+                                                            <option value="Kab. Nias Utara">Kab. Nias Utara</option>
+                                                            <option value="Kab. Padang Lawas">Kab. Padang Lawas</option>
+                                                            <option value="Kab. Padang Lawas Utara">Kab. Padang Lawas Utara</option>
+                                                            <option value="Kab. Pakpak Bharat">Kab. Pakpak Bharat</option>
+                                                            <option value="Kab. Samosir">Kab. Samosir</option>
+                                                            <option value="Kab. Serdang Bedagai">Kab. Serdang Bedagai</option>
+                                                            <option value="Kab. Simalungun">Kab. Simalungun</option>
+                                                            <option value="Kab. Tapanuli Selatan">Kab. Tapanuli Selatan</option>
+                                                            <option value="Kab. Tapanuli Tengah">Kab. Tapanuli Tengah</option>
+                                                            <option value="Kab. Tapanuli Utara">Kab. Tapanuli Utara</option>
+                                                            <option value="Kab. Toba Samosir">Kab. Toba Samosir</option>
+                                                            <option value="Kab. Binjai">Kota Binjai</option>
+                                                            <option value="Kab. Gunung Sitoli">Kota Gunung Sitoli</option>
+                                                            <option value="Kota Medan">Kota Medan</option>
+                                                            <option value="Kota PadangSidempuan">Kota Padangsidempuan</option>
+                                                            <option value="Kota Pematang Siantar">Kota Pematang Siantar</option>
+                                                            <option value="Kota Sibolga">Kota Sibolga</option>
+                                                            <option value="Kota Tanjung Balai">Kota Tanjung Balai</option>
+                                                            <option value="Kota Tebing Tinggi">Kota Tebing Tinggi</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -193,8 +248,7 @@ require("functions.php");
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <div class="section-title text-center mb-4 pb-2">
-                            <h4 class="title title-line pb-5">Lowongan Pekerjaan dengan Keahlianmu</h4>
-                            <p class="text-muted para-desc mx-auto mb-1">Post a job to tell us about your project. We'll quickly match you with the right freelancers.</p>
+                            <h4 class="title title-line pb-5">Lowongan Pekerjaan dengan Keahlianmu</h4>                            
                         </div>
                     </div>
                 </div>
@@ -206,11 +260,7 @@ require("functions.php");
 
                                     <div class="col-lg-12">
                                         <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                            <!-- <div class="lable text-center pt-2 pb-2">
-                                                <ul class="list-unstyled best text-white mb-0 text-uppercase">
-                                                    <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                                                </ul>
-                                            </div> -->
+                                            
                                             <div class="p-4">
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
@@ -255,7 +305,7 @@ require("functions.php");
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div>
-                                                            <a href="#" class="text-primary">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                            <a href="#" class="text-primary">Lamar Sekarang <i class="mdi mdi-chevron-double-right"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -263,11 +313,7 @@ require("functions.php");
                                         </div>
 
                                         <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                            <div class="lable text-center pt-2 pb-2">
-                                                <ul class="list-unstyled best text-white mb-0 text-uppercase">
-                                                    <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                                                </ul>
-                                            </div>
+                                            
                                             <div class="p-4">
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
@@ -307,7 +353,7 @@ require("functions.php");
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div>
-                                                            <a href="#" class="text-primary">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                            <a href="#" class="text-primary">Lamar Sekarang <i class="mdi mdi-chevron-double-right"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -315,11 +361,7 @@ require("functions.php");
                                         </div>
 
                                         <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                            <div class="lable text-center pt-2 pb-2">
-                                                <ul class="list-unstyled best text-white mb-0 text-uppercase">
-                                                    <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                                                </ul>
-                                            </div>
+                                            
                                             <div class="p-4">
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
@@ -364,7 +406,7 @@ require("functions.php");
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div>
-                                                            <a href="#" class="text-primary">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                            <a href="#" class="text-primary">Lamar Sekarang <i class="mdi mdi-chevron-double-right"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -372,11 +414,7 @@ require("functions.php");
                                         </div>
 
                                         <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                            <div class="lable text-center pt-2 pb-2">
-                                                <ul class="list-unstyled best text-white mb-0 text-uppercase">
-                                                    <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                                                </ul>
-                                            </div>
+                                         
                                             <div class="p-4">
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
@@ -416,7 +454,7 @@ require("functions.php");
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div>
-                                                            <a href="#" class="text-primary">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                            <a href="#" class="text-primary">Lamar Sekarang <i class="mdi mdi-chevron-double-right"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -466,9 +504,8 @@ require("functions.php");
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <div class="section-title text-center mb-4 pb-2">
+                        <div class="section-title text-center mb-12 pb-2">
                             <h4 class="title title-line pb-5">Tips Karir</h4>
-                            <p class="text-muted para-desc mx-auto mb-1">Post a job to tell us about your project. We'll quickly match you with the right freelancers.</p>
                         </div>
                     </div>
                 </div>
@@ -559,7 +596,7 @@ require("functions.php");
                     <div class="col-12">
                         <div class="section-title text-center mb-4 pb-2">
                             <h4 class="title title-line pb-5">Karyaku</h4>
-                            <p class="text-muted para-desc mx-auto mb-1">Post a job to tell us about your project. We'll quickly match you with the right freelancers.</p>
+                            <p class="text-muted para-desc mx-auto mb-1">Kami ingin buktikan, bahwa kami memiliki keahlian dan kami mampu bekerja layaknya orang normal</p>
                         </div>
                     </div>
                 </div>
@@ -1294,14 +1331,11 @@ require("functions.php");
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
-                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
-                    <p class="mt-4">At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium</p>
-                    <ul class="social-icon social list-inline mb-0">
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google"></i></a></li>
-                    </ul>
+                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>                    
+                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>   
+                    <a href="#" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="38" />
+                    </a>                 
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title">Lokeritas</p>
@@ -1325,11 +1359,11 @@ require("functions.php");
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
-                    <ul class="list-unstyled text-foot mt-4 mb-0">
-                        <li>Monday - Friday : 9:00 to 17:00</li>
-                        <li class="mt-2">Saturday : 10:00 to 15:00</li>
-                        <li class="mt-2">Sunday : Day Off (Holiday)</li>
+                    <p class="text-white mb-4 footer-list-title f-17">Lihat Kami di</p>
+                    <ul class="social-icon social list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -1342,7 +1376,7 @@ require("functions.php");
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="">
-                        <p class="mb-0">© 2019 -2020 Jobya. Design with <i class="mdi mdi-heart text-danger"></i> by Stucklabs.</p>
+                        <p class="mb-0">©2020 Design with <i class="mdi mdi-heart text-danger"></i> by Stucklabs.</p>
                     </div>
                 </div>
             </div>
