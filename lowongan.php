@@ -164,7 +164,7 @@ require("functions.php");
     <?php endif; ?>
 
     <!-- Start home -->
-    <section class="bg-half page-next-level" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;height: 50px">
+    <section class="bg-half page-next-level" style="padding: 120px 0px 50px 0px;background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -286,7 +286,7 @@ require("functions.php");
     </div>
 
     <!-- all jobs start -->
-    <section class="section" style="padding-top: 0px">
+    <section class="section" style="padding:0px 0px 50px 0px">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -549,21 +549,21 @@ require("functions.php");
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title">Lokeritas</p>
                     <ul class="list-unstyled footer-list">
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tentang</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mitra</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
+                        <li><a href="about.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tentang</a></li>
+                        <li><a href="mitra.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mitra</a></li>
+                        <li><a href="hubungi-kami.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
+                        <li><a href="kebijakan-privasi.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Lokeritas</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title">Lainnya</p>
                     <ul class="list-unstyled footer-list">
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lamaran Dikirim</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
+                        <li><a href="tips-karir.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
+                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
+                        <li><a href="lamaran-dikirim.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lamaran Dikirim</a></li>
+                        <li><a href="lowongan.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
+                        <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
 

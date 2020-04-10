@@ -165,21 +165,13 @@ require("functions.php");
     <?php endif; ?>
 
     <!-- Start home -->
-    <section class="bg-half page-next-level">
+    <section class="bg-half page-next-level" style="padding: 120px 0px 50px 0px;background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
         <div class="bg-overlay"></div>
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
+            <div class="row justify-content-center" style="margin-bottom: 0px; padding-bottom:0px">
+                <div class="col-md-6" style="margin-bottom: 0px; padding-bottom:0px">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">Blog with sidebar</h4>
-                        <ul class="page-next d-inline-block mb-0">
-                            <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
-                            <li><a href="#" class="text-uppercase font-weight-bold">Pages</a></li>
-                            <li><a href="#" class="text-uppercase font-weight-bold">Blog</a></li>
-                            <li>
-                                <span class="text-uppercase text-white font-weight-bold">Blog with Sidebar</span>
-                            </li>
-                        </ul>
+                        <h4 class="text-uppercase title mb-4">Tips Karir</h4>
                     </div>
                 </div>
             </div>
@@ -198,7 +190,7 @@ require("functions.php");
                             <div id="search2" class="widget-search mb-0">
                                 <form role="search" method="get" id="searchform" class="searchform">
                                     <div>
-                                        <input type="text" class="border rounded" name="s" id="s" placeholder="Search Keywords...">
+                                        <input type="text" class="border rounded" name="s" id="s" placeholder="Cari Keywords...">
                                         <input type="submit" id="searchsubmit" value="Search">
                                     </div>
                                 </form>
@@ -208,20 +200,20 @@ require("functions.php");
 
                         <!-- CATAGORIES -->
                         <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Catagories</h4>
+                            <h4 class="widget-title">Kategori</h4>
                             <ul class="list-unstyled mt-4 mb-0 catagories">
-                                <li><a href="jvascript:void(0)">Finance</a> <span class="float-right">13</span></li>
-                                <li><a href="jvascript:void(0)">Business</a> <span class="float-right">09</span></li>
+                                <li><a href="jvascript:void(0)">Keuangan</a> <span class="float-right">13</span></li>
+                                <li><a href="jvascript:void(0)">Bisnis</a> <span class="float-right">09</span></li>
                                 <li><a href="jvascript:void(0)">Blog</a> <span class="float-right">18</span></li>
-                                <li><a href="jvascript:void(0)">Corporate</a> <span class="float-right">20</span></li>
-                                <li><a href="jvascript:void(0)">Investment</a> <span class="float-right">22</span></li>
+                                <li><a href="jvascript:void(0)">Investasi</a> <span class="float-right">20</span></li>
+                                <li><a href="jvascript:void(0)">Prestasi</a> <span class="float-right">22</span></li>
                             </ul>
                         </div>
                         <!-- CATAGORIES -->
 
                         <!-- RECENT POST -->
                         <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Recent Post</h4>
+                            <h4 class="widget-title">Post Terbaru</h4>
                             <div class="mt-4">
                                 <div class="clearfix post-recent">
                                     <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://via.placeholder.com/800X800//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded"></a></div>
@@ -238,37 +230,6 @@ require("functions.php");
                             </div>
                         </div>
                         <!-- RECENT POST -->
-
-                        <!-- TAG CLOUDS -->
-                        <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Tags Cloud</h4>
-                            <div class="tagcloud mt-4">
-                                <a href="jvascript:void(0)" class="rounded">Business</a>
-                                <a href="jvascript:void(0)" class="rounded">Finance</a>
-                                <a href="jvascript:void(0)" class="rounded">Marketing</a>
-                                <a href="jvascript:void(0)" class="rounded">Fashion</a>
-                                <a href="jvascript:void(0)" class="rounded">Bride</a>
-                                <a href="jvascript:void(0)" class="rounded">Lifestyle</a>
-                                <a href="jvascript:void(0)" class="rounded">Travel</a>
-                                <a href="jvascript:void(0)" class="rounded">Beauty</a>
-                                <a href="jvascript:void(0)" class="rounded">Video</a>
-                                <a href="jvascript:void(0)" class="rounded">Audio</a>
-                            </div>
-                        </div>
-                        <!-- TAG CLOUDS -->
-
-                        <!-- SOCIAL -->
-                        <div class="widget">
-                            <h4 class="widget-title">Follow us</h4>
-                            <ul class="list-unstyled social-icon mt-4 mb-0">
-                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
-                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
-                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-vimeo"></i></a></li>
-                                <li class="list-inline-item"><a href="jvascript:void(0)" class="rounded"><i class="mdi mdi-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- SOCIAL -->
                     </div>
                 </div>
                 <!--end col-->
@@ -279,22 +240,12 @@ require("functions.php");
                             <div class="blog position-relative overflow-hidden shadow rounded">
                                 <div class="position-relative overflow-hidden">
                                     <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                    <div class="likes">
-                                        <ul class="list-unstyled mb-0">
-                                            <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                        </ul>
-                                    </div>
+                                    <div class="overlay rounded-top bg-dark"></div>                                    
                                 </div>
                                 <div class="content p-4">
                                     <h4><a href="tips-karir-detail.php" class="title text-dark">How apps is the IT world</a></h4>
                                     <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
                                     <a href="tips-karir-detail.php" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                                <div class="author">
-                                    <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                                    <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                                 </div>
                             </div>
                         </div>
@@ -304,22 +255,12 @@ require("functions.php");
                             <div class="blog position-relative overflow-hidden shadow rounded">
                                 <div class="position-relative overflow-hidden">
                                     <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                    <div class="likes">
-                                        <ul class="list-unstyled mb-0">
-                                            <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                            <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                        </ul>
-                                    </div>
+                                    <div class="overlay rounded-top bg-dark"></div>                                    
                                 </div>
                                 <div class="content p-4">
-                                    <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
+                                    <h4><a href="tips-karir-detail.php" class="title text-dark">How apps is the IT world</a></h4>
                                     <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                                    <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                                <div class="author">
-                                    <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                                    <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                                    <a href="tips-karir-detail.php" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -452,80 +393,44 @@ require("functions.php");
     </section>
     <!-- BLOG LIST END -->
 
-    <!-- subscribe start -->
-    <section class="section bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-5">
-                    <div class="float-left position-relative notification-icon mr-2">
-                        <i class="mdi mdi-bell-outline text-primary"></i>
-                        <span class="badge badge-pill badge-danger">1</span>
-                    </div>
-                    <h5 class="mt-2 mb-0">Your Job Notification</h5>
-                </div>
-                <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
-                    <form>
-                        <div class="form-group mb-0">
-                            <div class="input-group mb-0">
-                                <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- subscribe end -->
-
     <!-- footer start -->
     <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
-                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
-                    <p class="mt-4">At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium</p>
-                    <ul class="social-icon social list-inline mb-0">
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google"></i></a></li>
+                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>                    
+                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>   
+                    <a href="#" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="38" />
+                    </a>                 
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Lokeritas</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="about.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tentang</a></li>
+                        <li><a href="mitra.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mitra</a></li>
+                        <li><a href="hubungi-kami.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
+                        <li><a href="kebijakan-privasi.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Lokeritas</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title">Company</p>
+                    <p class="text-white mb-4 footer-list-title">Lainnya</p>
                     <ul class="list-unstyled footer-list">
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Media & Press</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Career</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Marketing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> CEOs </a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Agencies</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Our Apps</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title">Resources</p>
-                    <ul class="list-unstyled footer-list">
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Support</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Privacy Policy</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Terms</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Accounting </a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Billing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
+                        <li><a href="tips-karir.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
+                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
+                        <li><a href="lamaran-dikirim.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lamaran Dikirim</a></li>
+                        <li><a href="lowongan.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
+                        <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
-                    <ul class="list-unstyled text-foot mt-4 mb-0">
-                        <li>Monday - Friday : 9:00 to 17:00</li>
-                        <li class="mt-2">Saturday : 10:00 to 15:00</li>
-                        <li class="mt-2">Sunday : Day Off (Holiday)</li>
+                    <p class="text-white mb-4 footer-list-title f-17">Lihat Kami di</p>
+                    <ul class="social-icon social list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -538,7 +443,7 @@ require("functions.php");
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="">
-                        <p class="mb-0">© 2019 -2020 Jobya. Design with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.</p>
+                        <p class="mb-0">©2020 Design with <i class="mdi mdi-heart text-danger"></i> by Stucklabs.</p>
                     </div>
                 </div>
             </div>

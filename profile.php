@@ -164,30 +164,17 @@ require("functions.php");
     <?php endif; ?>
 
     <!-- Start home -->
-    <section class="bg-half page-next-level">
+    <section class="bg-half page-next-level" style="padding:100px 0px 30px 0px;background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
-                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                        <img src="https://s2.bukalapak.com/img/7620068213/w-1000/CETAK_FOTO_dan_PAS_FOTO_.png" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
                         <h5 class="text-white mb-2">Michael Brown</h5>
-                        <p class="text-white-50 h6 mb-2"><i class="mdi mdi-bank mr-2"></i>Web Themes.pvt.Ltd</p>
-                        <p class="text-white-50 h6 mb-2">PHP Developer</p>
-                        <ul class="candidates-profile-icons list-inline mb-3">
-                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a></li>
-                        </ul>
-
-                        <ul class="list-unstyled social-icon social mb-0">
-                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google-plus"></i></a></li>
-                        </ul>
+                        <p style="color: white;">"Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami"</p>
+                        <span class="badge badge-secondary" style="font-size: 15px;padding:10px 10px 10px 10px"> PHP Developer </span>
+                        <p style="color: white;margin-top:10px;">samsul@gmail.com &nbsp;|&nbsp; 081212120098 </p> 
                     </div>
                 </div>
             </div>

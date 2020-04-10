@@ -164,7 +164,7 @@ require("functions.php");
     <?php endif; ?>
 
     <!-- Start home -->
-    <section class="bg-half page-next-level" style="height: 50px">
+    <section class="bg-half page-next-level" style="padding: 120px 0px 10px 0px;background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -180,34 +180,10 @@ require("functions.php");
                         <div class="home-registration-form p-4 mb-3">
                             <form class="registration-form">
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-6">
+                                    <div class="col-lg-9 col-md-6">
                                         <div class="registration-form-box">
                                             <i class="fa fa-briefcase"></i>
                                             <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Nama Perusahaan...">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="registration-form-box">
-                                            <i class="fa fa-location-arrow"></i>
-                                            <select id="select-country" class="demo-default">
-                                                <option value="">Lokasi</option>
-                                                <option value="AF">Afghanistan</option>
-                                                <option value="AX">&Aring;land Islands</option>
-                                                <option value="ZM">Zambia</option>
-                                                <option value="ZW">Zimbabwe</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6">
-                                        <div class="registration-form-box">
-                                            <i class="fa fa-list-alt"></i>
-                                            <select id="select-category" class="demo-default">
-                                                <option value="">Sektor...</option>
-                                                <option value="4">Accounting</option>
-                                                <option value="1">IT & Software</option>
-                                                <option value="3">Marketing</option>
-                                                <option value="5">Banking</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
@@ -239,7 +215,7 @@ require("functions.php");
                         <div class="content p-4">
                             <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="company-detail.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -423,64 +399,57 @@ require("functions.php");
         </div>
     </section>
     <!-- blog end -->
-    <!-- footer start -->
-    <footer class="footer">
+   <!-- footer start -->
+   <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
-                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
-                    <p class="mt-4">At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium</p>
-                    <ul class="social-icon social list-inline mb-0">
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google"></i></a></li>
+                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>                    
+                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>   
+                    <a href="#" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="38" />
+                    </a>                 
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Lokeritas</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="about.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tentang</a></li>
+                        <li><a href="mitra.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mitra</a></li>
+                        <li><a href="hubungi-kami.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
+                        <li><a href="kebijakan-privasi.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Lokeritas</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title">Company</p>
+                    <p class="text-white mb-4 footer-list-title">Lainnya</p>
                     <ul class="list-unstyled footer-list">
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Media & Press</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Career</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Marketing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> CEOs </a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Agencies</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Our Apps</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title">Resources</p>
-                    <ul class="list-unstyled footer-list">
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Support</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Privacy Policy</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Terms</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Accounting </a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Billing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
+                        <li><a href="tips-karir.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
+                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
+                        <li><a href="lamaran-dikirim.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lamaran Dikirim</a></li>
+                        <li><a href="lowongan.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
+                        <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title">Business Hours</p>
-                    <ul class="list-unstyled text-foot mt-4 mb-0">
-                        <li>Monday - Friday : 9:00 to 17:00</li>
-                        <li class="mt-2">Saturday : 10:00 to 15:00</li>
-                        <li class="mt-2">Sunday : Day Off (Holiday)</li>
+                    <p class="text-white mb-4 footer-list-title f-17">Lihat Kami di</p>
+                    <ul class="social-icon social list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
     <!-- footer end -->
+    <hr>
     <footer class="footer footer-bar">
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="">
-                        <p class="mb-0">© 2019 -2020 Jobya. Design with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.</p>
+                        <p class="mb-0">©2020 Design with <i class="mdi mdi-heart text-danger"></i> by Stucklabs.</p>
                     </div>
                 </div>
             </div>
