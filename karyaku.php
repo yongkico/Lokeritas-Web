@@ -60,9 +60,9 @@ require("functions.php");
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-lokeritas-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-lokeritas-dark.png" alt="" class="logo-dark" height="18" />
+                    <a href="#" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!--end login button-->
