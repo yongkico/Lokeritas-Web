@@ -259,8 +259,7 @@ require("functions.php");
                                 <div class="row">
 
                                     <div class="col-lg-12">
-                                        <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                            
+                                        <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">                                            
                                             <div class="p-4">
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
@@ -270,196 +269,137 @@ require("functions.php");
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
-                                                            <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Web Developer</a></h5>
-                                                            <p class="text-muted mb-0">Web Technology pvt.Ltd</p>
+                                                            <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
+                                                            <p class="text-muted mb-0">PT. Rumah Kerja</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
-                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Oakridge Lane Richardson</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-3">
                                                         <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-primary">$</span>1000-1200/m</p>
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <p class="text-muted mb-0">Full Time</p>
-                                                        </div>
-                                                    </div>
+                                                    </div>                                                    
                                                 </div>
                                             </div>
                                             <div class="p-3 bg-light">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-dark">Experience :</span> 1 - 2 years</p>
+                                                            <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-dark">Notes :</span> languages only differ in their grammar. </p>
+                                                            <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-4">
                                                         <div>
-                                                            <a href="#" class="text-primary">Lamar Sekarang <i class="mdi mdi-chevron-double-right"></i></a>
+                                                        <a href="#" class="btn btn-info"> Lamar</a> &nbsp; &nbsp; <a href="lowongan-detail.php" class="btn btn-primary">Selengkapnya</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                            
+                                        </div>  
+                                        
+                                        <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">                                            
                                             <div class="p-4">
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
                                                         <div class="mo-mb-2">
-                                                            <img src="images/featured-job/img-2.png" alt="" class="img-fluid mx-auto d-block">
+                                                            <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
-                                                            <h5 class="f-18"><a href="#" class="text-dark">Php Developer</a></h5>
-                                                            <p class="text-muted mb-0">Web Themes pvt.Ltd</p>
+                                                            <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
+                                                            <p class="text-muted mb-0">PT. Rumah Kerja</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
-                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Berkshire Circle Knoxville</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-primary">$</span>900-1100/m</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <p class="text-muted mb-0">Full Time</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="p-3 bg-light">
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-dark">Experience :</span> 2 - 3 years</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <a href="#" class="text-primary">Lamar Sekarang <i class="mdi mdi-chevron-double-right"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                            
-                                            <div class="p-4">
-                                                <div class="row align-items-center">
-                                                    <div class="col-md-2">
-                                                        <div class="mo-mb-2">
-                                                            <img src="images/featured-job/img-3.png" alt="" class="img-fluid mx-auto d-block">
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
-                                                            <h5 class="f-18"><a href="#" class="text-dark">Graphic Designer</a></h5>
-                                                            <p class="text-muted mb-0">Web Technology pvt.Ltd</p>
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div>
-                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Sumner Street Anaheim</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-primary">$</span>800-1000/m</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <p class="text-muted mb-0">Part Time</p>
-                                                        </div>
-                                                    </div>
+                                                    </div>                                                    
                                                 </div>
                                             </div>
                                             <div class="p-3 bg-light">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-dark">Experience :</span> 0 - 1 years</p>
+                                                            <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-dark">Notes :</span> languages only differ in their grammar. </p>
+                                                            <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-4">
                                                         <div>
-                                                            <a href="#" class="text-primary">Lamar Sekarang <i class="mdi mdi-chevron-double-right"></i></a>
+                                                        <a href="#" class="btn btn-info"> Lamar</a> &nbsp; &nbsp; <a href="lowongan-detail.php" class="btn btn-primary">Selengkapnya</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>  
 
-                                        <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                        <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">                                            
+                                            <div class="p-4">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-2">
+                                                        <div class="mo-mb-2">
+                                                            <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
+                                                            <p class="text-muted mb-0">PT. Rumah Kerja</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                            <div class="p-3 bg-light">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div>
+                                                            <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div>
+                                                            <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div>
+                                                        <a href="#" class="btn btn-info"> Lamar</a> &nbsp; &nbsp; <a href="lowongan-detail.php" class="btn btn-primary">Selengkapnya</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
                                          
-                                            <div class="p-4">
-                                                <div class="row align-items-center">
-                                                    <div class="col-md-2">
-                                                        <div class="mo-mb-2">
-                                                            <img src="images/featured-job/img-4.png" alt="" class="img-fluid mx-auto d-block">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div>
-                                                            <h5 class="f-18"><a href="#" class="text-dark">UI/UX Designer</a></h5>
-                                                            <p class="text-muted mb-0">Web Themes pvt.Ltd</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div>
-                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Pinewood Drive Chicago</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-primary">$</span>1000-1200/m</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <p class="text-muted mb-0">Freelancer</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="p-3 bg-light">
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <div>
-                                                            <p class="text-muted mb-0 mo-mb-2"><span class="text-dark">Experience :</span> 1 - 2 years</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div>
-                                                            <a href="#" class="text-primary">Lamar Sekarang <i class="mdi mdi-chevron-double-right"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     </div>
                                 </div>
@@ -510,26 +450,17 @@ require("functions.php");
                     </div>
                 </div>
                 <div class="row">
+
                     <div class="col-lg-4 col-md-6 mt-4 pt-2">
                         <div class="blog position-relative overflow-hidden shadow rounded">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                                <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
                                 <div class="overlay rounded-top bg-dark"></div>
-                                <div class="likes">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="content p-4">
-                                <h4><a href="javascript:void(0)" class="title text-dark">How apps is the IT world</a></h4>
-                                <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                                <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
-                            </div>
-                            <div class="author">
-                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                                <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                                <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
+                                <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
+                                <a href="#" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -538,23 +469,13 @@ require("functions.php");
                     <div class="col-lg-4 col-md-6 mt-4 pt-2">
                         <div class="blog position-relative overflow-hidden shadow rounded">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                                <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
                                 <div class="overlay rounded-top bg-dark"></div>
-                                <div class="likes">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="content p-4">
-                                <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
-                                <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                                <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
-                            </div>
-                            <div class="author">
-                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                                <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                                <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
+                                <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
+                                <a href="#" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -563,27 +484,18 @@ require("functions.php");
                     <div class="col-lg-4 col-md-6 mt-4 pt-2">
                         <div class="blog position-relative overflow-hidden shadow rounded">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                                <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
                                 <div class="overlay rounded-top bg-dark"></div>
-                                <div class="likes">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="content p-4">
-                                <h4><a href="javascript:void(0)" class="title text-dark">Maecenas tempus tellus eget</a></h4>
-                                <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                                <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a>
-                            </div>
-                            <div class="author">
-                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                                <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                                <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
+                                <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
+                                <a href="#" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <!--end col-->
+
                 </div>
             </div>
         </section>
@@ -601,25 +513,23 @@ require("functions.php");
                     </div>
                 </div>
                 <div class="row">
+
                     <div class="col-lg-4 col-md-6 mt-4 pt-2">
                         <div class="blog position-relative overflow-hidden shadow rounded">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                                <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
                                 <div class="overlay rounded-top bg-dark"></div>
                                 <div class="likes">
                                     <ul class="list-unstyled mb-0">
                                         <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
-                                    </ul>
+                                        
                                 </div>
                             </div>
                             <div class="content p-4">
-                                <h4><a href="javascript:void(0)" class="title text-dark">How apps is the IT world</a></h4>
-                                <!-- <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a> -->
+                                <h4><a href="javascript:void(0)" class="title text-dark">Mengukir Kayu Sudah Menjadi Keahlianku</a></h4>
                             </div>
                             <div class="author">
-                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
+                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Samsul Sinaga</a></p>
                                 <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                             </div>
                         </div>
@@ -629,22 +539,20 @@ require("functions.php");
                     <div class="col-lg-4 col-md-6 mt-4 pt-2">
                         <div class="blog position-relative overflow-hidden shadow rounded">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                                <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
                                 <div class="overlay rounded-top bg-dark"></div>
                                 <div class="likes">
                                     <ul class="list-unstyled mb-0">
                                         <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+                                        
                                     </ul>
                                 </div>
                             </div>
                             <div class="content p-4">
-                                <h4><a href="javascript:void(0)" class="title text-dark">Vestibulum ante ipsum primis</a></h4>
-                                <!-- <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a> -->
+                                <h4><a href="javascript:void(0)" class="title text-dark">Mengukir Kayu Sudah Menjadi Keahlianku</a></h4>
                             </div>
                             <div class="author">
-                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
+                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Samsul Sinaga</a></p>
                                 <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                             </div>
                         </div>
@@ -654,22 +562,19 @@ require("functions.php");
                     <div class="col-lg-4 col-md-6 mt-4 pt-2">
                         <div class="blog position-relative overflow-hidden shadow rounded">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                                <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
                                 <div class="overlay rounded-top bg-dark"></div>
                                 <div class="likes">
                                     <ul class="list-unstyled mb-0">
-                                        <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" class="text-white comments"><i class="mdi mdi-comment-outline mr-1"></i>08</a></li>
+                                        <li class="list-inline-item mr-2"><a href="javascript:void(0)" class="text-white like"><i class="mdi mdi-heart-outline mr-1"></i>33</a></li>                                        
                                     </ul>
                                 </div>
                             </div>
                             <div class="content p-4">
-                                <h4><a href="javascript:void(0)" class="title text-dark">Maecenas tempus tellus eget</a></h4>
-                                <!-- <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium, totam rem aperiam</p>
-                            <a href="#" class="text-dark readmore">Read more <i class="mdi mdi-chevron-right"></i></a> -->
+                                <h4><a href="javascript:void(0)" class="title text-dark">Mengukir Kayu Sudah Menjadi Keahlianku</a></h4>
                             </div>
                             <div class="author">
-                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
+                                <p class=" mb-0"><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Samsul Sinaga</a></p>
                                 <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
                             </div>
                         </div>

@@ -192,7 +192,7 @@ require("functions.php");
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
                             <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>
@@ -206,7 +206,7 @@ require("functions.php");
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
                             <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>
@@ -220,7 +220,7 @@ require("functions.php");
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
                             <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>

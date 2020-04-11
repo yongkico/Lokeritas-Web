@@ -61,10 +61,6 @@ if (isset($_POST["daftar"])) {
     </div>
     <!-- Loader -->
 
-    <div class="back-to-home rounded d-none d-sm-block">
-        <a href="index.php" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home"></i></a>
-    </div>
-
     <!-- Hero Start -->
     <section class="vh-200" style="background: url('images/register.jpg') center no-repeat;">
         <div class="home-center">
@@ -78,16 +74,10 @@ if (isset($_POST["daftar"])) {
                                 </div>
                                 <form class="login-form" action="" method="POST">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group position-relative">
-                                                <label>Nama Depan <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" placeholder="Nama Depan" name="nama_depan" required="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group position-relative">
-                                                <label>Nama Belakang <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" placeholder="Nama Belakang" name="nama_belakang" required="">
+                                                <label>Nama Lengkap <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama_depan" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -105,20 +95,20 @@ if (isset($_POST["daftar"])) {
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label>Konfirmasi Password <span class="text-danger">*</span></label>
-                                                <input type="password" class="form-control" placeholder="Confirm Password" name="password2" required="">
+                                                <input type="password" class="form-control" placeholder="Konfirmasi Password" name="password2" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="form-group position-relative">
+                                            <div class="form-group position-relative" style="margin-bottom: 0">
                                                 <label>Jenis Kelamin <span class="text-danger">*</span></label>
                                                 <div class="p-4" style="padding: 0.1rem!important">
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline" style="margin:1px 30px 0px 30px">
                                                         <div class="form-group" style="margin-bottom: 5px!">
                                                             <input type="radio" id="customRadio1" name="jk" value="Pria" class="custom-control-input">
                                                             <label class="custom-control-label" for="customRadio1">Pria</label>
                                                         </div>
                                                     </div>
-                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline" style="margin:1px 20px 0px 10px">
                                                         <div class="form-group">
                                                             <input type="radio" id="customRadio2" name="jk" value="Wanita" class="custom-control-input">
                                                             <label class="custom-control-label" for="customRadio2">Wanita</label>
@@ -136,10 +126,11 @@ if (isset($_POST["daftar"])) {
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label>Jenis Ketunaan <span class="text-danger">*</span></label><br>
-                                                <div class="p-4">
+
+                                                <div class="p-4" style="padding:1px 0px 0px 10px !important">
                                                     <div class="form-check form-check-inline">
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-checkbox">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck1" name="ketunaan[]" value="Tuna Daksa">
                                                                 <label class="custom-control-label" for="customCheck1">Tuna Daksa</label>
                                                             </div>
@@ -147,8 +138,8 @@ if (isset($_POST["daftar"])) {
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-checkbox">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck2" name="ketunaan[]" value="Tuna Netra">
                                                                 <label class="custom-control-label" for="customCheck2">Tuna Netra</label>
                                                             </div>
@@ -156,16 +147,16 @@ if (isset($_POST["daftar"])) {
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-checkbox">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Tuna Runggu">
                                                                 <label class="custom-control-label" for="customCheck3">Tuna Runggu</label>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-check form-check-inline">
-                                                        <div class="form-group">
+                                                    <div class="form-check form-check-inline" style="margin:0px 0px 0px 0px">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Tuna Wicara">
                                                                 <label class="custom-control-label" for="customCheck4">Tuna Wicara</label>
@@ -174,8 +165,8 @@ if (isset($_POST["daftar"])) {
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-checkbox">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:11px 20px 11px 5px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Tuna Grahita">
                                                                 <label class="custom-control-label" for="customCheck5">Tuna Grahita</label>
                                                             </div>
@@ -194,18 +185,10 @@ if (isset($_POST["daftar"])) {
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button class="btn btn-primary w-100" name="daftar">Daftar</button> </div>
-                                        <div class="col-lg-12 mt-4 text-center">
-                                            <h6>Or Signup With</h6>
-                                            <ul class="list-unstyled social-icon mb-0 mt-3">
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-facebook" title="Facebook"></i></a></li>
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-google-plus" title="Google"></i></a></li>
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-github-circle" title="Github"></i></a></li>
-                                            </ul>
-                                            <!--end icon-->
+                                            <button class="btn btn-primary w-100" name="daftar">Daftar</button> 
                                         </div>
                                         <div class="mx-auto">
-                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">Already have an account ?</small> <a href="login.html" class="text-dark font-weight-bold">Sign in</a></p>
+                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">Sudah mempunyai akun ?</small> <a href="login.php" class="text-dark font-weight-bold">Masuk</a></p>
                                         </div>
                                     </div>
                                 </form>

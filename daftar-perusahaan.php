@@ -204,13 +204,14 @@ require("functions.php");
     <!-- end home -->
 
     <!-- blog start -->
-    <section class="section">
+    <section class="section" style="padding: 30px 0px 40px 0px">
         <div class="container">
             <div class="row">
+
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
                             <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
@@ -224,12 +225,12 @@ require("functions.php");
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -238,12 +239,12 @@ require("functions.php");
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -252,12 +253,12 @@ require("functions.php");
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -266,12 +267,12 @@ require("functions.php");
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -280,96 +281,12 @@ require("functions.php");
                 <div class="col-lg-4 col-md-6 mb-4 pb-2">
                     <div class="blog position-relative overflow-hidden shadow rounded">
                         <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://via.placeholder.com/800X533//88929f/5a6270C/O https://placeholder.com/" class="img-fluid rounded-top" alt="">
-                        </div>
-                        <div class="content p-4">
-                            <h4><a href="#" class="title text-dark">CV. Pradipta Paramita</a></h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="tips-karir-details.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -399,16 +316,16 @@ require("functions.php");
         </div>
     </section>
     <!-- blog end -->
-   <!-- footer start -->
-   <footer class="footer">
+    <!-- footer start -->
+    <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
-                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>                    
-                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>   
+                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
+                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>
                     <a href="#" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="38" />
-                    </a>                 
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title">Lokeritas</p>

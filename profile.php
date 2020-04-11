@@ -186,8 +186,11 @@ require("functions.php");
 
             <!-- Profile Box -->
             <div class="row">
-                <div class="col-lg-12" style="padding-bottom:0px">
+                <div class="col-lg-10" style="padding-bottom:0px">
                     <h4 class="text-dark">Informasi Pribadi :</h4>
+                </div>
+                <div class="col-lg-2" style="padding-bottom:0px">
+                    <a href="#" class="btn btn-info"> <i class="mdi mdi-account-edit mr-2" style="color: white; font-size:20px"></i> Edit Profil </a>
                 </div>
             </div>
             <div class="row">
@@ -411,11 +414,11 @@ require("functions.php");
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
-                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>                    
-                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>   
+                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
+                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>
                     <a href="#" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="38" />
-                    </a>                 
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title">Lokeritas</p>

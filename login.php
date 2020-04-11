@@ -92,10 +92,6 @@ if (isset($_POST["masuk"])) {
     </div>
     <!-- Loader -->
 
-    <div class="back-to-home rounded d-none d-sm-block">
-        <a href="index.html" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home"></i></a>
-    </div>
-
     <!-- Hero Start -->
     <section class="vh-100" style="background: url('images/register.jpg') center center;">
 
@@ -141,15 +137,6 @@ if (isset($_POST["masuk"])) {
                                         </div>
                                         <div class="col-lg-12 mb-0">
                                             <button class="btn btn-primary w-100" name="masuk">Masuk</button>
-                                        </div>
-                                        <div class="col-lg-12 mt-4 text-center">
-                                            <h6>Or Login With</h6>
-                                            <ul class="list-unstyled social-icon mb-0 mt-3">
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-facebook" title="Facebook"></i></a></li>
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-google-plus" title="Google"></i></a></li>
-                                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-github-circle" title="Github"></i></a></li>
-                                            </ul>
-                                            <!--end icon-->
                                         </div>
                                         <div class="col-12 text-center">
                                             <p class="mb-0 mt-3"><small class="text-dark mr-2">Tidak mempunyai akun ?</small> <a href="register.php" class="text-dark font-weight-bold">Daftar</a></p>
