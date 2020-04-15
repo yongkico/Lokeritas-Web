@@ -244,9 +244,9 @@ require("functions.php");
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4">
-                                    <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
+                                    <h4><a href="tips-karir-detail.php" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
                                     <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +262,7 @@ require("functions.php");
                                 <div class="content p-4">
                                     <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
                                     <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -277,7 +277,7 @@ require("functions.php");
                                 <div class="content p-4">
                                     <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
                                     <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -292,7 +292,7 @@ require("functions.php");
                                 <div class="content p-4">
                                     <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
                                     <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>

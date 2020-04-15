@@ -84,11 +84,11 @@ require("functions.php");
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="index.php">Beranda</a></li>
                         <li><a href="lowongan.php">Lowongan</a></li>
-                        <li><a href="index.html">Tips Karir</a></li>
-                        <li><a href="contact.html">Daftar Perusahaan</a></li>
-                        <li><a href="index.html">Karyaku</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
                             <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
@@ -197,28 +197,28 @@ require("functions.php");
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row job-box bg-light rounded" style="margin-top: 20px">
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
-                    <div class="border rounded p-4">
-                        <p style="margin:0px 0px 0px 0px">Bidang</p>
+                    <div class="border rounded p-4 bg-white">
+                        <p class="text-muted" style="margin:0px 0px 0px 0px">Bidang</p>
                         <h6 style="font-weight: bolder" class="text-info">Konveksi dan Produksi</h6>
                     </div>
                 </div>
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
-                    <div class="border rounded p-4">
-                        <p style="margin:0px 0px 0px 0px">Jenis Disabilitas</p>
+                    <div class="border rounded p-4 bg-white">
+                        <p class="text-muted" style="margin:0px 0px 0px 0px">Jenis Disabilitas</p>
                         <h6 style="font-weight: bolder" class="text-info">Semua Jenis Disabilitas</h6>
                     </div>
                 </div>
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
-                    <div class="border rounded p-4">
-                        <p style="margin:0px 0px 0px 0px">Tanggal di Posting</p>
+                    <div class="border rounded p-4 bg-white">
+                        <p class="text-muted" style="margin:0px 0px 0px 0px">Tanggal di Posting</p>
                         <h6 style="font-weight: bolder" class="text-info">22 Januari 2020</h6>
                     </div>
                 </div>
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
-                    <div class="border rounded p-4">
-                        <p style="margin:0px 0px 0px 0px">Tanggal Berakhir</p>
+                    <div class="border rounded p-4 bg-white">
+                        <p class="text-muted" style="margin:0px 0px 0px 0px">Tanggal Berakhir</p>
                         <h6 style="font-weight: bolder" class="text-info">20 Maret 2020</h6>
                     </div>
                 </div>
@@ -229,15 +229,15 @@ require("functions.php");
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="text-dark mt-4">Deskripsi Pekerjaan :</h5>
+                            <h5 class="text-muted mt-4">Deskripsi Pekerjaan :</h5>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="job-detail border rounded mt-2 p-4">
+                            <div class="job-detail border rounded mt-2 p-4" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                 <div class="job-detail-desc">
-                                    <p class="text-muted mb-3">Hai sobat pencari kerja Jakarta! Apakah sobat punya keterampilan menjahit? Kakha Series, sebuah toko online yang menjual pakaian muslim di Jakarta membuka lowongan untuk posisi penjahit. Info lebih lanjut silahkan hubungi Babang di 081558775554 pada Senin-Jumat pukul 9:00-17:00. Kami hanya akan menanggapi pada jam tersebut.</p>
+                                    <p class="text-dark mb-3">Hai sobat pencari kerja Jakarta! Apakah sobat punya keterampilan menjahit? Kakha Series, sebuah toko online yang menjual pakaian muslim di Jakarta membuka lowongan untuk posisi penjahit. Info lebih lanjut silahkan hubungi Babang di 081558775554 pada Senin-Jumat pukul 9:00-17:00. Kami hanya akan menanggapi pada jam tersebut.</p>
                                 </div>
                             </div>
                         </div>
@@ -245,18 +245,18 @@ require("functions.php");
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="text-dark mt-4">Tugas :</h5>
+                            <h5 class="text-muted mt-4">Tugas :</h5>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="job-detail border rounded mt-2 p-4">
+                            <div class="job-detail border rounded mt-2 p-4" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                 <div class="job-detail-desc">
                                     <ul style="list-style-type: none; padding:0px 0px 0px 0px">
-                                        <li class="mdi mdi-chevron-right text-muted"> Menjahit untuk produk Kakha Series</li>
-                                        <li class="mdi mdi-chevron-right text-muted"> Menjahit untuk produk Kakha Series</li>
-                                        <li class="mdi mdi-chevron-right text-muted"> Menjahit untuk produk Kakha Series</li>
+                                        <li class="mdi mdi-chevron-right text-dark"> Menjahit untuk produk Kakha Series</li>
+                                        <li class="mdi mdi-chevron-right text-dark"> Menjahit untuk produk Kakha Series</li>
+                                        <li class="mdi mdi-chevron-right text-dark"> Menjahit untuk produk Kakha Series</li>
                                     </ul>
                                 </div>
                             </div>
@@ -265,25 +265,20 @@ require("functions.php");
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="text-dark mt-4">Persyaratan :</h5>
+                            <h5 class="text-muted mt-4">Persyaratan :</h5>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="job-detail border rounded mt-2 p-4">
+                            <div class="job-detail border rounded mt-2 p-4" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                 <div class="job-detail-desc">
                                     <ul style="list-style-type: none; padding:0px 0px 0px 0px">
-
-
-
-
-
-                                        <li class="mdi mdi-chevron-right text-muted"> Pria/wanita</li>
-                                        <li class="mdi mdi-chevron-right text-muted"> Semua disabilitas</li>
-                                        <li class="mdi mdi-chevron-right text-muted"> Mempunyai keterampilan menjahit</li>
-                                        <li class="mdi mdi-chevron-right text-muted"> Kreatif dan inspiratif dalam bekerja</li>
-                                        <li class="mdi mdi-chevron-right text-muted"> Jujur, ulet, tekun dan sungguh-sungguh</li>
+                                        <li class="mdi mdi-chevron-right text-dark"> Pria/wanita</li>
+                                        <li class="mdi mdi-chevron-right text-dark"> Semua disabilitas</li>
+                                        <li class="mdi mdi-chevron-right text-dark"> Mempunyai keterampilan menjahit</li>
+                                        <li class="mdi mdi-chevron-right text-dark"> Kreatif dan inspiratif dalam bekerja</li>
+                                        <li class="mdi mdi-chevron-right text-dark"> Jujur, ulet, tekun dan sungguh-sungguh</li>
                                     </ul>
                                 </div>
                             </div>
@@ -294,7 +289,7 @@ require("functions.php");
                 </div>
 
                 <div class="col-lg-4 col-md-5 mt-4 mt-sm-0" style="margin:70px 0px 0px 0px !important">
-                    <div class="job-detail border rounded p-4">
+                    <div class="job-detail border rounded p-4" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                         <h5 class="text-muted text-center pb-2"><i class="mdi mdi-city mr-2"></i>Deskripsi Perusahaan</h5>
 
                         <div class="job-detail-location pt-4 border-top">
@@ -304,23 +299,14 @@ require("functions.php");
 
                             <div class="job-details-desc-item border-top" style="margin:10px 0px 0px 0px;padding:10px 0px 0px 0px">
                                 <div class="float-left mr-2">
-                                    <i class="mdi mdi-web text-muted"></i>
+                                    <i class="mdi mdi-web text-dark"></i>
                                 </div>
-                                <p class="text-muted mb-2">: https://www.rumahkerja.com</p>
+                                <p class="text-dark mb-2">: https://www.rumahkerja.com</p>
                             </div>
-
-                            <div class="job-details-desc-item">
-                                <div class="float-left mr-2">
-                                    <i class="mdi mdi-cellphone-iphone text-muted"></i>
-                                </div>
-                                <p class="text-muted mb-2">: 1987 6543 21</p>
-                            </div>
-
-
                         </div>
                     </div>
 
-                    <div class="job-detail border rounded mt-4 p-4">
+                    <div class="job-detail border rounded mt-4 p-4" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                         <h5 class="text-muted text-center pb-2"><i class="mdi mdi-share-variant mr-2"></i>Bagikan</h5>
 
                         <div class="job-detail-time border-top pt-4">
@@ -337,16 +323,15 @@ require("functions.php");
 
                         <?php if (isset($_SESSION["login"])) : ?>
                             <button style="width:100%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalku"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
-                            
-                           
+
+
                             <!-- The Modal -->
                             <div class="modal fade" id="modalku">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width: 600px">
-
                                         <!-- Ini adalah Bagian Header Modal -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Upload File lamaran</h4>
+                                            <h4 class="modal-title">Unggah Berkas lamaran</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
 
@@ -356,11 +341,9 @@ require("functions.php");
                                                 <p style="margin:0px 0px 0px 0px">Silahkan unggah berkas lamaran anda</p>
                                                 <span class="text-danger" style="font-size: 14px;">* Unggah berkas lamaran yang akan dikirim harus dalam bentuk .docx, .rar atau .zip dan ukuran berkas tidak lebih dari 1.5MB</span><br>
                                                 <input type="file" name="file-lamaran" id="file-lamaran" style="margin-top: 18px"><br><br>
-                                                <div class="form-group purple-border">
-                                                    <label for="exampleFormControlTextarea54">Atau</label> <br>
-                                                    <span style="padding:10px 10px 10px 0px" class="text-info rounded"> Tulis lamaran anda !</span>
-                                                    <textarea name="lamaran" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
-                                                </div>
+                                                <label class="text-info rounded">Atau</label> <br>
+                                                <span style="padding:10px 10px 10px 0px"> Tulis lamaran anda !</span>
+                                                <textarea name="lamaran" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
                                             </form>
                                         </div>
 
@@ -369,7 +352,6 @@ require("functions.php");
                                             <button type="button" class="btn btn-primary" data-dismiss="modal">Kirim</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -391,46 +373,38 @@ require("functions.php");
             <div class="row">
                 <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
                     <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
-                    <p class="mt-4">At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium</p>
-                    <ul class="social-icon social list-inline mb-0">
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google"></i></a></li>
+                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>
+                    <a href="#" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="38" />
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title">Lokeritas</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="about.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tentang</a></li>
+                        <li><a href="mitra.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mitra</a></li>
+                        <li><a href="hubungi-kami.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
+                        <li><a href="kebijakan-privasi.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Lokeritas</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title">Company</p>
+                    <p class="text-white mb-4 footer-list-title">Lainnya</p>
                     <ul class="list-unstyled footer-list">
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Media & Press</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Career</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Blog</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pricing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Marketing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> CEOs </a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Agencies</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Our Apps</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title">Resources</p>
-                    <ul class="list-unstyled footer-list">
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Support</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Privacy Policy</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Terms</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Accounting </a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Billing</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
+                        <li><a href="tips-karir.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
+                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
+                        <li><a href="lamaran-dikirim.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lamaran Dikirim</a></li>
+                        <li><a href="lowongan.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
+                        <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title f-17">Business Hours</p>
-                    <ul class="list-unstyled text-foot mt-4 mb-0">
-                        <li>Monday - Friday : 9:00 to 17:00</li>
-                        <li class="mt-2">Saturday : 10:00 to 15:00</li>
-                        <li class="mt-2">Sunday : Day Off (Holiday)</li>
+                    <p class="text-white mb-4 footer-list-title f-17">Lihat Kami di</p>
+                    <ul class="social-icon social list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -443,7 +417,7 @@ require("functions.php");
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="">
-                        <p class="mb-0">© 2019 -2020 Jobya. Design with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.</p>
+                        <p class="mb-0">©2020 Design with <i class="mdi mdi-heart text-danger"></i> by Stucklabs.</p>
                     </div>
                 </div>
             </div>
@@ -476,7 +450,7 @@ require("functions.php");
     <script src="js/selectize.min.js"></script>
 
     <script src="assets/ckeditor/ckeditor.js"></script>
-    
+
     <script>
         CKEDITOR.replace('lamaran');
     </script>

@@ -214,9 +214,9 @@ require("functions.php");
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -228,9 +228,9 @@ require("functions.php");
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -242,9 +242,9 @@ require("functions.php");
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -256,9 +256,9 @@ require("functions.php");
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -270,9 +270,9 @@ require("functions.php");
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -284,9 +284,9 @@ require("functions.php");
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="content p-4">
-                            <h4><a href="detail-perusahaan.php" class="title text-dark">CV. Pradipta Paramita</a></h4>
+                            <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="text-dark readmore">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>

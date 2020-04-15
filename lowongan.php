@@ -324,7 +324,7 @@ require("functions.php");
                                         </div>
                                         <div class="p-3 bg-light">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <div>
                                                         <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
                                                     </div>
@@ -334,10 +334,8 @@ require("functions.php");
                                                         <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div>
-                                                        <a href="#" class="btn btn-info"> Lamar</a> &nbsp; &nbsp; <a href="lowongan-detail.php" class="btn btn-primary">Selengkapnya</a>
-                                                    </div>
+                                                <div class="col-md-3">
+                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -371,7 +369,7 @@ require("functions.php");
                                         </div>
                                         <div class="p-3 bg-light">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <div>
                                                         <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
                                                     </div>
@@ -381,10 +379,8 @@ require("functions.php");
                                                         <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div>
-                                                        <a href="#" class="btn btn-info"> Lamar</a> &nbsp; &nbsp; <a href="lowongan-detail.php" class="btn btn-primary">Selengkapnya</a>
-                                                    </div>
+                                                <div class="col-md-3">
+                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -418,7 +414,7 @@ require("functions.php");
                                         </div>
                                         <div class="p-3 bg-light">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <div>
                                                         <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
                                                     </div>
@@ -428,10 +424,8 @@ require("functions.php");
                                                         <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div>
-                                                        <a href="#" class="btn btn-info"> Lamar</a> &nbsp; &nbsp; <a href="lowongan-detail.php" class="btn btn-primary">Selengkapnya</a>
-                                                    </div>
+                                                <div class="col-md-3">
+                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -465,7 +459,7 @@ require("functions.php");
                                         </div>
                                         <div class="p-3 bg-light">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <div>
                                                         <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
                                                     </div>
@@ -475,10 +469,8 @@ require("functions.php");
                                                         <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div>
-                                                        <a href="#" class="btn btn-info"> Lamar</a> &nbsp; &nbsp; <a href="lowongan-detail.php" class="btn btn-primary">Selengkapnya</a>
-                                                    </div>
+                                                <div class="col-md-3">
+                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
                                                 </div>
                                             </div>
                                         </div>

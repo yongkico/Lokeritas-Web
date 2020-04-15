@@ -185,19 +185,20 @@ require("functions.php");
         <div class="container">
 
             <!-- Profile Box -->
-            <div class="row">
-                <div class="col-lg-10" style="padding-bottom:0px">
-                    <h4 class="text-dark">Informasi Pribadi :</h4>
-                </div>
-                <div class="col-lg-2" style="padding-bottom:0px">
-                    <a href="#" class="btn btn-info"> <i class="mdi mdi-account-edit mr-2" style="color: white; font-size:20px"></i> Edit Profil </a>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
-                    <div style="box-shadow: 1px 4px 8px 1px #888888;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                    <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
-                            <table class="table" style="border:none">
+                            <div class="row" style="margin:20px 0px 20px 0px">
+                                <div class="col-lg-10">
+                                    <h4 class="text-info">Informasi Pribadi :</h4>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a href="#" class="btn btn-success-outline"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
+                                </div>
+                            </div>
+                            <table class="table border-top" style="border:none">
                                 <tbody>
                                     <tr>
                                         <td style="width:180px;font-weight:bold">Nama</td>
@@ -224,6 +225,10 @@ require("functions.php");
                                         <td>22 Jan 1999</td>
                                     </tr>
                                     <tr>
+                                        <td style="font-weight:bold">Status</td>
+                                        <td>Belum Menikah</td>
+                                    </tr>
+                                    <tr>
                                         <td style="font-weight:bold">Alamat</td>
                                         <td>Jl. Sehati, Gg. Dame, No.12, Kec. Medan Timur, Kota Medan, Sumatera Utara</td>
                                     </tr>
@@ -247,7 +252,7 @@ require("functions.php");
             </div>
             <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
-                    <div style="box-shadow: 1px 4px 8px 1px #888888;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                    <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
                             <table class="table" style="border:none">
                                 <tbody>
@@ -279,7 +284,7 @@ require("functions.php");
             </div>
             <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
-                    <div style="box-shadow: 1px 4px 8px 1px #888888;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                    <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
                             <table class="table" style="border:none">
                                 <tbody>
@@ -303,7 +308,7 @@ require("functions.php");
             </div>
             <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
-                    <div style="box-shadow: 1px 4px 8px 1px #888888;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                    <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
                             <table class="table" style="border:none">
                                 <tbody>
@@ -335,7 +340,7 @@ require("functions.php");
             </div>
             <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
-                    <div style="box-shadow: 1px 4px 8px 1px #888888;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                    <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
                             <table class="table" style="border:none;">
                                 <tbody>
@@ -361,7 +366,7 @@ require("functions.php");
             </div>
             <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
-                    <div style="box-shadow: 1px 4px 8px 1px #888888;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                    <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
                             <table class="table" style="border:none">
                                 <tbody>
@@ -387,7 +392,7 @@ require("functions.php");
             </div>
             <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
-                    <div style="box-shadow: 1px 4px 8px 1px #888888;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                    <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
                             <table class="table" style="border:none">
                                 <tbody>
@@ -482,6 +487,12 @@ require("functions.php");
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>
+
+    <script src="assets/ckeditor/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace('lamaran');
+    </script>
 
     <script src="js/jquery.nice-select.min.js"></script>
 
