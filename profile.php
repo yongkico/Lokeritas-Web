@@ -33,6 +33,8 @@ require("functions.php");
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
+
+
 </head>
 
 <body>
@@ -195,7 +197,7 @@ require("functions.php");
                                     <h4 class="text-info">Informasi Pribadi :</h4>
                                 </div>
                                 <div class="col-lg-2">
-                                    <a href="#" class="btn btn-success-outline"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
+                                    <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#informasiPribadi"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
                                 </div>
                             </div>
                             <table class="table border-top" style="border:none">
@@ -246,14 +248,17 @@ require("functions.php");
 
             <!-- Profile Box -->
             <div class="row">
-                <div class="col-lg-12" style="padding-bottom:0px;margin-top:30px">
-                    <h4 class="text-dark">Rincian Disabilitas :</h4>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
                     <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
+                            <div class="row" style="margin:20px 0px 20px 0px">
+                                <div class="col-lg-10">
+                                    <h4 class="text-info">Rincian Disabilitas :</h4>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#rincianDisabilitas"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
+                                </div>
+                            </div>
                             <table class="table" style="border:none">
                                 <tbody>
                                     <tr>
@@ -278,14 +283,17 @@ require("functions.php");
 
             <!-- Profile Box -->
             <div class="row">
-                <div class="col-lg-12" style="padding-bottom:0px;margin-top:30px">
-                    <h4 class="text-dark">Pendidikan Terakhir :</h4>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
                     <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
+                            <div class="row" style="margin:20px 0px 20px 0px">
+                                <div class="col-lg-10">
+                                    <h4 class="text-info">Pendidikan Terakhir :</h4>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#pendidikanTerakhir"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
+                                </div>
+                            </div>
                             <table class="table" style="border:none">
                                 <tbody>
                                     <tr>
@@ -302,14 +310,17 @@ require("functions.php");
 
             <!-- Profile Box -->
             <div class="row">
-                <div class="col-lg-12" style="padding-bottom:0px;margin-top:30px">
-                    <h4 class="text-dark">Pengalaman Bekerja :</h4>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
                     <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
+                            <div class="row" style="margin:20px 0px 20px 0px">
+                                <div class="col-lg-10">
+                                    <h4 class="text-info">Pengalaman Bekerja :</h4>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#pengalamanBekerja"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
+                                </div>
+                            </div>
                             <table class="table" style="border:none">
                                 <tbody>
                                     <tr>
@@ -334,14 +345,17 @@ require("functions.php");
 
             <!-- Profile Box -->
             <div class="row">
-                <div class="col-lg-12" style="padding-bottom:0px;margin-top:30px">
-                    <h4 class="text-dark">Keterampilan :</h4>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
                     <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
+                            <div class="row" style="margin:20px 0px 20px 0px">
+                                <div class="col-lg-10">
+                                    <h4 class="text-info">Keterampilan :</h4>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#keterampilan"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
+                                </div>
+                            </div>
                             <table class="table" style="border:none;">
                                 <tbody>
                                     <tr>
@@ -360,14 +374,17 @@ require("functions.php");
 
             <!-- Profile Box -->
             <div class="row">
-                <div class="col-lg-12" style="padding-bottom:0px;margin-top:30px">
-                    <h4 class="text-dark">Karir yang Diminati :</h4>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
                     <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
+                            <div class="row" style="margin:20px 0px 20px 0px">
+                                <div class="col-lg-10">
+                                    <h4 class="text-info">Karir yang diminati :</h4>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#karirYangDiminati"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
+                                </div>
+                            </div>
                             <table class="table" style="border:none">
                                 <tbody>
                                     <tr>
@@ -386,20 +403,33 @@ require("functions.php");
 
             <!-- Profile Box -->
             <div class="row">
-                <div class="col-lg-12" style="padding-bottom:0px;margin-top:30px">
-                    <h4 class="text-dark">CV/Resume :</h4>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-12 mt-3" style="margin-top: 0px !important">
                     <div style="box-shadow: 1px 4px 8px 1px #e1e0e0;" class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                         <div class="container">
+                            <div class="row" style="margin:20px 0px 20px 0px">
+                                <div class="col-lg-10">
+                                    <h4 class="text-info">Unggah Berkas :</h4>
+                                </div>
+                                <div class="col-lg-2">
+                                    <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#unggahBerkas"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
+                                </div>
+                            </div>
+                            <div style="padding:20px 10px 10px 10px" class="border-top">
+                                <p style="margin-top:10px" class="text-info">Daftar dokumen yang telah di upload :</p>
+                            </div>
                             <table class="table" style="border:none">
                                 <tbody>
                                     <tr>
-                                        <td style="width:180px;font-weight:bold;padding-top:20px">
-                                            <a href="#" class="btn btn-info"> Resume </a> &nbsp; &nbsp; <a href="#" class="btn btn-primary"> Upload CV </a>
-                                        </td>
+                                        <th>Keterangan</th>
+                                        <th>Nama Dokumen</th>
+                                    </tr>
+                                    <tr>
+                                        <td>CV</td>
+                                        <td><a href="#">CV - Samsul Sinaga.pdf</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sertifikat Pelatihan</td>
+                                        <td><a href="#">Samsul Sinaga.pdf</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -408,11 +438,683 @@ require("functions.php");
                 </div>
             </div>
             <!-- End Profile Box -->
-
-
         </div>
     </section>
     <!-- CANDIDATES PROFILE END -->
+
+    <!-- The Modal Informasi Pribadi -->
+    <div class="modal" id="informasiPribadi">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Informasi Pribadi</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <form>
+                                        <div class="row mt-4">
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Lengkap :</label>
+                                                    <input id="first-name" type="text" name="name" class="form-control resume" autocomplete="off" placeholder="Samsul Sinaga">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Email :</label>
+                                                    <input id="middle-name" style="pointer-events:none;" type="text" class="form-control resume bg-light" placeholder="samsulku@gmail.com">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nomor HP :</label>
+                                                    <input id="surname-name" type="text" class="form-control resume" autocomplete="off" placeholder="0812 7870 0012">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Jenis Kelamin :</label>
+                                                    <div class="form-button">
+                                                        <select class="nice-select rounded">
+                                                            <option data-display="Pria">Jenis Kelamin</option>
+                                                            <option value="1">Pria</option>
+                                                            <option value="2">Wanita</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Tanggal Lahir :</label>
+                                                    <input id="date-of-birth" type="date" class="form-control resume" placeholder="13/02/1999">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Status</label>
+                                                    <div class="form-button">
+                                                        <select class="nice-select rounded">
+                                                            <option data-display="Belum Menikah">Status</option>
+                                                            <option value="1">Sudah Menikah</option>
+                                                            <option value="2">Belum Menikah</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Mencari Pekerjaan</label>
+                                                    <div class="form-button">
+                                                        <select class="nice-select rounded">
+                                                            <option value="1">Ya</option>
+                                                            <option value="2">Tidak</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Ringkasan Pribadi</label>
+                                                    <textarea id="surname-name" class="form-control" rows="3" placeholder="Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Alamat</label>
+                                                    <input id="surname-name" type="text" class="form-control resume" placeholder="Jl. Hariaman Purba, No. 12">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Kabupaten/Kota</label>
+                                                    <input id="surname-name" type="text" class="form-control resume" placeholder="Kab. Simalungun">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Provinsi</label>
+                                                    <input id="surname-name" type="text" class="form-control resume" placeholder="Sumatera Utara">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Ganti Password</label>
+                                                    <input id="surname-name" type="password" autocomplete="off" class="form-control resume" placeholder="Password">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">Ganti Password</label>
+                                                    <input id="surname-name" type="password" autocomplete="off" class="form-control resume" placeholder="Konfirmasi Password">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Informasi Pribadi -->
+
+    <!-- The Modal Rincian Disabilitas -->
+    <div class="modal" id="rincianDisabilitas">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Rincian Disabilitas</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <form>
+                                        <div class="row mt-4">
+                                            <div class="col-md-12 ">
+                                                <label class="text-muted" style="font-weight: 600">Jenis Ketunaan </label><br>
+
+                                                <div class="p-4" style="padding:0px 0px 0px 0px !important">
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck1" name="ketunaan[]" value="Tuna Daksa">
+                                                                <label class="custom-control-label" for="customCheck1">Tuna Daksa</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 10px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="ketunaan[]" value="Tuna Netra">
+                                                                <label class="custom-control-label" for="customCheck2">Tuna Netra</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 10px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Tuna Runggu">
+                                                                <label class="custom-control-label" for="customCheck3">Tuna Runggu</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline" style="margin:0px 0px 0px 0px">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Tuna Wicara">
+                                                                <label class="custom-control-label" for="customCheck4">Tuna Wicara</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:11px 20px 11px 5px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Tuna Grahita">
+                                                                <label class="custom-control-label" for="customCheck5">Tuna Grahita</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Alat Bantu :</label>
+                                                    <input id="middle-name" type="text" class="form-control resume" placeholder="-">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Penjelasan Singkat :</label>
+                                                    <textarea id="surname-name" type="text" class="form-control resume" autocomplete="off" placeholder="Saya kesulitan dalam menemukan kesulitan yang sulit saya miliki"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Rincian Disabilitas -->
+
+    <!-- The Modal Pendidikan Terakhir -->
+    <div class="modal" id="pendidikanTerakhir">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Pendidikan Terakhir</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <form>
+                                        <div class="row mt-4">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Pendidikan Terakhir :</label>
+                                                    <div class="form-button">
+                                                        <select class="nice-select rounded">
+                                                            <option data-display="SD">Pendidikan Terakhir</option>
+                                                            <option value="SD">SD</option>
+                                                            <option value="SMP">SMP</option>
+                                                            <option value="SMA">SMA</option>
+                                                            <option value="D1">D1</option>
+                                                            <option value="D2">D2</option>
+                                                            <option value="D3">D3</option>
+                                                            <option value="D4">D4</option>
+                                                            <option value="S1">S1</option>
+                                                            <option value="S2">S2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Jurusan :</label>
+                                                    <input id="middle-name" type="text" class="form-control resume" placeholder="Kosongkan jika tidak perlu">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Sekolah :</label>
+                                                    <input id="middle-name" type="text" class="form-control resume" value="SMA KARTIKA">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Periode :</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1" style="padding: 38px 15px 0px 30px ! important">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted" style="font-weight: bolder"> - </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Pendidikan Terakhir -->
+
+
+    <!-- The Modal Pengalaman Bekerja -->
+    <div class="modal" id="pengalamanBekerja">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Pengalaman Bekerja</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <form>
+                                        <div class="row mt-4">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Perusahaan :</label>
+                                                    <input id="middle-name" type="text" class="form-control resume" placeholder="Kosongkan jika tidak perlu">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Pekerjaan :</label>
+                                                    <input id="middle-name" type="text" class="form-control resume" value="SMA KARTIKA">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Periode :</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1" style="padding:40px 15px 0px 35px">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted" style="font-weight: bolder"> - </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group app-label">
+                                                    <button type="button" class="btn btn-primary" style="width: 100%"><i class="mdi mdi-plus"></i> Tambah</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9"></div>
+                                            <div class="col-md-12">
+                                                <table class="table" style="border:none">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Tahun</th>
+                                                            <th>Nama Perusahaan</th>
+                                                            <th>#</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2016 - 2017</td>
+                                                            <td>PT. Doorjek Indonesia</td>
+                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2017 - 2020</td>
+                                                            <td>PT. Doorjek Indonesia</td>
+                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Pengalaman Bekerja -->
+
+    <!-- The Modal Pengalaman Bekerja -->
+    <div class="modal" id="keterampilan">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Pengalaman Bekerja</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <form>
+                                        <div class="row mt-4">
+
+                                            <div class="col-md-9">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Keterampilan :</label>
+                                                    <input id="middle-name" type="text" class="form-control resume" placeholder="Keterampilan yang kamu miliki...">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-3" style="padding-top:30px">
+                                                <div class="form-group app-label">
+                                                    <button type="button" class="btn btn-primary" style="width: 100%"><i class="mdi mdi-plus"></i> Tambah</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 bordered">
+                                                <table class="table rounded" style="border: 1px solid #e1e0e0;width:50%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Nama Keterampilan</th>
+                                                            <th>#</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Menjahit</td>
+                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Pengalaman Bekerja -->
+
 
     <!-- footer start -->
     <footer class="footer">
