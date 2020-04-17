@@ -172,9 +172,15 @@ require("functions.php");
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
-                        <img src="https://s2.bukalapak.com/img/7620068213/w-1000/CETAK_FOTO_dan_PAS_FOTO_.png" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
-                        <h5 class="text-white mb-2">Samsul Sinaga</h5>
-                        <span class="badge badge-secondary" style="font-size: 15px;padding:10px 15px 10px 15px"> samsul@gmail.com &nbsp;|&nbsp; 081212120098 </span>
+                        <div class="blog">
+                            <img src="https://s2.bukalapak.com/img/7620068213/w-1000/CETAK_FOTO_dan_PAS_FOTO_.png" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+
+                            <div class="author" style="margin:50px 0px 0px 169px">
+                                <p class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-pencil text-light"></i> <a href="javascript:void(0)" class="text-light user">Ubah Foto Profil</a></p>
+                            </div>
+                        </div>
+                        <h3 class="text-white mb-2">Samsul Sinaga</h3>
+                        <span class="badge badge-light" style="font-size: 15px;padding:10px 15px 10px 15px"> samsul@gmail.com &nbsp;|&nbsp; 081212120098 </span>
                     </div>
                 </div>
             </div>
@@ -1049,14 +1055,14 @@ require("functions.php");
     </div>
     <!-- End Modal Pengalaman Bekerja -->
 
-    <!-- The Modal Pengalaman Bekerja -->
+    <!-- The Modal Keterampilan -->
     <div class="modal" id="keterampilan">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Pengalaman Bekerja</h4>
+                    <h4 class="modal-title">Edit Keterampilan</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -1069,21 +1075,21 @@ require("functions.php");
                                     <form>
                                         <div class="row mt-4">
 
-                                            <div class="col-md-9">
+                                            <div class="col-md-7">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Nama Keterampilan :</label>
                                                     <input id="middle-name" type="text" class="form-control resume" placeholder="Keterampilan yang kamu miliki...">
                                                 </div>
                                             </div>
-                                            
-                                            <div class="col-md-3" style="padding-top:30px">
+
+                                            <div class="col-md-5" style="padding-top:30px">
                                                 <div class="form-group app-label">
-                                                    <button type="button" class="btn btn-primary" style="width: 100%"><i class="mdi mdi-plus"></i> Tambah</button>
+                                                    <button type="button" class="btn btn-primary" style="width: 50%"><i class="mdi mdi-plus"></i> Tambah</button>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 bordered">
-                                                <table class="table rounded" style="border: 1px solid #e1e0e0;width:50%">
+                                            <div class="col-md-7 bordered">
+                                                <table class="table rounded" style="border: 1px solid #e1e0e0;width:100%">
                                                     <tbody>
                                                         <tr>
                                                             <th>Nama Keterampilan</th>
@@ -1091,6 +1097,195 @@ require("functions.php");
                                                         </tr>
                                                         <tr>
                                                             <td>Menjahit</td>
+                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Martole</td>
+                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-5 bordered"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Keterampilan -->
+
+    <!-- The Modal Karir Yang Diminati -->
+    <div class="modal" id="karirYangDiminati">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Keterampilan</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <form>
+                                        <div class="row mt-4">
+
+                                            <div class="col-md-8">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Pilih Karir Yang Diminati:</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" style="width:100%;padding-left:10px; height: 40px ! important">
+                                                            <option value="">Karir Yang Diminati</option>
+                                                            <option value="Administrasi">Administrasi</option>
+                                                            <option value="Desain dan Arsitektur">Desain dan Arsitektur</option>
+                                                            <option value="Editing, Media dan Informasi">Editing, Media dan Informasi</option>
+                                                            <option value="Elektronik">Elektronik</option>
+                                                            <option value="Hotel dan Katering">Hotel dan Katering</option>
+                                                            <option value="House Keeping">House Keeping</option>
+                                                            <option value="IT dan Telekomunikasi">IT dan Telekomunikasi</option>
+                                                            <option value="Keamanan dan Perlindungan Sipil">Keamanan dan Perlindungan Sipil</option>
+                                                            <option value="Kesehatan dan Kecantikan">Kesehatan dan Kecantikan</option>
+                                                            <option value="Keuangan dan Akuntansi">Keuangan dan Akuntansi</option>
+                                                            <option value="Layanan Sipil / Asosiasi">Layanan Sipil / Asosiasi</option>
+                                                            <option value="Legal">Legal</option>
+                                                            <option value="Manajemen, Manajemen Eksekutif dan Strategis">Manajemen, Manajemen Eksekutif dan Strategis</option>
+                                                            <option value="Pelatihan / Instruksi">Pelatihan / Instruksi</option>
+                                                            <option value="Pelayanan Pelanggan">Pelayanan Pelanggan</option>
+                                                            <option value="Pemasaran dan Periklanan">Pemasaran dan Periklanan</option>
+                                                            <option value="Pemeliharaan">Pemeliharaan</option>
+                                                            <option value="Penelitian, Pengembangan dan Ilmu Pengetahuan">Penelitian, Pengembangan dan Ilmu Pengetahuan</option>
+                                                            <option value="Penjualan dan Perdagangan">Penjualan dan Perdagangan</option>
+                                                            <option value="Perbankan, Asuransi dan Keuangan">Perbankan, Asuransi dan Keuangan</option>
+                                                            <option value="Pertanian, Kehutanan, Laut dan Lingkungan">Pertanian, Kehutanan, Laut dan Lingkungan</option>
+                                                            <option value="Produksi, Konstruksi dan Perdagangan">Produksi, Konstruksi dan Perdagangan</option>
+                                                            <option value="Quality Control">Quality Control</option>
+                                                            <option value="Seni, Budaya dan Hiburan">Seni, Budaya dan Hiburan</option>
+                                                            <option value="Sosial">Sosial</option>
+                                                            <option value="Sumber Daya Manusia">Sumber Daya Manusia</option>
+                                                            <option value="Teknik">Teknik</option>
+                                                            <option value="Transportasi dan Logistik">Transportasi dan Logistik</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4" style="padding-top:30px">
+                                                <div class="form-group app-label">
+                                                    <button type="button" class="btn btn-primary" style="width: 60%"><i class="mdi mdi-plus"></i> Tambah</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-8 bordered rounded">
+                                                <table class="table rounded" style="border: 1px solid #e1e0e0;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Nama Keterampilan</th>
+                                                            <th>#</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Desain & Arsitektur</td>
+                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Administrasi</td>
+                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Karir Yang Diminati -->
+
+
+    <!-- The Modal Unggah Berkas -->
+    <div class="modal" id="unggahBerkas">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Daftar Berkas</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <form>
+                                        <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
+                                            <div class="col-md-12" style="margin-bottom: 10px;"><i class="text-danger">* Berkas harus berupa format .pdf atau .jpeg dan ukuran berkas tidak lebih dari 2MB </i></div>
+                                            <div class="col-md-5">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Pilih Berkas:</label>
+                                                    <input type="file" name="" id="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Keterangan :</label>
+                                                    <input id="middle-name" type="text" class="form-control resume" placeholder="Mis : Sertifikat Pelatihan">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3" style="padding-top:30px">
+                                                <div class="form-group app-label">
+                                                    <button type="button" class="btn btn-primary" style="width: 100%"><i class="mdi mdi-plus"></i> Tambah</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 bordered rounded">
+                                                <table class="table rounded" style="border: 1px solid #e1e0e0;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Keterangan</th>
+                                                            <th>Nama Berkas</th>
+                                                            <th>#</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>CV</td>
+                                                            <td><a href="#">CV - Samsul Sinaga.pdf</a></td>
+                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sertifikat Keahlian</td>
+                                                            <td><a href="#">Samsul Sinaga.pdf</a></td>
                                                             <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
                                                         </tr>
                                                     </tbody>
@@ -1113,8 +1308,57 @@ require("functions.php");
             </div>
         </div>
     </div>
-    <!-- End Modal Pengalaman Bekerja -->
+    <!-- End Modal Unggah Berkas -->
 
+
+    <!-- The Modal Ubah Foto Profil -->
+    <div class="modal" id="ubahFotoProfil">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Foto Profil</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <form>
+                                        <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
+                                            <div class="col-md-12" style="margin-bottom: 10px;">
+                                                <div class="position-relative overflow-hidden">
+                                                    <img style="width: 300px" src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" alt="" class="img-fluid mx-auto d-block rounded">
+                                                </div>                                                
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Pilih Foto:</label>
+                                                    <input type="file" name="" id="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Ubah Foto Profil -->
 
     <!-- footer start -->
     <footer class="footer">
