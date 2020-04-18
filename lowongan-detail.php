@@ -143,12 +143,12 @@ require("functions.php");
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="contact.html">Cari Lowongan</a></li>
-                        <li><a href="index.html">Tips Karir</a></li>
-                        <li><a href="contact.html">Daftar Perusahaan</a></li>
-                        <li><a href="index.html">Karyaku</a></li>
+                        <li><a href="lowongan.php">Cari Lowongan</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary">Masuk</a>
+                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
                             <a href="register.php" class="btn btn-primary">Daftar</a>
                         </div>
                     </ul>
@@ -443,6 +443,12 @@ require("functions.php");
     <script>
         function loginEx() {
             swal("Yongki Babi!", "Anda harus login terlebih dahulu!", "warning");
+        }
+    </script>
+
+    <script>
+        function test() {
+            alert('kontol');
         }
     </script>
 

@@ -26,7 +26,7 @@ if (isset($_POST["daftar"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jobya - Responsive Job Board HTML Template</title>
+    <title>Lokeritas - Lowongan Kerja Penyandang Disabilitas</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="Themesdesign" />
@@ -62,7 +62,7 @@ if (isset($_POST["daftar"])) {
     <!-- Loader -->
 
     <!-- Hero Start -->
-    <section class="vh-200" style="background: url('images/register.jpg') center no-repeat;">
+    <section class="vh-200" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center no-repeat;">
         <div class="home-center">
             <div class="home-desc-center">
                 <div class="container"><br>

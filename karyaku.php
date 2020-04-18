@@ -143,12 +143,12 @@ require("functions.php");
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="contact.html">Cari Lowongan</a></li>
-                        <li><a href="index.html">Tips Karir</a></li>
-                        <li><a href="contact.html">Daftar Perusahaan</a></li>
-                        <li><a href="index.html">Karyaku</a></li>
+                        <li><a href="lowongan.php">Cari Lowongan</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary">Masuk</a>
+                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
                             <a href="register.php" class="btn btn-primary">Daftar</a>
                         </div>
                     </ul>
@@ -210,7 +210,7 @@ require("functions.php");
                         <div class="content p-4" style="padding: 10px 24px 24px 24px ! important">
                             <div>
                                 <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right" ><i class="mdi mdi-heart mr-1"></i>33</p>
+                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
                             </div>
                             <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
                         </div>
@@ -231,7 +231,7 @@ require("functions.php");
                         <div class="content p-4" style="padding: 10px 24px 24px 24px ! important">
                             <div>
                                 <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right" ><i class="mdi mdi-heart mr-1"></i>33</p>
+                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
                             </div>
                             <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
                         </div>
@@ -252,7 +252,7 @@ require("functions.php");
                         <div class="content p-4" style="padding: 10px 24px 24px 24px ! important">
                             <div>
                                 <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right" ><i class="mdi mdi-heart mr-1"></i>33</p>
+                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
                             </div>
                             <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
                         </div>
@@ -273,7 +273,7 @@ require("functions.php");
                         <div class="content p-4" style="padding: 10px 24px 24px 24px ! important">
                             <div>
                                 <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right" ><i class="mdi mdi-heart mr-1"></i>33</p>
+                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
                             </div>
                             <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
                         </div>
@@ -294,7 +294,7 @@ require("functions.php");
                         <div class="content p-4" style="padding: 10px 24px 24px 24px ! important">
                             <div>
                                 <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right" ><i class="mdi mdi-heart mr-1"></i>33</p>
+                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
                             </div>
                             <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
                         </div>
@@ -315,7 +315,7 @@ require("functions.php");
                         <div class="content p-4" style="padding: 10px 24px 24px 24px ! important">
                             <div>
                                 <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right" ><i class="mdi mdi-heart mr-1"></i>33</p>
+                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
                             </div>
                             <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
                         </div>

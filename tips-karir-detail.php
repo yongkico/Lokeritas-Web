@@ -144,12 +144,12 @@ require("functions.php");
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="contact.html">Cari Lowongan</a></li>
-                        <li><a href="index.html">Tips Karir</a></li>
-                        <li><a href="contact.html">Daftar Perusahaan</a></li>
-                        <li><a href="index.html">Karyaku</a></li>
+                        <li><a href="lowongan.php">Cari Lowongan</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary">Masuk</a>
+                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
                             <a href="register.php" class="btn btn-primary">Daftar</a>
                         </div>
                     </ul>
@@ -184,7 +184,7 @@ require("functions.php");
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-12 order-2 order-md-1 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <div class="sidebar mt-sm-30 p-4 rounded shadow">
+                    <div class="sidebar mt-sm-30 p-4 rounded shadow">
                         <!-- SEARCH -->
                         <div class="widget mb-4 pb-2">
                             <div id="search2" class="widget-search mb-0">
@@ -261,7 +261,7 @@ require("functions.php");
                         </div>
                     </div>
 
-                    
+
 
                     <div class="rounded border mt-4 p-4">
                         <h5 class="text-dark"><i class="mdi mdi-pencil mr-2"></i>Komentar</h5>
