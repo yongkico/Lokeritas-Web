@@ -26,7 +26,7 @@ if (isset($_POST["daftar"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lokeritas - Lowongan Kerja Penyandang Disabilitas</title>
+    <title>Lokeritas - Lowongan Kerja Disabilitas Sumatera Utara</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="Themesdesign" />

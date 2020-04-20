@@ -168,10 +168,10 @@ require("functions.php");
     <section class="bg-half page-next-level" style="padding: 120px 0px 50px 0px;background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
         <div class="bg-overlay"></div>
         <div class="container">
-            <div class="row justify-content-center" style="margin-bottom: 0px; padding-bottom:0px">
-                <div class="col-md-6" style="margin-bottom: 0px; padding-bottom:0px">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">Tips Karir</h4>
+                        <h4 class="text-uppercase title mb-4">Kebijakan Privasi</h4>
                     </div>
                 </div>
             </div>
@@ -179,152 +179,37 @@ require("functions.php");
     </section>
     <!-- end home -->
 
-    <!-- BLOG LIST START -->
-    <section class="section" style="padding:30px 0px 40px 0px">
+    <!-- blog start -->
+    <section class="section bg-light" style="padding: 40px 0px 40px 0px">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 order-2 order-md-1 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <div class="sidebar mt-sm-30 p-4 rounded shadow">
-                        <!-- SEARCH -->
-                        <div class="widget mb-4 pb-2">
-                            <div id="search2" class="widget-search mb-0">
-                                <form role="search" method="get" id="searchform" class="searchform">
-                                    <div>
-                                        <input type="text" class="border rounded" name="s" id="s" placeholder="Cari Keywords...">
-                                        <input type="submit" id="searchsubmit" value="Search">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- SEARCH -->
-
-                        <!-- CATAGORIES -->
-                        <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Kategori</h4>
-                            <ul class="list-unstyled mt-4 mb-0 catagories">
-                                <li><a href="jvascript:void(0)">Keuangan</a> <span class="float-right">13</span></li>
-                                <li><a href="jvascript:void(0)">Bisnis</a> <span class="float-right">09</span></li>
-                                <li><a href="jvascript:void(0)">Blog</a> <span class="float-right">18</span></li>
-                                <li><a href="jvascript:void(0)">Investasi</a> <span class="float-right">20</span></li>
-                                <li><a href="jvascript:void(0)">Prestasi</a> <span class="float-right">22</span></li>
-                            </ul>
-                        </div>
-                        <!-- CATAGORIES -->
-
-                        <!-- RECENT POST -->
-                        <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Post Terbaru</h4>
-                            <div class="mt-4">
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Consultant Business</a><span class="text-muted mt-2">15th June, 2019</span></div>
-                                </div>
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Look On The Glorious Balance</a> <span class="text-muted mt-2">15th June, 2019</span></div>
-                                </div>
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Research Financial.</a> <span class="text-muted mt-2">15th June, 2019</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- RECENT POST -->
-                    </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 bg-white center-block" style="padding: 50px 50px 50px 50px">
+                    <h3 class="text-dark">Kebijakan Privasi</h3>
+                    <p class="border-top"></p>
+                    <p class="text-dark" style="text-align: justify;margin:0px 0px 0px 0px">Syarat Umum :</p>
+                    <ol>
+                        <li>Penyandang disabilitas jenis apapun</li>
+                        <li>Usia 18-40 tahun</li>
+                        <li>Pendidikan minal SMA/SMK/Sederajat</li>
+                        <li>Mampu mengoperasikan internet dan/atau smartphone berbasis android</li>
+                    </ol>
+                    <p class="text-dark" style="text-align: justify;margin:0px 0px 0px 0px">Syarat Khusus :</p>
+                    <ol>
+                        <li>Mengikuti persyaratan posisi pekerjaan yang ditawarkan oleh Penyedia Kerja</li>
+                    </ol>
+                    <p class="text-dark" style="text-align: justify;margin:0px 0px 0px 0px">Ketentuan :</p>
+                    <ol>
+                        <li>Mendaftarkan diri ke lokeritas.com, mengisi data diri, melengkapi profil pencari kerja, mengunggah CV dan foto sesuai dengan ukuran yang berlaku.</li>
+                        <li>Semua lowongan kerja yang tercantum di Kerjabilitas tidak dipungut biaya dalam proses pengiklanannya. Sehingga semua pelamar pekerjaan untuk semua lowongan di Lokeritas juga tidak dikenakan biaya apapun.</li>
+                    </ol>
+                    <p class="text-dark" style="text-align: justify">Apabila ada perusahaan atau penyedia kerja yang melakukan pemungutan biaya atau permintaan untuk melakukan transfer sejumlah uang kepada pengguna Kerjabilitas, kamu dapat menginformasikannya kepada tim Kerjabilitas melalui kotak pesan di laman Kerjabilitas, atau melalui email di info@lokeritas.com, dan dapat juga menghubungi kami di 08122219983</p>
                 </div>
-                <!--end col-->
-
-                <div class="col-lg-8 col-md-6 order-1 order-md-2">
-                    <div class="row">
-
-                        <div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                            <div class="blog position-relative overflow-hidden shadow rounded">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                </div>
-                                <div class="content p-4 bg-light">
-                                    <h4><a href="tips-karir-detail.php" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
-                                    <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-                        <!--end col-->
-
-                        <div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                            <div class="blog position-relative overflow-hidden shadow rounded">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                </div>
-                                <div class="content p-4 bg-light">
-                                    <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
-                                    <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-
-                        <div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                            <div class="blog position-relative overflow-hidden shadow rounded">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                </div>
-                                <div class="content p-4 bg-light">
-                                    <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
-                                    <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-
-                        <div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                            <div class="blog position-relative overflow-hidden shadow rounded">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                </div>
-                                <div class="content p-4 bg-light">
-                                    <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
-                                    <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-
-
-                        <div class="col-lg-12" style="margin-top: 30px">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination job-pagination justify-content-center mb-0">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                            <i class="mdi mdi-chevron-double-left f-15"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">
-                                            <i class="mdi mdi-chevron-double-right f-15"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+                <div class="col-lg-1"></div>
             </div>
         </div>
     </section>
-    <!-- BLOG LIST END -->
+    <!-- blog end -->
 
     <!-- The Modal Daftar -->
     <div class="modal" id="pilihanDaftar">
@@ -381,16 +266,16 @@ require("functions.php");
                         <li><a href="hubungi-kami.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
                         <li><a href="kebijakan-privasi.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
                         <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
-
+                        
                     </ul>
                 </div>
-
+                
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title f-17">Penyedia Kerja</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="daftar-penyedia-kerja.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mendaftar</a></li>
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right" disabled></i> Lihat Daftar Kandidat</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pasang Iklan Lowongan</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pasang Iklan Lowongan</a></li>                           
                     </ul>
                 </div>
 
@@ -398,11 +283,11 @@ require("functions.php");
                     <p class="text-white mb-4 footer-list-title">Lainnya</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="tips-karir.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
-                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
+                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>                        
                         <li><a href="lowongan.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Mobile Lokeritas</a></li>
                     </ul>
-                </div>
+                </div>                
             </div>
         </div>
     </footer>
@@ -434,6 +319,13 @@ require("functions.php");
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function loginEx() {
+            swal("Perhatian!", "Anda harus login terlebih dahulu!", "warning");
+        }
+    </script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>

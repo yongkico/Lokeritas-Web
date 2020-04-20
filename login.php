@@ -3,7 +3,7 @@ session_start();
 require("functions.php");
 
 // if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
-    
+
 //     $id = $_COOKIE['id'];
 //     $key = $_COOKIE['key'];
 
@@ -24,16 +24,16 @@ require("functions.php");
 if (isset($_POST["masuk"])) {
 
     $email = strtolower($_POST["email"]);
-    $password = mysqli_real_escape_string($conn,$_POST["password"]); 
+    $password = mysqli_real_escape_string($conn, $_POST["password"]);
     //cek akun
     $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
-    
+
     if (mysqli_num_rows($result) == 1) {
 
         //cek password
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row["password"])) {
-            
+
             // set session
             $_SESSION["login"] = true;
             $_SESSION["id"] = $row["id"];
@@ -41,12 +41,9 @@ if (isset($_POST["masuk"])) {
             header("Location: index.php");
             exit;
         }
-
-        
     }
 
     $error = true;
-
 }
 
 ?>
@@ -58,7 +55,7 @@ if (isset($_POST["masuk"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jobya - Responsive Job Board HTML Template</title>
+    <title>Lokeritas - Lowongan Kerja Disabilitas Sumatera Utara</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="Themesdesign" />
@@ -115,7 +112,7 @@ if (isset($_POST["masuk"])) {
                                             <div class="form-group position-relative">
                                                 <label>Email <span class="text-danger">*</span></label>
                                                 <input type="email" class="form-control" placeholder="Email" name="email" required="" autocomplete="off">
-                                                
+
                                             </div>
                                         </div>
 
@@ -127,7 +124,7 @@ if (isset($_POST["masuk"])) {
                                         </div>
 
                                         <div class="col-lg-12">
-                                            <p class="float-right forgot-pass"><a href="recovery_passward.html" class="text-dark font-weight-bold">Lupa password ?</a></p>
+                                            <p class="float-right forgot-pass"><a href="lupa-password.php" class="text-dark font-weight-bold">Lupa password ?</a></p>
                                             <div class="form-group">
                                                 <div class="custom-control m-0 custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember">
@@ -139,7 +136,7 @@ if (isset($_POST["masuk"])) {
                                             <button class="btn btn-primary w-100" name="masuk">Masuk</button>
                                         </div>
                                         <div class="col-12 text-center">
-                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">Tidak mempunyai akun ?</small> <a href="register.php" class="text-dark font-weight-bold">Daftar</a></p>
+                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">Tidak mempunyai akun ?</small> <a href="#" class="text-dark font-weight-bold" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                                         </div>
                                     </div>
                                 </form>
@@ -156,6 +153,38 @@ if (isset($_POST["masuk"])) {
     </section>
     <!--end section-->
     <!-- Hero End -->
+
+    <!-- The Modal Daftar -->
+    <div class="modal" id="pilihanDaftar">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Daftar</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang Disabilitas Pencari Kerja</p>
+                                <p style="text-align: center;margin-top:30px"><a href="daftar-disabilitas.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
+                            </div>
+                            <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja Penyandang Disabilitas</p>
+                                <p style="text-align: center;margin-top:30px"><a href="daftar-penyedia-kerja.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Ubah Foto Profil -->
 
     <!-- javascript -->
     <script src="js/jquery.min.js"></script>

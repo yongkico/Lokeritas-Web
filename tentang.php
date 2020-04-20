@@ -144,13 +144,13 @@ require("functions.php");
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="contact.html">Cari Lowongan</a></li>
-                        <li><a href="index.html">Tips Karir</a></li>
-                        <li><a href="contact.html">Daftar Perusahaan</a></li>
-                        <li><a href="index.html">Karyaku</a></li>
+                        <li><a href="lowongan.php">Cari Lowongan</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary">Masuk</a>
-                            <a href="register.php" class="btn btn-primary">Daftar</a>
+                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                         </div>
                     </ul>
                     <!--end navigation menu-->
@@ -171,7 +171,7 @@ require("functions.php");
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">Lamaran Dikirim</h4>
+                        <h4 class="text-uppercase title mb-4">Tentang Lokeritas</h4>
                     </div>
                 </div>
             </div>
@@ -180,86 +180,54 @@ require("functions.php");
     <!-- end home -->
 
     <!-- blog start -->
-    <section class="section" style="padding: 20px 0px 40px 0px">
+    <section class="section bg-light" style="padding: 40px 0px 40px 0px">
         <div class="container">
-            <h4>Daftar Lamaran</h4>
-            <span>Urutkan berdasarkan </span>
-            <select class="">
-                <option value="">Terbaru </option>
-                <option value="">Terlama </option>
-            </select><br><br>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded" style="box-shadow: 1px 4px 8px 1px #e1e0e0 ! important">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>
-                            <p class="text-muted">hi@hotama.co.id</p>
-                            <p class="text-info" style="margin-bottom: 0px"><i class="mdi mdi-send"></i> Dikirim Tanggal : 22 Feb 2020</p>
-                            <p class="text-info"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
-                        </div>
-                    </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 bg-white center-block" style="padding: 50px 50px 50px 50px">
+                    <h3 class="text-dark">Lokeritas</h3>
+                    <p class="border-top"></p>
+                    <p class="text-dark" style="text-align: justify">Lokeritas adalah suatu aplikasi yang menjadi media penyedia lowongan pekerjaan khusus penyandang disabilitas di Sumatera Utara.</p>
+                    <p class="text-dark" style="text-align: justify">Aplikasi ini berfungsi untuk menyalurkan penyandang disabilitas kepada perusahaan-perusahaan yang membutuhkan pekerja/pegawai disabilitas. Dengan adanya aplikasi ini, maka perusahaanperusahaan yang membutuhkan pekerja penyandang disabilitas dapat terhubung dengan para penyandang disabilitas. Aplikasi yang akan dibangun ini, selain menjadi media penyedia lowongan pekerjaan disabilitas, juga akan menyediakan fitur “KARYAKU”, dimana melalui fitur ini member disabilitas dapat mengekspresikan dirinya di aplikasi melalui karya-karya atau keahlian yang bisa mereka lakukan di kehidupan sehari-hari mereka. Selain itu pada aplikasi mobile, juga akan diterapkan fitur voice command, dimana fitur ini berguna untuk
+                        membantu penyandang disabilitas khusus tuna netra dalam menggunakan aplikasi dengan memanfaatkan suara.</p>
                 </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded" style="box-shadow: 1px 4px 8px 1px #e1e0e0 ! important">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>
-                            <p class="text-muted">hi@hotama.co.id</p>
-                            <p class="text-info" style="margin-bottom: 0px"><i class="mdi mdi-send"></i> Dikirim Tanggal : 22 Feb 2020</p>
-                            <p class="text-info"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded" style="box-shadow: 1px 4px 8px 1px #e1e0e0 ! important">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>
-                            <p class="text-muted">hi@hotama.co.id</p>
-                            <p class="text-info" style="margin-bottom: 0px"><i class="mdi mdi-send"></i> Dikirim Tanggal : 22 Feb 2020</p>
-                            <p class="text-info"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-12">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination job-pagination justify-content-center mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                    <i class="mdi mdi-chevron-double-left f-15"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="mdi mdi-chevron-double-right f-15"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                <div class="col-lg-1"></div>
             </div>
         </div>
     </section>
     <!-- blog end -->
 
+    <!-- The Modal Daftar -->
+    <div class="modal" id="pilihanDaftar">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Daftar</h4>
+                        <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                    </div>
 
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                    <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang Disabilitas Pencari Kerja</p>
+                                    <p style="text-align: center;margin-top:30px"><a href="daftar-disabilitas.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
+                                </div>
+                                <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                    <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja Penyandang Disabilitas</p>
+                                    <p style="text-align: center;margin-top:30px"><a href="daftar-penyedia-kerja.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Ubah Foto Profil -->
 
     <!-- footer start -->
     <footer class="footer" style="padding: 40px 0px 10px 0px">
@@ -337,6 +305,13 @@ require("functions.php");
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function loginEx() {
+            swal("Perhatian!", "Anda harus login terlebih dahulu!", "warning");
+        }
+    </script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>

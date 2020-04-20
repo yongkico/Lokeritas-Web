@@ -10,7 +10,7 @@ require("functions.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jobya - Responsive Job Board HTML Template</title>
+    <title>Lokeritas - Lowongan Kerja Disabilitas Sumatera Utara</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="Themesdesign" />
@@ -149,7 +149,7 @@ require("functions.php");
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
                             <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
-                            <a href="register.php" class="btn btn-primary">Daftar</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                         </div>
                     </ul>
                     <!--end navigation menu-->
@@ -213,7 +213,26 @@ require("functions.php");
                         <div class="position-relative overflow-hidden">
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
-                        <div class="content p-4">
+                        <div class="content p-4 bg-light">
+                            <h4>CV. Pradipta Paramita</h4>
+                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
+                            <?php if (isset($_SESSION["login"])) : ?>
+                                <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                            <?php else : ?>
+                                <button onclick="loginEx();" type="button" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></button>
+                            <?php endif; ?>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
                             <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
                             <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
@@ -227,7 +246,7 @@ require("functions.php");
                         <div class="position-relative overflow-hidden">
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
-                        <div class="content p-4">
+                        <div class="content p-4 bg-light">
                             <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
                             <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
@@ -241,7 +260,7 @@ require("functions.php");
                         <div class="position-relative overflow-hidden">
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
-                        <div class="content p-4">
+                        <div class="content p-4 bg-light">
                             <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
                             <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
@@ -255,7 +274,7 @@ require("functions.php");
                         <div class="position-relative overflow-hidden">
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
-                        <div class="content p-4">
+                        <div class="content p-4 bg-light">
                             <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
                             <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
@@ -269,21 +288,7 @@ require("functions.php");
                         <div class="position-relative overflow-hidden">
                             <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
                         </div>
-                        <div class="content p-4">
-                            <h4>CV. Pradipta Paramita</h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4">
+                        <div class="content p-4 bg-light">
                             <h4>CV. Pradipta Paramita</h4>
                             <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
                             <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
@@ -316,44 +321,82 @@ require("functions.php");
         </div>
     </section>
     <!-- blog end -->
+
+    <!-- The Modal Daftar -->
+    <div class="modal" id="pilihanDaftar">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Daftar</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang Disabilitas Pencari Kerja</p>
+                                <p style="text-align: center;margin-top:30px"><a href="daftar-disabilitas.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
+                            </div>
+                            <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja Penyandang Disabilitas</p>
+                                <p style="text-align: center;margin-top:30px"><a href="daftar-penyedia-kerja.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Ubah Foto Profil -->
+
     <!-- footer start -->
-    <footer class="footer">
+    <footer class="footer" style="padding: 40px 0px 10px 0px">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
-                    <a href="javascript:void(0)"><img src="images/logo-light.png" height="20" alt=""></a>
-                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>
                     <a href="#" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="38" />
                     </a>
+                    <p class="mt-4">Lokeritas adalah media penyedia lowongan kerja khusus penyandang disabilitas di Sumatera Utara</p>
+                    <ul class="social-icon social list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                    </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title">Lokeritas</p>
                     <ul class="list-unstyled footer-list">
-                        <li><a href="about.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tentang</a></li>
+                        <li><a href="tentang.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tentang</a></li>
                         <li><a href="mitra.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mitra</a></li>
                         <li><a href="hubungi-kami.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
                         <li><a href="kebijakan-privasi.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Lokeritas</a></li>
+                        <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
+
                     </ul>
                 </div>
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <p class="text-white mb-4 footer-list-title f-17">Penyedia Kerja</p>
+                    <ul class="list-unstyled footer-list">
+                        <li><a href="daftar-penyedia-kerja.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mendaftar</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right" disabled></i> Lihat Daftar Kandidat</a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pasang Iklan Lowongan</a></li>
+                    </ul>
+                </div>
+
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title">Lainnya</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="tips-karir.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
                         <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
-                        <li><a href="lamaran-dikirim.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lamaran Dikirim</a></li>
                         <li><a href="lowongan.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
-                        <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <p class="text-white mb-4 footer-list-title f-17">Lihat Kami di</p>
-                    <ul class="social-icon social list-inline mb-0">
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Mobile Lokeritas</a></li>
                     </ul>
                 </div>
             </div>
@@ -387,6 +430,14 @@ require("functions.php");
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function loginEx() {
+            swal("Perhatian!", "Anda harus masuk terlebih dahulu!", "warning");
+        }
+    </script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>
