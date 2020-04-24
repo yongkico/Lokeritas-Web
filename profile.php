@@ -179,7 +179,7 @@ require("functions.php");
                                 <p class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-pencil text-light"></i> <a href="javascript:void(0)" class="text-light user">Ubah Foto Profil</a></p>
                             </div>
                         </div>
-                        <h4 class="text-white mb-2">Samsul Sinaga</h4>
+                        <h4 class="text-white mb-2"><?= $row["nama"]; ?></h4>
                     </div>
                 </div>
             </div>
@@ -209,39 +209,39 @@ require("functions.php");
                                 <tbody>
                                     <tr>
                                         <td style="width:180px;font-weight:bold">Nama</td>
-                                        <td>Samsul Sinaga</td>
+                                        <td><?= $row["nama"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Ringkasan Pribadi</td>
-                                        <td>"Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami"</td>
+                                        <td><?= $row["ringkasan_pribadi"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Email</td>
-                                        <td>samsulsin@gmail.com</td>
+                                        <td><?= $row["email"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Nomor HP</td>
-                                        <td>081244169912</td>
+                                        <td><?= $row["no_hp"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Jenis Kelamin</td>
-                                        <td>Pria</td>
+                                        <td><?= $row["jk"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Tanggal Lahir</td>
-                                        <td>22 Jan 1999</td>
+                                        <td><?= $row["tgl_lahir"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Status</td>
-                                        <td>Belum Menikah</td>
+                                        <td><?= $row["status"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Alamat</td>
-                                        <td>Jl. Sehati, Gg. Dame, No.12, Kec. Medan Timur, Kota Medan, Sumatera Utara</td>
+                                        <td><?= $row["alamat"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Mencari Pekerjaan</td>
-                                        <td><span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"> Ya </span></td>
+                                        <td><span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"> <?= $row["mencari_pekerjaan"]; ?> </span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -457,33 +457,33 @@ require("functions.php");
                     <h4 class="modal-title">Edit Informasi Pribadi</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 mt-3" style="margin-top:0px ! important">
-                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
-                                    <form>
+                <form action="edit_informasi_pribadi.php" method="POST">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                    <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
                                         <div class="row mt-4">
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Nama Lengkap :</label>
-                                                    <input id="first-name" type="text" name="name" class="form-control resume" autocomplete="off" placeholder="Samsul Sinaga">
+                                                    <input type="hidden" name="id" value="<?= $row["nama"]; ?>">
+                                                    <input id="first-name" type="text" name="nama" class="form-control resume" autocomplete="off" value="<?= $row["nama"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Email :</label>
-                                                    <input id="middle-name" style="pointer-events:none;" type="text" class="form-control resume bg-light" placeholder="samsulku@gmail.com">
+                                                    <input id="middle-name" style="pointer-events:none;" type="text" class="form-control resume bg-light" value="<?= $row["email"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Nomor HP :</label>
-                                                    <input id="surname-name" type="text" class="form-control resume" autocomplete="off" placeholder="0812 7870 0012">
+                                                    <input id="surname-name" name="no_hp" type="text" class="form-control resume" autocomplete="off" value="<?= $row["no_hp"]; ?>">
                                                 </div>
                                             </div>
 
@@ -491,10 +491,10 @@ require("functions.php");
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Jenis Kelamin :</label>
                                                     <div class="form-button">
-                                                        <select class="nice-select rounded">
-                                                            <option data-display="Pria">Jenis Kelamin</option>
-                                                            <option value="1">Pria</option>
-                                                            <option value="2">Wanita</option>
+                                                        <select class="nice-select rounded" name="jk">
+                                                            <option data-display="<?= $row["jk"]; ?>">Jenis Kelamin</option>
+                                                            <option value="Pria">Pria</option>
+                                                            <option value="Wanita">Wanita</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -503,7 +503,7 @@ require("functions.php");
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Tanggal Lahir :</label>
-                                                    <input id="date-of-birth" type="date" class="form-control resume" placeholder="13/02/1999">
+                                                    <input id="date-of-birth" name="tgl_lahir" type="date" class="form-control resume" value="<?= $row["tgl_lahir"]; ?>"">
                                                 </div>
                                             </div>
 
@@ -511,10 +511,10 @@ require("functions.php");
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Status</label>
                                                     <div class="form-button">
-                                                        <select class="nice-select rounded">
-                                                            <option data-display="Belum Menikah">Status</option>
-                                                            <option value="1">Sudah Menikah</option>
-                                                            <option value="2">Belum Menikah</option>
+                                                        <select class="nice-select rounded" name="status">
+                                                            <option data-display="<?= $row["status"]; ?>">Status</option>
+                                                            <option value="Sudah Menikah">Sudah Menikah</option>
+                                                            <option value="Belum Menikah">Belum Menikah</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -524,9 +524,10 @@ require("functions.php");
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Mencari Pekerjaan</label>
                                                     <div class="form-button">
-                                                        <select class="nice-select rounded">
-                                                            <option value="1">Ya</option>
-                                                            <option value="2">Tidak</option>
+                                                        <select class="nice-select rounded" name="mencari_pekerjaan">
+                                                            <option data-display="<?= $row["mencari_pekerjaan"]; ?>">Mencari Pekerjaan</option>
+                                                            <option value="Ya">Ya</option>
+                                                            <option value="Tidak">Tidak</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -539,59 +540,57 @@ require("functions.php");
                                             <div class="col-md-12">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Ringkasan Pribadi</label>
-                                                    <textarea id="surname-name" class="form-control" rows="3" placeholder="Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami"></textarea>
+                                                    <textarea id="surname-name" name="ringkasan_pribadi" class="form-control" rows="3"><?= $row["no_hp"]; ?></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Alamat</label>
-                                                    <input id="surname-name" type="text" class="form-control resume" placeholder="Jl. Hariaman Purba, No. 12">
+                                                    <input id="surname-name" name="alamat" type="text" class="form-control resume" value="<?= $row["alamat"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Kabupaten/Kota</label>
-                                                    <input id="surname-name" type="text" class="form-control resume" placeholder="Kab. Simalungun">
+                                                    <input id="surname-name" name="kab_kota" type="text" class="form-control resume" value="<?= $row["kab_kota"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Provinsi</label>
-                                                    <input id="surname-name" type="text" class="form-control resume" placeholder="Sumatera Utara">
+                                                    <input id="surname-name" name="provinsi" type="text" class="form-control resume" value="<?= $row["provinsi"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Ganti Password</label>
-                                                    <input id="surname-name" type="password" autocomplete="off" class="form-control resume" placeholder="Password">
+                                                    <input id="surname-name" name="password" type="password" autocomplete="off" class="form-control resume" placeholder="Password">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
-                                                    <label class="text-white">Ganti Password</label>
-                                                    <input id="surname-name" type="password" autocomplete="off" class="form-control resume" placeholder="Konfirmasi Password">
+                                                    <label class="text-white">.</label>
+                                                    <input id="surname-name" name="password2" type="password" autocomplete="off" class="form-control resume" placeholder="Konfirmasi Password">
                                                 </div>
                                             </div>
-
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Ini adalah Bagian Footer Modal -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                </div>
-
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" name="btn_informasi_pribadi" class="btn btn-primary" >Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -1437,6 +1436,13 @@ require("functions.php");
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function loginEx() {
+            swal("Perhatian!", "Anda harus masuk terlebih dahulu!", "warning");
+        }
+</script>
 
     <script src="assets/ckeditor/ckeditor.js"></script>
 
