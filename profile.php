@@ -166,7 +166,7 @@ require("functions.php");
     <?php endif; ?>
 
     <!-- Start home -->
-    <section class="bg-half page-next-level" style="padding:140px 0px 30px 0px;background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
+    <section class="bg-half page-next-level" style="padding:90px 0px 0px 0px;background: url('images/bg-2.jpg') center center;">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -179,8 +179,7 @@ require("functions.php");
                                 <p class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-pencil text-light"></i> <a href="javascript:void(0)" class="text-light user">Ubah Foto Profil</a></p>
                             </div>
                         </div>
-                        <h3 class="text-white mb-2">Samsul Sinaga</h3>
-                        <span class="badge badge-light" style="font-size: 15px;padding:10px 15px 10px 15px"> samsul@gmail.com &nbsp;|&nbsp; 081212120098 </span>
+                        <h4 class="text-white mb-2">Samsul Sinaga</h4>
                     </div>
                 </div>
             </div>

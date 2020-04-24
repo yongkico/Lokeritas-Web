@@ -118,7 +118,7 @@ require("functions.php");
         <!-- Navbar End -->
 
         <!-- Start Home -->
-        <section class="bg-home" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
+        <section class="bg-home" style="background: url('images/bg-1.jpg') center center;">
             <div class="bg-overlay"></div>
             <div class="home-center">
                 <div class="home-desc-center">
@@ -630,7 +630,7 @@ require("functions.php");
         <!-- Navbar End -->
 
         <!-- Start Home -->
-        <section class="bg-home" style="background: url('https://www.personneltoday.com/wp-content/uploads/sites/8/2018/11/disabled-staff.jpg') center center;">
+        <section class="bg-home" style="background: url('images/bg-1.jpg') center center;">
             <div class="bg-overlay"></div>
             <div class="home-center">
                 <div class="home-desc-center">

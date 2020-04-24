@@ -1,7 +1,7 @@
 <?php 
 
 //koneksi ke database
-$conn = mysqli_connect("localhost","root","","lokeritas_demo"); 
+$conn = mysqli_connect("localhost","root","","lokeritas_web"); 
 
 function query($query){
     global $conn;
@@ -60,7 +60,7 @@ function daftar($data){
 
     $query = ("INSERT INTO user
                     VALUES
-                ('','$nama','$email','$password','$jk','$tgl_lahir','$ketunaan')
+                ('','$nama','$email','$password','-','$jk','$tgl_lahir','-','-','-','-','-','-','-','-','-','-','$ketunaan','-','-','-')
              ");
 
     mysqli_query($conn, $query);

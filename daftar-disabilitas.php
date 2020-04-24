@@ -62,7 +62,7 @@ if (isset($_POST["daftar"])) {
     <!-- Loader -->
 
     <!-- Hero Start -->
-    <section class="vh-200" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center no-repeat;">
+    <section class="bg-info">
         <div class="home-center">
             <div class="home-desc-center">
                 <div class="container"><br>
@@ -125,50 +125,59 @@ if (isset($_POST["daftar"])) {
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
-                                                <label>Jenis Ketunaan <span class="text-danger">*</span></label><br>
+                                                <label>Jenis Disabilitas/Ketunaan <span class="text-danger">*</span></label><br>
 
-                                                <div class="p-4" style="padding:1px 0px 0px 10px !important">
+                                                <div class="p-4" style="padding:1px 0px 0px 3px !important">
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck1" name="ketunaan[]" value="Tuna Daksa">
-                                                                <label class="custom-control-label" for="customCheck1">Tuna Daksa</label>
+                                                                <label class="custom-control-label" for="customCheck1">Disabilitas Daksa</label>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck2" name="ketunaan[]" value="Tuna Netra">
-                                                                <label class="custom-control-label" for="customCheck2">Tuna Netra</label>
+                                                                <label class="custom-control-label" for="customCheck2">Disabilitas Netra</label>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck6" name="ketunaan[]" value="Tuna Netra">
+                                                                <label class="custom-control-label" for="customCheck6">Disabilitas Mental</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline" style="margin-right: 10px ! important">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Tuna Runggu">
-                                                                <label class="custom-control-label" for="customCheck3">Tuna Runggu</label>
+                                                                <label class="custom-control-label" for="customCheck3">Disabilitas Rungu</label>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-check form-check-inline" style="margin:0px 0px 0px 0px">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Tuna Wicara">
-                                                                <label class="custom-control-label" for="customCheck4">Tuna Wicara</label>
+                                                                <label class="custom-control-label" for="customCheck4">Disabilitas Wicara</label>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:11px 20px 11px 5px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Tuna Grahita">
-                                                                <label class="custom-control-label" for="customCheck5">Tuna Grahita</label>
+                                                                <label class="custom-control-label" for="customCheck5">Disabilitas Grahita</label>
                                                             </div>
                                                         </div>
                                                     </div>

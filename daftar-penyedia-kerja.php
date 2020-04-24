@@ -62,7 +62,7 @@ if (isset($_POST["daftar"])) {
     <!-- Loader -->
 
     <!-- Hero Start -->
-    <section class="vh-200" style="background: url('images/register.jpg') center no-repeat;">
+    <section class="bg-warning">
         <div class="home-center">
             <div class="home-desc-center">
                 <div class="container"><br>
