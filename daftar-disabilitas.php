@@ -131,7 +131,7 @@ if (isset($_POST["daftar"])) {
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck1" name="ketunaan[]" value="Tuna Daksa">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck1" name="ketunaan[]" value="Disabilitas Daksa">
                                                                 <label class="custom-control-label" for="customCheck1">Disabilitas Daksa</label>
                                                             </div>
                                                         </div>
@@ -140,7 +140,7 @@ if (isset($_POST["daftar"])) {
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="ketunaan[]" value="Tuna Netra">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="ketunaan[]" value="Disabilitas Netra">
                                                                 <label class="custom-control-label" for="customCheck2">Disabilitas Netra</label>
                                                             </div>
                                                         </div>
@@ -149,7 +149,7 @@ if (isset($_POST["daftar"])) {
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck6" name="ketunaan[]" value="Tuna Netra">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck6" name="ketunaan[]" value="Disabilitas Mental">
                                                                 <label class="custom-control-label" for="customCheck6">Disabilitas Mental</label>
                                                             </div>
                                                         </div>
@@ -158,7 +158,7 @@ if (isset($_POST["daftar"])) {
                                                     <div class="form-check form-check-inline" style="margin-right: 10px ! important">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Tuna Runggu">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Disabilitas Runggu">
                                                                 <label class="custom-control-label" for="customCheck3">Disabilitas Rungu</label>
                                                             </div>
                                                         </div>
@@ -167,7 +167,7 @@ if (isset($_POST["daftar"])) {
                                                     <div class="form-check form-check-inline" style="margin:0px 0px 0px 0px">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Tuna Wicara">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Disabilitas Wicara">
                                                                 <label class="custom-control-label" for="customCheck4">Disabilitas Wicara</label>
                                                             </div>
                                                         </div>
@@ -176,7 +176,7 @@ if (isset($_POST["daftar"])) {
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Tuna Grahita">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Disabilitas Grahita">
                                                                 <label class="custom-control-label" for="customCheck5">Disabilitas Grahita</label>
                                                             </div>
                                                         </div>

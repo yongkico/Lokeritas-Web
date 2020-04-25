@@ -54,6 +54,9 @@ require("functions.php");
         $id = $_SESSION["id"];
         $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
         $row = mysqli_fetch_assoc($result);
+
+        $nav_nama = explode(' ', $row["nama"]);
+        $nama = $nav_nama[0];
         ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
@@ -93,7 +96,7 @@ require("functions.php");
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $nama; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -229,7 +232,7 @@ require("functions.php");
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Tanggal Lahir</td>
-                                        <td><?= $row["tgl_lahir"]; ?></td>
+                                        <td><?= date('d F Y', strtotime($row["tgl_lahir"])); ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Status</td>
@@ -268,15 +271,15 @@ require("functions.php");
                                 <tbody>
                                     <tr>
                                         <td style="width:180px;font-weight:bold">Jenis Disabilitas</td>
-                                        <td>Tuna Daksa</td>
+                                        <td><?= $row["jenis_disabilitas"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Alat Bantu</td>
-                                        <td>Kursi Roda</td>
+                                        <td><?= $row["alat_bantu"]; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Penjelasan</td>
-                                        <td>Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami. Hambatan yang saya alami adalah saya susah berjalan atas musibah yang saya alami.</td>
+                                        <td><?= $row["penjelasan_disabilitas"]; ?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -302,8 +305,15 @@ require("functions.php");
                             <table class="table" style="border:none">
                                 <tbody>
                                     <tr>
-                                        <td style="width:180px;font-weight:bold">2012 - 2016</td>
-                                        <td>S1 Jurusan DKV - USU</td>
+                                        <?php
+                                        $tmp_pendidikan = explode('<br>', $row["pendidikan_terakhir"]);
+                                        $tahun = explode('-', $tmp_pendidikan[0]);
+                                        $tahun[0] .= ' - ';
+                                        ?>
+                                        <td style="width:180px;font-weight:bold"><?php foreach ($tahun as $key) {
+                                                                                        echo $key;
+                                                                                    } ?></td>
+                                        <td><?= $tmp_pendidikan[1] ?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -468,7 +478,7 @@ require("functions.php");
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Nama Lengkap :</label>
-                                                    <input type="hidden" name="id" value="<?= $row["nama"]; ?>">
+                                                    <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                                     <input id="first-name" type="text" name="nama" class="form-control resume" autocomplete="off" value="<?= $row["nama"]; ?>">
                                                 </div>
                                             </div>
@@ -492,7 +502,7 @@ require("functions.php");
                                                     <label class="text-muted">Jenis Kelamin :</label>
                                                     <div class="form-button">
                                                         <select class="nice-select rounded" name="jk">
-                                                            <option data-display="<?= $row["jk"]; ?>">Jenis Kelamin</option>
+                                                            <option value="<?= $row["jk"]; ?>"><?= $row["jk"]; ?></option>
                                                             <option value="Pria">Pria</option>
                                                             <option value="Wanita">Wanita</option>
                                                         </select>
@@ -507,75 +517,76 @@ require("functions.php");
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Status</label>
-                                                    <div class="form-button">
-                                                        <select class="nice-select rounded" name="status">
-                                                            <option data-display="<?= $row["status"]; ?>">Status</option>
-                                                            <option value="Sudah Menikah">Sudah Menikah</option>
-                                                            <option value="Belum Menikah">Belum Menikah</option>
-                                                        </select>
+                                            <div class=" col-md-6">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Status</label>
+                                                        <div class="form-button">
+                                                            <select class="nice-select rounded" name="status">
+                                                                <option value="<?= $row["status"]; ?>"><?= $row["status"]; ?></option>
+                                                                <option value="Sudah Menikah">Sudah Menikah</option>
+                                                                <option value="Belum Menikah">Belum Menikah</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Mencari Pekerjaan</label>
-                                                    <div class="form-button">
-                                                        <select class="nice-select rounded" name="mencari_pekerjaan">
-                                                            <option data-display="<?= $row["mencari_pekerjaan"]; ?>">Mencari Pekerjaan</option>
-                                                            <option value="Ya">Ya</option>
-                                                            <option value="Tidak">Tidak</option>
-                                                        </select>
+                                                <div class="col-md-6">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Mencari Pekerjaan</label>
+                                                        <div class="form-button">
+                                                            <select class="nice-select rounded" name="mencari_pekerjaan">
+                                                                <option value="<?= $row["mencari_pekerjaan"]; ?>"><?= $row["mencari_pekerjaan"]; ?></option>
+                                                                <option value="Ya">Ya</option>
+                                                                <option value="Tidak">Tidak</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-6">
+                                                <div class="col-md-6">
 
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Ringkasan Pribadi</label>
-                                                    <textarea id="surname-name" name="ringkasan_pribadi" class="form-control" rows="3"><?= $row["no_hp"]; ?></textarea>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Alamat</label>
-                                                    <input id="surname-name" name="alamat" type="text" class="form-control resume" value="<?= $row["alamat"]; ?>">
+                                                <div class="col-md-12">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Ringkasan Pribadi</label>
+                                                        <textarea id="surname-name" name="ringkasan_pribadi" class="form-control" rows="3"><?= $row["ringkasan_pribadi"]; ?></textarea>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Kabupaten/Kota</label>
-                                                    <input id="surname-name" name="kab_kota" type="text" class="form-control resume" value="<?= $row["kab_kota"]; ?>">
+                                                <div class="col-md-12">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Alamat</label>
+                                                        <input id="surname-name" name="alamat" type="text" class="form-control resume" value="<?= $row["alamat"]; ?>">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Provinsi</label>
-                                                    <input id="surname-name" name="provinsi" type="text" class="form-control resume" value="<?= $row["provinsi"]; ?>">
+                                                <div class="col-md-6">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Kabupaten/Kota</label>
+                                                        <input id="surname-name" name="kab_kota" type="text" class="form-control resume" value="<?= $row["kab_kota"]; ?>">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Ganti Password</label>
-                                                    <input id="surname-name" name="password" type="password" autocomplete="off" class="form-control resume" placeholder="Password">
+                                                <div class="col-md-6">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Provinsi</label>
+                                                        <input id="surname-name" name="provinsi" type="text" class="form-control resume" value="<?= $row["provinsi"]; ?>">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-white">.</label>
-                                                    <input id="surname-name" name="password2" type="password" autocomplete="off" class="form-control resume" placeholder="Konfirmasi Password">
+                                                <div class="col-md-6">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Ganti Password</label>
+                                                        <input id="surname-name" name="password" type="password" autocomplete="off" class="form-control resume" placeholder="Password">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-white">.</label>
+                                                        <input id="surname-name" name="password2" type="password" autocomplete="off" class="form-control resume" placeholder="Konfirmasi Password">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -583,13 +594,12 @@ require("functions.php");
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Ini adalah Bagian Footer Modal -->
-                    <div class="modal-footer">
-                        <button type="submit" name="btn_informasi_pribadi" class="btn btn-primary" >Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    </div>
+                        <!-- Ini adalah Bagian Footer Modal -->
+                        <div class="modal-footer">
+                            <button type="submit" name="btn_informasi_pribadi" class="btn btn-primary">Simpan</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                        </div>
                 </form>
             </div>
         </div>
@@ -606,24 +616,27 @@ require("functions.php");
                     <h4 class="modal-title">Edit Rincian Disabilitas</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
+                <form action="edit_informasi_pribadi.php" method="POST">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                    <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 mt-3" style="margin-top:0px ! important">
-                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
-                                    <form>
                                         <div class="row mt-4">
                                             <div class="col-md-12 ">
-                                                <label class="text-muted" style="font-weight: 600">Jenis Ketunaan </label><br>
-
+                                                <label class="text-muted" style="font-weight: 600">Jenis Disabilitas/Ketunaan </label><br>
+                                                <input type="hidden" name="id" value="<?= $row["id"]; ?>">
+                                                <?php
+                                                $tmp_disabilitas = explode('<br>', $row["jenis_disabilitas"]);
+                                                ?>
                                                 <div class="p-4" style="padding:0px 0px 0px 0px !important">
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck1" name="ketunaan[]" value="Tuna Daksa">
-                                                                <label class="custom-control-label" for="customCheck1">Tuna Daksa</label>
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck1" name="ketunaan[]" value="Disabilitas Daksa" <?php if (in_array("Disabilitas Daksa", $tmp_disabilitas)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck1">Disabilitas Daksa</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -631,8 +644,8 @@ require("functions.php");
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 10px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="ketunaan[]" value="Tuna Netra">
-                                                                <label class="custom-control-label" for="customCheck2">Tuna Netra</label>
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="ketunaan[]" value="Disabilitas Netra" <?php if (in_array("Disabilitas Netra", $tmp_disabilitas)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck2">Disabilitas Netra</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -640,8 +653,8 @@ require("functions.php");
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 10px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Tuna Runggu">
-                                                                <label class="custom-control-label" for="customCheck3">Tuna Runggu</label>
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Disabilitas Rungu" <?php if (in_array("Disabilitas Rungu", $tmp_disabilitas)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck3">Disabilitas Rungu</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -649,17 +662,26 @@ require("functions.php");
                                                     <div class="form-check form-check-inline" style="margin:0px 0px 0px 0px">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Tuna Wicara">
-                                                                <label class="custom-control-label" for="customCheck4">Tuna Wicara</label>
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Disabilitas Wicara" <?php if (in_array("Disabilitas Wicara", $tmp_disabilitas)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck4">Disabilitas Wicara</label>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:11px 20px 11px 5px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Tuna Grahita">
-                                                                <label class="custom-control-label" for="customCheck5">Tuna Grahita</label>
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 2px 20px 0px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Disabilitas Grahita" <?php if (in_array("Disabilitas Grahita", $tmp_disabilitas)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck5">Disabilitas Grahita</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 12px 20px 0px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck6" name="ketunaan[]" value="Disabilitas Mental" <?php if (in_array("Disabilitas Mental", $tmp_disabilitas)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck6">Disabilitas Mental</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -670,31 +692,29 @@ require("functions.php");
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Alat Bantu :</label>
-                                                    <input id="middle-name" type="text" class="form-control resume" placeholder="-">
+                                                    <input id="middle-name" name="alat_bantu" type="text" class="form-control resume" value="<?= $row["alat_bantu"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Penjelasan Singkat :</label>
-                                                    <textarea id="surname-name" type="text" class="form-control resume" autocomplete="off" placeholder="Saya kesulitan dalam menemukan kesulitan yang sulit saya miliki"></textarea>
+                                                    <textarea id="surname-name" name="penjelasan_disabilitas" type="text" class="form-control resume" autocomplete="off"><?= $row["penjelasan_disabilitas"]; ?></textarea>
                                                 </div>
                                             </div>
-
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Ini adalah Bagian Footer Modal -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                </div>
-
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="btn_rincian_disabilitas">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -710,22 +730,25 @@ require("functions.php");
                     <h4 class="modal-title">Edit Pendidikan Terakhir</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 mt-3" style="margin-top:0px ! important">
-                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
-                                    <form>
+                <form action="edit_informasi_pribadi.php" method="POST">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                    <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
                                         <div class="row mt-4">
-
                                             <div class="col-md-6">
+                                                <?php
+                                                    $tmp_pendidikan = explode('<br>', $row["pendidikan_terakhir"]);
+                                                    $sekolah = explode('-', $tmp_pendidikan[1]);
+                                                ?>
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Pendidikan Terakhir :</label>
+                                                    <input type="hidden" name="id" value="<?= $row["id"]; ?>">
                                                     <div class="form-button">
-                                                        <select class="nice-select rounded">
-                                                            <option data-display="SD">Pendidikan Terakhir</option>
+                                                        <select class="nice-select rounded" id="pendidikan" onchange="ShowHide()" name="pendidikan">                                                            
+                                                            <option value="<?= $sekolah[0]; ?>"><?= $sekolah[0]; ?></option>
                                                             <option value="SD">SD</option>
                                                             <option value="SMP">SMP</option>
                                                             <option value="SMA">SMA</option>
@@ -742,17 +765,19 @@ require("functions.php");
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
-                                                    <label class="text-muted">Jurusan :</label>
-                                                    <input id="middle-name" type="text" class="form-control resume" placeholder="Kosongkan jika tidak perlu">
+                                                    <label class="text-muted">Nama Sekolah :</label>
+                                                    <input id="middle-name" name="nama_sekolah" type="text" class="form-control resume" value="<?= end($sekolah); ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Nama Sekolah :</label>
-                                                    <input id="middle-name" type="text" class="form-control resume" value="SMA KARTIKA">
+                                                <div class="jurusan form-group app-label" id="jurusan">
+                                                    <label class="text-muted">Jurusan :</label>
+                                                    <input id="middle-name" name="jurusan" type="text" class="form-control resume" value="<?= $sekolah[1]; ?>">
                                                 </div>
                                             </div>
+
+
 
                                             <div class="col-md-6">
                                             </div>
@@ -761,7 +786,12 @@ require("functions.php");
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Periode :</label>
                                                     <div class="form-button">
-                                                        <select class="rounded" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                        <select class="rounded" name="tahun_mulai" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <?php
+                                                                $tmp_pendidikan = explode('<br>', $row["pendidikan_terakhir"]);
+                                                                $tahun_pendidikan = explode('-', $tmp_pendidikan[0]);
+                                                            ?>
+                                                            <option value="<?= $tahun_pendidikan[0]; ?>"><?= $tahun_pendidikan[0]; ?></option>
                                                             <option value="2020">2020</option>
                                                             <option value="2019">2019</option>
                                                             <option value="2018">2018</option>
@@ -818,7 +848,8 @@ require("functions.php");
                                                 <div class="form-group app-label">
                                                     <label class="text-white">.</label>
                                                     <div class="form-button">
-                                                        <select class="rounded" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                        <select class="rounded" name="tahun_akhir" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="<?= $tahun_pendidikan[1]; ?>"><?= $tahun_pendidikan[1]; ?></option>
                                                             <option value="2020">2020</option>
                                                             <option value="2019">2019</option>
                                                             <option value="2018">2018</option>
@@ -864,21 +895,19 @@ require("functions.php");
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Ini adalah Bagian Footer Modal -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                </div>
-
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="btn_pendidikan_terakhir">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -1442,7 +1471,7 @@ require("functions.php");
         function loginEx() {
             swal("Perhatian!", "Anda harus masuk terlebih dahulu!", "warning");
         }
-</script>
+    </script>
 
     <script src="assets/ckeditor/ckeditor.js"></script>
 
@@ -1453,6 +1482,20 @@ require("functions.php");
     <script src="js/jquery.nice-select.min.js"></script>
 
     <script src="js/app.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script>
+        function ShowHide() {
+            var pendidikan = document.getElementById("pendidikan");
+            var jurusan = document.getElementById("jurusan");
+            if(pendidikan.value === "SD" || pendidikan.value === "SMP" || pendidikan.value === "SMA"){
+                jurusan.style.display = "none";
+            }else{
+                jurusan.style.display = "block";
+            }
+        }
+    </script>
 </body>
 
 </html>

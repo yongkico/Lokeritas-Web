@@ -29,7 +29,7 @@ function daftar($data){
     $ketunaan ="";
 
     foreach ($tmp_ketunaan as $list){
-        $ketunaan .= $list . ',';
+        $ketunaan .= $list . '<br>';
     }
 
     
@@ -70,6 +70,32 @@ function daftar($data){
 
 }
 
+function edit_rincian_disabilitas($data){
+    global $conn;
+
+    $id = $data["id"];
+    $alat_bantu = $data["alat_bantu"];
+    $penjelasan_disabilitas = $data["penjelasan_disabilitas"];
+    $tmp_ketunaan = $data["ketunaan"];
+    $ketunaan ="";
+
+    foreach ($tmp_ketunaan as $list){
+        $ketunaan .= $list . '<br>';
+    }
+
+    $query = "UPDATE user SET
+                jenis_disabilitas = '$ketunaan',
+                alat_bantu = '$alat_bantu',
+                penjelasan_disabilitas = '$penjelasan_disabilitas'
+                WHERE id = '$id'
+            ";
+    
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+
 function edit_informasi_pribadi($data){
     global $conn;
 
@@ -88,6 +114,7 @@ function edit_informasi_pribadi($data){
     $password2 = $data["password2"];
 
 
+    $alamat = $alamat . ', ' . $kab_kota . ', ' . $provinsi;
     if($password !== $password2){
         echo "
             <script>
@@ -112,7 +139,33 @@ function edit_informasi_pribadi($data){
                 kab_kota = '$kab_kota',
                 provinsi = '$provinsi',
                 password = '$password'
+                WHERE id = '$id'
             ";
+    
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+
+function edit_pendidikan_terakhir($data){
+    global $conn;
+
+    $id = $data["id"];
+    $pendidikan = $data["pendidikan"];
+    $nama_sekolah = $data["nama_sekolah"];
+    $jurusan = $data["jurusan"];
+    $tahun_mulai = $data["tahun_mulai"];
+    $tahun_akhir = $data["tahun_akhir"];
+    $pendidikan_terakhir = '';
+
+    if($pendidikan === "SD" || $pendidikan === "SMP" || $pendidikan === "SMA" ){
+        $jurusan = '-';
+        $pendidikan_terakhir = $tahun_mulai . '-' . $tahun_akhir . '<br>' . $pendidikan . '-' . $nama_sekolah;
+    }
+
+    $pendidikan_terakhir = $tahun_mulai . '-' . $tahun_akhir . '<br>' . $pendidikan . '-' . $jurusan . '-' . $nama_sekolah;
+    $query = "UPDATE user SET pendidikan_terakhir = '$pendidikan_terakhir' WHERE id = '$id'";
     
     mysqli_query($conn, $query);
 
