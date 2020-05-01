@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-if (isset($_POST["masuk"]))
-{
+if (isset($_POST["masuk"])) {
 
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -15,22 +14,24 @@ if (isset($_POST["masuk"]))
 
     $result_get = json_decode($result_get, true);
 
-    if (empty($result_get))
-    {
-        echo '<div class="alert-wrap">
-                <div class="alert alert-danger">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Kamu belum terdaftar...
+    if (empty($result_get)) {
+        echo    ' <div style="position: absolute;width:100%">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert-wrap justify-content-center" >
+                                <div class="alert alert-danger">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Kamu belum terdaftar ! </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div> 
                 ';
-    }
-    else
-    {
+    } else {
         $pw = ($result_get[0]['password']);
 
-        if (password_verify($password, $pw))
-        {
+        if (password_verify($password, $pw)) {
             $form_data = array(
                 "email" => $email,
                 "password" => $pw
@@ -58,16 +59,19 @@ if (isset($_POST["masuk"]))
             $_SESSION['nama_belakang'] = $nama_belakang;
             header('location: index.php');
             exit;
-
-        }
-        else
-        {
-            echo '<div class="alert-wrap">
-                <div class="alert alert-danger">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Password yang dimasukkan salah..
+        } else {
+            echo    ' <div style="position: absolute;width:100%">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert-wrap justify-content-center" >
+                                <div class="alert alert-danger">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Password kamu salah ! </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div> 
                 ';
         }
     }
@@ -118,7 +122,6 @@ if (isset($_POST["masuk"]))
         </div>
     </div>
     <!-- Loader -->
-
     <!-- Hero Start -->
     <section class="vh-100 bg-dark">
 
