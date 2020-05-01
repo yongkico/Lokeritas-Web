@@ -1,49 +1,76 @@
 <?php
 session_start();
-require("functions.php");
 
-// if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
+if (isset($_POST["masuk"]))
+{
 
-//     $id = $_COOKIE['id'];
-//     $key = $_COOKIE['key'];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
-//     $result = mysqli_query($conn, "SELECT email FROM user WHERE id=$id");
-//     $row = mysqli_fetch_assoc($result);
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
 
-//     if($key == hash('sha256', $row["email"])){
-//         $_SESSION['login'] = true;
-//     }
+    $result_get = json_decode($result_get, true);
 
-// }
+    if (empty($result_get))
+    {
+        echo '<div class="alert-wrap">
+                <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Kamu belum terdaftar...
+                </div>
+                </div> 
+                ';
+    }
+    else
+    {
+        $pw = ($result_get[0]['password']);
 
-// if(isset($_SESSION["login"])){
-//     header("Location: index.php");
-//     exit;
-// }
+        if (password_verify($password, $pw))
+        {
+            $form_data = array(
+                "email" => $email,
+                "password" => $pw
+            );
 
-if (isset($_POST["masuk"])) {
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/login_user.php');
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($curl);
+            curl_close($curl);
 
-    $email = strtolower($_POST["email"]);
-    $password = mysqli_real_escape_string($conn, $_POST["password"]);
-    //cek akun
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
+            $pesan = json_decode($result, true);
 
-    if (mysqli_num_rows($result) == 1) {
-
-        //cek password
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row["password"])) {
-
-            // set session
-            $_SESSION["login"] = true;
-            $_SESSION["id"] = $row["id_user"];
-
-            header("Location: index.php");
+            // $_SESSION['login'] = true;
+            // $_SESSION['data'] = array(
+            //     "email" => $result['email'],
+            //     "password" => $result['password'],
+            //     "nama_depan" => $result['nama_depan'],
+            //     "nama_belakang" => $result['nama_belakang'],
+            // );
+            $_SESSION['email'] = $email;
+            $_SESSION['nama_depan'] = $nama_depan;
+            $_SESSION['nama_belakang'] = $nama_belakang;
+            header('location: index.php');
             exit;
+
+        }
+        else
+        {
+            echo '<div class="alert-wrap">
+                <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Password yang dimasukkan salah..
+                </div>
+                </div> 
+                ';
         }
     }
-
-    $error = true;
 }
 
 ?>
@@ -76,6 +103,7 @@ if (isset($_POST["masuk"])) {
 
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/alert.css" />
 
 </head>
 

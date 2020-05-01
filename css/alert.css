@@ -1,0 +1,6 @@
+.alert{padding: 10px; transition:all .3s ease;}
+.alert:hover, .alert:focus{transform:scale(1.04); -webkit-box-shadow: 0 8px 20px #e8e8e8;box-shadow: 0 8px 20px #e8e8e8;}
+.alert-wrap { width:25%;  margin:10px auto 0;}
+.alert .close{opacity:0; transition:opacity .3s ease;}
+.alert:hover .close, .alert:focus .close{opacity:.2;}
+.alert-danger{background: rgb(235,204,209);background: linear-gradient(0deg, rgba(235,204,209,1) 0%, rgba(235,204,221,0.927608543417367) 100%);}
