@@ -36,7 +36,7 @@ if (isset($_POST["masuk"])) {
 
             // set session
             $_SESSION["login"] = true;
-            $_SESSION["id"] = $row["id"];
+            $_SESSION["id"] = $row["id_user"];
 
             header("Location: index.php");
             exit;
@@ -47,6 +47,8 @@ if (isset($_POST["masuk"])) {
 }
 
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -90,11 +92,14 @@ if (isset($_POST["masuk"])) {
     <!-- Loader -->
 
     <!-- Hero Start -->
-    <section class="vh-100" style="background: url('images/register.jpg') center center;">
+    <section class="vh-100 bg-dark">
 
         <div class="home-center">
             <div class="home-desc-center">
                 <div class="container">
+                    <div class="row justify-content-center" style="margin-bottom: 20px ! important">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="35" />
+                    </div>
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6">
                             <div class="login-page bg-white shadow rounded p-4">

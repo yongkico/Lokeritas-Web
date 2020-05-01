@@ -1,19 +1,21 @@
-<?php 
+<?php
 
 //koneksi ke database
-$conn = mysqli_connect("localhost","root","","lokeritas_web"); 
+$conn = mysqli_connect("localhost", "root", "", "lokeritas_web");
 
-function query($query){
+function query($query)
+{
     global $conn;
     $result = mysqli_query($conn, $query);
     $rows = [];
-    while($row = mysqli_fetch_assoc($result)){
+    while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
     }
     return $rows;
 }
 
-function daftar($data){
+function daftar($data)
+{
     global $conn;
 
     $namaDepan = $data["nama_depan"];
@@ -26,18 +28,18 @@ function daftar($data){
     $jk = $data["jk"];
     $tgl_lahir = $data["tgl_lahir"];
     $tmp_ketunaan = $data["ketunaan"];
-    $ketunaan ="";
+    $ketunaan = "";
 
-    foreach ($tmp_ketunaan as $list){
+    foreach ($tmp_ketunaan as $list) {
         $ketunaan .= $list . '<br>';
     }
 
-    
 
-    $result = mysqli_query($conn,"SELECT email FROM user
+
+    $result = mysqli_query($conn, "SELECT email FROM user
     WHERE email = '$email' ");
 
-    if(mysqli_fetch_assoc($result)){
+    if (mysqli_fetch_assoc($result)) {
         echo "
             <script>
                 alert('Email telah terdaftar telah terdaftar !');
@@ -46,7 +48,7 @@ function daftar($data){
         return false;
     }
 
-    if($password !== $password2){
+    if ($password !== $password2) {
         echo "
             <script>
                 alert('Password tidak sesuai !');
@@ -66,20 +68,19 @@ function daftar($data){
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
-
-
 }
 
-function edit_rincian_disabilitas($data){
+function edit_rincian_disabilitas($data)
+{
     global $conn;
 
     $id = $data["id"];
     $alat_bantu = $data["alat_bantu"];
     $penjelasan_disabilitas = $data["penjelasan_disabilitas"];
     $tmp_ketunaan = $data["ketunaan"];
-    $ketunaan ="";
+    $ketunaan = "";
 
-    foreach ($tmp_ketunaan as $list){
+    foreach ($tmp_ketunaan as $list) {
         $ketunaan .= $list . '<br>';
     }
 
@@ -87,16 +88,17 @@ function edit_rincian_disabilitas($data){
                 jenis_disabilitas = '$ketunaan',
                 alat_bantu = '$alat_bantu',
                 penjelasan_disabilitas = '$penjelasan_disabilitas'
-                WHERE id = '$id'
+                WHERE id_user = '$id'
             ";
-    
+
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 }
 
 
-function edit_informasi_pribadi($data){
+function edit_informasi_pribadi($data)
+{
     global $conn;
 
     $id = $data["id"];
@@ -113,42 +115,63 @@ function edit_informasi_pribadi($data){
     $password = $data["password"];
     $password2 = $data["password2"];
 
-
     $alamat = $alamat . ', ' . $kab_kota . ', ' . $provinsi;
-    if($password !== $password2){
-        echo "
-            <script>
-                alert('Password tidak sesuai !');
-            </script>
-        ";
-        return false;
+
+    if (empty($password) || empty($password2)) {
+
+        $query = "UPDATE user SET
+                    nama = '$nama',
+                    no_hp = '$no_hp',
+                    jk = '$jk',
+                    tgl_lahir = '$tgl_lahir',
+                    status = '$status',
+                    mencari_pekerjaan = '$mencari_pekerjaan',
+                    ringkasan_pribadi = '$ringkasan_pribadi',
+                    alamat = '$alamat',
+                    kab_kota = '$kab_kota',
+                    provinsi = '$provinsi'
+                    WHERE id_user = '$id'
+                ";
+    } else {
+        if ($password !== $password2) {
+            echo "
+                <script>
+                    alert('Password tidak sesuai !');
+                </script>
+            ";
+            return false;
+        }
+
+        //enkripsi password
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $query = "UPDATE user SET
+                    nama = '$nama',
+                    no_hp = '$no_hp',
+                    jk = '$jk',
+                    tgl_lahir = '$tgl_lahir',
+                    status = '$status',
+                    mencari_pekerjaan = '$mencari_pekerjaan',
+                    ringkasan_pribadi = '$ringkasan_pribadi',
+                    alamat = '$alamat',
+                    kab_kota = '$kab_kota',
+                    provinsi = '$provinsi',
+                    password = '$password'
+                    WHERE id_user = '$id'
+                ";
     }
 
-    //enkripsi password
-    $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "UPDATE user SET
-                nama = '$nama',
-                no_hp = '$no_hp',
-                jk = '$jk',
-                tgl_lahir = '$tgl_lahir',
-                status = '$status',
-                mencari_pekerjaan = '$mencari_pekerjaan',
-                ringkasan_pribadi = '$ringkasan_pribadi',
-                alamat = '$alamat',
-                kab_kota = '$kab_kota',
-                provinsi = '$provinsi',
-                password = '$password'
-                WHERE id = '$id'
-            ";
-    
+
+
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 }
 
 
-function edit_pendidikan_terakhir($data){
+function edit_pendidikan_terakhir($data)
+{
     global $conn;
 
     $id = $data["id"];
@@ -159,14 +182,50 @@ function edit_pendidikan_terakhir($data){
     $tahun_akhir = $data["tahun_akhir"];
     $pendidikan_terakhir = '';
 
-    if($pendidikan === "SD" || $pendidikan === "SMP" || $pendidikan === "SMA" ){
-        $jurusan = '-';
+    if ($pendidikan === "SD" || $pendidikan === "SMP" || $pendidikan === "SMA") {
+        $jurusan = '';
         $pendidikan_terakhir = $tahun_mulai . '-' . $tahun_akhir . '<br>' . $pendidikan . '-' . $nama_sekolah;
+    } else {
+        $pendidikan_terakhir = $tahun_mulai . '-' . $tahun_akhir . '<br>' . $pendidikan . '-' . $jurusan . '-' . $nama_sekolah;
     }
 
-    $pendidikan_terakhir = $tahun_mulai . '-' . $tahun_akhir . '<br>' . $pendidikan . '-' . $jurusan . '-' . $nama_sekolah;
-    $query = "UPDATE user SET pendidikan_terakhir = '$pendidikan_terakhir' WHERE id = '$id'";
-    
+    $query = "UPDATE user SET pendidikan_terakhir = '$pendidikan_terakhir' WHERE id_user = '$id'";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+
+function edit_pengalaman_bekerja($data)
+{
+    global $conn;
+
+    $id = $data["id"];
+    $nama_perusahaan = $data["nama_perusahaan"];
+    $jabatan = $data["jabatan"];
+    $tahun_mulai = $data["tahun_mulai"];
+    $tahun_akhir = $data["tahun_akhir"];
+    $periode = $tahun_mulai . ' - ' . $tahun_akhir;
+
+
+  
+
+    $query = ("INSERT INTO pengalaman_bekerja
+                    VALUES
+                ('','$id','$nama_perusahaan','$jabatan','$periode')
+             ");
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapus_pengalaman($id){
+    global $conn;
+
+    $query = ("DELETE FROM pengalaman_bekerja WHERE id_pengalaman = '$id'");
+
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);

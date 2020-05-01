@@ -50,7 +50,7 @@ require("functions.php");
     <?php if (isset($_SESSION["login"])) : ?>
         <?php
         $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
         $row = mysqli_fetch_assoc($result);
         ?>
         <!-- Navigation Bar-->

@@ -1,20 +1,63 @@
 <?php
 require("functions.php");
 
-if (isset($_POST["daftar"])) {
-    if (daftar($_POST) > 0) {
+if (isset($_POST['daftar'])) {
+    $namaDepan = $_POST["nama_depan"];
+    $namaBelakang = $_POST["nama_belakang"];
+    $email = strtolower($_POST["email"]);
+    $password = mysqli_real_escape_string($conn, $_POST["password"]);
+    $password2 = mysqli_real_escape_string($conn, $_POST["password2"]);
+    $jk = $_POST["jk"];
+    $tgl_lahir = $_POST["tgl_lahir"];
+    $tmp_ketunaan = $_POST["ketunaan"];
+    $ketunaan = "";
+
+    foreach ($tmp_ketunaan as $list) {
+        $ketunaan .= $list . ',';
+    }
+
+    if ($password !== $password2) {
         echo "
-        <script>
-            alert('User baru berhasil didaftar');
-        </script>
-        ";
-        header("Location:login.php");
-    } else {
-        echo "
-        <script>
-            alert('User baru gagal didaftar');
-        </script>
-        ";
+                <script>
+                    alert('Password tidak sesuai !');
+                </script>
+            ";
+        header("Refresh:0");
+        exit;
+    }
+
+
+    //enkripsi password
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    $form_data = array(
+        "nama_depan" => $namaDepan,
+        "nama_belakang" => $namaBelakang,
+        "email" => $email,
+        "password" => $password,
+        "jenis_kelamin" => $jk,
+        "tgl_lahir" => $tgl_lahir,
+        "ketunaan" => substr_replace($ketunaan ,"",-1)  
+    );
+
+    $data = json_encode($form_data);
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_user.php');
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($curl);
+    curl_close($curl);
+
+    $pesan = json_decode($result, true);
+
+    if ($pesan['message'] == 'Berhasil') {
+        header('location:login.php');
+    } else if ($pesan['message'] == 'unavailable') {
+        echo '<script>
+                alert("Email sudah terdaftar !");
+            </script>';
     }
 }
 
@@ -31,8 +74,12 @@ if (isset($_POST["daftar"])) {
     <meta name="keywords" content="" />
     <meta name="author" content="Themesdesign" />
 
+
     <link rel="shortcut icon" href="images/favicon.ico">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -72,62 +119,43 @@ if (isset($_POST["daftar"])) {
                                 <div class="text-center">
                                     <h4 class="mb">Daftar</h4>
                                 </div>
-                                <form class="login-form" action="" method="POST">
+                                <form class="login-form" id="form-daftar" action="" method="POST" onsubmit="if(document.getElementById('setuju').checked) { return true; } else { alert('Pastikan anda setuju dengan syarat dan ketentuan Lokeritas'); return false; }">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
-                                                <label>Nama Lengkap <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama_depan" required="">
+                                                <label class="text-secondary">Nama Depan <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" placeholder="Nama Depan" name="nama_depan" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
-                                                <label>Email <span class="text-danger">*</span></label>
+                                                <label class="text-secondary">Nama Belakang <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" placeholder="Nama Belakang" name="nama_belakang" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group position-relative">
+                                                <label class="text-secondary">Email <span class="text-danger">*</span></label>
                                                 <input type="email" class="form-control" placeholder="Email" name="email" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
-                                                <label>Password <span class="text-danger">*</span></label>
-                                                <input type="password" class="form-control" placeholder="Password" name="password" required="">
+                                                <label class="text-secondary">Password <span class="text-danger">*</span></label>
+                                                <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password harus terdiri dari 8 karakter dan mengandung huruf besar, huruf kecil dan angka" class="form-control" placeholder="Password" name="password" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
-                                                <label>Konfirmasi Password <span class="text-danger">*</span></label>
+                                                <label class="text-secondary">Konfirmasi Password <span class="text-danger">*</span></label>
                                                 <input type="password" class="form-control" placeholder="Konfirmasi Password" name="password2" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="form-group position-relative" style="margin-bottom: 0">
-                                                <label>Jenis Kelamin <span class="text-danger">*</span></label>
-                                                <div class="p-4" style="padding: 0.1rem!important">
-                                                    <div class="custom-control custom-radio custom-control-inline" style="margin:1px 30px 0px 30px">
-                                                        <div class="form-group" style="margin-bottom: 5px!">
-                                                            <input type="radio" id="customRadio1" name="jk" value="Pria" class="custom-control-input">
-                                                            <label class="custom-control-label" for="customRadio1">Pria</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="custom-control custom-radio custom-control-inline" style="margin:1px 20px 0px 10px">
-                                                        <div class="form-group">
-                                                            <input type="radio" id="customRadio2" name="jk" value="Wanita" class="custom-control-input">
-                                                            <label class="custom-control-label" for="customRadio2">Wanita</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group position-relative">
-                                                <label>Tanggal Lahir <span class="text-danger">*</span></label>
-                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy" name="tgl_lahir" required="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group position-relative">
-                                                <label>Jenis Disabilitas/Ketunaan <span class="text-danger">*</span></label><br>
+                                            <div class="form-group position-relative" style="margin:0px 0px 0px 0px !important;">
+                                                <label style="margin-bottom:10px ! important" class="text-secondary">Jenis Disabilitas/Ketunaan <span class="text-danger">*</span></label>
 
-                                                <div class="p-4" style="padding:1px 0px 0px 3px !important">
+                                                <div style="padding:1px 0px 0px 3px !important;margin:0px 0px 10px 0px !important;">
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
@@ -157,16 +185,16 @@ if (isset($_POST["daftar"])) {
 
                                                     <div class="form-check form-check-inline" style="margin-right: 10px ! important">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:4px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Disabilitas Runggu">
                                                                 <label class="custom-control-label" for="customCheck3">Disabilitas Rungu</label>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-check form-check-inline" style="margin:0px 0px 0px 0px">
+                                                    <div class="form-check form-check-inline" style="margin:0px 0px 10px 0px">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:4px 1px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Disabilitas Wicara">
                                                                 <label class="custom-control-label" for="customCheck4">Disabilitas Wicara</label>
                                                             </div>
@@ -175,7 +203,7 @@ if (isset($_POST["daftar"])) {
 
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:4px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Disabilitas Grahita">
                                                                 <label class="custom-control-label" for="customCheck5">Disabilitas Grahita</label>
                                                             </div>
@@ -186,15 +214,47 @@ if (isset($_POST["daftar"])) {
                                             </div>
                                         </div>
                                         <div class="col-md-12">
+                                            <div class="form-group position-relative" style="margin-bottom: 0">
+                                                <label style="margin-bottom:0px ! important" class="text-secondary">Jenis Kelamin <span class="text-danger">*</span></label>
+                                                <div class="form-button" style="width: 50%">
+                                                    <select class="nice-select rounded" name="jk" required>
+                                                        <option value="">Jenis Kelamin</option>
+                                                        <option value="L">Laki-Laki</option>
+                                                        <option value="P">Perempuan</option>
+                                                    </select>
+                                                </div>
+                                                <!-- <div class="p-4" style="padding: 0.1rem!important">
+                                                    <div class="custom-control custom-radio custom-control-inline" style="margin:1px 30px 0px 30px">
+                                                        <div class="form-group" style="margin-bottom: 5px!">
+                                                            <input type="radio" id="customRadio1" name="jk" value="L" class="custom-control-input">
+                                                            <label class="custom-control-label" for="customRadio1">Laki-Laki</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline" style="margin:1px 20px 0px 10px">
+                                                        <div class="form-group">
+                                                            <input type="radio" id="customRadio2" name="jk" value="P" class="custom-control-input">
+                                                            <label class="custom-control-label" for="customRadio2">Perempuan</label>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group position-relative">
+                                                <label class="text-secondary">Tanggal Lahir <span class="text-danger">*</span></label>
+                                                <input type="date" onfocus="(this.type='date')" class="form-control" value="Tanggal Lahir" name="tgl_lahir" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="custom-control m-0 custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                                    <label class="custom-control-label" for="customCheck7">Saya Setuju dengan <a href="#" class="text-primary">Syarat dan Ketentuan</a></label>
+                                                    <input type="checkbox" class="custom-control-input" name="setuju" id="setuju">
+                                                    <label class="custom-control-label" for="setuju">Saya Setuju dengan <a href="#" class="text-primary">Syarat dan Ketentuan</a></label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button class="btn btn-primary w-100" name="daftar">Daftar</button> 
+                                            <button class="btn btn-primary w-100" id="daftar" name="daftar">Daftar</button>
                                         </div>
                                         <div class="mx-auto">
                                             <p class="mb-0 mt-3"><small class="text-dark mr-2">Sudah mempunyai akun ?</small> <a href="login.php" class="text-dark font-weight-bold">Masuk</a></p>
@@ -226,6 +286,9 @@ if (isset($_POST["daftar"])) {
     <script src="js/jquery.nice-select.min.js"></script>
 
     <script src="js/app.js"></script>
+    <script src="js/jquery-3.5.0.min.js"></script>
+    <script src="js/script.js"></script>
+
 </body>
 
 </html>
