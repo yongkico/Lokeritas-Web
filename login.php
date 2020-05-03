@@ -46,8 +46,8 @@ if (isset($_POST["masuk"])) {
             curl_close($curl);
 
             $pesan = json_decode($result, true);
-
-            // $_SESSION['login'] = true;
+        
+            $_SESSION['login'] = true;
             // $_SESSION['data'] = array(
             //     "email" => $result['email'],
             //     "password" => $result['password'],
@@ -55,8 +55,7 @@ if (isset($_POST["masuk"])) {
             //     "nama_belakang" => $result['nama_belakang'],
             // );
             $_SESSION['email'] = $email;
-            $_SESSION['nama_depan'] = $nama_depan;
-            $_SESSION['nama_belakang'] = $nama_belakang;
+            $_SESSION['nama_depan'] = $pesan['data']['nama_depan'];
             header('location: index.php');
             exit;
         } else {
@@ -220,6 +219,7 @@ if (isset($_POST["masuk"])) {
             </div>
         </div>
     </div>
+    
     <!-- End Modal Ubah Foto Profil -->
 
     <!-- javascript -->

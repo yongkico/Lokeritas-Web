@@ -1,7 +1,16 @@
 <?php
 session_start();
-require("functions.php");
 
+//API Tips Karir
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get_tipsKarir = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get_tipsKarir = json_decode($result_get_tipsKarir, true);
+$judul_tipskarir = $result_get_tipsKarir[0]['judul'];
+$konten = $result_get_tipsKarir[0]['kontent'];
 
 ?>
 
@@ -253,11 +262,9 @@ require("functions.php");
                         </div>
 
                         <div class="blog-details-desc p-2">
-                            <h5 class="mb-3"><a href="#" class="text-dark">Desain : Hobi dan Pekerjaanku</a></h5>
+                            <h5 class="mb-3"><a href="#" class="text-dark"><?php echo $judul_tipskarir;?></a></h5>
 
-                            <p class="text-muted mb-3 f-13" style="text-align: justify">Selama ini banyak yang menganggap bahwa weekend atau akhir pekan adalah saat yang tepat untuk “melupakan “ sejenak rutinitas kerja sehari-hari selama satu minggu penuh, bersenang-senang, mungkin ini cara yang tepat bagi kalian yang tidak sepenuhnya mencintai dan menyukai pekerjaan mereka, lalu bagaimana dengan kalian yang menyukai pekerjaan anda dan siapa tahu weekend dapat memberikan pandangan lain untuk memaksimalkan karir kalian. Pertimbangkan ini, akhir pekan adalah waktu yang menyenangkan pula untuk meningkatkan karir kalian. Sebelum kalian berpikir bahwa akan sangat merepotkan dan tidak menyenangkannya memikirkan pekerjaan pada saat akhir pekan, berikut ada hal-hal yang bisa dilakukan untuk fokus pada hal yang penting pada karir atau impian yang sedang kalian wujudkan.</p>
-                            <p class="text-muted mb-3 f-13" style="text-align: justify">Selama ini banyak yang menganggap bahwa weekend atau akhir pekan adalah saat yang tepat untuk “melupakan “ sejenak rutinitas kerja sehari-hari selama satu minggu penuh, bersenang-senang, mungkin ini cara yang tepat bagi kalian yang tidak sepenuhnya mencintai dan menyukai pekerjaan mereka, lalu bagaimana dengan kalian yang menyukai pekerjaan anda dan siapa tahu weekend dapat memberikan pandangan lain untuk memaksimalkan karir kalian. Pertimbangkan ini, akhir pekan adalah waktu yang menyenangkan pula untuk meningkatkan karir kalian. Sebelum kalian berpikir bahwa akan sangat merepotkan dan tidak menyenangkannya memikirkan pekerjaan pada saat akhir pekan, berikut ada hal-hal yang bisa dilakukan untuk fokus pada hal yang penting pada karir atau impian yang sedang kalian wujudkan.</p>
-                            <p class="text-muted mb-3 f-13" style="text-align: justify">Selama ini banyak yang menganggap bahwa weekend atau akhir pekan adalah saat yang tepat untuk “melupakan “ sejenak rutinitas kerja sehari-hari selama satu minggu penuh, bersenang-senang, mungkin ini cara yang tepat bagi kalian yang tidak sepenuhnya mencintai dan menyukai pekerjaan mereka, lalu bagaimana dengan kalian yang menyukai pekerjaan anda dan siapa tahu weekend dapat memberikan pandangan lain untuk memaksimalkan karir kalian. Pertimbangkan ini, akhir pekan adalah waktu yang menyenangkan pula untuk meningkatkan karir kalian. Sebelum kalian berpikir bahwa akan sangat merepotkan dan tidak menyenangkannya memikirkan pekerjaan pada saat akhir pekan, berikut ada hal-hal yang bisa dilakukan untuk fokus pada hal yang penting pada karir atau impian yang sedang kalian wujudkan.</p>
+                            <p class="text-muted mb-3 f-13" style="text-align: justify"><?php echo $konten;?></p>
                         </div>
                     </div>
 

@@ -1,7 +1,16 @@
 <?php
 session_start();
-require("functions.php");
 
+//API Tips Karir
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get_tipsKarir = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get_tipsKarir = json_decode($result_get_tipsKarir, true);
+$judul_tipskarir = $result_get_tipsKarir[0]['judul'];
+$konten = $result_get_tipsKarir[0]['kontent'];
 
 ?>
 
@@ -244,8 +253,8 @@ require("functions.php");
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4 bg-light">
-                                    <h4><a href="tips-karir-detail.php" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
-                                    <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
+                                    <h4><a href="tips-karir-detail.php" class="title text-dark"><?php echo $judul_tipskarir;?></a></h4>
+                                    <p class="text-muted"><?php echo substr($konten, 0, 96);?>..</p>
                                     <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
@@ -260,9 +269,9 @@ require("functions.php");
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4 bg-light">
-                                    <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
-                                    <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    <h4><a href="tips-karir-detail.php" class="title text-dark"><?php echo $judul_tipskarir;?></a></h4>
+                                    <p class="text-muted"><?php echo substr($konten, 0, 96);?>..</p>
+                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -275,9 +284,9 @@ require("functions.php");
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4 bg-light">
-                                    <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
-                                    <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    <h4><a href="tips-karir-detail.php" class="title text-dark"><?php echo $judul_tipskarir;?></a></h4>
+                                    <p class="text-muted"><?php echo substr($konten, 0, 96);?>..</p>
+                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -290,9 +299,9 @@ require("functions.php");
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4 bg-light">
-                                    <h4><a href="javascript:void(0)" class="title text-dark">Desain: Hobi dan Pekerjaanku</a></h4>
-                                    <p class="text-muted">Harus diakui bahwa keterampilannya dalam membuat desain visual yang menarik lah yang akhirnya...</p>
-                                    <a href="#" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    <h4><a href="tips-karir-detail.php" class="title text-dark"><?php echo $judul_tipskarir;?></a></h4>
+                                    <p class="text-muted"><?php echo substr($konten, 0, 96);?>..</p>
+                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>
                         </div>

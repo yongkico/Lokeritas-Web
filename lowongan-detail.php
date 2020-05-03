@@ -1,6 +1,26 @@
 <?php
 session_start();
-require("functions.php");
+
+//API Pencarian Lowongan Kerja
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get_lowongan = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get_lowongan = json_decode($result_get_lowongan, true);
+
+$pekerjaan = $result_get_lowongan[0]['nama_pekerjaan'];
+$kriteria_umum = $result_get_lowongan[0]['kriteria_umum'];
+$detail_pekerjaan = $result_get_lowongan[0]['detail'];
+$kriteria_khusus = $result_get_lowongan[0]['kriteria_khusus'];
+$catatan = $result_get_lowongan[0]['catatan'];
+$lowongan_buka = $result_get_lowongan[0]['buka'];
+$lowongan_tutup = $result_get_lowongan[0]['tutup'];
+$nama_perusahaan = $result_get_lowongan[0]['nama_perusahaan'];
+$sektor_perusahaan = $result_get_lowongan[0]['sektor_perusahaan'];
+$alamat_lowongan = $result_get_lowongan[0]['alamat'];
+$deskripsi_perusahaan = $result_get_lowongan[0]['deskripsi'];
 
 
 ?>
@@ -184,7 +204,7 @@ require("functions.php");
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-info mb-3" style="margin:0px 0px 2px 0px !important">Tukang Jahit</h3>
+                <h3 class="text-info mb-3" style="margin:0px 0px 2px 0px !important"><?php echo $pekerjaan;?></h3>
                 </div>
             </div>
             <div class="row" style="margin:20px 0px 0px 0px">
@@ -192,8 +212,8 @@ require("functions.php");
                     <img src="images/featured-job/img-4.png" alt="" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block">
                 </div>
                 <div class="col-lg-11">
-                    <h5 class="text-dark mb-3" style="margin:0px 0px 2px 0px !important">Rumah Siap Kerja</h5>
-                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
+                    <h5 class="text-dark mb-3" style="margin:0px 0px 2px 0px !important"><?php echo $nama_perusahaan;?> </h5>
+                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?> </p>
                 </div>
             </div>
 
@@ -201,7 +221,7 @@ require("functions.php");
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
                     <div class="border rounded p-4 bg-white">
                         <p class="text-muted" style="margin:0px 0px 0px 0px">Bidang</p>
-                        <h6 style="font-weight: bolder" class="text-info">Konveksi dan Produksi</h6>
+                        <h6 style="font-weight: bolder" class="text-info"><?php echo $sektor_perusahaan;?> </h6>
                     </div>
                 </div>
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
@@ -213,13 +233,13 @@ require("functions.php");
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
                     <div class="border rounded p-4 bg-white">
                         <p class="text-muted" style="margin:0px 0px 0px 0px">Tanggal di Posting</p>
-                        <h6 style="font-weight: bolder" class="text-info">22 Januari 2020</h6>
+                        <h6 style="font-weight: bolder" class="text-info"><?php echo $lowongan_buka;?> </h6>
                     </div>
                 </div>
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
                     <div class="border rounded p-4 bg-white">
                         <p class="text-muted" style="margin:0px 0px 0px 0px">Tanggal Berakhir</p>
-                        <h6 style="font-weight: bolder" class="text-info">20 Maret 2020</h6>
+                        <h6 style="font-weight: bolder" class="text-info"><?php echo $lowongan_tutup;?> </h6>
                     </div>
                 </div>
             </div>
@@ -237,7 +257,7 @@ require("functions.php");
                         <div class="col-lg-12 ">
                             <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                 <div class="job-detail-desc">
-                                    <p class="text-dark mb-3">Hai sobat pencari kerja Jakarta! Apakah sobat punya keterampilan menjahit? Kakha Series, sebuah toko online yang menjual pakaian muslim di Jakarta membuka lowongan untuk posisi penjahit. Info lebih lanjut silahkan hubungi Babang di 081558775554 pada Senin-Jumat pukul 9:00-17:00. Kami hanya akan menanggapi pada jam tersebut.</p>
+                                    <p class="text-dark mb-3"><?php echo $detail_pekerjaan;?> </p>
                                 </div>
                             </div>
                         </div>
@@ -274,11 +294,7 @@ require("functions.php");
                             <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                 <div class="job-detail-desc">
                                     <ul style="list-style-type: none; padding:0px 0px 0px 0px">
-                                        <li class="mdi mdi-chevron-right text-dark"> Pria/wanita</li>
-                                        <li class="mdi mdi-chevron-right text-dark"> Semua disabilitas</li>
-                                        <li class="mdi mdi-chevron-right text-dark"> Mempunyai keterampilan menjahit</li>
-                                        <li class="mdi mdi-chevron-right text-dark"> Kreatif dan inspiratif dalam bekerja</li>
-                                        <li class="mdi mdi-chevron-right text-dark"> Jujur, ulet, tekun dan sungguh-sungguh</li>
+                                        <?php echo $kriteria_umum;?> 
                                     </ul>
                                 </div>
                             </div>
@@ -294,7 +310,7 @@ require("functions.php");
 
                         <div class="job-detail-location pt-4 border-top">
                             <div class="job-details-desc-item">
-                                <p class="text-dark mb-2">Rumah Siap Kerja, tempat dimana para anak muda mendapatkan bimbingan karir, mencari informasi lowongan kerja, pelatihan, dan pendidikan, yang ditunjang berbagai fasilitas bagi anak muda. Yuk gabung bersama kami!</p>
+                                <p class="text-dark mb-2"><?php echo $deskripsi_perusahaan;?> </p>
                             </div>
 
                             <div class="job-details-desc-item border-top" style="margin:10px 0px 0px 0px;padding:10px 0px 0px 0px">

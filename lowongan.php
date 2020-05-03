@@ -2,6 +2,33 @@
 session_start();
 require("functions.php");
 
+//API Pencarian Lowongan Kerja
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get_lowongan = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get_lowongan = json_decode($result_get_lowongan, true);
+
+$pekerjaan = $result_get_lowongan[0]['nama_pekerjaan'];
+$lowongan_tutup = $result_get_lowongan[0]['tutup'];
+$nama_perusahaan = $result_get_lowongan[0]['nama_perusahaan'];
+$sektor_perusahaan = $result_get_lowongan[0]['sektor_perusahaan'];
+$alamat_lowongan = $result_get_lowongan[0]['alamat'];
+
+//AutoCompleteSearch
+
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/index/autoSearch.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get = json_decode($result_get, true);
+
+$nama_pekerjaan = $result_get['data'][0]['nama_pekerjaan'];
+$nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
 
 ?>
 <!DOCTYPE html>
@@ -170,7 +197,7 @@ require("functions.php");
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">Pencarian Lowongan Pekerjaan</h4>
+                        <h4 class="text-uppercase title mb-4">Pencarian Lowongan Pekerjaan <?= $nama_pekerjaan;?></h4>
                     </div>
                 </div>
             </div>
@@ -188,9 +215,23 @@ require("functions.php");
                                 <div class="col-lg-3 col-md-6">
                                     <div class="registration-form-box">
                                         <i class="fa fa-briefcase"></i>
-                                        <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan">
+                                        <input type="text" id="autocomplete" name ="autocomplete "class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan">
                                     </div>
                                 </div>
+                                <script type="text/javascript">
+                                                    $(document).ready(function () {
+                                                        // Data yang ditamilkan pada autocomplete.                
+                                                        var autocomplete = [
+                                                            { value: '<?= $nama_pekerjaan;?>', data: '<?= $nama_pekerjaan;?>' },
+                                                            { value: '<?= $nama_perusahaan;?>', data: '<?= $nama_perusahaan;?>' },
+                                                        ];
+
+                                                        // Selector input yang akan menampilkan autocomplete.
+                                                        $("#autocomplete").autocomplete({
+                                                            lookup: autocomplete
+                                                        });
+                                                    })
+                                                </script>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="registration-form-box">
                                         <i class="fa fa-list-alt"></i>
@@ -306,18 +347,18 @@ require("functions.php");
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
-                                                        <p class="text-muted mb-0">PT. Rumah Kerja</p>
+                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark"><?php echo $pekerjaan;?></a></h5>
+                                                        <p class="text-muted mb-0"><?php echo $nama_perusahaan;?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?php echo $sektor_perusahaan;?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -331,7 +372,7 @@ require("functions.php");
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
+                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> <?php echo $lowongan_tutup;?> </span></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -351,18 +392,18 @@ require("functions.php");
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
-                                                        <p class="text-muted mb-0">PT. Rumah Kerja</p>
+                                                    <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark"><?php echo $pekerjaan;?></a></h5>
+                                                        <p class="text-muted mb-0"><?php echo $nama_perusahaan;?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?php echo $sektor_perusahaan;?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -376,7 +417,7 @@ require("functions.php");
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
+                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> <?php echo $lowongan_tutup;?> </span></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -396,18 +437,18 @@ require("functions.php");
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
-                                                        <p class="text-muted mb-0">PT. Rumah Kerja</p>
+                                                    <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark"><?php echo $pekerjaan;?></a></h5>
+                                                        <p class="text-muted mb-0"><?php echo $nama_perusahaan;?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?php echo $sektor_perusahaan;?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -421,7 +462,7 @@ require("functions.php");
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
+                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> <?php echo $lowongan_tutup;?> </span></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -441,18 +482,18 @@ require("functions.php");
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
-                                                        <p class="text-muted mb-0">PT. Rumah Kerja</p>
+                                                    <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark"><?php echo $pekerjaan;?></a></h5>
+                                                        <p class="text-muted mb-0"><?php echo $nama_perusahaan;?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?php echo $sektor_perusahaan;?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -466,7 +507,7 @@ require("functions.php");
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
+                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> <?php echo $lowongan_tutup;?> </span></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -621,6 +662,12 @@ require("functions.php");
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+
+     <!-- Memanggil jQuery.js -->
+     <script src="jquery-3.2.1.min.js"></script>
+
+<!-- Memanggil Autocomplete.js -->
+<script src="jquery.autocomplete.min.js"></script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>

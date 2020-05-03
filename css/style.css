@@ -21,6 +21,7 @@ File: main stylesheet
 15.post-a-job
 **********************/
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
+
 .bg-primary {
   background-color: #2f55d4 !important;
 }
@@ -78,6 +79,7 @@ File: main stylesheet
 }
 
 .text-dark {
+  text-transform: capitalize !important;
   color: #3c4858 !important;
 }
 
