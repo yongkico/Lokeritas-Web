@@ -778,7 +778,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <div class="section-title text-center mb-4 pb-2" style="margin: 0px 0px 0px 0px ! important">
-                            <h4 class="title title-line pb-5">Lowongan Pekerjaan Dengan Keahlianmu</h4>
+                            <h4 class="title title-line pb-5">Lowongan Pekerjaan</h4>
                         </div>
                     </div>
                 </div>
@@ -798,10 +798,20 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                         $a = array_slice($result_get_lowongan, $page, 1);
                                         $totalpag = count($result_get_lowongan);
 
+                                        // $startdate = date("d F Y", strtotime($result_get['0']['tutup']));
+                                        // $expire = strtotime($startdate. ' + 2 days');
+                                        // $today = strtotime("today midnight");
+
                                         ?>
 
                                         <?php foreach ($a as $row) : ?>
-                                            <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                            <?php 
+                                            $start_date = date("d F Y", strtotime($row['tutup']));
+                                            $expire = strtotime($start_date. ' + 2 days');
+                                            $today = strtotime("today midnight");
+
+                                            if($today <= $expire){
+                                                echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                 <div class="p-4">
                                                     <div class="row align-items-center">
                                                         <div class="col-md-2">
@@ -813,22 +823,22 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                                             <div>
                                                                 <a href="lowongan-detail.php" class="text-dark">
                                                                     <h5 class="f-18">
-                                                                        <?= $row['nama_pekerjaan']; ?>
+                                                                        '.$row['nama_pekerjaan'].'
                                                                     </h5>
                                                                 </a>
-                                                                <p class="text-muted mb-0"><?= $row['nama_perusahaan']; ?>
+                                                                <p class="text-muted mb-0">'.$row['nama_perusahaan'].'
                                                                 </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?= $row['sektor_perusahaan']; ?>
+                                                                <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>'.$row['sektor_perusahaan'].'
                                                                 </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?= $row['alamat']; ?>
+                                                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>'.$row['alamat'].'
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -843,18 +853,18 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div>
-                                                                <p class="text-muted mb-0 mo-mb-2">Tutup : <?php echo date("d F Y", strtotime($row['tutup'])); ?><span class="text-dark">
-                                                                        <?php //echo date("d F Y", strtotime($datatemp[$page]['tutup'])); 
-                                                                        ?>
+                                                                <p class="text-muted mb-0 mo-mb-2">Tutup : '.date("d F Y", strtotime($row['tutup'])).'<span class="text-dark">
                                                                     </span></p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="lowongan-detail.php?id=<?= $row['id_lowongan']; ?>" class="btn btn-primary">Selengkapnya</a>
+                                                            <a href="lowongan-detail.php?id='.$row['id_lowongan'].'" class="btn btn-primary">Selengkapnya</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>';
+                                            }
+                                            ?>
                                         <?php endforeach; ?>
 
 
@@ -868,9 +878,15 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                 <div class="col-lg-12 mt-4 pt-2">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination job-pagination mb-0 justify-content-center">
-                                            
-                                            <?php
-                                            $total_pages = count($pages);
+
+                                        <?php 
+                                            $start_date = date("d F Y", strtotime($row['tutup']));
+                                            $expire = strtotime($start_date. ' + 2 days');
+                                            $today = strtotime("today midnight");
+
+                                            if($today <= $expire){
+
+                                                $total_pages = count($pages);
                                             $prevpage = $page - 1;
                                             $nextpage = $page + 1;
 
@@ -940,7 +956,11 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                                 }
                                             }
 
-                                            ?>
+                                            } ?>
+                                            
+                                            
+
+                                            
                                             <!-- <li class="page-item"><a class="page-link" id="dua-job-tab" data-toggle="pill"
                                                 href="#dua-job" role="tab" aria-controls="dua-job"
                                                 aria-selected="false">2</a></li>
