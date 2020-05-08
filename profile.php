@@ -2,6 +2,8 @@
 session_start();
 require("functions.php");
 
+$_SESSION['ema'] = 'bgbudi@gmail.com';
+
 
 ?>
 <!DOCTYPE html>
@@ -49,16 +51,19 @@ require("functions.php");
     </div>
     <!-- Loader -->
 
-    <?php if (isset($_SESSION["login"])) : ?>
+    <?php if (isset($_SESSION["ema"])) : ?>
         <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
+        $email = $_SESSION["ema"];
 
-        $tabel_pengalaman = query("SELECT * FROM pengalaman_bekerja WHERE id_user = '$id'");
+        $curl_get = curl_init();
+        curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
+        curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($curl_get);
+        curl_close($curl_get);
 
-        $nav_nama = explode(' ', $row["nama"]);
-        $nama = $nav_nama[0];
+        $result_get = json_decode($result, true);
+
+
         ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
@@ -98,7 +103,7 @@ require("functions.php");
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $nama; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2 text-success" style="font-size:16px"></i><?= $result_get[0]['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -178,13 +183,13 @@ require("functions.php");
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
                         <div class="blog">
-                            <img src="https://s2.bukalapak.com/img/7620068213/w-1000/CETAK_FOTO_dan_PAS_FOTO_.png" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                            <img src="images/<?= $result_get[0]['foto']; ?>" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
 
                             <div class="author" style="margin:50px 0px 0px 169px">
                                 <p class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-pencil text-light"></i> <a href="javascript:void(0)" class="text-light user">Ubah Foto Profil</a></p>
                             </div>
                         </div>
-                        <h4 class="text-white mb-2"><?= $row["nama"]; ?></h4>
+                        <h4 class="text-white mb-2"><?= $result_get[0]['nama_depan']; ?>&nbsp;<?= $result_get[0]['nama_belakang']; ?></h4>
                     </div>
                 </div>
             </div>
@@ -213,40 +218,88 @@ require("functions.php");
                             <table class="table border-top" style="border:none">
                                 <tbody>
                                     <tr>
-                                        <td style="width:180px;font-weight:bold">Nama</td>
-                                        <td><?= $row["nama"]; ?></td>
+                                        <td style="width:180px;font-weight:bold">Nama Lengkap</td>
+                                        <td><?= $result_get[0]['nama_depan']; ?>&nbsp;<?= $result_get[0]['nama_belakang']; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Ringkasan Pribadi</td>
-                                        <td><?= $row["ringkasan_pribadi"]; ?></td>
+                                        <td>
+                                            <?php
+                                            if (empty($result_get[0]['ringkasan_pribadi'])) {
+                                                echo '-';
+                                            } else {
+                                                echo $result_get[0]['ringkasan_pribadi'];
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Email</td>
-                                        <td><?= $row["email"]; ?></td>
+                                        <td><?= $result_get[0]['email']; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Nomor HP</td>
-                                        <td><?= $row["no_hp"]; ?></td>
+                                        <td>
+                                            <?php
+                                            if ($result_get[0]['telepon'] === '0') {
+                                                echo '-';
+                                            } else {
+                                                echo '+62 ' . $result_get[0]['telepon'];
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Jenis Kelamin</td>
-                                        <td><?= $row["jk"]; ?></td>
+                                        <td>
+                                            <?php
+                                            if ($result_get[0]['jenis_kelamin'] === 'L') {
+                                                echo 'Laki-Laki';
+                                            } else {
+                                                echo 'Perempuan';
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Tanggal Lahir</td>
-                                        <td><?= date('d F Y', strtotime($row["tgl_lahir"])); ?></td>
+                                        <td><?= $result_get[0]['tgl_lahir']; ?></td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Status</td>
-                                        <td><?= $row["status"]; ?></td>
+                                        <td>
+                                            <?php
+                                            if ($result_get[0]['status'] === 'B') {
+                                                echo 'Belum Menikah';
+                                            } else {
+                                                echo 'Menikah';
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Alamat</td>
-                                        <td><?= $row["alamat"]; ?></td>
+                                        <td>
+                                            <?php
+                                            if (empty($result_get[0]['alamat'])) {
+                                                echo '-';
+                                            } else {
+                                                echo $result_get[0]['alamat'] . ', ' . $result_get[0]['kota'] . ', ' . $result_get[0]['provinsi'];
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Mencari Pekerjaan</td>
-                                        <td><span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"> <?= $row["mencari_pekerjaan"]; ?> </span></td>
+                                        <td><span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px">
+                                                <?php
+                                                if ($result_get[0]['mencari_pekerjaan'] === '0') {
+                                                    echo 'Tidak';
+                                                } else {
+                                                    echo 'Ya';
+                                                }
+                                                ?>
+                                            </span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -273,15 +326,39 @@ require("functions.php");
                                 <tbody>
                                     <tr>
                                         <td style="width:180px;font-weight:bold">Jenis Disabilitas</td>
-                                        <td><?= $row["jenis_disabilitas"]; ?></td>
+                                        <td>
+                                            <?php
+                                            $tmp_disabilitas = explode(',', $result_get[0]['ketunaan']);
+                                            foreach ($tmp_disabilitas as $a) {
+                                                echo $a;
+                                                echo '<br>';
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Alat Bantu</td>
-                                        <td><?= $row["alat_bantu"]; ?></td>
+                                        <td>
+                                            <?php
+                                            if (empty($result_get[0]['alat_bantu'])) {
+                                                echo '-';
+                                            } else {
+                                                echo $result_get[0]['alat_bantu'];
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Penjelasan</td>
-                                        <td><?= $row["penjelasan_disabilitas"]; ?></td>
+                                        <td>
+                                            <?php
+                                            if (empty($result_get[0]['detail_tambahan'])) {
+                                                echo '-';
+                                            } else {
+                                                echo $result_get[0]['detail_tambahan'];
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -305,21 +382,20 @@ require("functions.php");
                                 </div>
                             </div>
                             <table class="table" style="border:none">
+                                <?php
+                                $pnd = explode(',', $result_get[0]['pendidikan_terakhir']);
+                                $thn = explode('-', $pnd[0]);
+                                $thn[0] .= ' - ';
+                                ?>
                                 <tbody>
                                     <tr>
-                                        <?php if ($row["pendidikan_terakhir"] === '-') : ?>
-                                            <td style="width:180px;font-weight:bold">-</td>
-                                            <td></td>
+                                        <?php if (empty($result_get[0]['pendidikan_terakhir'])) : ?>
+                                            <td>-</td>
                                         <?php else : ?>
-                                            <?php
-                                            $tmp_pendidikan = explode('<br>', $row["pendidikan_terakhir"]);
-                                            $tahun = explode('-', $tmp_pendidikan[0]);
-                                            $tahun[0] .= ' - ';
-                                            ?>
-                                            <td style="width:180px;font-weight:bold"><?php foreach ($tahun as $a) {
-                                                                                            echo $a;
+                                            <td style="font-weight: bold;width:180px"><?php foreach ($thn as $ab) {
+                                                                                            echo $ab;
                                                                                         } ?></td>
-                                            <td><?= $tmp_pendidikan[1] ?></td>
+                                            <td><?= $pnd[1]; ?></td>
                                         <?php endif; ?>
                                     </tr>
                                 </tbody>
@@ -344,14 +420,31 @@ require("functions.php");
                                 </div>
                             </div>
                             <table class="table" style="border:none">
+                                <?php
+                                $pengalaman = explode(',', $result_get[0]['pengalaman_kerja']);
+                                function pisah($data)
+                                {
+                                    $c = explode('-', $data);
+                                    $hslnya = '<strong>' . $c[2] . ' - ' . $c[3] . '</strong>' . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $c[0] . ' - ' . $c[1];
+
+                                    return $hslnya;
+                                }
+                                ?>
                                 <tbody>
-                                    <?php foreach ($tabel_pengalaman as $isi) : ?>
-                                        <tr>
-                                            <td style="width:180px;font-weight:bold"><?= $isi["periode"]; ?></td>
-                                            <td><?= $isi["jabatan"]; ?></td>
-                                            <td><?= $isi["nama_perusahaan"]; ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    <tr>
+                                        <?php if (empty($result_get[0]['pengalaman_kerja']) || $result_get[0]['pengalaman_kerja'] == '-') : ?>
+                                            <td>-</td>
+                                        <?php else : ?>
+                                            <td>
+                                                <?php
+                                                foreach ($pengalaman as $r) {
+                                                    echo pisah($r);
+                                                    echo '<br>';
+                                                }
+                                                ?>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -376,10 +469,11 @@ require("functions.php");
                             <table class="table" style="border:none;">
                                 <tbody>
                                     <tr>
-                                        <td style="width:180px;font-weight:bold;padding-top:20px">
-                                            <span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"> Desain Grafis </span>
-                                            <span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"> UI/UX Design </span>
-                                        </td>
+                                        <?php if (empty($result_get[0]['keterampilan'])) : ?>
+                                            <td>-</td>
+                                        <?php else : ?>
+                                            <td><span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"><?= $result_get[0]['keterampilan']; ?></span></td>
+                                        <?php endif; ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -405,10 +499,12 @@ require("functions.php");
                             <table class="table" style="border:none">
                                 <tbody>
                                     <tr>
-                                        <td style="width:180px;font-weight:bold;padding-top:20px">
-                                            <span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"> Desain dan Arsitektur </span>
-                                            <span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"> Editing, Media dan Informasi </span>
-                                        </td>
+                                    <tr>
+                                        <?php if (empty($result_get[0]['kariryangdimininati'])) : ?>
+                                            <td>-</td>
+                                        <?php else : ?>
+                                            <td><span class="badge badge-secondary" style="font-size: 15px;padding:7px 15px 7px 15px"><?= $result_get[0]['kariryangdimininati']; ?></span></td>
+                                        <?php endif; ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -469,7 +565,7 @@ require("functions.php");
                     <h4 class="modal-title">Edit Informasi Pribadi</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-                <form action="edit_informasi_pribadi.php" method="POST">
+                <form action="edit_profil.php" method="POST">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container">
@@ -479,23 +575,49 @@ require("functions.php");
                                         <div class="row mt-4">
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
-                                                    <label class="text-muted">Nama Lengkap :</label>
-                                                    <input type="hidden" name="id" value="<?= $row["id_user"]; ?>">
-                                                    <input id="first-name" type="text" name="nama" class="form-control resume" autocomplete="off" value="<?= $row["nama"]; ?>">
+                                                    <label class="text-muted">Nama Depan :</label>
+                                                    <input id="first-name" type="text" name="nama_depan" class="form-control resume" autocomplete="off" value="<?= $result_get[0]["nama_depan"]; ?>">
+                                                    <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
+                                                    <input type="hidden" name="password_lama" value="<?= $result_get[0]["password"]; ?>">
+                                                    <input type="hidden" name="ketunaan" value="<?= $result_get[0]["ketunaan"]; ?>">
+                                                    <input type="hidden" name="foto" value="<?= $result_get[0]["foto"]; ?>">
+                                                    <input type="hidden" name="detail_tambahan" value="<?= $result_get[0]["detail_tambahan"]; ?>">
+                                                    <input type="hidden" name="alat_bantu" value="<?= $result_get[0]["alat_bantu"]; ?>">
+                                                    <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
+                                                    <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
+                                                    <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
+                                                    <input type="hidden" name="pendidikan_terakhir" value="<?= $result_get[0]["pendidikan_terakhir"]; ?>">
+                                                    <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
+                                                    <input type="hidden" name="pengalaman_kerja" value="<?= $result_get[0]["pengalaman_kerja"]; ?>">
+                                                    <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
+                                                    <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Belakang :</label>
+                                                    <input type="hidden" name="id">
+                                                    <input id="first-name" type="text" name="nama_belakang" class="form-control resume" autocomplete="off" value="<?= $result_get[0]["nama_belakang"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Email :</label>
-                                                    <input id="middle-name" style="pointer-events:none;" type="text" class="form-control resume bg-light" value="<?= $row["email"]; ?>">
+                                                    <input id="middle-name" name="email" style="pointer-events:none;" type="text" class="form-control resume bg-light" value="<?= $result_get[0]["email"]; ?>" readonly>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Nomor HP :</label>
-                                                    <input id="surname-name" name="no_hp" type="text" class="form-control resume" autocomplete="off" value="<?= $row["no_hp"]; ?>">
+                                                    <input id="surname-name" name="telepon" type="text" class="form-control resume" autocomplete="off" value="<?php if ($result_get[0]["telepon"] == '0') {
+                                                                                                                                                                    echo '+62';
+                                                                                                                                                                } else {
+                                                                                                                                                                    echo $result_get[0]["telepon"];
+                                                                                                                                                                } ?>">
                                                 </div>
                                             </div>
 
@@ -504,9 +626,17 @@ require("functions.php");
                                                     <label class="text-muted">Jenis Kelamin :</label>
                                                     <div class="form-button">
                                                         <select class="nice-select rounded" name="jk">
-                                                            <option value="<?= $row["jk"]; ?>"><?= $row["jk"]; ?></option>
-                                                            <option value="Pria">Pria</option>
-                                                            <option value="Wanita">Wanita</option>
+                                                            <option value="<?php if ($result_get[0]['jenis_kelamin'] == 'L') {
+                                                                                echo 'Laki-Laki';
+                                                                            } else {
+                                                                                echo 'Perempuan';
+                                                                            } ?>"><?php if ($result_get[0]['jenis_kelamin'] == 'L') {
+                                                                                        echo 'Laki-Laki';
+                                                                                    } else {
+                                                                                        echo 'Perempuan';
+                                                                                    } ?></option>
+                                                            <option value="L">Laki-Laki</option>
+                                                            <option value="P">Perempuan</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -515,80 +645,111 @@ require("functions.php");
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Tanggal Lahir :</label>
-                                                    <input id="date-of-birth" name="tgl_lahir" type="date" class="form-control resume" value="<?= $row["tgl_lahir"]; ?>"">
+                                                    <input id="date-of-birth" name="tgl_lahir" type="date" class="form-control resume" value="<?= $result_get[0]["tgl_lahir"]; ?>">
                                                 </div>
                                             </div>
 
                                             <div class=" col-md-6">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Status</label>
-                                                        <div class="form-button">
-                                                            <select class="nice-select rounded" name="status">
-                                                                <option value="<?= $row["status"]; ?>"><?= $row["status"]; ?></option>
-                                                                <option value="Sudah Menikah">Sudah Menikah</option>
-                                                                <option value="Belum Menikah">Belum Menikah</option>
-                                                            </select>
-                                                        </div>
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Status</label>
+                                                    <div class="form-button">
+                                                        <select class="nice-select rounded" name="status">
+                                                            <option value="<?php if ($result_get[0]['status'] == 'B') {
+                                                                                echo 'Belum Menikah';
+                                                                            } else {
+                                                                                echo 'Menikah';
+                                                                            } ?>"><?php if ($result_get[0]['status'] == 'B') {
+                                                                                        echo 'Belum Menikah';
+                                                                                    } else {
+                                                                                        echo 'Menikah';
+                                                                                    } ?></option>
+                                                            <option value="Sudah Menikah">Menikah</option>
+                                                            <option value="Belum Menikah">Belum Menikah</option>
+                                                        </select>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Mencari Pekerjaan</label>
-                                                        <div class="form-button">
-                                                            <select class="nice-select rounded" name="mencari_pekerjaan">
-                                                                <option value="<?= $row["mencari_pekerjaan"]; ?>"><?= $row["mencari_pekerjaan"]; ?></option>
-                                                                <option value="Ya">Ya</option>
-                                                                <option value="Tidak">Tidak</option>
-                                                            </select>
-                                                        </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Mencari Pekerjaan</label>
+                                                    <div class="form-button">
+                                                        <select class="nice-select rounded" name="mencari_pekerjaan">
+                                                            <option value="<?php if ($result_get[0]['mencari_pekerjaan'] == '0') {
+                                                                                echo 'Tidak';
+                                                                            } else {
+                                                                                echo 'Ya';
+                                                                            } ?>"><?php if ($result_get[0]['mencari_pekerjaan'] == '0') {
+                                                                                        echo 'Tidak';
+                                                                                    } else {
+                                                                                        echo 'Ya';
+                                                                                    } ?></option>
+                                                            <option value="Ya">Ya</option>
+                                                            <option value="Tidak">Tidak</option>
+                                                        </select>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-6">
+                                            <div class="col-md-6">
 
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Ringkasan Pribadi</label>
+                                                    <textarea id="surname-name" name="ringkasan_pribadi" class="form-control" rows="3"><?php if (empty($result_get[0]["ringkasan_pribadi"])) {
+                                                                                                                                            echo '-';
+                                                                                                                                        } else {
+                                                                                                                                            echo $result_get[0]["ringkasan_pribadi"];
+                                                                                                                                        } ?></textarea>
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-12">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Ringkasan Pribadi</label>
-                                                        <textarea id="surname-name" name="ringkasan_pribadi" class="form-control" rows="3"><?= $row["ringkasan_pribadi"]; ?></textarea>
-                                                    </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Alamat</label>
+                                                    <input id="surname-name" name="alamat" type="text" class="form-control resume" value="<?php if (empty($result_get[0]["alamat"])) {
+                                                                                                                                                echo '-';
+                                                                                                                                            } else {
+                                                                                                                                                echo $result_get[0]["alamat"];
+                                                                                                                                            } ?>">
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-12">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Alamat</label>
-                                                        <input id="surname-name" name="alamat" type="text" class="form-control resume" value="<?= $row["alamat"]; ?>">
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Kabupaten/Kota</label>
+                                                    <input id="surname-name" name="kota" type="text" class="form-control resume" value="<?php if (empty($result_get[0]["kota"])) {
+                                                                                                                                            echo '-';
+                                                                                                                                        } else {
+                                                                                                                                            echo $result_get[0]["kota"];
+                                                                                                                                        } ?>">
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Kabupaten/Kota</label>
-                                                        <input id="surname-name" name="kab_kota" type="text" class="form-control resume" value="<?= $row["kab_kota"]; ?>">
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Provinsi</label>
+                                                    <input id="surname-name" name="provinsi" type="text" class="form-control resume" value="<?php if (empty($result_get[0]["provinsi"])) {
+                                                                                                                                                echo '-';
+                                                                                                                                            } else {
+                                                                                                                                                echo $result_get[0]["provinsi"];
+                                                                                                                                            } ?>">
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Provinsi</label>
-                                                        <input id="surname-name" name="provinsi" type="text" class="form-control resume" value="<?= $row["provinsi"]; ?>">
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Ganti Password</label>
+                                                    <input id="surname-name" name="password" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password harus terdiri dari 8 karakter dan mengandung huruf besar, huruf kecil dan angka" autocomplete="off" class="form-control resume" placeholder="Password">
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Ganti Password</label>
-                                                        <input id="surname-name" name="password" type="password" autocomplete="off" class="form-control resume" placeholder="Password">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
-                                                        <input id="surname-name" name="password2" type="password" autocomplete="off" class="form-control resume" placeholder="Konfirmasi Password">
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <input id="surname-name" name="password2" type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password harus terdiri dari 8 karakter dan mengandung huruf besar, huruf kecil dan angka" autocomplete="off" class="form-control resume" placeholder="Konfirmasi Password">
                                                 </div>
                                             </div>
                                         </div>
@@ -596,12 +757,13 @@ require("functions.php");
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Ini adalah Bagian Footer Modal -->
-                        <div class="modal-footer">
-                            <button type="submit" name="btn_informasi_pribadi" class="btn btn-primary">Simpan</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                        </div>
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" name="btn_informasi_pribadi" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -618,7 +780,7 @@ require("functions.php");
                     <h4 class="modal-title">Edit Rincian Disabilitas</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-                <form action="edit_informasi_pribadi.php" method="POST">
+                <form action="edit_profil.php" method="POST">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container">
@@ -628,10 +790,33 @@ require("functions.php");
 
                                         <div class="row mt-4">
                                             <div class="col-md-12 ">
+                                                <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
+                                                <input type="hidden" name="nama_depan" value="<?= $result_get[0]["nama_depan"]; ?>">
+                                                <input type="hidden" name="nama_belakang" value="<?= $result_get[0]["nama_belakang"]; ?>">
+                                                <input type="hidden" name="email" value="<?= $result_get[0]["email"]; ?>">
+                                                <input type="hidden" name="password" value="<?= $result_get[0]["password"]; ?>">
+                                                <input type="hidden" name="tgl_lahir" value="<?= $result_get[0]["tgl_lahir"]; ?>">
+                                                <input type="hidden" name="jenis_kelamin" value="<?= $result_get[0]["jenis_kelamin"]; ?>">
+                                                <input type="hidden" name="status" value="<?= $result_get[0]["status"]; ?>">
+                                                <input type="hidden" name="foto" value="<?= $result_get[0]["foto"]; ?>">
+                                                <input type="hidden" name="provinsi" value="<?= $result_get[0]["provinsi"]; ?>">
+                                                <input type="hidden" name="kota" value="<?= $result_get[0]["kota"]; ?>">
+                                                <input type="hidden" name="alamat" value="<?= $result_get[0]["alamat"]; ?>">
+                                                <input type="hidden" name="telepon" value="<?= $result_get[0]["telepon"]; ?>">
+                                                <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
+                                                <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
+                                                <input type="hidden" name="ringkasan_pribadi" value="<?= $result_get[0]["ringkasan_pribadi"]; ?>">
+                                                <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
+                                                <input type="hidden" name="mencari_pekerjaan" value="<?= $result_get[0]["mencari_pekerjaan"]; ?>">
+                                                <input type="hidden" name="pendidikan_terakhir" value="<?= $result_get[0]["pendidikan_terakhir"]; ?>">
+                                                <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
+                                                <input type="hidden" name="pengalaman_kerja" value="<?= $result_get[0]["pengalaman_kerja"]; ?>">
+                                                <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
+                                                <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
+
                                                 <label class="text-muted" style="font-weight: 600">Jenis Disabilitas/Ketunaan </label><br>
-                                                <input type="hidden" name="id" value="<?= $row["id_user"]; ?>">
                                                 <?php
-                                                $tmp_disabilitas = explode('<br>', $row["jenis_disabilitas"]);
+                                                $tmp_disabilitas = explode(',', $result_get[0]["ketunaan"]);
                                                 ?>
                                                 <div class="p-4" style="padding:0px 0px 0px 0px !important">
                                                     <div class="form-check form-check-inline">
@@ -694,14 +879,22 @@ require("functions.php");
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Alat Bantu :</label>
-                                                    <input id="middle-name" name="alat_bantu" type="text" class="form-control resume" value="<?= $row["alat_bantu"]; ?>">
+                                                    <input id="middle-name" name="alat_bantu" type="text" class="form-control resume" value="<?php if (empty($result_get[0]['alat_bantu'])) {
+                                                                                                                                                    echo '-';
+                                                                                                                                                } else {
+                                                                                                                                                    echo $result_get[0]['alat_bantu'];
+                                                                                                                                                } ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Penjelasan Singkat :</label>
-                                                    <textarea id="surname-name" name="penjelasan_disabilitas" type="text" class="form-control resume" autocomplete="off"><?= $row["penjelasan_disabilitas"]; ?></textarea>
+                                                    <textarea id="surname-name" name="penjelasan" type="text" class="form-control resume" autocomplete="off"><?php if (empty($result_get[0]['detail_tambahan'])) {
+                                                                                                                                                                    echo '-';
+                                                                                                                                                                } else {
+                                                                                                                                                                    echo $result_get[0]['detail_tambahan'];
+                                                                                                                                                                } ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -732,7 +925,7 @@ require("functions.php");
                     <h4 class="modal-title">Edit Pendidikan Terakhir</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-                <form action="edit_informasi_pribadi.php" method="POST">
+                <form action="edit_profil.php" method="POST">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container">
@@ -740,11 +933,36 @@ require("functions.php");
                                 <div class="col-12 mt-3" style="margin-top:0px ! important">
                                     <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
                                         <div class="row mt-4">
-                                            <?php if ($row["pendidikan_terakhir"] === '-') : ?>
+                                            <?php if (empty($result_get[0]['pendidikan_terakhir'])) : ?>
                                                 <div class="col-md-6">
                                                     <div class="form-group app-label">
+                                                        <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
+                                                        <input type="hidden" name="nama_depan" value="<?= $result_get[0]["nama_depan"]; ?>">
+                                                        <input type="hidden" name="nama_belakang" value="<?= $result_get[0]["nama_belakang"]; ?>">
+                                                        <input type="hidden" name="email" value="<?= $result_get[0]["email"]; ?>">
+                                                        <input type="hidden" name="password" value="<?= $result_get[0]["password"]; ?>">
+                                                        <input type="hidden" name="tgl_lahir" value="<?= $result_get[0]["tgl_lahir"]; ?>">
+                                                        <input type="hidden" name="jenis_kelamin" value="<?= $result_get[0]["jenis_kelamin"]; ?>">
+                                                        <input type="hidden" name="status" value="<?= $result_get[0]["status"]; ?>">
+                                                        <input type="hidden" name="foto" value="<?= $result_get[0]["foto"]; ?>">
+                                                        <input type="hidden" name="provinsi" value="<?= $result_get[0]["provinsi"]; ?>">
+                                                        <input type="hidden" name="kota" value="<?= $result_get[0]["kota"]; ?>">
+                                                        <input type="hidden" name="alamat" value="<?= $result_get[0]["alamat"]; ?>">
+                                                        <input type="hidden" name="telepon" value="<?= $result_get[0]["telepon"]; ?>">
+                                                        <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
+                                                        <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
+                                                        <input type="hidden" name="ringkasan_pribadi" value="<?= $result_get[0]["ringkasan_pribadi"]; ?>">
+                                                        <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
+                                                        <input type="hidden" name="mencari_pekerjaan" value="<?= $result_get[0]["mencari_pekerjaan"]; ?>">
+                                                        <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
+                                                        <input type="hidden" name="pengalaman_kerja" value="<?= $result_get[0]["pengalaman_kerja"]; ?>">
+                                                        <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
+                                                        <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
+                                                        <input type="hidden" name="ketunaan" value="<?= $result_get[0]["ketunaan"]; ?>">
+                                                        <input type="hidden" name="alat_bantu" value="<?= $result_get[0]["alat_bantu"]; ?>">
+                                                        <input type="hidden" name="detail_tambahan" value="<?= $result_get[0]["detail_tambahan"]; ?>">
+
                                                         <label class="text-muted">Pendidikan Terakhir :</label>
-                                                        <input type="hidden" name="id" value="<?= $row["id_user"]; ?>">
                                                         <div class="form-button">
                                                             <select class="nice-select rounded" id="pendidikan" onchange="ShowHide()" name="pendidikan">
                                                                 <option value="SD">SD</option>
@@ -764,7 +982,7 @@ require("functions.php");
                                                 <div class="col-md-6">
                                                     <div class="form-group app-label">
                                                         <label class="text-muted">Nama Sekolah :</label>
-                                                        <input id="middle-name" name="nama_sekolah" type="text" class="form-control resume" value="-">
+                                                        <input id="middle-name" name="nama_sekolah" type="text" class="form-control resume">
                                                     </div>
                                                 </div>
 
@@ -892,15 +1110,41 @@ require("functions.php");
                                             <?php else : ?>
                                                 <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Pendidikan Terakhir :</label>
-                                                        <input type="hidden" name="id" value="<?= $row["id_user"]; ?>">
+                                                        <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
+                                                        <input type="hidden" name="nama_depan" value="<?= $result_get[0]["nama_depan"]; ?>">
+                                                        <input type="hidden" name="nama_belakang" value="<?= $result_get[0]["nama_belakang"]; ?>">
+                                                        <input type="hidden" name="email" value="<?= $result_get[0]["email"]; ?>">
+                                                        <input type="hidden" name="password" value="<?= $result_get[0]["password"]; ?>">
+                                                        <input type="hidden" name="tgl_lahir" value="<?= $result_get[0]["tgl_lahir"]; ?>">
+                                                        <input type="hidden" name="jenis_kelamin" value="<?= $result_get[0]["jenis_kelamin"]; ?>">
+                                                        <input type="hidden" name="status" value="<?= $result_get[0]["status"]; ?>">
+                                                        <input type="hidden" name="foto" value="<?= $result_get[0]["foto"]; ?>">
+                                                        <input type="hidden" name="provinsi" value="<?= $result_get[0]["provinsi"]; ?>">
+                                                        <input type="hidden" name="kota" value="<?= $result_get[0]["kota"]; ?>">
+                                                        <input type="hidden" name="alamat" value="<?= $result_get[0]["alamat"]; ?>">
+                                                        <input type="hidden" name="telepon" value="<?= $result_get[0]["telepon"]; ?>">
+                                                        <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
+                                                        <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
+                                                        <input type="hidden" name="ringkasan_pribadi" value="<?= $result_get[0]["ringkasan_pribadi"]; ?>">
+                                                        <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
+                                                        <input type="hidden" name="mencari_pekerjaan" value="<?= $result_get[0]["mencari_pekerjaan"]; ?>">
+                                                        <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
+                                                        <input type="hidden" name="pengalaman_kerja" value="<?= $result_get[0]["pengalaman_kerja"]; ?>">
+                                                        <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
+                                                        <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
+                                                        <input type="hidden" name="ketunaan" value="<?= $result_get[0]["ketunaan"]; ?>">
+                                                        <input type="hidden" name="alat_bantu" value="<?= $result_get[0]["alat_bantu"]; ?>">
+                                                        <input type="hidden" name="detail_tambahan" value="<?= $result_get[0]["detail_tambahan"]; ?>">
+
                                                         <?php
-                                                        $tmp_sekolah = explode('<br>', $row["pendidikan_terakhir"]);
-                                                        $sekolah = explode('-', $tmp_sekolah[1]);
+                                                        $t = explode('-', $pnd[0]);
+                                                        $sklh = explode('-', $pnd[1]);
+                                                        $jlh_sklh = count($sklh);
                                                         ?>
+                                                        <label class="text-muted">Pendidikan Terakhir :</label>
                                                         <div class="form-button">
                                                             <select class="nice-select rounded" id="pendidikan" onchange="ShowHide()" name="pendidikan">
-                                                                <option value="<?= $sekolah[0]; ?>"><?= $sekolah[0]; ?></option>
+                                                                <option value="<?= $sklh[0]; ?>"><?= $sklh[0]; ?></option>
                                                                 <option value="SD">SD</option>
                                                                 <option value="SMP">SMP</option>
                                                                 <option value="SMA">SMA</option>
@@ -918,18 +1162,25 @@ require("functions.php");
                                                 <div class="col-md-6">
                                                     <div class="form-group app-label">
                                                         <label class="text-muted">Nama Sekolah :</label>
-                                                        <input id="middle-name" name="nama_sekolah" type="text" class="form-control resume" value="<?= end($sekolah); ?>">
+                                                        <input id="middle-name" name="nama_sekolah" type="text" class="form-control resume" value="<?= end($sklh); ?>">
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="jurusan form-group app-label" id="jurusan">
-                                                        <label class="text-muted">Jurusan :</label>
-                                                        <input id="middle-name" name="jurusan" type="text" class="form-control resume" value="<?= $sekolah[1]; ?>">
+                                                <?php if ($jlh_sklh == 3) : ?>
+                                                    <div class="col-md-6">
+                                                        <div class="jurusan form-group app-label" id="jurusan">
+                                                            <label class="text-muted">Jurusan :</label>
+                                                            <input id="middle-name" name="jurusan" type="text" class="form-control resume" value="<?= $sklh[1]; ?>">
+                                                        </div>
                                                     </div>
-                                                </div>
-
-
+                                                <?php else : ?>
+                                                    <div class="col-md-6">
+                                                        <div class="jurusan form-group app-label" id="jurusan">
+                                                            <label class="text-muted">Jurusan :</label>
+                                                            <input id="middle-name" name="jurusan" type="text" class="form-control resume">
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
 
                                                 <div class="col-md-6">
                                                 </div>
@@ -939,11 +1190,7 @@ require("functions.php");
                                                         <label class="text-muted">Periode :</label>
                                                         <div class="form-button">
                                                             <select class="rounded" name="tahun_mulai" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <?php
-                                                                $tmp_pendidikan = explode('<br>', $row["pendidikan_terakhir"]);
-                                                                $tahun_pendidikan = explode('-', $tmp_pendidikan[0]);
-                                                                ?>
-                                                                <option value="<?= $tahun_pendidikan[0]; ?>"><?= $tahun_pendidikan[0]; ?></option>
+                                                                <option value="<?= $t[0]; ?>"><?= $t[0]; ?></option>
                                                                 <option value="2020">2020</option>
                                                                 <option value="2019">2019</option>
                                                                 <option value="2018">2018</option>
@@ -1001,7 +1248,7 @@ require("functions.php");
                                                         <label class="text-white">.</label>
                                                         <div class="form-button">
                                                             <select class="rounded" name="tahun_akhir" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <option value="<?= $tahun_pendidikan[1]; ?>"><?= $tahun_pendidikan[1]; ?></option>
+                                                                <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option>
                                                                 <option value="2020">2020</option>
                                                                 <option value="2019">2019</option>
                                                                 <option value="2018">2018</option>
@@ -1070,88 +1317,97 @@ require("functions.php");
     <!-- The Modal Pengalaman Bekerja -->
     <div class="modal" id="pengalamanBekerja">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content" style="width:105%">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Pengalaman Bekerja</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-                <form action="edit_informasi_pribadi.php" method="POST">
+                <form action="edit_profil.php" method="POST">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12 mt-3" style="margin-top:0px ! important">
-                                    <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
-                                        <div class="row mt-4">
-                                            <div class="col-md-6">
+                                    <div class="custom-form p-4" style="padding: 0px 0px 0px 0px ! important">
+                                        <div class="row">
+                                            <?php
+                                            $pengalaman = explode(',', $result_get[0]['pengalaman_kerja']);
+                                            $pengalaman1 = [];
+                                            $pengalaman2 = [];
+                                            $pengalaman3 = [];
+
+                                            if (!empty($pengalaman[0])) {
+                                                $pengalaman1 = explode('-', $pengalaman[0]);
+                                            }
+
+                                            if (!empty($pengalaman[1])) {
+                                                $pengalaman2 = explode('-', $pengalaman[1]);
+                                            }
+
+                                            if (!empty($pengalaman[2])) {
+                                                $pengalaman3 = explode('-', $pengalaman[2]);
+                                            }
+
+                                            ?>
+
+                                            <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
+                                            <input type="hidden" name="nama_depan" value="<?= $result_get[0]["nama_depan"]; ?>">
+                                            <input type="hidden" name="nama_belakang" value="<?= $result_get[0]["nama_belakang"]; ?>">
+                                            <input type="hidden" name="email" value="<?= $result_get[0]["email"]; ?>">
+                                            <input type="hidden" name="password" value="<?= $result_get[0]["password"]; ?>">
+                                            <input type="hidden" name="tgl_lahir" value="<?= $result_get[0]["tgl_lahir"]; ?>">
+                                            <input type="hidden" name="jenis_kelamin" value="<?= $result_get[0]["jenis_kelamin"]; ?>">
+                                            <input type="hidden" name="status" value="<?= $result_get[0]["status"]; ?>">
+                                            <input type="hidden" name="foto" value="<?= $result_get[0]["foto"]; ?>">
+                                            <input type="hidden" name="provinsi" value="<?= $result_get[0]["provinsi"]; ?>">
+                                            <input type="hidden" name="kota" value="<?= $result_get[0]["kota"]; ?>">
+                                            <input type="hidden" name="alamat" value="<?= $result_get[0]["alamat"]; ?>">
+                                            <input type="hidden" name="telepon" value="<?= $result_get[0]["telepon"]; ?>">
+                                            <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
+                                            <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
+                                            <input type="hidden" name="ringkasan_pribadi" value="<?= $result_get[0]["ringkasan_pribadi"]; ?>">
+                                            <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
+                                            <input type="hidden" name="mencari_pekerjaan" value="<?= $result_get[0]["mencari_pekerjaan"]; ?>">
+                                            <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
+                                            <input type="hidden" name="pendidikan_terakhir" value="<?= $result_get[0]["pendidikan_terakhir"]; ?>">
+                                            <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
+                                            <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
+                                            <input type="hidden" name="ketunaan" value="<?= $result_get[0]["ketunaan"]; ?>">
+                                            <input type="hidden" name="alat_bantu" value="<?= $result_get[0]["alat_bantu"]; ?>">
+                                            <input type="hidden" name="detail_tambahan" value="<?= $result_get[0]["detail_tambahan"]; ?>">
+                                            
+                                            <div class="col-md-12">
+                                                <span>Silahkan masukan 3 pengalaman kerja terbaik kamu !</span>
+                                            </div>
+
+                                            <?php if(empty($pengalaman1)) : ?>
+                                            <div class="col-md-12 mt-3">
+                                                <span class="badge badge-secondary"> Pengalaman Kerja 1 </span>
+                                            </div>
+
+                                            <div class="col-md-4">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Nama Perusahaan :</label>
-                                                    <input type="hidden" name="id" value="<?= $row["id_user"]; ?>">
-                                                    <input id="middle-name" name="nama_perusahaan" type="text" class="form-control resume" placeholder="Nama Perusahaan">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Jabatan :</label>
-                                                    <input id="middle-name" name="jabatan" type="text" class="form-control resume" placeholder="Jabatan">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Periode :</label>
-                                                    <div class="form-button">
-                                                        <select class="rounded text-muted" name="tahun_mulai" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                            <option value="2020">2020</option>
-                                                            <option value="2019">2019</option>
-                                                            <option value="2018">2018</option>
-                                                            <option value="2017">2017</option>
-                                                            <option value="2016">2016</option>
-                                                            <option value="2015">2015</option>
-                                                            <option value="2014">2014</option>
-                                                            <option value="2013">2013</option>
-                                                            <option value="2012">2012</option>
-                                                            <option value="2011">2011</option>
-                                                            <option value="2010">2010</option>
-                                                            <option value="2009">2009</option>
-                                                            <option value="2008">2008</option>
-                                                            <option value="2007">2007</option>
-                                                            <option value="2006">2006</option>
-                                                            <option value="2005">2005</option>
-                                                            <option value="2004">2004</option>
-                                                            <option value="2003">2003</option>
-                                                            <option value="2002">2002</option>
-                                                            <option value="2001">2001</option>
-                                                            <option value="2000">2000</option>
-                                                            <option value="1999">1999</option>
-                                                            <option value="1998">1998</option>
-                                                            <option value="1997">1997</option>
-                                                            <option value="1996">1996</option>
-                                                            <option value="1995">1995</option>
-                                                            <option value="1994">1994</option>
-                                                            <option value="1993">1993</option>
-                                                            <option value="1992">1992</option>
-                                                            <option value="1991">1991</option>
-                                                            <option value="1990">1990</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-1" style="padding:40px 15px 0px 35px">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted" style="font-weight: bolder"> - </label>
+                                                    <input type="hidden" name="id" placeholder="-">
+                                                    <input id="middle-name" name="nama_perusahaan1" type="text" class="form-control resume" placeholder="Nama Perusahaan">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <div class="form-group app-label">
-                                                    <label class="text-white">.</label>
+                                                    <label class="text-muted">Jabatan :</label>
+                                                    <input id="middle-name" name="jabatan1" type="text" class="form-control resume" placeholder="Jabatan">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Periode</label>
                                                     <div class="form-button">
-                                                        <select class="rounded text-muted" name="tahun_akhir" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                        <select class="rounded" name="tahun_mulai1" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <!-- <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option> -->
                                                             <option value="2020">2020</option>
                                                             <option value="2019">2019</option>
                                                             <option value="2018">2018</option>
@@ -1183,52 +1439,744 @@ require("functions.php");
                                                             <option value="1992">1992</option>
                                                             <option value="1991">1991</option>
                                                             <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_akhir1" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <!-- <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option> -->
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <?php else : ?>
+                                                <div class="col-md-12 mt-3">
+                                                <span class="badge badge-secondary"> Pengalaman Kerja 1 </span>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Perusahaan :</label>
+                                                    <input type="hidden" name="id" placeholder="-">
+                                                    <input id="middle-name" name="nama_perusahaan1" type="text" class="form-control resume" value="<?= $pengalaman1[0]; ?>">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Jabatan :</label>
+                                                    <input id="middle-name" name="jabatan1" type="text" class="form-control resume" value="<?= $pengalaman1[1]; ?>">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Periode</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_mulai1" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="<?= $pengalaman1[2]; ?>"><?= $pengalaman1[2]; ?></option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_akhir1" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="<?= $pengalaman1[3]; ?>"><?= $pengalaman1[3]; ?></option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>  
+                                            <?php endif; ?>
+
+                                            <?php if(empty($pengalaman2)) : ?>
+                                            <div class="col-md-12 mt-2">
+                                                <span class="badge badge-secondary"> Pengalaman Kerja 2 </span>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Perusahaan :</label>
+                                                    <input type="hidden" name="id" placeholder="-">
+                                                    <input id="middle-name" name="nama_perusahaan2" type="text" class="form-control resume" placeholder="Nama Perusahaan">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Jabatan :</label>
+                                                    <input id="middle-name" name="jabatan2" type="text" class="form-control resume" placeholder="Jabatan">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Periode</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_mulai2" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_akhir2" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <?php else : ?>
+                                                <div class="col-md-12 mt-2">
+                                                <span class="badge badge-secondary"> Pengalaman Kerja 2 </span>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Perusahaan :</label>
+                                                    <input type="hidden" name="id" placeholder="-">
+                                                    <input id="middle-name" name="nama_perusahaan2" type="text" class="form-control resume" value="<?= $pengalaman2[0]; ?>">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Jabatan :</label>
+                                                    <input id="middle-name" name="jabatan2" type="text" class="form-control resume" value="<?= $pengalaman2[1]; ?>">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Periode</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_mulai2" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="<?= $pengalaman2[2]; ?>"><?= $pengalaman2[2]; ?></option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_akhir2" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="<?= $pengalaman2[3]; ?>"><?= $pengalaman2[3]; ?></option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <?php endif; ?>
+
+                                            <?php if(empty($pengalaman3)) : ?>
+                                            <div class="col-md-12 mt-2">
+                                                <span class="badge badge-secondary"> Pengalaman Kerja 3 </span>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Perusahaan :</label>
+                                                    <input type="hidden" name="id" placeholder="-">
+                                                    <input id="middle-name" name="nama_perusahaan3" type="text" class="form-control resume" placeholder="Nama Perusahaan">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Jabatan :</label>
+                                                    <input id="middle-name" name="jabatan3" type="text" class="form-control resume" placeholder="Jabatan">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Periode</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_mulai3" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <!-- <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option> -->
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_akhir3" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <!-- <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option> -->
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php else : ?>
+                                                <div class="col-md-12 mt-2">
+                                                <span class="badge badge-secondary"> Pengalaman Kerja 3 </span>
+                                            </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label" style="margin-top:28px">
-                                                    <button type="submit" name="btn_tambah_pengalaman_bekerja" class="btn btn-primary" style="width: 50%"><i class="mdi mdi-plus"></i> Tambah</button>
+                                            <div class="col-md-4">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Nama Perusahaan :</label>
+                                                    <input type="hidden" name="id" placeholder="-">
+                                                    <input id="middle-name" name="nama_perusahaan3" type="text" class="form-control resume" value="<?= $pengalaman3[0]; ?>">
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Jabatan :</label>
+                                                    <input id="middle-name" name="jabatan3" type="text" class="form-control resume" value="<?= $pengalaman3[1]; ?>">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Periode</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_mulai3" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="<?= $pengalaman3[2]; ?>"><?= $pengalaman3[2]; ?></option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="form-group app-label">
+                                                    <label class="text-white">.</label>
+                                                    <div class="form-button">
+                                                        <select class="rounded" name="tahun_akhir3" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                            <option value="<?= $pengalaman3[3]; ?>"><?= $pengalaman3[3]; ?></option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="1999">1999</option>
+                                                            <option value="1998">1998</option>
+                                                            <option value="1997">1997</option>
+                                                            <option value="1996">1996</option>
+                                                            <option value="1995">1995</option>
+                                                            <option value="1994">1994</option>
+                                                            <option value="1993">1993</option>
+                                                            <option value="1992">1992</option>
+                                                            <option value="1991">1991</option>
+                                                            <option value="1990">1990</option>
+                                                            <option value="1989">1989</option>
+                                                            <option value="1988">1988</option>
+                                                            <option value="1987">1987</option>
+                                                            <option value="1986">1986</option>
+                                                            <option value="1985">1985</option>
+                                                            <option value="1984">1984</option>
+                                                            <option value="1983">1983</option>
+                                                            <option value="1982">1982</option>
+                                                            <option value="1981">1981</option>
+                                                            <option value="1980">1980</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="btn_pengalaman_kerja">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
                 </form>
-                <div class="col-md-12">
-                    <table class="table" style="border:none">
-                        <tbody>
-                            <tr>
-                                <th>Periode</th>
-                                <th>Jabatan</th>
-                                <th>Nama Perusahaan</th>
-                                <th>#</th>
-                            </tr>
-                            <?php foreach ($tabel_pengalaman as $isi) : ?>
-                                <tr>
-                                    <td style="width:180px;font-weight:bold"><?= $isi["periode"]; ?></td>
-                                    <td><?= $isi["jabatan"]; ?></td>
-                                    <td><?= $isi["nama_perusahaan"]; ?></td>
-                                    <td><a href="edit_informasi_pribadi.php?id=<?= $isi["id_pengalaman"]; ?>"><i class="mdi mdi-delete text-danger"></i></a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
 
-    <!-- Ini adalah Bagian Footer Modal -->
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-    </div>
 
-    </div>
-    </div>
-    </div>
     <!-- End Modal Pengalaman Bekerja -->
 
     <!-- The Modal Keterampilan -->
@@ -1254,8 +2202,6 @@ require("functions.php");
                                             <div class="col-md-7">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Nama Keterampilan :</label>
-                                                    <input type="hidden" id="id_keterampilan" value="<?= $row['id_user'] ?>">
-                                                    <input type="hidden" id="tmp_keterampilan" value="<?= $row['keterampilan'] ?>">
 
                                                     <input id="nama_keterampilan" type="text" class="form-control resume" placeholder="Keterampilan yang kamu miliki...">
                                                 </div>
@@ -1268,14 +2214,10 @@ require("functions.php");
                                             </div>
 
                                             <div class="col-md-7 bordered" id="ul_keterampilan">
-                                                <?php
-                                                $tmp = explode('<br>', $row['keterampilan']);
-                                                $is = count($tmp);
-                                                ?>
                                                 <ul style="list-style-type: none" style="padding-left: 0px ! important" id="list_keterampilan">
-                                                    <?php for ($i = 0; $i < $is - 1; $i++) : ?>
-                                                        <li class="badge badge-secondary" style="padding:10px 15px 10px 15px;font-size:15px;margin:5px 5px 5px 5px" value="<?= $tmp[$i] ?>" id="hapus_keterampilan"><?= $tmp[$i] ?><i style="margin-left: 8px" class="mdi mdi-close text-white"></i></li>
-                                                    <?php endfor; ?>
+
+                                                    <li class="badge badge-secondary" style="padding:10px 15px 10px 15px;font-size:15px;margin:5px 5px 5px 5px" id="hapus_keterampilan">Bodat <i style="margin-left: 8px" class="mdi mdi-close text-white"></i></li>
+
                                                 </ul>
                                             </div>
                                             <div class="col-md-5 bordered"></div>

@@ -52,6 +52,10 @@ if (isset($_POST['daftar'])) {
 
     $pesan = json_decode($result, true);
 
+    var_dump($form_data);
+    echo '<br><br>';
+    var_dump($pesan);die;
+
     if ($pesan['message'] == 'Berhasil') {
         header('location:login.php');
     } else if ($pesan['message'] == 'unavailable') {
@@ -148,7 +152,7 @@ if (isset($_POST['daftar'])) {
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label class="text-secondary">Konfirmasi Password <span class="text-danger">*</span></label>
-                                                <input type="password" class="form-control" placeholder="Konfirmasi Password" name="password2" required="">
+                                                <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password harus terdiri dari 8 karakter dan mengandung huruf besar, huruf kecil dan angka" class="form-control" placeholder="Konfirmasi Password" name="password2" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
