@@ -233,10 +233,6 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
                                             $expired = date('Y-m-d', strtotime($start_date));
                                             $currentdate = date('Y-m-d');
 
-                                            echo $expired;
-                                            echo $currentdate;
-
-
                                             if ($expired >= $currentdate) {
                                                 echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                 <div class="p-4">
