@@ -224,7 +224,7 @@ $result_get = json_decode($result_get, true);
                                         <?php
 
                                         $start_date = $row['tutup'];
-                                        $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                        $expired = date('Y-m-d', strtotime($start_date));
                                         $currentdate = date('Y-m-d');
 
                                         if (isset($_POST['keyword'])) {

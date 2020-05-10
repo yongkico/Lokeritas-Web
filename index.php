@@ -230,8 +230,12 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
                                         <?php foreach ($a as $row) : ?>
                                             <?php
                                             $start_date = $row['tutup'];
-                                            $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                            $expired = date('Y-m-d', strtotime($start_date));
                                             $currentdate = date('Y-m-d');
+
+                                            echo $expired;
+                                            echo $currentdate;
+
 
                                             if ($expired >= $currentdate) {
                                                 echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
@@ -305,7 +309,7 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
 
                                             <?php
                                             $start_date = $row['tutup'];
-                                            $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                            $expired = date('Y-m-d', strtotime($start_date));
                                             $currentdate = date('Y-m-d');
 
                                             if ($expired >= $currentdate) {
@@ -424,7 +428,7 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
                         <div class="col-lg-4 col-md-6 mt-4 pt-2">
                             <div class="blog position-relative overflow-hidden shadow rounded">
                                 <div class="position-relative overflow-hidden">
-                                    <img src="<?= $row['foto']; ?>" class="img-fluid rounded-top" alt="" width="100%">
+                                    <img src="<?= $row['gambar']; ?>" class="img-fluid rounded-top" alt="" width="100%">
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4 bg-white">
@@ -667,7 +671,7 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
                                         <?php foreach ($a as $row) : ?>
                                             <?php
                                             $start_date = $row['tutup'];
-                                            $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                            $expired = date('Y-m-d', strtotime($start_date));
                                             $currentdate = date('Y-m-d');
 
                                             if ($expired >= $currentdate) {
@@ -742,7 +746,7 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
 
                                             <?php
                                             $start_date = $row['tutup'];
-                                            $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                            $expired = date('Y-m-d', strtotime($start_date));
                                             $currentdate = date('Y-m-d');
 
                                             if ($expired >= $currentdate) {
@@ -915,7 +919,7 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
                         <div class="col-lg-4 col-md-6 mt-4 pt-2">
                             <div class="blog position-relative overflow-hidden shadow rounded">
                                 <div class="position-relative overflow-hidden">
-                                    <img src="<?= $row['foto']; ?>" class="img-fluid rounded-top" alt="" width="100%">
+                                    <img src="<?= $row['gambar']; ?>" class="img-fluid rounded-top" alt="" width="100%">
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4 bg-white">

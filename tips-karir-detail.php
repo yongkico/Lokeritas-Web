@@ -5,7 +5,7 @@ session_start();
 //GET Parameter
 $id_tips = $_GET['id'];
 
-//API Pencarian Tips Detail
+//API Pencarian Lowongan Kerja
 $curl_get = curl_init();
 curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/tips_detail.php?id_tips=' . $id_tips . '');
 curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
@@ -14,7 +14,7 @@ curl_close($curl_get);
 
 $result_get = json_decode($result_get, true);
 
-//API Pencarian Semua Tips
+//API Pencarian Lowongan Kerja
 $curl_get = curl_init();
 curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
 curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
@@ -258,7 +258,7 @@ curl_close($curl);
                                 } ?>
                                 <div class="mt-4">
                                     <div class="clearfix post-recent">
-                                        <div class="post-recent-thumb float-left"> <a href="tips-karir-detail.php?id=<?php echo $row['id_tips']; ?>"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
+                                        <div class="post-recent-thumb float-left"> <a href="tips-karir-detail.php?id=<?php echo $row['id_tips']; ?>"> <img alt="img" src="<?= $row['gambar']; ?>" class="img-fluid rounded"></a></div>
                                         <div class="post-recent-content float-left"><a href="tips-karir-detail.php?id=<?php echo $row['id_tips']; ?>" class="text-dark"><?php echo strtolower($row['judul']); ?></a><span class="text-muted mt-2"><?php echo date("d F Y", strtotime($row['terbit'])); ?></span></div>
                                     </div>
                                 </div>
@@ -273,7 +273,7 @@ curl_close($curl);
                 <div class="col-lg-8 col-md-6 col-12 order-1 order-md-2">
                     <div class="shadow rounded p-4">
                         <div class="blog-details-img">
-                            <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" style="width: 680px" alt="" class="img-fluid mx-auto rounded d-block">
+                            <img src=" <?php echo $result_get['0']['gambar']; ?>" style="width: 680px" alt="" class="img-fluid mx-auto rounded d-block">
                         </div>
                         <div class="blog-details meta mt-3">
                             <ul class="list-inline mb-1">
