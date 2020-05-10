@@ -22,6 +22,7 @@ File: main stylesheet
 **********************/
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
 
+
 .bg-primary {
   background-color: #2f55d4 !important;
 }
@@ -2609,7 +2610,8 @@ input[type=text]:focus {
   overflow: hidden;
 }
 .autocomplete-selected {
-  background: #F0F0F0;
+  background: #FFF;
+  text-transform: lowercase;
 }
 .autocomplete-suggestions strong {
   font-weight: normal;

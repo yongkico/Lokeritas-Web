@@ -18,20 +18,6 @@ $result_get_lowongan = curl_exec($curl_get);
 curl_close($curl_get);
 
 $result_get_lowongan = json_decode($result_get_lowongan, true);
-
-//API AutoCompleteSearch
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/index/autoSearch.php');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get = curl_exec($curl_get);
-curl_close($curl_get);
-
-$result_get = json_decode($result_get, true);
-$nama_pekerjaan = $result_get['data'][0]['nama_pekerjaan'];
-$nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -186,140 +172,18 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                         <div class="home-form-position">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="home-registration-form p-4 mb-3 ">
-                                        <form class="registration-form">
+                                    <div class="home-registration-form p-4 mb-3">
+                                        <form class="registration-form" action="lowongan.php" method="post">
                                             <div class="row">
-                                                <div class="col-lg-3 col-md-6">
+                                                <div class="col-lg-9 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-briefcase"></i>
-                                                        <input type="text" id="autocomplete" class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan">
-                                                    </div>
-                                                    <script type="text/javascript">
-                                                    $(document).ready(function () {
-                                                        // Data yang ditamilkan pada autocomplete.                
-                                                        var autocomplete = [
-                                                            { value: '<?= $nama_pekerjaan;?>', data: '<?= $nama_pekerjaan;?>' },
-                                                            { value: '<?= $nama_perusahaan;?>', data: '<?= $nama_perusahaan;?>' },
-                                                        ];
-
-                                                        // Selector input yang akan menampilkan autocomplete.
-                                                        $("#autocomplete").autocomplete({
-                                                            lookup: autocomplete
-                                                        });
-                                                    })
-                                                </script>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="registration-form-box">
-                                                        <i class="fa fa-list-alt"></i>
-                                                        <select id="select-category" class="demo-default">
-                                                            <option value="">Bidang</option>
-                                                            <option value="ABC">Semua Bidang</option>
-                                                            <option value="Administrasi">Administrasi</option>
-                                                            <option value="Desain dan Arsitektur">Desain dan Arsitektur
-                                                            </option>
-                                                            <option value="Editing, Media dan Informasi">Editing, Media dan
-                                                                Informasi</option>
-                                                            <option value="Elektronik">Elektronik</option>
-                                                            <option value="Hotel dan Katering">Hotel dan Katering</option>
-                                                            <option value="House Keeping">House Keeping</option>
-                                                            <option value="IT dan Telekomunikasi">IT dan Telekomunikasi
-                                                            </option>
-                                                            <option value="Keamanan dan Perlindungan Sipil">Keamanan dan
-                                                                Perlindungan Sipil</option>
-                                                            <option value="Kesehatan dan Kecantikan">Kesehatan dan
-                                                                Kecantikan</option>
-                                                            <option value="Keuangan dan Akuntansi">Keuangan dan Akuntansi
-                                                            </option>
-                                                            <option value="Layanan Sipil / Asosiasi">Layanan Sipil /
-                                                                Asosiasi</option>
-                                                            <option value="Legal">Legal</option>
-                                                            <option value="Manajemen, Manajemen Eksekutif dan Strategis">
-                                                                Manajemen, Manajemen Eksekutif dan Strategis</option>
-                                                            <option value="Pelatihan / Instruksi">Pelatihan / Instruksi
-                                                            </option>
-                                                            <option value="Pelayanan Pelanggan">Pelayanan Pelanggan</option>
-                                                            <option value="Pemasaran dan Periklanan">Pemasaran dan
-                                                                Periklanan</option>
-                                                            <option value="Pemeliharaan">Pemeliharaan</option>
-                                                            <option value="Penelitian, Pengembangan dan Ilmu Pengetahuan">
-                                                                Penelitian, Pengembangan dan Ilmu Pengetahuan</option>
-                                                            <option value="Penjualan dan Perdagangan">Penjualan dan
-                                                                Perdagangan</option>
-                                                            <option value="Perbankan, Asuransi dan Keuangan">Perbankan,
-                                                                Asuransi dan Keuangan</option>
-                                                            <option value="Pertanian, Kehutanan, Laut dan Lingkungan">
-                                                                Pertanian, Kehutanan, Laut dan Lingkungan</option>
-                                                            <option value="Produksi, Konstruksi dan Perdagangan">Produksi,
-                                                                Konstruksi dan Perdagangan</option>
-                                                            <option value="Quality Control">Quality Control</option>
-                                                            <option value="Seni, Budaya dan Hiburan">Seni, Budaya dan
-                                                                Hiburan</option>
-                                                            <option value="Sosial">Sosial</option>
-                                                            <option value="Sumber Daya Manusia">Sumber Daya Manusia</option>
-                                                            <option value="Teknik">Teknik</option>
-                                                            <option value="Transportasi dan Logistik">Transportasi dan
-                                                                Logistik</option>
-                                                        </select>
+                                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan..." required="">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
-                                                        <i class="fa fa-location-arrow"></i>
-                                                        <select id="select-country" class="demo-default">
-                                                            <option value="">Lokasi</option>
-                                                            <option value="Semua Wilayah Sumut">Semua Wilayah Sumut</option>
-                                                            <option value="Kab. Asahan">Kab. Asahan</option>
-                                                            <option value="Kab. Batu Bara">Kab. Batu Bara</option>
-                                                            <option value="Kab. Dairi">Kab. Dairi</option>
-                                                            <option value="Kab. Deli Serdang">Kab. Deli Serdang</option>
-                                                            <option value="Kab. Humbang Hasundutan">Kab. Humbang Hasundutan
-                                                            </option>
-                                                            <option value="Kab. Karo">Kab. Karo</option>
-                                                            <option value="Kab. Labuhan Batu">Kab. Labuhan Batu</option>
-                                                            <option value="Kab. Labuhan Batu Selatan">Kab. Labuhan Batu
-                                                                Selatan</option>
-                                                            <option value="Kab. Labuhan Batu Utara">Kab. Labuhan Batu Utara
-                                                            </option>
-                                                            <option value="Kab. Langkat">Kab. Langkat</option>
-                                                            <option value="Kab. Mandailing Natal">Kab. Mandailing Natal
-                                                            </option>
-                                                            <option value="Kab. Nias">Kab. Nias</option>
-                                                            <option value="Kab. Nias Barat">Kab. Nias Barat</option>
-                                                            <option value="Kab. Nias Selatan">Kab. Nias Selatan</option>
-                                                            <option value="Kab. Nias Utara">Kab. Nias Utara</option>
-                                                            <option value="Kab. Padang Lawas">Kab. Padang Lawas</option>
-                                                            <option value="Kab. Padang Lawas Utara">Kab. Padang Lawas Utara
-                                                            </option>
-                                                            <option value="Kab. Pakpak Bharat">Kab. Pakpak Bharat</option>
-                                                            <option value="Kab. Samosir">Kab. Samosir</option>
-                                                            <option value="Kab. Serdang Bedagai">Kab. Serdang Bedagai
-                                                            </option>
-                                                            <option value="Kab. Simalungun">Kab. Simalungun</option>
-                                                            <option value="Kab. Tapanuli Selatan">Kab. Tapanuli Selatan
-                                                            </option>
-                                                            <option value="Kab. Tapanuli Tengah">Kab. Tapanuli Tengah
-                                                            </option>
-                                                            <option value="Kab. Tapanuli Utara">Kab. Tapanuli Utara</option>
-                                                            <option value="Kab. Toba Samosir">Kab. Toba Samosir</option>
-                                                            <option value="Kab. Binjai">Kota Binjai</option>
-                                                            <option value="Kab. Gunung Sitoli">Kota Gunung Sitoli</option>
-                                                            <option value="Kota Medan">Kota Medan</option>
-                                                            <option value="Kota PadangSidempuan">Kota Padangsidempuan
-                                                            </option>
-                                                            <option value="Kota Pematang Siantar">Kota Pematang Siantar
-                                                            </option>
-                                                            <option value="Kota Sibolga">Kota Sibolga</option>
-                                                            <option value="Kota Tanjung Balai">Kota Tanjung Balai</option>
-                                                            <option value="Kota Tebing Tinggi">Kota Tebing Tinggi</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="registration-form-box">
-                                                        <a href="lowongan.php">
-                                                            <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
-                                                        </a>
+                                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -341,7 +205,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                 <div class="row justify-content-center">
                     <div class="col-12">
                         <div class="section-title text-center mb-4 pb-2" style="margin: 0px 0px 0px 0px ! important">
-                            <h4 class="title title-line pb-5">Lowongan Pekerjaan Dengan Keahlianmu</h4>
+                            <h4 class="title title-line pb-5">Lowongan Pekerjaan</h4>
                         </div>
                     </div>
                 </div>
@@ -353,7 +217,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                     <div class="col-lg-12">
 
                                         <?php
-                                        
+
                                         $total = count($result_get_lowongan);
                                         $page = (isset($_GET['page'])) ? $_GET['page'] : 0;
                                         $content = range(1, $total);
@@ -364,34 +228,40 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                         ?>
 
                                         <?php foreach ($a as $row) : ?>
-                                            <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                            <?php
+                                            $start_date = $row['tutup'];
+                                            $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                            $currentdate = date('Y-m-d');
+
+                                            if ($expired >= $currentdate) {
+                                                echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                 <div class="p-4">
                                                     <div class="row align-items-center">
                                                         <div class="col-md-2">
                                                             <div class="mo-mb-2">
-                                                                <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
+                                                                <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <a href="lowongan-detail.php" class="text-dark">
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
                                                                     <h5 class="f-18">
-                                                                        <?= $row['nama_pekerjaan']; ?>
+                                                                        ' . strtolower($row['nama_pekerjaan']) . '
                                                                     </h5>
                                                                 </a>
-                                                                <p class="text-muted mb-0"><?= $row['nama_perusahaan']; ?>
+                                                                <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
                                                                 </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?= $row['sektor_perusahaan']; ?>
+                                                                <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
                                                                 </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?= $row['alamat']; ?>
+                                                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -406,20 +276,21 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div>
-                                                                <p class="text-muted mb-0 mo-mb-2">Tutup : <?php echo date("d F Y", strtotime($row['tutup'])); ?><span class="text-dark">
-                                                                        <?php //echo date("d F Y", strtotime($datatemp[$page]['tutup'])); 
-                                                                        ?>
+                                                                <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
                                                                     </span></p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="lowongan-detail.php?id=<?= $row['id_lowongan']; ?>" class="btn btn-primary">Selengkapnya</a>
+                                                            <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>';
+                                            } else {
+                                                echo '<h4 class="text-center">Tidak ada lowongan pekerjaan saat ini</h4>';
+                                            }
+                                            ?>
                                         <?php endforeach; ?>
-
 
                                     </div>
                                 </div>
@@ -431,79 +302,88 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                 <div class="col-lg-12 mt-4 pt-2">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination job-pagination mb-0 justify-content-center">
-                                            
-                                            <?php
-                                            $total_pages = count($pages);
-                                            $prevpage = $page - 1;
-                                            $nextpage = $page + 1;
 
-                                            if ($page == 0 ) {
+                                            <?php
+                                            $start_date = $row['tutup'];
+                                            $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                            $currentdate = date('Y-m-d');
+
+                                            if ($expired >= $currentdate) {
+
+                                                $total_pages = count($pages);
+                                                $prevpage = $page - 1;
+                                                $nextpage = $page + 1;
+
+                                                if ($page == 0) {
                                                     echo '
                                                     <li class="page-item disabled">
                                                         <a class="page-link" href="?page=' . $prevpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-left f-15"></i>
                                                         </a>
                                                     </li>
-                                                    ';                                                        
+                                                    ';
 
                                                     $j = 1;
-                                                for ($i = 0; $i < $total; $i++) {
-                                                    echo '
+                                                    for ($i = 0; $i < $total; $i++) {
+                                                        echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $i . '" tabindex="-1" aria-disabled="true">
                                                             ' . $j . '
                                                         </a>
                                                     </li>
                                                     ';
-                                                    $j++;
-                                                }
+                                                        $j++;
+                                                    }
                                                     echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-right f-15"></i>
                                                         </a>
                                                     </li>';
-                                            }
+                                                }
 
-                                            if ($page > 0 ) {
+                                                if ($page > 0) {
                                                     echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $prevpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-left f-15"></i>
                                                         </a>
                                                     </li>
-                                                    ';                                                        
-                                                
-                                                $j = 1;
-                                                for ($i = 0; $i < $total; $i++) {
-                                                    echo '
+                                                    ';
+
+                                                    $j = 1;
+                                                    for ($i = 0; $i < $total; $i++) {
+                                                        echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $i . '" tabindex="-1" aria-disabled="true">
                                                             ' . $j . '
                                                         </a>
                                                     </li>
                                                     ';
-                                                    $j++;
-                                                }
+                                                        $j++;
+                                                    }
 
-                                                if($page == $totalpag-1) {
-                                                    echo '
+                                                    if ($page == $totalpag - 1) {
+                                                        echo '
                                                     <li class="page-item disabled">
                                                         <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-right f-15"></i>
                                                         </a>
                                                     </li>';
-                                                } else {
-                                                    echo '
+                                                    } else {
+                                                        echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-right f-15"></i>
                                                         </a>
                                                     </li>';
+                                                    }
                                                 }
-                                            }
+                                            } ?>
 
-                                            ?>
+
+
+
                                             <!-- <li class="page-item"><a class="page-link" id="dua-job-tab" data-toggle="pill"
                                                 href="#dua-job" role="tab" aria-controls="dua-job"
                                                 aria-selected="false">2</a></li>
@@ -544,7 +424,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                         <div class="col-lg-4 col-md-6 mt-4 pt-2">
                             <div class="blog position-relative overflow-hidden shadow rounded">
                                 <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
+                                    <img src="<?= $row['foto']; ?>" class="img-fluid rounded-top" alt="" width="100%">
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4 bg-white">
@@ -730,33 +610,17 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="home-registration-form p-4 mb-3">
-                                        <form class="registration-form">
+                                        <form class="registration-form" action="lowongan.php" method="post">
                                             <div class="row">
                                                 <div class="col-lg-9 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-briefcase"></i>
-                                                        <input type="text" id="autocomplete" name="autocomplete" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan...">
+                                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan..." required="">
                                                     </div>
-                                                    <script type="text/javascript">
-                                                    $(document).ready(function () {
-                                                        // Data yang ditamilkan pada autocomplete.                
-                                                        var autocomplete = [
-                                                            { value: '<?= $nama_pekerjaan;?>', data: '<?= $nama_pekerjaan;?>' },
-                                                            { value: '<?= $nama_perusahaan;?>', data: '<?= $nama_perusahaan;?>' },
-                                                        ];
-
-                                                        // Selector input yang akan menampilkan autocomplete.
-                                                        $("#autocomplete").autocomplete({
-                                                            lookup: autocomplete
-                                                        });
-                                                    })
-                                                </script>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
-                                                        <a href="lowongan.php">
-                                                            <button type="button" class="btn btn-primary" style="width: 100%">Cari </button>
-                                                        </a>
+                                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -771,7 +635,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
         </section>
         <!-- end home -->
 
-       
+
         <!-- all jobs start -->
         <section class="section bg-light">
             <div class="container">
@@ -790,7 +654,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                     <div class="col-lg-12">
 
                                         <?php
-                                        
+
                                         $total = count($result_get_lowongan);
                                         $page = (isset($_GET['page'])) ? $_GET['page'] : 0;
                                         $content = range(1, $total);
@@ -798,47 +662,43 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                         $a = array_slice($result_get_lowongan, $page, 1);
                                         $totalpag = count($result_get_lowongan);
 
-                                        // $startdate = date("d F Y", strtotime($result_get['0']['tutup']));
-                                        // $expire = strtotime($startdate. ' + 2 days');
-                                        // $today = strtotime("today midnight");
-
                                         ?>
 
                                         <?php foreach ($a as $row) : ?>
-                                            <?php 
-                                            $start_date = date("d F Y", strtotime($row['tutup']));
-                                            $expire = strtotime($start_date. ' + 2 days');
-                                            $today = strtotime("today midnight");
+                                            <?php
+                                            $start_date = $row['tutup'];
+                                            $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                            $currentdate = date('Y-m-d');
 
-                                            if($today <= $expire){
+                                            if ($expired >= $currentdate) {
                                                 echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                 <div class="p-4">
                                                     <div class="row align-items-center">
                                                         <div class="col-md-2">
                                                             <div class="mo-mb-2">
-                                                                <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
+                                                                <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <a href="lowongan-detail.php" class="text-dark">
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
                                                                     <h5 class="f-18">
-                                                                        '.$row['nama_pekerjaan'].'
+                                                                        ' . strtolower($row['nama_pekerjaan']) . '
                                                                     </h5>
                                                                 </a>
-                                                                <p class="text-muted mb-0">'.$row['nama_perusahaan'].'
+                                                                <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
                                                                 </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>'.$row['sektor_perusahaan'].'
+                                                                <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
                                                                 </p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div>
-                                                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>'.$row['alamat'].'
+                                                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -853,20 +713,21 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div>
-                                                                <p class="text-muted mb-0 mo-mb-2">Tutup : '.date("d F Y", strtotime($row['tutup'])).'<span class="text-dark">
+                                                                <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
                                                                     </span></p>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="lowongan-detail.php?id='.$row['id_lowongan'].'" class="btn btn-primary">Selengkapnya</a>
+                                                            <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>';
+                                            } else {
+                                                echo '<h4 class="text-center">Tidak ada lowongan pekerjaan saat ini</h4>';
                                             }
                                             ?>
                                         <?php endforeach; ?>
-
 
                                     </div>
                                 </div>
@@ -879,88 +740,87 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination job-pagination mb-0 justify-content-center">
 
-                                        <?php 
-                                            $start_date = date("d F Y", strtotime($row['tutup']));
-                                            $expire = strtotime($start_date. ' + 2 days');
-                                            $today = strtotime("today midnight");
+                                            <?php
+                                            $start_date = $row['tutup'];
+                                            $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                            $currentdate = date('Y-m-d');
 
-                                            if($today <= $expire){
+                                            if ($expired >= $currentdate) {
 
                                                 $total_pages = count($pages);
-                                            $prevpage = $page - 1;
-                                            $nextpage = $page + 1;
+                                                $prevpage = $page - 1;
+                                                $nextpage = $page + 1;
 
-                                            if ($page == 0 ) {
+                                                if ($page == 0) {
                                                     echo '
                                                     <li class="page-item disabled">
                                                         <a class="page-link" href="?page=' . $prevpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-left f-15"></i>
                                                         </a>
                                                     </li>
-                                                    ';                                                        
+                                                    ';
 
                                                     $j = 1;
-                                                for ($i = 0; $i < $total; $i++) {
-                                                    echo '
+                                                    for ($i = 0; $i < $total; $i++) {
+                                                        echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $i . '" tabindex="-1" aria-disabled="true">
                                                             ' . $j . '
                                                         </a>
                                                     </li>
                                                     ';
-                                                    $j++;
-                                                }
+                                                        $j++;
+                                                    }
                                                     echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-right f-15"></i>
                                                         </a>
                                                     </li>';
-                                            }
+                                                }
 
-                                            if ($page > 0 ) {
+                                                if ($page > 0) {
                                                     echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $prevpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-left f-15"></i>
                                                         </a>
                                                     </li>
-                                                    ';                                                        
-                                                
-                                                $j = 1;
-                                                for ($i = 0; $i < $total; $i++) {
-                                                    echo '
+                                                    ';
+
+                                                    $j = 1;
+                                                    for ($i = 0; $i < $total; $i++) {
+                                                        echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $i . '" tabindex="-1" aria-disabled="true">
                                                             ' . $j . '
                                                         </a>
                                                     </li>
                                                     ';
-                                                    $j++;
-                                                }
+                                                        $j++;
+                                                    }
 
-                                                if($page == $totalpag-1) {
-                                                    echo '
+                                                    if ($page == $totalpag - 1) {
+                                                        echo '
                                                     <li class="page-item disabled">
                                                         <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-right f-15"></i>
                                                         </a>
                                                     </li>';
-                                                } else {
-                                                    echo '
+                                                    } else {
+                                                        echo '
                                                     <li class="page-item">
                                                         <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
                                                             <i class="mdi mdi-chevron-double-right f-15"></i>
                                                         </a>
                                                     </li>';
+                                                    }
                                                 }
-                                            }
-
                                             } ?>
-                                            
-                                            
 
-                                            
+
+
+
                                             <!-- <li class="page-item"><a class="page-link" id="dua-job-tab" data-toggle="pill"
                                                 href="#dua-job" role="tab" aria-controls="dua-job"
                                                 aria-selected="false">2</a></li>
@@ -1055,7 +915,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                         <div class="col-lg-4 col-md-6 mt-4 pt-2">
                             <div class="blog position-relative overflow-hidden shadow rounded">
                                 <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
+                                    <img src="<?= $row['foto']; ?>" class="img-fluid rounded-top" alt="" width="100%">
                                     <div class="overlay rounded-top bg-dark"></div>
                                 </div>
                                 <div class="content p-4 bg-white">
@@ -1343,11 +1203,6 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
 
     <!-- javascript -->
     <script src="js/jquery.min.js"></script>
-    <!-- Memanggil jQuery.js -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-
-    <!-- Memanggil Autocomplete.js -->
-    <script src="js/jquery.autocomplete.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>

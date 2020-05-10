@@ -1,36 +1,18 @@
 <?php
 session_start();
-require("functions.php");
+
 
 //API Pencarian Lowongan Kerja
 $curl_get = curl_init();
 curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get_lowongan = curl_exec($curl_get);
-curl_close($curl_get);
-
-$result_get_lowongan = json_decode($result_get_lowongan, true);
-
-$pekerjaan = $result_get_lowongan[0]['nama_pekerjaan'];
-$lowongan_tutup = $result_get_lowongan[0]['tutup'];
-$nama_perusahaan = $result_get_lowongan[0]['nama_perusahaan'];
-$sektor_perusahaan = $result_get_lowongan[0]['sektor_perusahaan'];
-$alamat_lowongan = $result_get_lowongan[0]['alamat'];
-
-//AutoCompleteSearch
-
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/index/autoSearch.php');
 curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
 $result_get = curl_exec($curl_get);
 curl_close($curl_get);
 
 $result_get = json_decode($result_get, true);
 
-$nama_pekerjaan = $result_get['data'][0]['nama_pekerjaan'];
-$nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -58,6 +40,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
     <link rel="stylesheet" type="text/css" href="css/nice-select.css" />
 
     <!-- Custom  Css -->
+
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
 </head>
@@ -75,11 +58,6 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
     <!-- Loader -->
 
     <?php if (isset($_SESSION["login"])) : ?>
-        <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
-        ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
 
@@ -87,7 +65,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="#" class="logo">
+                    <a href="index.php" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
                         <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
@@ -118,7 +96,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -143,9 +121,9 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                    <a href="index.php" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
@@ -197,7 +175,7 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">Pencarian Lowongan Pekerjaan <?= $nama_pekerjaan;?></h4>
+                        <h4 class="text-uppercase title mb-4">Pencarian Lowongan Pekerjaan</h4>
                     </div>
                 </div>
             </div>
@@ -207,115 +185,20 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
 
     <div class="container" style="height: 53px">
         <div class="home-form-position">
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-lg-12">
-                    <div class="home-registration-form job-list-reg-form bg-light shadow p-4 mb-3">
-                        <form class="registration-form">
+                    <div class="home-registration-form p-4 mb-3">
+                        <form class="registration-form" action="lowongan.php" method="post">
                             <div class="row">
-                                <div class="col-lg-3 col-md-6">
+                                <div class="col-lg-9 col-md-6">
                                     <div class="registration-form-box">
                                         <i class="fa fa-briefcase"></i>
-                                        <input type="text" id="autocomplete" name ="autocomplete "class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan">
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                                    $(document).ready(function () {
-                                                        // Data yang ditamilkan pada autocomplete.                
-                                                        var autocomplete = [
-                                                            { value: '<?= $nama_pekerjaan;?>', data: '<?= $nama_pekerjaan;?>' },
-                                                            { value: '<?= $nama_perusahaan;?>', data: '<?= $nama_perusahaan;?>' },
-                                                        ];
-
-                                                        // Selector input yang akan menampilkan autocomplete.
-                                                        $("#autocomplete").autocomplete({
-                                                            lookup: autocomplete
-                                                        });
-                                                    })
-                                                </script>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="registration-form-box">
-                                        <i class="fa fa-list-alt"></i>
-                                        <select id="select-category" class="demo-default">
-                                            <option value="">Bidang</option>
-                                            <option value="ABC">Semua Bidang</option>
-                                            <option value="Administrasi">Administrasi</option>
-                                            <option value="Desain dan Arsitektur">Desain dan Arsitektur</option>
-                                            <option value="Editing, Media dan Informasi">Editing, Media dan Informasi</option>
-                                            <option value="Elektronik">Elektronik</option>
-                                            <option value="Hotel dan Katering">Hotel dan Katering</option>
-                                            <option value="House Keeping">House Keeping</option>
-                                            <option value="IT dan Telekomunikasi">IT dan Telekomunikasi</option>
-                                            <option value="Keamanan dan Perlindungan Sipil">Keamanan dan Perlindungan Sipil</option>
-                                            <option value="Kesehatan dan Kecantikan">Kesehatan dan Kecantikan</option>
-                                            <option value="Keuangan dan Akuntansi">Keuangan dan Akuntansi</option>
-                                            <option value="Layanan Sipil / Asosiasi">Layanan Sipil / Asosiasi</option>
-                                            <option value="Legal">Legal</option>
-                                            <option value="Manajemen, Manajemen Eksekutif dan Strategis">Manajemen, Manajemen Eksekutif dan Strategis</option>
-                                            <option value="Pelatihan / Instruksi">Pelatihan / Instruksi</option>
-                                            <option value="Pelayanan Pelanggan">Pelayanan Pelanggan</option>
-                                            <option value="Pemasaran dan Periklanan">Pemasaran dan Periklanan</option>
-                                            <option value="Pemeliharaan">Pemeliharaan</option>
-                                            <option value="Penelitian, Pengembangan dan Ilmu Pengetahuan">Penelitian, Pengembangan dan Ilmu Pengetahuan</option>
-                                            <option value="Penjualan dan Perdagangan">Penjualan dan Perdagangan</option>
-                                            <option value="Perbankan, Asuransi dan Keuangan">Perbankan, Asuransi dan Keuangan</option>
-                                            <option value="Pertanian, Kehutanan, Laut dan Lingkungan">Pertanian, Kehutanan, Laut dan Lingkungan</option>
-                                            <option value="Produksi, Konstruksi dan Perdagangan">Produksi, Konstruksi dan Perdagangan</option>
-                                            <option value="Quality Control">Quality Control</option>
-                                            <option value="Seni, Budaya dan Hiburan">Seni, Budaya dan Hiburan</option>
-                                            <option value="Sosial">Sosial</option>
-                                            <option value="Sumber Daya Manusia">Sumber Daya Manusia</option>
-                                            <option value="Teknik">Teknik</option>
-                                            <option value="Transportasi dan Logistik">Transportasi dan Logistik</option>
-                                        </select>
+                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan..." required="">
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="registration-form-box">
-                                        <i class="fa fa-location-arrow"></i>
-                                        <select id="select-country" class="demo-default">
-                                            <option value="">Lokasi</option>
-                                            <option value="Semua Wilayah Sumut">Semua Wilayah Sumut</option>
-                                            <option value="Kab. Asahan">Kab. Asahan</option>
-                                            <option value="Kab. Batu Bara">Kab. Batu Bara</option>
-                                            <option value="Kab. Dairi">Kab. Dairi</option>
-                                            <option value="Kab. Deli Serdang">Kab. Deli Serdang</option>
-                                            <option value="Kab. Humbang Hasundutan">Kab. Humbang Hasundutan</option>
-                                            <option value="Kab. Karo">Kab. Karo</option>
-                                            <option value="Kab. Labuhan Batu">Kab. Labuhan Batu</option>
-                                            <option value="Kab. Labuhan Batu Selatan">Kab. Labuhan Batu Selatan</option>
-                                            <option value="Kab. Labuhan Batu Utara">Kab. Labuhan Batu Utara</option>
-                                            <option value="Kab. Langkat">Kab. Langkat</option>
-                                            <option value="Kab. Mandailing Natal">Kab. Mandailing Natal</option>
-                                            <option value="Kab. Nias">Kab. Nias</option>
-                                            <option value="Kab. Nias Barat">Kab. Nias Barat</option>
-                                            <option value="Kab. Nias Selatan">Kab. Nias Selatan</option>
-                                            <option value="Kab. Nias Utara">Kab. Nias Utara</option>
-                                            <option value="Kab. Padang Lawas">Kab. Padang Lawas</option>
-                                            <option value="Kab. Padang Lawas Utara">Kab. Padang Lawas Utara</option>
-                                            <option value="Kab. Pakpak Bharat">Kab. Pakpak Bharat</option>
-                                            <option value="Kab. Samosir">Kab. Samosir</option>
-                                            <option value="Kab. Serdang Bedagai">Kab. Serdang Bedagai</option>
-                                            <option value="Kab. Simalungun">Kab. Simalungun</option>
-                                            <option value="Kab. Tapanuli Selatan">Kab. Tapanuli Selatan</option>
-                                            <option value="Kab. Tapanuli Tengah">Kab. Tapanuli Tengah</option>
-                                            <option value="Kab. Tapanuli Utara">Kab. Tapanuli Utara</option>
-                                            <option value="Kab. Toba Samosir">Kab. Toba Samosir</option>
-                                            <option value="Kab. Binjai">Kota Binjai</option>
-                                            <option value="Kab. Gunung Sitoli">Kota Gunung Sitoli</option>
-                                            <option value="Kota Medan">Kota Medan</option>
-                                            <option value="Kota PadangSidempuan">Kota Padangsidempuan</option>
-                                            <option value="Kota Pematang Siantar">Kota Pematang Siantar</option>
-                                            <option value="Kota Sibolga">Kota Sibolga</option>
-                                            <option value="Kota Tanjung Balai">Kota Tanjung Balai</option>
-                                            <option value="Kota Tebing Tinggi">Kota Tebing Tinggi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="registration-form-box">
-                                        <a href="lowongan.php">
-                                            <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
-                                        </a>
+                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
                                     </div>
                                 </div>
                             </div>
@@ -337,185 +220,80 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
 
                                 <div class="col-lg-12">
 
-                                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                        <div class="p-4">
-                                            <div class="row align-items-center">
-                                                <div class="col-md-2">
-                                                    <div class="mo-mb-2">
-                                                        <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark"><?php echo $pekerjaan;?></a></h5>
-                                                        <p class="text-muted mb-0"><?php echo $nama_perusahaan;?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?php echo $sektor_perusahaan;?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="p-3 bg-light">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> <?php echo $lowongan_tutup;?> </span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php foreach ($result_get as $row) : ?>
+                                        <?php
 
-                                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                        <div class="p-4">
-                                            <div class="row align-items-center">
-                                                <div class="col-md-2">
-                                                    <div class="mo-mb-2">
-                                                        <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                    <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark"><?php echo $pekerjaan;?></a></h5>
-                                                        <p class="text-muted mb-0"><?php echo $nama_perusahaan;?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?php echo $sektor_perusahaan;?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="p-3 bg-light">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> <?php echo $lowongan_tutup;?> </span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        $start_date = $row['tutup'];
+                                        $expired = date('Y-m-d', strtotime($start_date . ' + 2 days'));
+                                        $currentdate = date('Y-m-d');
 
-                                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                        <div class="p-4">
-                                            <div class="row align-items-center">
-                                                <div class="col-md-2">
-                                                    <div class="mo-mb-2">
-                                                        <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                    <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark"><?php echo $pekerjaan;?></a></h5>
-                                                        <p class="text-muted mb-0"><?php echo $nama_perusahaan;?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?php echo $sektor_perusahaan;?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="p-3 bg-light">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> <?php echo $lowongan_tutup;?> </span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        if (isset($_POST['keyword'])) {
+                                            $cari = strtolower($_POST['keyword']);
 
-                                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                        <div class="p-4">
-                                            <div class="row align-items-center">
-                                                <div class="col-md-2">
-                                                    <div class="mo-mb-2">
-                                                        <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
+                                            if ($expired >= $currentdate) {
+                                                if (strtolower($row['nama_pekerjaan']) == $cari || strtolower($row['nama_perusahaan']) == $cari) {
+                                                    echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                                    <div class="p-4">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-md-2">
+                                                                <div class="mo-mb-2">
+                                                                    <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
+                                                                        <h5 class="f-18">
+                                                                            ' . strtolower($row['nama_pekerjaan']) . '
+                                                                        </h5>
+                                                                    </a>
+                                                                    <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-3 bg-light">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
+                                                                        </span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                    <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark"><?php echo $pekerjaan;?></a></h5>
-                                                        <p class="text-muted mb-0"><?php echo $nama_perusahaan;?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i><?php echo $sektor_perusahaan;?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div>
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $alamat_lowongan;?></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="p-3 bg-light">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div>
-                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> <?php echo $lowongan_tutup;?> </span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                ';
+                                                }
+                                            } else {
+                                                echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                    <?php endforeach; ?>
+
 
                                 </div>
                             </div>
@@ -525,30 +303,6 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
                 </div>
             </div>
             <!-- end row -->
-
-            <!-- end row -->
-            <div class="row">
-                <div class="col-lg-12 mt-4 pt-2">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination job-pagination mb-0 justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                    <i class="mdi mdi-chevron-double-left f-15"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="mdi mdi-chevron-double-right f-15"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
         </div>
         <!-- end containar -->
     </section>
@@ -663,11 +417,11 @@ $nama_perusahaan = $result_get['data'][0]['nama_perusahaan'];
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
 
-     <!-- Memanggil jQuery.js -->
-     <script src="jquery-3.2.1.min.js"></script>
+    <!-- Memanggil jQuery.js -->
+    <script src="jquery-3.2.1.min.js"></script>
 
-<!-- Memanggil Autocomplete.js -->
-<script src="jquery.autocomplete.min.js"></script>
+    <!-- Memanggil Autocomplete.js -->
+    <script src="jquery.autocomplete.min.js"></script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>

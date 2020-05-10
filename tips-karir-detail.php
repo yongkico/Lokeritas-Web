@@ -1,16 +1,50 @@
 <?php
+
 session_start();
 
-//API Tips Karir
+//GET Parameter
+$id_tips = $_GET['id'];
+
+//API Pencarian Tips Detail
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/tips_detail.php?id_tips=' . $id_tips . '');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get = json_decode($result_get, true);
+
+//API Pencarian Semua Tips
 $curl_get = curl_init();
 curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
 curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get_tipsKarir = curl_exec($curl_get);
+$result_get_TK = curl_exec($curl_get);
 curl_close($curl_get);
 
-$result_get_tipsKarir = json_decode($result_get_tipsKarir, true);
-$judul_tipskarir = $result_get_tipsKarir[0]['judul'];
-$konten = $result_get_tipsKarir[0]['kontent'];
+$result_get_TK = json_decode($result_get_TK, true);
+
+
+//API Counter Visitor
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_URL => "http://lokeritas.xyz/api-v1/updateView.php",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => "id_tips=" . $id_tips . "",
+    CURLOPT_HTTPHEADER => array(
+        "Content-Type: application/x-www-form-urlencoded"
+    ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+
 
 ?>
 
@@ -58,11 +92,6 @@ $konten = $result_get_tipsKarir[0]['kontent'];
     <!-- Loader -->
 
     <?php if (isset($_SESSION["login"])) : ?>
-        <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
-        ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
 
@@ -70,9 +99,9 @@ $konten = $result_get_tipsKarir[0]['kontent'];
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                    <a href="index.php" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!--end login button-->
@@ -101,7 +130,7 @@ $konten = $result_get_tipsKarir[0]['kontent'];
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -126,9 +155,9 @@ $konten = $result_get_tipsKarir[0]['kontent'];
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                    <a href="index.php" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
@@ -222,21 +251,19 @@ $konten = $result_get_tipsKarir[0]['kontent'];
 
                         <!-- RECENT POST -->
                         <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Post Terbaru</h4>
-                            <div class="mt-4">
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Consultant Business</a><span class="text-muted mt-2">15th June, 2019</span></div>
+                            <h4 class="widget-title">Artikel Terbaru</h4>
+                            <?php $i = 0;
+                            foreach ($result_get_TK as $row) : if ($i == 3) {
+                                    break;
+                                } ?>
+                                <div class="mt-4">
+                                    <div class="clearfix post-recent">
+                                        <div class="post-recent-thumb float-left"> <a href="tips-karir-detail.php?id=<?php echo $row['id_tips']; ?>"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
+                                        <div class="post-recent-content float-left"><a href="tips-karir-detail.php?id=<?php echo $row['id_tips']; ?>" class="text-dark"><?php echo strtolower($row['judul']); ?></a><span class="text-muted mt-2"><?php echo date("d F Y", strtotime($row['terbit'])); ?></span></div>
+                                    </div>
                                 </div>
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Look On The Glorious Balance</a> <span class="text-muted mt-2">15th June, 2019</span></div>
-                                </div>
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Research Financial.</a> <span class="text-muted mt-2">15th June, 2019</span></div>
-                                </div>
-                            </div>
+                            <?php $i++;
+                            endforeach; ?>
                         </div>
                         <!-- RECENT POST -->
                     </div>
@@ -251,20 +278,29 @@ $konten = $result_get_tipsKarir[0]['kontent'];
                         <div class="blog-details meta mt-3">
                             <ul class="list-inline mb-1">
                                 <li class="list-inline-item mr-4">
-                                    <p class="text-muted mb-0"><i class="mdi mdi-calendar-range mr-1"></i>22 Maret 2020</p>
+                                    <p class="text-muted mb-0 mdi mdi-calendar-range mr-1">
+                                        <?php echo date("d F Y", strtotime($result_get['0']['terbit'])); ?>
+                                    </p>
                                 </li>
 
                                 <li class="list-inline-item mr-4">
-                                    <p class="text-muted mb-0"><i class="mdi mdi-pencil mr-1"></i>Bagus Saragih</p>
+                                    <p class="text-muted mb-0 mdi mdi-pencil mr-1">
+                                        <?php echo $result_get['0']['nama']; ?>
+                                    </p>
+                                </li>
+                                <li class="list-inline-item mr-4">
+                                    <p class="text-muted mb-0 mdi mdi-eye mr-1">
+                                        <?php echo $result_get['0']['hit']; ?>
+                                    </p>
                                 </li>
 
                             </ul>
                         </div>
 
                         <div class="blog-details-desc p-2">
-                            <h5 class="mb-3"><a href="#" class="text-dark"><?php echo $judul_tipskarir;?></a></h5>
+                            <h5 class="mb-3"><a href="#" class="text-dark"><?php echo strtolower($result_get['0']['judul']); ?></a></h5>
 
-                            <p class="text-muted mb-3 f-13" style="text-align: justify"><?php echo $konten;?></p>
+                            <p class="text-muted mb-3 f-13" style="text-align: justify"><?php echo $result_get['0']['kontent']; ?></p>
                         </div>
                     </div>
 
