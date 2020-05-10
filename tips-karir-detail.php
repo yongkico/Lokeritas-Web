@@ -209,7 +209,7 @@ curl_close($curl);
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">Tips Karir</h4>
+                        <h4 class="text-uppercase title mb-4"><?php echo strtolower($result_get['0']['judul']); ?></h4>
                     </div>
                 </div>
             </div>
