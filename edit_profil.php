@@ -414,3 +414,88 @@ if(isset($_POST["btn_pengalaman_kerja"])){
     }
 
 }
+
+if(isset($_POST["simpan_keterampilan"])){
+    header('location:profile.php');
+}
+
+if(isset($_POST['btn_karir'])){
+    $id_user = $_POST['id_user'];
+    $nama_depan = $_POST['nama_depan'];
+    $nama_belakang = $_POST['nama_belakang'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $tgl_lahir = $_POST['tgl_lahir'];
+    $jk = $_POST['jenis_kelamin'];
+    $status = $_POST['status'];
+    $foto = $_POST['foto'];
+    $provinsi = $_POST['provinsi'];
+    $kota = $_POST['kota'];
+    $alamat = $_POST['alamat'];
+    $telepon = $_POST['telepon'];
+    $hash = $_POST['hash'];
+    $active = $_POST['active'];
+    $ringkasan_pribadi = $_POST['ringkasan_pribadi'];
+    $pengalaman_kerja = $_POST['pengalaman_kerja'];
+    $mencari_pekerjaan = $_POST['mencari_pekerjaan'];
+    $keterampilan = $_POST['keterampilan'];
+    $pendidikan_terakhir = $_POST['pendidikan_terakhir'];
+    $dok1 = $_POST['dok1'];
+    $dok2 = $_POST['dok2'];
+    $ketunaan = $_POST["ketunaan"];
+    $alat_bantu = $_POST["alat_bantu"];
+    $penjelasan = $_POST["detail_tambahan"];
+
+    $karir = $_POST['karir'];
+
+    
+    $form_data = array(
+        "id_user" => $id_user,
+        "nama_depan" => $nama_depan,
+        "nama_belakang" => $nama_belakang,
+        "email" => $email,
+        "password" => $password,
+        "tgl_lahir" => $tgl_lahir,
+        "jenis_kelamin" => $jk,
+        "status" => $status,
+        "ketunaan" => $ketunaan,
+        "foto" => $foto,
+        "provinsi" => $provinsi,
+        "kota" => $kota,
+        "alamat" => $alamat,
+        "detail_tambahan" => $penjelasan,
+        "telepon" => $telepon,
+        "alat_bantu" => $alat_bantu,
+        "hash" => $hash,
+        "active" => $active,
+        "ringkasan_pribadi" => $ringkasan_pribadi,
+        "kariryangdimininati" => $karir,
+        "mencari_pekerjaan" => $mencari_pekerjaan,
+        "pendidikan_terakhir" => $pendidikan_terakhir,
+        "keterampilan" => $keterampilan,
+        "pengalaman_kerja" => $pengalaman_kerja,
+        "dok1" => $dok1,
+        "dok2" => $dok2,
+        "param" => 'karir'
+    );
+
+     $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($curl);
+    curl_close($curl);
+
+    $pesan = json_decode($result, true);
+
+    if ($pesan['message'] == 'Berhasil') {
+        header('location:profile.php');
+    } else if ($pesan['message'] == 'unavailable') {
+        echo '<script>
+                alert("Terjadi Kesalahan !");
+            </script>';
+    }
+
+    
+}
