@@ -1,16 +1,16 @@
 <?php
 session_start();
 
-//API Tips Karir
+//GET Parameter
+
+//Semua Tips
 $curl_get = curl_init();
 curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
 curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get_tipsKarir = curl_exec($curl_get);
+$result_get = curl_exec($curl_get);
 curl_close($curl_get);
 
-$result_get_tipsKarir = json_decode($result_get_tipsKarir, true);
-$judul_tipskarir = $result_get_tipsKarir[0]['judul'];
-$konten = $result_get_tipsKarir[0]['kontent'];
+$result_get = json_decode($result_get, true);
 
 ?>
 
@@ -58,11 +58,6 @@ $konten = $result_get_tipsKarir[0]['kontent'];
     <!-- Loader -->
 
     <?php if (isset($_SESSION["login"])) : ?>
-        <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
-        ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
 
@@ -101,7 +96,7 @@ $konten = $result_get_tipsKarir[0]['kontent'];
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -197,9 +192,9 @@ $konten = $result_get_tipsKarir[0]['kontent'];
                         <!-- SEARCH -->
                         <div class="widget mb-4 pb-2">
                             <div id="search2" class="widget-search mb-0">
-                                <form role="search" method="get" id="searchform" class="searchform">
+                                <form role="search" method="post" id="searchform" class="searchform" action="tips-karir.php">
                                     <div>
-                                        <input type="text" class="border rounded" name="s" id="s" placeholder="Cari Keywords...">
+                                        <input type="text" class="border rounded autocomplete-selected" name="keyword" id="exampleInputName1" placeholder="Cari Keywords..." required="">
                                         <input type="submit" id="searchsubmit" value="Search">
                                     </div>
                                 </form>
@@ -222,21 +217,19 @@ $konten = $result_get_tipsKarir[0]['kontent'];
 
                         <!-- RECENT POST -->
                         <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Post Terbaru</h4>
-                            <div class="mt-4">
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Consultant Business</a><span class="text-muted mt-2">15th June, 2019</span></div>
+                            <h4 class="widget-title">Artikel Terbaru</h4>
+                            <?php $i = 0;
+                            foreach ($result_get as $row) : if ($i == 3) {
+                                    break;
+                                } ?>
+                                <div class="mt-4">
+                                    <div class="clearfix post-recent">
+                                        <div class="post-recent-thumb float-left"> <a href="tips-karir-detail.php?id=<?php echo $row['id_tips']; ?>"> <img alt="img" src="<?= $row['gambar']; ?>" class="img-fluid rounded"></a></div>
+                                        <div class="post-recent-content float-left"><a href="tips-karir-detail.php?id=<?php echo $row['id_tips']; ?>" class="text-dark"><?php echo strtolower($row['judul']); ?></a><span class="text-muted mt-2"><?php echo date("d F Y", strtotime($row['terbit'])); ?></span></div>
+                                    </div>
                                 </div>
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Look On The Glorious Balance</a> <span class="text-muted mt-2">15th June, 2019</span></div>
-                                </div>
-                                <div class="clearfix post-recent">
-                                    <div class="post-recent-thumb float-left"> <a href="jvascript:void(0)"> <img alt="img" src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded"></a></div>
-                                    <div class="post-recent-content float-left"><a href="jvascript:void(0)">Research Financial.</a> <span class="text-muted mt-2">15th June, 2019</span></div>
-                                </div>
-                            </div>
+                            <?php $i++;
+                            endforeach; ?>
                         </div>
                         <!-- RECENT POST -->
                     </div>
@@ -245,89 +238,75 @@ $konten = $result_get_tipsKarir[0]['kontent'];
 
                 <div class="col-lg-8 col-md-6 order-1 order-md-2">
                     <div class="row">
+                        <?php $i = 0;
+                        foreach ($result_get as $row) :
+                            if ($i == 4) {
+                                break;
+                            } ?>
 
-                        <div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                            <div class="blog position-relative overflow-hidden shadow rounded">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                </div>
-                                <div class="content p-4 bg-light">
-                                    <h4><a href="tips-karir-detail.php" class="title text-dark"><?php echo $judul_tipskarir;?></a></h4>
-                                    <p class="text-muted"><?php echo substr($konten, 0, 96);?>..</p>
-                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                            <?php
+
+                            if (isset($_POST['keyword'])) {
+                                $cari = strtolower($_POST['keyword']);
+                                $kalimat = strtolower($row['judul']);
+
+                                if (preg_match("/$cari/i", $kalimat)) {
+                                    echo '<div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
+                                    <div class="blog position-relative overflow-hidden shadow rounded">
+                                        <div class="position-relative overflow-hidden">
+                                            <img src="' . $row['gambar'] . '" class="img-fluid rounded-top" alt="" width="100%">
+                                            <div class="overlay rounded-top bg-dark"></div>
+                                        </div>
+                                        <div class="content p-4 bg-white">
+                                        <h4 class="title text-dark">' . strtolower(substr($row['judul'], 0, 26)) . '</a>
+                                        </h4>
+                                            <p class="text-muted">' . substr($row['kontent'], 0, 96) . '</p>
+                                            <a href="tips-karir-detail.php?id=' . $row['id_tips'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>';
+                                }
+                            } elseif (isset($_GET['keyworddd'])) {
+                                $kalimat = strtolower($row['judul']);
+                                $cari = strtolower($_GET['keyworddd']);
+                                if (preg_match("/$cari/i", $kalimat)) {
+                                    echo '<div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
+                                    <div class="blog position-relative overflow-hidden shadow rounded">
+                                        <div class="position-relative overflow-hidden">
+                                            <img src="' . $row['gambar'] . '" class="img-fluid rounded-top" alt="" width="100%">
+                                            <div class="overlay rounded-top bg-dark"></div>
+                                        </div>
+                                        <div class="content p-4 bg-white">
+                                        <h4 class="title text-dark">' . strtolower(substr($row['judul'], 0, 26)) . '</a>
+                                        </h4>
+                                            <p class="text-muted">' . substr($row['kontent'], 0, 96) . '</p>
+                                            <a href="tips-karir-detail.php?id=' . $row['id_tips'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>';
+                                }
+                            } else {
+                                echo '<div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
+                                    <div class="blog position-relative overflow-hidden shadow rounded">
+                                        <div class="position-relative overflow-hidden">
+                                            <img src="' . $row['gambar'] . '" class="img-fluid rounded-top" alt="" width="100%">
+                                            <div class="overlay rounded-top bg-dark"></div>
+                                        </div>
+                                        <div class="content p-4 bg-white">
+                                            <h4 class="title text-dark">' . strtolower(substr($row['judul'], 0, 26)) . '</a>
+                                            </h4>
+                                            <p class="text-muted">' . substr($row['kontent'], 0, 96) . '</p>
+                                            <a href="tips-karir-detail.php?id=' . $row['id_tips'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>';
+                            }
+
+                            ?>
+                        <?php $i++;
+                        endforeach; ?>
                         <!--end col-->
                         <!--end col-->
-
-                        <div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                            <div class="blog position-relative overflow-hidden shadow rounded">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                </div>
-                                <div class="content p-4 bg-light">
-                                    <h4><a href="tips-karir-detail.php" class="title text-dark"><?php echo $judul_tipskarir;?></a></h4>
-                                    <p class="text-muted"><?php echo substr($konten, 0, 96);?>..</p>
-                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-
-                        <div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                            <div class="blog position-relative overflow-hidden shadow rounded">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                </div>
-                                <div class="content p-4 bg-light">
-                                    <h4><a href="tips-karir-detail.php" class="title text-dark"><?php echo $judul_tipskarir;?></a></h4>
-                                    <p class="text-muted"><?php echo substr($konten, 0, 96);?>..</p>
-                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-
-                        <div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                            <div class="blog position-relative overflow-hidden shadow rounded">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="https://3.bp.blogspot.com/-bwglrylRsGE/VFw2u5RigDI/AAAAAAAAAEM/nHzodiYd5kU/s1600/02.jpg" class="img-fluid rounded-top" alt="">
-                                    <div class="overlay rounded-top bg-dark"></div>
-                                </div>
-                                <div class="content p-4 bg-light">
-                                    <h4><a href="tips-karir-detail.php" class="title text-dark"><?php echo $judul_tipskarir;?></a></h4>
-                                    <p class="text-muted"><?php echo substr($konten, 0, 96);?>..</p>
-                                    <a href="tips-karir-detail.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-
-
-                        <div class="col-lg-12" style="margin-top: 30px">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination job-pagination justify-content-center mb-0">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                            <i class="mdi mdi-chevron-double-left f-15"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">
-                                            <i class="mdi mdi-chevron-double-right f-15"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
                     </div>
                 </div>
             </div>

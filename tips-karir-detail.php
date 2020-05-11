@@ -2,19 +2,22 @@
 
 session_start();
 
-//GET Parameter
-$id_tips = $_GET['id'];
+$site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
+$secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
-//API Pencarian Lowongan Kerja
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/tips_detail.php?id_tips=' . $id_tips . '');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get = curl_exec($curl_get);
-curl_close($curl_get);
+//Tips Detail
+if (isset($_GET['id'])) {
+    $id_tips = $_GET['id'];
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/tips_detail.php?id_tips=' . $id_tips . '');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
 
-$result_get = json_decode($result_get, true);
+    $result_get = json_decode($result_get, true);
+}
 
-//API Pencarian Lowongan Kerja
+//Semua Tips
 $curl_get = curl_init();
 curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
 curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
@@ -22,7 +25,6 @@ $result_get_TK = curl_exec($curl_get);
 curl_close($curl_get);
 
 $result_get_TK = json_decode($result_get_TK, true);
-
 
 //API Counter Visitor
 $curl = curl_init();
@@ -44,7 +46,65 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 curl_close($curl);
+/////////////////////////////
 
+if (isset($_POST['send'])) {
+
+    if (isset($_POST['g-recaptcha-response'])) {
+        $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
+        $response = @file_get_contents($api_url);
+        $data = json_decode($response, true);
+
+        if ($data['success']) {
+            $comment = $_POST['komentar'];
+            $success = true;
+
+            $id_tips = $_GET['id'];
+            $id_komentar = '';
+            $nama = $_POST['nama'];
+            $email = $_POST['email'];
+            $website = $_POST['website'];
+            $komentar = $_POST['komentar'];
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "http://lokeritas.xyz/api-v1/comments.php",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "id_tips=$id_tips&id_komentar=$id_komentar&nama=$nama&email=$email&website=$website&komentar=$komentar",
+                CURLOPT_HTTPHEADER => array(
+                    "Content-Type: application/x-www-form-urlencoded"
+                ),
+            ));
+
+            $formCom = curl_exec($curl);
+
+            curl_close($curl);
+        } else {
+            $success = false;
+        }
+    } else {
+        $success = false;
+    }
+}
+
+/////////////////////////
+
+//Semua Tips
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/comments.php?id_tips=' . $id_tips . '');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get_comment = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get_comment = json_decode($result_get_comment, true);
+
+// echo $result_get_comment['2']['nama'];
 
 ?>
 
@@ -76,6 +136,10 @@ curl_close($curl);
 
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/initial.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
 
 </head>
 
@@ -226,9 +290,9 @@ curl_close($curl);
                         <!-- SEARCH -->
                         <div class="widget mb-4 pb-2">
                             <div id="search2" class="widget-search mb-0">
-                                <form role="search" method="get" id="searchform" class="searchform">
+                                <form role="search" method="get" id="searchform" class="searchform" action="tips-karir.php">
                                     <div>
-                                        <input type="text" class="border rounded" name="s" id="s" placeholder="Cari Keywords...">
+                                        <input type="text" class="border rounded" name="keyworddd" id="s" placeholder="Cari Keywords..." required="">
                                         <input type="submit" id="searchsubmit" value="Search">
                                     </div>
                                 </form>
@@ -269,7 +333,6 @@ curl_close($curl);
                     </div>
                 </div>
                 <!--end col-->
-
                 <div class="col-lg-8 col-md-6 col-12 order-1 order-md-2">
                     <div class="shadow rounded p-4">
                         <div class="blog-details-img">
@@ -304,51 +367,76 @@ curl_close($curl);
                         </div>
                     </div>
 
+                    <div class="rounded border mt-4 p-4">
+                        <h5 class="text-dark">Komentar</h5>
+                        <?php
+                        foreach ($result_get_comment as $row) : ?>
 
+                            <hr id="hr">
+                            <img data-name="<?php echo $row['nama']; ?>" class="initial" style="border-radius: 5px;" width="30px">
+                            <a href="http://<?php echo $row['website']; ?>"><?php echo $row['nama']; ?></a><span style="color: #a3a4a4;"> (<?php echo $row['email']; ?>)</span><br><span style="font-size: 30px;">&ldquo;</span> <?php echo $row['komentar']; ?>
+                            <br>
+                            <script>
+                                $('.initial').initial();
+                            </script>
+                        <?php
+                        endforeach; ?>
+
+
+                    </div>
 
                     <div class="rounded border mt-4 p-4">
-                        <h5 class="text-dark"><i class="mdi mdi-pencil mr-2"></i>Komentar</h5>
-                        <div class="custom-form mt-4 pt-2">
-                            <form name="contact-form">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group blog-details-form">
-                                            <i class="mdi mdi-account text-muted f-17"></i>
-                                            <input name="name" id="name" type="text" class="form-control blog-details" placeholder="Nama">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group blog-details-form">
-                                            <i class="mdi mdi-email text-muted f-17"></i>
-                                            <input name="email" id="email" type="email" class="form-control blog-details" placeholder="Email">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group blog-details-form">
-                                            <i class="mdi mdi-web text-muted f-17"></i>
-                                            <input name="url" id="url" type="url" class="form-control blog-details" placeholder="Website">
-                                        </div>
-                                    </div>
-                                </div>
+                        <?php if (isset($success)) {
+                            if ($success == true) {
+                                echo '<p class="text-center" style="color: red; font-weight: bold;">Komentar anda berhasil dikirim</p>
+                                ';
+                            } else {
+                                echo '<p class="text-center" style="color: red; font-weight: bold;">Komentar anda gagal dikirim, harap verifikasi captcha</p>
+                                ';
+                            }
+                        } ?>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group blog-details-form">
-                                            <i class="mdi mdi-comment-processing text-muted f-17"></i>
-                                            <textarea name="comments" id="comments" rows="4" class="form-control blog-details" placeholder="Komentar"></textarea>
-                                        </div>
+                        <form name="contact-form" method="post" action="tips-karir-detail.php?id=<?php echo $_GET['id']; ?>">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group blog-details-form">
+                                        <i class="mdi mdi-account text-muted f-17"></i>
+                                        <input name="nama" id="name" type="text" class="form-control blog-details" placeholder="Nama" required="">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
+                                <div class="col-md-6">
+                                    <div class="form-group blog-details-form">
+                                        <i class="mdi mdi-email text-muted f-17"></i>
+                                        <input name="email" id="email" type="email" class="form-control blog-details" placeholder="Email" required="">
                                     </div>
                                 </div>
-                            </form>
-                            <!-- /form -->
-                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group blog-details-form">
+                                        <i class="mdi mdi-web text-muted f-17"></i>
+                                        <input name="website" id="url" type="url" class="form-control blog-details" placeholder="Website" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group blog-details-form">
+                                        <i class="mdi mdi-comment-processing text-muted f-17"></i>
+                                        <textarea name="komentar" id="comments" rows="4" class="form-control blog-details" placeholder="Komentar" required=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
+                                </div>
+                            </div>
+                        </form>
+                        <!-- /form -->
+
                     </div>
                 </div>
             </div>
@@ -471,6 +559,8 @@ curl_close($curl);
     <script src="js/jquery.nice-select.min.js"></script>
 
     <script src="js/app.js"></script>
+
+    <!-- initial js -->
 
 </body>
 
