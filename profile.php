@@ -512,7 +512,7 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                         <?php if (empty($result_get[0]['kariryangdimininati'])) : ?>
                                             <td>-</td>
                                         <?php else : ?>
-                                            
+
                                             <?php
                                             $karirr = explode('-', $result_get[0]['kariryangdimininati']);
                                             ?>
@@ -545,24 +545,49 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                 </div>
                             </div>
                             <div style="padding:20px 10px 10px 10px" class="border-top">
-                                <p style="margin-top:10px" class="text-info">Daftar dokumen yang telah di upload :</p>
+                                <p style="margin-top:10px" class="text-info justify-content-center">Daftar berkas yang telah di unggah :</p>
                             </div>
-                            <table class="table" style="border:none">
-                                <tbody>
-                                    <tr>
-                                        <th>Keterangan</th>
-                                        <th>Nama Dokumen</th>
-                                    </tr>
-                                    <tr>
-                                        <td>CV</td>
-                                        <td><a href="#">CV - Samsul Sinaga.pdf</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sertifikat Pelatihan</td>
-                                        <td><a href="#">Samsul Sinaga.pdf</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div>
+                                <?php if ($result_get[0]['dok1'] == '' && $result_get[0]['dok2'] == '') : ?>
+                                    <div style="margin:0px 0px 20px 10px ! important">
+                                        <i class="text-muted">Belum ada berkas yang di unggah !</i>
+                                    </div>
+                                <?php else : ?>
+                                    <?php
+                                    $berkas1 = $result_get[0]['dok1'];
+                                    $berkas2 = $result_get[0]['dok2'];
+
+                                    $tmp_berkas = [];
+                                    if ($berkas1 !== '') {
+                                        $tmp_berkas[] = $berkas1;
+                                    }
+
+                                    if ($berkas2 !== '') {
+                                        $tmp_berkas[] = $berkas2;
+                                    }
+
+                                    ?>
+
+
+                                    <table class="table" style="border:none">
+                                        <tbody>
+                                            <tr>
+                                                <th>Keterangan</th>
+                                                <th>Berkas</th>
+                                            </tr>
+                                            <?php foreach ($tmp_berkas as $b) : ?>
+                                                <?php
+                                                $tmp_b = explode(',', $b);
+                                                ?>
+                                                <tr>
+                                                    <td><?= $tmp_b[1]; ?></td>
+                                                    <td><a href="<?= '/api-v1/uploads/Berkas/' . $tmp_b[0]; ?>"  download="<?= $tmp_b[0]; ?>" target="_blank"><?= $tmp_b[0]; ?></a></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2365,52 +2390,173 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                         <div class="row">
                             <div class="col-12 mt-3" style="margin-top:0px ! important">
                                 <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
-                                    <form>
+                                    <?php if ($result_get[0]['dok1'] !== '' && $result_get[0]['dok2'] !== '') : ?>
                                         <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
-                                            <div class="col-md-12" style="margin-bottom: 10px;"><i class="text-danger">* Berkas harus berupa format .pdf atau .jpeg dan ukuran berkas tidak lebih dari 2MB </i></div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-12" style="margin-bottom: 40px;"><i class="text-danger">* Berkas harus berupa format .pdf atau .jpeg dan ukuran berkas tidak lebih dari 2MB </i></div>
+                                            <div class="col-md-12">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Pilih Berkas:</label>
-                                                    <input type="file" name="" id="">
+                                                    <input type="file" name="berkas">
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Keterangan :</label>
-                                                    <input id="middle-name" type="text" class="form-control resume" placeholder="Mis : Sertifikat Pelatihan">
+                                                    <input id="middle-name" name="keterangan" type="text" class="form-control resume" placeholder="Contoh : Curriculum Vitae">
                                                 </div>
                                             </div>
-
                                             <div class="col-md-3" style="padding-top:30px">
                                                 <div class="form-group app-label">
-                                                    <button type="button" class="btn btn-primary" style="width: 100%"><i class="mdi mdi-plus"></i> Tambah</button>
+                                                    <button onclick="loginEx()" class="btn btn-primary" style="width: 100%">Tambah</button>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 bordered rounded">
-                                                <table class="table rounded" style="border: 1px solid #e1e0e0;width:100%">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th>Keterangan</th>
-                                                            <th>Nama Berkas</th>
-                                                            <th>#</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>CV</td>
-                                                            <td><a href="#">CV - Samsul Sinaga.pdf</a></td>
-                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Sertifikat Keahlian</td>
-                                                            <td><a href="#">Samsul Sinaga.pdf</a></td>
-                                                            <td><a href="#"><i class="mdi mdi-delete text-danger"></i></a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+
+                                            <div class="col-md-12 mt-3 bordered rounded">
+                                                <input type="hidden" id="emailnya" value="<?= $result_get[0]["email"]; ?>">
+                                                <div id="area_berkas">
+                                                    <?php if ($result_get[0]['dok1'] == '' && $result_get[0]['dok2'] == '') : ?>
+                                                        <div style="padding:10px 10px 10px 10px;margin:0px 0px 20px 0px ! important;border:1px solid #8492a6;border-radius:10px" class="bordered">
+                                                            <i class="text-info">Belum ada berkas yang di unggah !</i>
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <?php
+                                                        $berkas1 = $result_get[0]['dok1'];
+                                                        $berkas2 = $result_get[0]['dok2'];
+
+                                                        $tmp_berkas = [$berkas1];
+                                                        if ($berkas2 !== '') {
+                                                            $tmp_berkas[] = $berkas2;
+                                                        }
+
+                                                        ?>
+                                                        <table class="table rounded" style="border: 1px solid #e1e0e0;width:100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>Keterangan</th>
+                                                                    <th>Berkas</th>
+                                                                    <th>#</th>
+                                                                </tr>
+                                                                <?php foreach ($tmp_berkas as $b) : ?>
+                                                                    <?php
+                                                                    $tmp_b = explode(',', $b);
+                                                                    ?>
+                                                                    <tr>
+                                                                        <td><?= $tmp_b[1]; ?></td>
+                                                                        <td><?= $tmp_b[0]; ?></td>
+                                                                        <td><button type="button" class="btn btn-danger-outline" id="<?= $tmp_b[2]; ?>" data-toggle="tooltip" title="Hapus"><i class="mdi mdi-delete"></i></button></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            </tbody>
+                                                        </table>
+                                                    <?php endif; ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    <?php else : ?>
+
+                                        <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
+                                            <form action="edit_profil.php" method="POST" enctype="multipart/form-data">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="margin-bottom: 40px;"><i class="text-danger">* Format berkas yang dapat diunggah adalah .pdf, .png, .jpg atau .jpeg dan ukuran berkas tidak lebih dari 2MB </i></div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group app-label">
+                                                                <label class="text-muted">Pilih Berkas:</label>
+                                                                <input type="file" name="berkas" required>
+
+                                                                <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
+                                                                <input type="hidden" name="nama_depan" value="<?= $result_get[0]["nama_depan"]; ?>">
+                                                                <input type="hidden" name="nama_belakang" value="<?= $result_get[0]["nama_belakang"]; ?>">
+                                                                <input type="hidden" name="email" value="<?= $result_get[0]["email"]; ?>">
+                                                                <input type="hidden" name="password" value="<?= $result_get[0]["password"]; ?>">
+                                                                <input type="hidden" name="tgl_lahir" value="<?= $result_get[0]["tgl_lahir"]; ?>">
+                                                                <input type="hidden" name="jenis_kelamin" value="<?= $result_get[0]["jenis_kelamin"]; ?>">
+                                                                <input type="hidden" name="status" value="<?= $result_get[0]["status"]; ?>">
+                                                                <input type="hidden" name="foto" value="<?= $result_get[0]["foto"]; ?>">
+                                                                <input type="hidden" name="provinsi" value="<?= $result_get[0]["provinsi"]; ?>">
+                                                                <input type="hidden" name="kota" value="<?= $result_get[0]["kota"]; ?>">
+                                                                <input type="hidden" name="alamat" value="<?= $result_get[0]["alamat"]; ?>">
+                                                                <input type="hidden" name="telepon" value="<?= $result_get[0]["telepon"]; ?>">
+                                                                <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
+                                                                <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
+                                                                <input type="hidden" name="ringkasan_pribadi" value="<?= $result_get[0]["ringkasan_pribadi"]; ?>">
+                                                                <input type="hidden" name="pengalaman_kerja" value="<?= $result_get[0]["pengalaman_kerja"]; ?>">
+                                                                <input type="hidden" name="mencari_pekerjaan" value="<?= $result_get[0]["mencari_pekerjaan"]; ?>">
+                                                                <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
+                                                                <input type="hidden" name="pendidikan_terakhir" value="<?= $result_get[0]["pendidikan_terakhir"]; ?>">
+                                                                <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
+                                                                <input type="hidden" name="ketunaan" value="<?= $result_get[0]["ketunaan"]; ?>">
+                                                                <input type="hidden" name="alat_bantu" value="<?= $result_get[0]["alat_bantu"]; ?>">
+                                                                <input type="hidden" name="detail_tambahan" value="<?= $result_get[0]["detail_tambahan"]; ?>">
+                                                                <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
+                                                                <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group app-label">
+                                                                <label class="text-muted">Keterangan :</label>
+                                                                <input id="middle-name" name="keterangan" type="text" class="form-control resume" placeholder="Contoh : Curriculum Vitae" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3" style="padding-top:30px">
+                                                            <div class="form-group app-label">
+                                                                <button type="submit" name="btn_berkas" class="btn btn-primary" style="width: 100%">Tambah</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            <div class="col-md-12 mt-3 bordered rounded" id="area_berkas">
+                                                <input type="hidden" id="emailnya" value="<?= $result_get[0]["email"]; ?>">
+                                                <div>
+                                                    <?php if ($result_get[0]['dok1'] == '' && $result_get[0]['dok2'] == '') : ?>
+                                                        <div style="padding:10px 10px 10px 10px;margin:0px 0px 20px 0px ! important;border:1px solid #8492a6;border-radius:10px" class="bordered">
+                                                            <i class="text-info">Belum ada berkas yang di unggah !</i>
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <?php
+                                                        $berkas1 = $result_get[0]['dok1'];
+                                                        $berkas2 = $result_get[0]['dok2'];
+
+                                                        $tmp_berkas = [];
+
+                                                        if ($berkas1 !== '') {
+                                                            $tmp_berkas[] = $berkas1;
+                                                        }
+                                                        if ($berkas2 !== '') {
+                                                            $tmp_berkas[] = $berkas2;
+                                                        }
+
+                                                        ?>
+                                                        <table class="table rounded" style="border: 1px solid #e1e0e0;width:100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>Keterangan</th>
+                                                                    <th>Berkas</th>
+                                                                    <th>#</th>
+                                                                </tr>
+                                                                <?php foreach ($tmp_berkas as $b) : ?>
+                                                                    <?php
+                                                                    $tmp_b = explode(',', $b);
+                                                                    ?>
+                                                                    <tr>
+                                                                        <td><?= $tmp_b[1]; ?></td>
+                                                                        <td><?= $tmp_b[0]; ?></td>
+                                                                        <td><button type="button" class="btn btn-danger-outline" id="<?= $tmp_b[2]; ?>" data-toggle="tooltip" title="Hapus"><i class="mdi mdi-delete"></i></button></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            </tbody>
+                                                        </table>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -2419,7 +2565,6 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
 
                 <!-- Ini adalah Bagian Footer Modal -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                 </div>
 
@@ -2562,7 +2707,7 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function loginEx() {
-            swal("Perhatian!", "Anda harus masuk terlebih dahulu!", "warning");
+            swal("Perhatian!", "Berkas yang diunggah maksimal 2 !", "warning");
         }
     </script>
 
@@ -2576,7 +2721,8 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
 
     <script src="js/app.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/script-2.js"></script>
+    <script src="js/script-dok1.js"></script>
+    <script src="js/script-dok2.js"></script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -2707,13 +2853,13 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                         // document.getElementById('karir').value = dft_karir;
                         // console.log(dft_karir);
 
-                        if(selectedItemList.length > 3){
-                            alert('Karir yang diminati yang dipilih maksimal 3 !');   
-                            event.preventDefault(); 
+                        if (selectedItemList.length > 3) {
+                            alert('Karir yang diminati yang dipilih maksimal 3 !');
+                            event.preventDefault();
                             return false;
-                              
-                        }else{
-                            for(var i = 0; i < selectedItemList.length; i++){                                
+
+                        } else {
+                            for (var i = 0; i < selectedItemList.length; i++) {
                                 dft_karir += selectedItemList[i].Name + '-';
                             }
                             dft_karir = dft_karir.substring(0, dft_karir.length - 1);
@@ -2750,6 +2896,11 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
         }
 
         console.log(GetStudent());
+    </script>
+
+    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+    <script>
+        $(":file").filestyle();
     </script>
 </body>
 

@@ -2,7 +2,7 @@
 session_start();
 require("functions.php");
 
-if(isset($_POST["btn_informasi_pribadi"])){
+if (isset($_POST["btn_informasi_pribadi"])) {
 
     $id_user = $_POST['id_user'];
     $password_lama = $_POST['password_lama'];
@@ -35,18 +35,17 @@ if(isset($_POST["btn_informasi_pribadi"])){
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
     $password2 = mysqli_real_escape_string($conn, $_POST["password2"]);
 
-    
 
-    if($mencari_pekerjaan == 'Ya'){
+
+    if ($mencari_pekerjaan == 'Ya') {
         $mencari_pekerjaan = 1;
-    }else{
+    } else {
         $mencari_pekerjaan = 0;
     }
 
-    if(empty($password)){
+    if (empty($password)) {
         $pw = $password_lama;
-        
-    }else{
+    } else {
         if ($password !== $password2) {
             echo "
                     <script>
@@ -55,14 +54,14 @@ if(isset($_POST["btn_informasi_pribadi"])){
                     </script>
                 ";
             // header("location:profile.php");
-            
+
         }
         //enkripsi password
         $password = password_hash($password, PASSWORD_DEFAULT);
         $pw = $password;
-    }    
+    }
 
-    
+
 
     $form_data = array(
         "id_user" => $id_user,
@@ -111,11 +110,10 @@ if(isset($_POST["btn_informasi_pribadi"])){
                 alert("Terjadi Kesalahan !");
             </script>';
     }
-    
 }
 
 
-if(isset($_POST["btn_rincian_disabilitas"])){
+if (isset($_POST["btn_rincian_disabilitas"])) {
 
     $id_user = $_POST['id_user'];
     $nama_depan = $_POST['nama_depan'];
@@ -144,7 +142,7 @@ if(isset($_POST["btn_rincian_disabilitas"])){
     $alat_bantu = $_POST["alat_bantu"];
     $penjelasan = $_POST["penjelasan"];
     $ketunaan = '';
-    
+
 
     foreach ($tmp_ketunaan as $list) {
         $ketunaan .= $list . ',';
@@ -160,7 +158,7 @@ if(isset($_POST["btn_rincian_disabilitas"])){
         "tgl_lahir" => $tgl_lahir,
         "jenis_kelamin" => $jk,
         "status" => $status,
-        "ketunaan" => substr_replace($ketunaan ,"",-1),
+        "ketunaan" => substr_replace($ketunaan, "", -1),
         "foto" => $foto,
         "provinsi" => $provinsi,
         "kota" => $kota,
@@ -201,7 +199,7 @@ if(isset($_POST["btn_rincian_disabilitas"])){
 }
 
 
-if(isset($_POST["btn_pendidikan_terakhir"])){
+if (isset($_POST["btn_pendidikan_terakhir"])) {
     $id_user = $_POST['id_user'];
     $nama_depan = $_POST['nama_depan'];
     $nama_belakang = $_POST['nama_belakang'];
@@ -290,12 +288,11 @@ if(isset($_POST["btn_pendidikan_terakhir"])){
                 alert("Terjadi Kesalahan !");
             </script>';
     }
-
 }
 
 
 
-if(isset($_POST["btn_pengalaman_kerja"])){
+if (isset($_POST["btn_pengalaman_kerja"])) {
     $id_user = $_POST['id_user'];
     $nama_depan = $_POST['nama_depan'];
     $nama_belakang = $_POST['nama_belakang'];
@@ -339,31 +336,25 @@ if(isset($_POST["btn_pengalaman_kerja"])){
     $tahun_mulai3 = $_POST['tahun_mulai3'];
     $tahun_akhir3 = $_POST['tahun_akhir3'];
 
-    if(!empty($nama_perusahaan1) && empty($nama_perusahaan2) && empty($nama_perusahaan3)){
+    if (!empty($nama_perusahaan1) && empty($nama_perusahaan2) && empty($nama_perusahaan3)) {
         $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1;
-    }
-    elseif(empty($nama_perusahaan1) && !empty($nama_perusahaan2) && empty($nama_perusahaan3)){
+    } elseif (empty($nama_perusahaan1) && !empty($nama_perusahaan2) && empty($nama_perusahaan3)) {
         $pengalaman_kerja .= $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2;
-    }
-    elseif(empty($nama_perusahaan1) && empty($nama_perusahaan2) && !empty($nama_perusahaan3)){
+    } elseif (empty($nama_perusahaan1) && empty($nama_perusahaan2) && !empty($nama_perusahaan3)) {
         $pengalaman_kerja .= $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3;
-    }
-    elseif(!empty($nama_perusahaan1) && !empty($nama_perusahaan2) && empty($nama_perusahaan3)){
-        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2 ;
-    }
-    elseif(!empty($nama_perusahaan1) && empty($nama_perusahaan2) && !empty($nama_perusahaan3)){
-        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3 ;
-    }
-    elseif(empty($nama_perusahaan1) && !empty($nama_perusahaan2) && !empty($nama_perusahaan3)){
-        $pengalaman_kerja .= $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3 ;
-    }
-    elseif(!empty($nama_perusahaan1) && !empty($nama_perusahaan2) && !empty($nama_perusahaan3)){
-        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3 ;
-    }else{
+    } elseif (!empty($nama_perusahaan1) && !empty($nama_perusahaan2) && empty($nama_perusahaan3)) {
+        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2;
+    } elseif (!empty($nama_perusahaan1) && empty($nama_perusahaan2) && !empty($nama_perusahaan3)) {
+        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3;
+    } elseif (empty($nama_perusahaan1) && !empty($nama_perusahaan2) && !empty($nama_perusahaan3)) {
+        $pengalaman_kerja .= $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3;
+    } elseif (!empty($nama_perusahaan1) && !empty($nama_perusahaan2) && !empty($nama_perusahaan3)) {
+        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3;
+    } else {
         $pengalaman_kerja = '-';
     }
 
-       
+
 
     $form_data = array(
         "id_user" => $id_user,
@@ -412,14 +403,13 @@ if(isset($_POST["btn_pengalaman_kerja"])){
                 alert("Terjadi Kesalahan !");
             </script>';
     }
-
 }
 
-if(isset($_POST["simpan_keterampilan"])){
+if (isset($_POST["simpan_keterampilan"])) {
     header('location:profile.php');
 }
 
-if(isset($_POST['btn_karir'])){
+if (isset($_POST['btn_karir'])) {
     $id_user = $_POST['id_user'];
     $nama_depan = $_POST['nama_depan'];
     $nama_belakang = $_POST['nama_belakang'];
@@ -448,7 +438,7 @@ if(isset($_POST['btn_karir'])){
 
     $karir = $_POST['karir'];
 
-    
+
     $form_data = array(
         "id_user" => $id_user,
         "nama_depan" => $nama_depan,
@@ -479,7 +469,7 @@ if(isset($_POST['btn_karir'])){
         "param" => 'karir'
     );
 
-     $curl = curl_init();
+    $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
     curl_setopt($curl, CURLOPT_POST, 1);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
@@ -496,6 +486,206 @@ if(isset($_POST['btn_karir'])){
                 alert("Terjadi Kesalahan !");
             </script>';
     }
+}
+
+
+if (isset($_POST['btn_berkas'])) {
+
+    $id_user = $_POST['id_user'];
+    $nama_depan = $_POST['nama_depan'];
+    $nama_belakang = $_POST['nama_belakang'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $tgl_lahir = $_POST['tgl_lahir'];
+    $jk = $_POST['jenis_kelamin'];
+    $status = $_POST['status'];
+    $foto = $_POST['foto'];
+    $provinsi = $_POST['provinsi'];
+    $kota = $_POST['kota'];
+    $alamat = $_POST['alamat'];
+    $telepon = $_POST['telepon'];
+    $hash = $_POST['hash'];
+    $active = $_POST['active'];
+    $ringkasan_pribadi = $_POST['ringkasan_pribadi'];
+    $pengalaman_kerja = $_POST['pengalaman_kerja'];
+    $mencari_pekerjaan = $_POST['mencari_pekerjaan'];
+    $keterampilan = $_POST['keterampilan'];
+    $pendidikan_terakhir = $_POST['pendidikan_terakhir'];
+    $kariryangdimininati = $_POST['kariryangdimininati'];
+    $ketunaan = $_POST["ketunaan"];
+    $alat_bantu = $_POST["alat_bantu"];
+    $penjelasan = $_POST["detail_tambahan"];
+    $dok1 = $_POST["dok1"];
+    $dok2 = $_POST["dok2"];
+    $dokumen2 = '';
+
+    if($dok2 !== ''){
+        $dokumen2 = $dok2;
+    }
+
+    $keterangan = $_POST['keterangan'];
+
+    $namaBerkas = $_FILES['berkas']['name'];
+    $ukuranBerkas = $_FILES['berkas']['size'];
+    $tipeBerkas = $_FILES['berkas']['type'];
+    // $error = $_FILES['berkas']['error'];
+    $tmpBerkas = $_FILES['berkas']['tmp_name'];
+
+    //cek ekstensi
+    $ekstensiValid = ['pdf','jpg','jpeg','png'];
+    $ekstensiBerkas = explode('.',$namaBerkas);
+    $ekstensiBerkas = strtolower(end($ekstensiBerkas));   
+    if(!in_array($ekstensiBerkas, $ekstensiValid)){
+        echo "<script>
+                alert('Format berkas tidak valid. Format berkas yang dapat diunggah adalah .pdf, .png, .jpg atau .jpeg !');
+                document.location.href ='profile.php';
+            </script>";exit;
+    }
+
+    //cek size
+    if($ukuranBerkas > 2000000){
+        echo "<script>
+                alert('Ukuran berkas terlalu besar. Ukuran maksimal adalah 2MB !');
+                document.location.href ='profile.php';
+            </script>";exit;
+    }
 
     
+
+    //lolos pengecekan
+    //generate nama file dengan hash
+    $namaBerkasBaru = uniqid();
+    $namaBerkasBaru .= '.';
+    $namaBerkasBaru .= $ekstensiBerkas;   
+
+    if($dok1 !== ''){
+        //mengisi dok2 
+        $dokumen = $namaBerkasBaru . ',' . $keterangan . ',' . 'dok2';
+
+        $form_data = array(
+            "id_user" => $id_user,
+            "nama_depan" => $nama_depan,
+            "nama_belakang" => $nama_belakang,
+            "email" => $email,
+            "password" => $password,
+            "tgl_lahir" => $tgl_lahir,
+            "jenis_kelamin" => $jk,
+            "status" => $status,
+            "ketunaan" => $ketunaan,
+            "foto" => $foto,
+            "provinsi" => $provinsi,
+            "kota" => $kota,
+            "alamat" => $alamat,
+            "detail_tambahan" => $penjelasan,
+            "telepon" => $telepon,
+            "alat_bantu" => $alat_bantu,
+            "hash" => $hash,
+            "active" => $active,
+            "ringkasan_pribadi" => $ringkasan_pribadi,
+            "kariryangdimininati" => $kariryangdimininati,
+            "mencari_pekerjaan" => $mencari_pekerjaan,
+            "pendidikan_terakhir" => $pendidikan_terakhir,
+            "keterampilan" => $keterampilan,
+            "pengalaman_kerja" => $pengalaman_kerja,
+            "dok1" => $dok1,
+            "dok2" => $dokumen,
+            "param" => 'berkas'
+        );
+
+        
+        $chFile = new CURLFile($tmpBerkas, $tipeBerkas, $namaBerkasBaru);
+        $datas = array("file" => $chFile);
+        $chs = curl_init();
+        curl_setopt($chs, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/uploadBerkas.php');
+        curl_setopt($chs, CURLOPT_POST, 1);
+        curl_setopt($chs, CURLOPT_POSTFIELDS, $datas);
+        $response = curl_exec($chs);
+        curl_close($chs);
+
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+        curl_close($curl);
+    
+        $pesan = json_decode($result, true);
+    
+        if ($pesan['message'] == 'Berhasil') {
+            header('location:profile.php');
+        } else if ($pesan['message'] == 'unavailable') {
+            echo '<script>
+                    alert("Terjadi Kesalahan !");
+                </script>';
+        }
+
+    }else{
+        //mengisi dok 1
+        $dokumen = $namaBerkasBaru . ',' . $keterangan . ',' . 'dok1';
+
+        $form_data = array(
+            "id_user" => $id_user,
+            "nama_depan" => $nama_depan,
+            "nama_belakang" => $nama_belakang,
+            "email" => $email,
+            "password" => $password,
+            "tgl_lahir" => $tgl_lahir,
+            "jenis_kelamin" => $jk,
+            "status" => $status,
+            "ketunaan" => $ketunaan,
+            "foto" => $foto,
+            "provinsi" => $provinsi,
+            "kota" => $kota,
+            "alamat" => $alamat,
+            "detail_tambahan" => $penjelasan,
+            "telepon" => $telepon,
+            "alat_bantu" => $alat_bantu,
+            "hash" => $hash,
+            "active" => $active,
+            "ringkasan_pribadi" => $ringkasan_pribadi,
+            "kariryangdimininati" => $kariryangdimininati,
+            "mencari_pekerjaan" => $mencari_pekerjaan,
+            "pendidikan_terakhir" => $pendidikan_terakhir,
+            "keterampilan" => $keterampilan,
+            "pengalaman_kerja" => $pengalaman_kerja,
+            "dok1" => $dokumen,
+            "dok2" => $dokumen2,
+            "param" => 'berkas'
+        );
+
+
+        $chFile = new CURLFile($tmpBerkas, $tipeBerkas, $namaBerkasBaru);
+        $datas = array("file" => $chFile);
+        $chs = curl_init();
+        curl_setopt($chs, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/uploadBerkas.php');
+        curl_setopt($chs, CURLOPT_POST, 1);
+        curl_setopt($chs, CURLOPT_POSTFIELDS, $datas);
+        $response = curl_exec($chs);
+        curl_close($chs);
+        
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+        curl_close($curl);
+    
+        $pesan = json_decode($result, true);
+    
+        if ($pesan['message'] == 'Berhasil') {
+            header('location:profile.php');
+        } else if ($pesan['message'] == 'unavailable') {
+            echo '<script>
+                    alert("Terjadi Kesalahan !");
+                </script>';
+        }
+    }
+    
 }
+
+
+
