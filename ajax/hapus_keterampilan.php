@@ -3,6 +3,7 @@ session_start();
 require("../functions.php");
 
 $email = $_GET['email'];
+$keterampilan = $_GET['keterampilan'];
 
 
 $curl_get = curl_init();
@@ -14,6 +15,19 @@ curl_close($curl_get);
 $result_get = json_decode($result, true);
 $data = $result_get[0];
 
+
+// hoby : Catur,Bola,Renang
+$dftKeterampilan = explode(',', $data['keterampilan']);
+
+$tmp = '';
+
+foreach ($dftKeterampilan as $i) {
+    if ($i !== $keterampilan) {
+        $tmp .= $i;
+        $tmp .= ',';
+    }
+}
+$tmp = substr($tmp, 0, -1);
 
 $id_user = $data['id_user'];
 $nama_depan = $data['nama_depan'];
@@ -64,7 +78,7 @@ $form_data = array(
     "kariryangdimininati" => $kariryangdimininati,
     "mencari_pekerjaan" => $mencari_pekerjaan,
     "pendidikan_terakhir" => $pendidikan_terakhir,
-    "keterampilan" => '',
+    "keterampilan" => $tmp,
     "pengalaman_kerja" => $pengalaman_kerja,
     "dok1" => $dok1,
     "dok2" => $dok2,
@@ -81,21 +95,25 @@ $result = curl_exec($curl);
 curl_close($curl);
 
 
-// $curl_get2 = curl_init();
-// curl_setopt($curl_get2, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
-// curl_setopt($curl_get2, CURLOPT_RETURNTRANSFER, 1);
-// $result2 = curl_exec($curl_get2);
-// curl_close($curl_get2);
-
-// $result_get2 = json_decode($result2, true);
-// $data2 = $result_get2[0];
-
-// $tmp = explode(',', $data2['keterampilan']);
-
-// $jlh_tmp = count($tmp);
+$curl_get2 = curl_init();
+curl_setopt($curl_get2, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
+curl_setopt($curl_get2, CURLOPT_RETURNTRANSFER, 1);
+$result2 = curl_exec($curl_get2);
+curl_close($curl_get2);
+$result_get2 = json_decode($result2, true);
+$data2 = $result_get2[0];
 
 ?>
 
-<ul style="list-style-type: none" style="padding-left: 0px ! important" id="list_keterampilan">
-    <li>Tidak ada</li>
-</ul>
+<div class="col-12 mt-3" id="daftarKeterampilan">
+    <?php if (empty($data2['keterampilan'])) : ?>
+        <i>Keterampilan belum diisi !</i>
+    <?php else : ?>
+        <?php
+        $b = explode(',', $data2['keterampilan']);
+        ?>
+        <?php foreach ($b as $t) : ?>
+            <a class="badge badge-secondary text-white" onclick="remove(this)" id="<?= $t; ?>" style="font-size: 15px;padding:7px 15px 7px 15px"> <?= $t; ?> &nbsp; <i class="mdi mdi-close"></i></a>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>

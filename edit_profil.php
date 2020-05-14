@@ -417,7 +417,7 @@ if (isset($_POST["btn_pengalaman_kerja"])) {
     }
 }
 
-if (isset($_POST["simpan_keterampilan"])) {
+if (isset($_POST["btn_keterampilan"])) {
     header('location:profile.php');
 }
 

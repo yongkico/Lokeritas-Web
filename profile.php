@@ -2,7 +2,7 @@
 session_start();
 require("functions.php");
 
-$_SESSION['ema'] = 'prabowo@gmail.com';
+$_SESSION['ema'] = 'rocky@gmail.com';
 
 
 ?>
@@ -185,10 +185,10 @@ $_SESSION['ema'] = 'prabowo@gmail.com';
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
                         <div class="blog">
-                            <img src="images/profil/<?php if (empty($result_get[0]['foto'])) {
-                                                        echo 'default.png';
+                            <img src="<?php if (empty($result_get[0]['foto'])) {
+                                                        echo 'images/profil/default.png';
                                                     } else {
-                                                        echo $result_get[0]['foto'];
+                                                        echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
                                                     }  ?>" height="150" style="width:150px" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
                             
                             <div class="author" style="margin:50px 0px 0px 169px">
@@ -2249,7 +2249,7 @@ $_SESSION['ema'] = 'prabowo@gmail.com';
                     <h4 class="modal-title">Edit Keterampilan</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-                <form action="edit_profil.php" method="POST">
+                
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="container" id="container_keterampilan">
@@ -2260,35 +2260,29 @@ $_SESSION['ema'] = 'prabowo@gmail.com';
                                             <div class="col-md-12">
                                                 <p>Silahkan masukan keterampilan yang anda miliki !</p>
                                             </div>
-
-                                            <div class="col-md-12 mt-2">
-                                                <span class="badge badge-secondary"> Keterampilan 1 </span>
-                                            </div>
-                                            <div class="col-md-10 mt-1">
+                                            <div class="col-md-8 mt-1">
                                                 <div class="form-group app-label">
-                                                    <input type="hidden" name="id" placeholder="-">
-                                                    <input id="middle-name" name="keterampilan1" type="text" class="form-control resume" placeholder="Keterampilan 1 ...">
+                                                    <input type="hidden" id="emailku" value="<?= $result_get[0]['email']; ?>">
+                                                    <input id="keterampilanku" type="text" class="form-control resume" placeholder="Nama keterampilan ...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mt-1">
+                                                <div class="form-group app-label">
+                                                    <button type="button" id="btnKeterampilan" class="btn btn-primary">Tambah</button>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 mt-1">
-                                                <span class="badge badge-secondary"> Keterampilan 2 </span>
-                                            </div>
-                                            <div class="col-md-10 mt-1">
-                                                <div class="form-group app-label">
-                                                    <input type="hidden" name="id" placeholder="-">
-                                                    <input id="middle-name" name="keterampilan2" type="text" class="form-control resume" placeholder="Keterampilan 2 ...">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 mt-1">
-                                                <span class="badge badge-secondary"> Keterampilan 3 </span>
-                                            </div>
-                                            <div class="col-md-10 mt-1">
-                                                <div class="form-group app-label">
-                                                    <input type="hidden" name="id" placeholder="-">
-                                                    <input id="middle-name" name="keterampilan3" type="text" class="form-control resume" placeholder="Keterampilan 3 ...">
-                                                </div>
+                                            <div class="col-12 mt-3" id="daftarKeterampilan">
+                                                <?php if(empty($result_get[0]['keterampilan'])) : ?>
+                                                    <i>Keterampilan belum diisi !</i>
+                                                <?php else: ?>
+                                                    <?php
+                                                        $b = explode(',',$result_get[0]['keterampilan']);
+                                                    ?>
+                                                    <?php foreach ($b as $t) : ?>
+                                                        <a class="badge badge-secondary text-white" onclick="remove(this)" id="<?= $t; ?>" style="font-size: 15px;padding:7px 15px 7px 15px"> <?= $t; ?> &nbsp; <i class="mdi mdi-close"></i></a>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </div>
 
                                         </div>
@@ -2297,10 +2291,10 @@ $_SESSION['ema'] = 'prabowo@gmail.com';
                             </div>
                         </div>
                     </div>
-
+                <form action="edit_profil.php" method="POST">                            
                     <!-- Ini adalah Bagian Footer Modal -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="simpan_keterampilan">Simpan</button>
+                        <button type="submit" class="btn btn-primary" name="btn_keterampilan">Simpan</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                     </div>
                 </form>
@@ -2793,6 +2787,7 @@ $_SESSION['ema'] = 'prabowo@gmail.com';
     <script src="js/script.js"></script>
     <script src="js/script-dok1.js"></script>
     <script src="js/script-dok2.js"></script>
+    <script src="js/script-keterampilan.js"></script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -2966,6 +2961,32 @@ $_SESSION['ema'] = 'prabowo@gmail.com';
         }
 
         console.log(GetStudent());
+    </script>
+
+    <script>
+        function remove(el) {
+            var email  = document.getElementById("emailku");
+            var daftarKeterampilan = document.getElementById("daftarKeterampilan");
+            var element = el;
+
+                //buat object ajax
+                var xhr = new XMLHttpRequest();
+
+                //cek kesiapan ajax
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4 && xhr.status == 200){
+                        daftarKeterampilan.innerHTML = xhr.responseText;            
+                    }
+                }    
+
+                //eksekusi ajax
+                xhr.open('GET','ajax/hapus_keterampilan.php?email=' + email.value + '&keterampilan=' + element.id,true);
+                xhr.send();
+            
+            element.remove();
+            
+            
+        }
     </script>
 
     <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>

@@ -3,7 +3,7 @@ session_start();
 require("../functions.php");
 
 
-$nama_keterampilan = $_GET['keterampilan'];
+$keterampilan = $_GET['keterampilan'];
 $email = $_GET['email'];
 
 
@@ -16,14 +16,11 @@ curl_close($curl_get);
 $result_get = json_decode($result, true);
 $data = $result_get[0];
 
-$keterampilan_awal = $data['keterampilan'];
-
-if (empty($keterampilan_awal)) {
-    $keterampilan_tambah = $nama_keterampilan . ',';
+if (!empty($data['keterampilan'])) {
+    $hasil = $data['keterampilan'] . ',' . $keterampilan;
 } else {
-    $keterampilan_tambah = $keterampilan_awal . ',' . $nama_keterampilan;
+    $hasil = $keterampilan;
 }
-
 
 $id_user = $data['id_user'];
 $nama_depan = $data['nama_depan'];
@@ -74,13 +71,12 @@ $form_data = array(
     "kariryangdimininati" => $kariryangdimininati,
     "mencari_pekerjaan" => $mencari_pekerjaan,
     "pendidikan_terakhir" => $pendidikan_terakhir,
-    "keterampilan" => $keterampilan_tambah,
+    "keterampilan" => $hasil,
     "pengalaman_kerja" => $pengalaman_kerja,
     "dok1" => $dok1,
     "dok2" => $dok2,
     "param" => 'keterampilan'
 );
-
 
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
@@ -91,41 +87,13 @@ $result = curl_exec($curl);
 curl_close($curl);
 
 
-$curl_get2 = curl_init();
-curl_setopt($curl_get2, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
-curl_setopt($curl_get2, CURLOPT_RETURNTRANSFER, 1);
-$result2 = curl_exec($curl_get2);
-curl_close($curl_get2);
-
-$result_get2 = json_decode($result2, true);
-$data2 = $result_get2[0];
-
-$tmp = explode(',', $data2['keterampilan']);
-
-$jlh_tmp = count($tmp);
-
-
 ?>
 
-<div style="padding-left: 0px ! important" id="list_keterampilan">
-    <?php for ($i = 0; $i < $jlh_tmp - 1; $i++) : ?>
-        <?php
-        $id_isi = '';
-        $potong = explode(' ', $tmp[$i]);
-        foreach ($potong as $iss) {
-            $id_isi .= $iss;
-        }
-        ?>
-        <?php if($tmp[$i] != '')  : ?>
-            <button type="button" onclick="remove(this)" class="btn btn-secondary mb-3 mr-2" id="<?= $tmp[$i] ?>"><?= $tmp[$i] ?><i style="margin-left: 8px" class="mdi mdi-close text-white"></i></button>
-            
-        <?php endif; ?> 
-    <?php endfor; ?>
+<div class="col-12 mt-3" id="daftarKeterampilan">
+    <?php
+    $b = explode(',', $hasil);
+    ?>
+    <?php foreach ($b as $t) : ?>
+        <a class="badge badge-secondary text-white" onclick="remove(this)" id="<?= $t; ?>" style="font-size: 15px;padding:7px 15px 7px 15px"> <?= $t; ?> &nbsp; <i class="mdi mdi-close"></i></a>
+    <?php endforeach; ?>
 </div>
-
-<script>
-        function remove(el) {
-            var element = el;
-            element.remove();
-        }
-</script>
