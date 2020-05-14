@@ -215,7 +215,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                         <div class="container">
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
-                                    <h4 class="text-info">Informasi Pribadi :</h4>
+                                    <h4 class="text-info"> <i class="text-danger">*</i> Informasi Pribadi :</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#informasiPribadi"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
@@ -336,7 +336,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                         <div class="container">
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
-                                    <h4 class="text-info">Rincian Disabilitas :</h4>
+                                    <h4 class="text-info"> <i class="text-danger">*</i> Rincian Disabilitas :</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#rincianDisabilitas"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
@@ -395,7 +395,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                         <div class="container">
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
-                                    <h4 class="text-info">Pendidikan Terakhir :</h4>
+                                    <h4 class="text-info"> <i class="text-danger">*</i> Pendidikan Terakhir :</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#pendidikanTerakhir"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
@@ -433,7 +433,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                         <div class="container">
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
-                                    <h4 class="text-info">Pengalaman Bekerja :</h4>
+                                    <h4 class="text-info"> Pengalaman Bekerja :</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#pengalamanBekerja"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
@@ -480,7 +480,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                         <div class="container">
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
-                                    <h4 class="text-info">Keterampilan :</h4>
+                                    <h4 class="text-info"> <i class="text-danger">*</i> Keterampilan :</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#keterampilan"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
@@ -517,7 +517,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                         <div class="container">
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
-                                    <h4 class="text-info">Karir yang diminati :</h4>
+                                    <h4 class="text-info"> <i class="text-danger">*</i> Karir yang diminati :</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <a href="#" id="karir_klik" class="btn btn-success-outline" data-toggle="modal" data-target="#karirYangDiminati"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
@@ -556,7 +556,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                         <div class="container">
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
-                                    <h4 class="text-info">Unggah Berkas :</h4>
+                                    <h4 class="text-info"> <i class="text-danger">*</i> Unggah Berkas :</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#unggahBerkas"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
