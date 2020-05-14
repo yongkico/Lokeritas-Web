@@ -36,13 +36,16 @@ if (isset($_POST["btn_informasi_pribadi"])) {
     $password2 = mysqli_real_escape_string($conn, $_POST["password2"]);
 
 
-
+    //set mencari pekerjaan
     if ($mencari_pekerjaan == 'Ya') {
         $mencari_pekerjaan = 1;
     } else {
         $mencari_pekerjaan = 0;
     }
 
+    
+
+    //cek apakah ganti passwor
     if (empty($password)) {
         $pw = $password_lama;
     } else {
@@ -92,6 +95,7 @@ if (isset($_POST["btn_informasi_pribadi"])) {
         "dok2" => $dok2,
         "param" => 'informasi_pribadi'
     );
+
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
@@ -200,6 +204,7 @@ if (isset($_POST["btn_rincian_disabilitas"])) {
 
 
 if (isset($_POST["btn_pendidikan_terakhir"])) {
+
     $id_user = $_POST['id_user'];
     $nama_depan = $_POST['nama_depan'];
     $nama_belakang = $_POST['nama_belakang'];
@@ -226,6 +231,13 @@ if (isset($_POST["btn_pendidikan_terakhir"])) {
     $alat_bantu = $_POST["alat_bantu"];
     $penjelasan = $_POST["detail_tambahan"];
 
+    if($_POST['nama_sekolah'] == ''){
+        echo '<script>
+                alert("Harap melengkapi formulir !");
+                document.location.href ="profile.php";
+            </script>'; exit;
+    }
+    
 
     $pendidikan = $_POST["pendidikan"];
     $nama_sekolah = $_POST["nama_sekolah"];
@@ -519,7 +531,7 @@ if (isset($_POST['btn_berkas'])) {
     $dok2 = $_POST["dok2"];
     $dokumen2 = '';
 
-    if($dok2 !== ''){
+    if ($dok2 !== '') {
         $dokumen2 = $dok2;
     }
 
@@ -532,33 +544,35 @@ if (isset($_POST['btn_berkas'])) {
     $tmpBerkas = $_FILES['berkas']['tmp_name'];
 
     //cek ekstensi
-    $ekstensiValid = ['pdf','jpg','jpeg','png'];
-    $ekstensiBerkas = explode('.',$namaBerkas);
-    $ekstensiBerkas = strtolower(end($ekstensiBerkas));   
-    if(!in_array($ekstensiBerkas, $ekstensiValid)){
+    $ekstensiValid = ['pdf', 'jpg', 'jpeg', 'png'];
+    $ekstensiBerkas = explode('.', $namaBerkas);
+    $ekstensiBerkas = strtolower(end($ekstensiBerkas));
+    if (!in_array($ekstensiBerkas, $ekstensiValid)) {
         echo "<script>
                 alert('Format berkas tidak valid. Format berkas yang dapat diunggah adalah .pdf, .png, .jpg atau .jpeg !');
                 document.location.href ='profile.php';
-            </script>";exit;
+            </script>";
+        exit;
     }
 
     //cek size
-    if($ukuranBerkas > 2000000){
+    if ($ukuranBerkas > 2000000) {
         echo "<script>
                 alert('Ukuran berkas terlalu besar. Ukuran maksimal adalah 2MB !');
                 document.location.href ='profile.php';
-            </script>";exit;
+            </script>";
+        exit;
     }
 
-    
+
 
     //lolos pengecekan
     //generate nama file dengan hash
     $namaBerkasBaru = uniqid();
     $namaBerkasBaru .= '.';
-    $namaBerkasBaru .= $ekstensiBerkas;   
+    $namaBerkasBaru .= $ekstensiBerkas;
 
-    if($dok1 !== ''){
+    if ($dok1 !== '') {
         //mengisi dok2 
         $dokumen = $namaBerkasBaru . ',' . $keterangan . ',' . 'dok2';
 
@@ -592,7 +606,7 @@ if (isset($_POST['btn_berkas'])) {
             "param" => 'berkas'
         );
 
-        
+
         $chFile = new CURLFile($tmpBerkas, $tipeBerkas, $namaBerkasBaru);
         $datas = array("file" => $chFile);
         $chs = curl_init();
@@ -610,9 +624,9 @@ if (isset($_POST['btn_berkas'])) {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($curl);
         curl_close($curl);
-    
+
         $pesan = json_decode($result, true);
-    
+
         if ($pesan['message'] == 'Berhasil') {
             header('location:profile.php');
         } else if ($pesan['message'] == 'unavailable') {
@@ -620,8 +634,7 @@ if (isset($_POST['btn_berkas'])) {
                     alert("Terjadi Kesalahan !");
                 </script>';
         }
-
-    }else{
+    } else {
         //mengisi dok 1
         $dokumen = $namaBerkasBaru . ',' . $keterangan . ',' . 'dok1';
 
@@ -664,7 +677,7 @@ if (isset($_POST['btn_berkas'])) {
         curl_setopt($chs, CURLOPT_POSTFIELDS, $datas);
         $response = curl_exec($chs);
         curl_close($chs);
-        
+
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
@@ -673,9 +686,9 @@ if (isset($_POST['btn_berkas'])) {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($curl);
         curl_close($curl);
-    
+
         $pesan = json_decode($result, true);
-    
+
         if ($pesan['message'] == 'Berhasil') {
             header('location:profile.php');
         } else if ($pesan['message'] == 'unavailable') {
@@ -684,8 +697,126 @@ if (isset($_POST['btn_berkas'])) {
                 </script>';
         }
     }
-    
 }
 
+if (isset($_POST['btn_foto'])) {
+    $id_user = $_POST['id_user'];
+    $nama_depan = $_POST['nama_depan'];
+    $nama_belakang = $_POST['nama_belakang'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $tgl_lahir = $_POST['tgl_lahir'];
+    $jk = $_POST['jenis_kelamin'];
+    $status = $_POST['status'];
+    $provinsi = $_POST['provinsi'];
+    $kota = $_POST['kota'];
+    $alamat = $_POST['alamat'];
+    $telepon = $_POST['telepon'];
+    $hash = $_POST['hash'];
+    $active = $_POST['active'];
+    $ringkasan_pribadi = $_POST['ringkasan_pribadi'];
+    $pengalaman_kerja = $_POST['pengalaman_kerja'];
+    $mencari_pekerjaan = $_POST['mencari_pekerjaan'];
+    $keterampilan = $_POST['keterampilan'];
+    $pendidikan_terakhir = $_POST['pendidikan_terakhir'];
+    $kariryangdimininati = $_POST['kariryangdimininati'];
+    $ketunaan = $_POST["ketunaan"];
+    $alat_bantu = $_POST["alat_bantu"];
+    $penjelasan = $_POST["detail_tambahan"];
+    $dok1 = $_POST["dok1"];
+    $dok2 = $_POST["dok2"];
+
+    $namaBerkas = $_FILES['berkas_foto']['name'];
+    $tmpBerkas = $_FILES['berkas_foto']['tmp_name'];
+    $error = $_FILES['berkas_foto']['error'];
+    $size = $_FILES['berkas_foto']['size'];
+    $type = $_FILES['berkas_foto']['type'];
 
 
+    //cek ekstensi
+    $ekstensiValid = ['jpg', 'jpeg', 'png'];
+    $ekstensiBerkas = explode('.', $namaBerkas);
+    $ekstensiBerkas = strtolower(end($ekstensiBerkas));
+    if (!in_array($ekstensiBerkas, $ekstensiValid)) {
+        echo "<script>
+                alert('Format berkas tidak valid. Format berkas yang dapat diunggah adalah .png, .jpg atau .jpeg !');
+                document.location.href ='profile.php';
+            </script>";
+        exit;
+    }
+
+    //cek size
+    if ($size > 1000000) {
+        echo "<script>
+                alert('Ukuran berkas terlalu besar. Ukuran maksimal adalah 1MB !');
+                document.location.href ='profile.php';
+            </script>";
+        exit;
+    }
+
+
+
+    //lolos pengecekan
+    //generate nama file dengan hash
+    $namaBerkasBaru = uniqid();
+    $namaBerkasBaru .= '.';
+    $namaBerkasBaru .= $ekstensiBerkas;
+
+    $form_data = array(
+        "id_user" => $id_user,
+        "nama_depan" => $nama_depan,
+        "nama_belakang" => $nama_belakang,
+        "email" => $email,
+        "password" => $password,
+        "tgl_lahir" => $tgl_lahir,
+        "jenis_kelamin" => $jk,
+        "status" => $status,
+        "ketunaan" => $ketunaan,
+        "foto" => $namaBerkasBaru,
+        "provinsi" => $provinsi,
+        "kota" => $kota,
+        "alamat" => $alamat,
+        "detail_tambahan" => $penjelasan,
+        "telepon" => $telepon,
+        "alat_bantu" => $alat_bantu,
+        "hash" => $hash,
+        "active" => $active,
+        "ringkasan_pribadi" => $ringkasan_pribadi,
+        "kariryangdimininati" => $kariryangdimininati,
+        "mencari_pekerjaan" => $mencari_pekerjaan,
+        "pendidikan_terakhir" => $pendidikan_terakhir,
+        "keterampilan" => $keterampilan,
+        "pengalaman_kerja" => $pengalaman_kerja,
+        "dok1" => $dok1,
+        "dok2" => $dok2,
+        "param" => 'foto'
+    );
+
+    $chFile = new CURLFile($tmpBerkas, $type, $namaBerkasBaru);
+    $datas = array("file" => $chFile);
+    $chs = curl_init();
+    curl_setopt($chs, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/uploadFoto.php');
+    curl_setopt($chs, CURLOPT_POST, 1);
+    curl_setopt($chs, CURLOPT_POSTFIELDS, $datas);
+    $response = curl_exec($chs);
+    curl_close($chs);
+
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($curl);
+    curl_close($curl);
+
+    $pesan = json_decode($result, true);
+
+    if ($pesan['message'] == 'Berhasil') {
+        header('location:profile.php');
+    } else if ($pesan['message'] == 'unavailable') {
+        echo '<script>
+                    alert("Terjadi Kesalahan !");
+                </script>';
+    }
+}

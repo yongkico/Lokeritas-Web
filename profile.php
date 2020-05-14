@@ -2,7 +2,7 @@
 session_start();
 require("functions.php");
 
-$_SESSION['ema'] = 'bgbudi@gmail.com';
+$_SESSION['ema'] = 'prabowo@gmail.com';
 
 
 ?>
@@ -185,10 +185,14 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
                         <div class="blog">
-                            <img src="images/<?= $result_get[0]['foto']; ?>" height="150" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
-
+                            <img src="images/profil/<?php if (empty($result_get[0]['foto'])) {
+                                                        echo 'default.png';
+                                                    } else {
+                                                        echo $result_get[0]['foto'];
+                                                    }  ?>" height="150" style="width:150px" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                            
                             <div class="author" style="margin:50px 0px 0px 169px">
-                                <p class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-pencil text-light"></i> <a href="javascript:void(0)" class="text-light user">Ubah Foto Profil</a></p>
+                                <p class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-account-edit text-light"></i> Ubah</p>
                             </div>
                         </div>
                         <h4 class="text-white mb-2"><?= $result_get[0]['nama_depan']; ?>&nbsp;<?= $result_get[0]['nama_belakang']; ?></h4>
@@ -243,11 +247,11 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                         <td style="font-weight:bold">Nomor HP</td>
                                         <td>
                                             <?php
-                                            if ($result_get[0]['telepon'] === '0') {
-                                                echo '-';
-                                            } else {
-                                                echo '+62 ' . $result_get[0]['telepon'];
-                                            }
+                                                if (empty($result_get[0]['telepon'])) {
+                                                    echo '-';
+                                                } else {
+                                                    echo '+62 '. $result_get[0]['telepon'];
+                                                }
                                             ?>
                                         </td>
                                     </tr>
@@ -257,15 +261,25 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                             <?php
                                             if ($result_get[0]['jenis_kelamin'] === 'L') {
                                                 echo 'Laki-Laki';
-                                            } else {
+                                            } elseif ($result_get[0]['jenis_kelamin'] === 'P') {
                                                 echo 'Perempuan';
+                                            } else {
+                                                echo '-';
                                             }
                                             ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Tanggal Lahir</td>
-                                        <td><?= $result_get[0]['tgl_lahir']; ?></td>
+                                        <td>
+                                            <?php
+                                            if (!empty($result_get[0]['tgl_lahir'])) {
+                                                echo $result_get[0]['tgl_lahir'];
+                                            } else {
+                                                echo '-';
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="font-weight:bold">Status</td>
@@ -273,8 +287,10 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                             <?php
                                             if ($result_get[0]['status'] === 'B') {
                                                 echo 'Belum Menikah';
-                                            } else {
+                                            } elseif ($result_get[0]['status'] === 'M') {
                                                 echo 'Menikah';
+                                            } else {
+                                                echo '-';
                                             }
                                             ?>
                                         </td>
@@ -297,8 +313,10 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                                 <?php
                                                 if ($result_get[0]['mencari_pekerjaan'] === '0') {
                                                     echo 'Tidak';
-                                                } else {
+                                                } elseif ($result_get[0]['mencari_pekerjaan'] === '1') {
                                                     echo 'Ya';
+                                                } else {
+                                                    echo '-';
                                                 }
                                                 ?>
                                             </span></td>
@@ -581,7 +599,7 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                                 ?>
                                                 <tr>
                                                     <td><?= $tmp_b[1]; ?></td>
-                                                    <td><a href="<?= '/api-v1/uploads/Berkas/' . $tmp_b[0]; ?>"  download="<?= $tmp_b[0]; ?>" target="_blank"><?= $tmp_b[0]; ?></a></td>
+                                                    <td><a href="<?= '/api-v1/uploads/Berkas/' . $tmp_b[0]; ?>" download="<?= $tmp_b[0]; ?>" target="_blank"><?= $tmp_b[0]; ?></a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -669,9 +687,9 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                                     <div class="form-button">
                                                         <select class="nice-select rounded" name="jk">
                                                             <option value="<?php if ($result_get[0]['jenis_kelamin'] == 'L') {
-                                                                                echo 'Laki-Laki';
+                                                                                echo 'L';
                                                                             } else {
-                                                                                echo 'Perempuan';
+                                                                                echo 'P';
                                                                             } ?>"><?php if ($result_get[0]['jenis_kelamin'] == 'L') {
                                                                                         echo 'Laki-Laki';
                                                                                     } else {
@@ -697,16 +715,16 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                                                     <div class="form-button">
                                                         <select class="nice-select rounded" name="status">
                                                             <option value="<?php if ($result_get[0]['status'] == 'B') {
-                                                                                echo 'Belum Menikah';
+                                                                                echo 'B';
                                                                             } else {
-                                                                                echo 'Menikah';
+                                                                                echo 'M';
                                                                             } ?>"><?php if ($result_get[0]['status'] == 'B') {
                                                                                         echo 'Belum Menikah';
                                                                                     } else {
                                                                                         echo 'Menikah';
                                                                                     } ?></option>
-                                                            <option value="Sudah Menikah">Menikah</option>
-                                                            <option value="Belum Menikah">Belum Menikah</option>
+                                                            <option value="M">Menikah</option>
+                                                            <option value="B">Belum Menikah</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -2584,40 +2602,73 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
                     <h4 class="modal-title">Edit Foto Profil</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 mt-3" style="margin-top:0px ! important">
-                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
-                                    <form>
+                <form action="edit_profil.php" method="POST" enctype="multipart/form-data">
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                    <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
                                         <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
                                             <div class="col-md-12" style="margin-bottom: 10px;">
                                                 <div class="position-relative overflow-hidden">
-                                                    <img style="width: 300px" src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" alt="" class="img-fluid mx-auto d-block rounded">
+                                                    <img id="foto_display" src="images/profil/<?php if (empty($result_get[0]['foto'])) {
+                                                                                                    echo 'default.png';
+                                                                                                } else {
+                                                                                                    echo $result_get[0]['foto'];
+                                                                                                }  ?>" height="200" style="width:200px" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                                                    <!-- <img id="foto_display" src="/api-v1/uploads/Foto/<?php if (empty($result_get[0]['foto'])) {
+                                                                                                    echo 'default.png';
+                                                                                                } else {
+                                                                                                    echo $result_get[0]['foto'];
+                                                                                                }  ?>" height="200" style="width:200px" alt="" class="d-block mx-auto shadow rounded-pill mb-4"> -->
                                                 </div>
                                             </div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-12">
                                                 <div class="form-group app-label">
-                                                    <label class="text-muted">Pilih Foto:</label>
-                                                    <input type="file" name="" id="">
+                                                    <button type="button" id="btn_pilih" onclick="triggerClick()" class="btn btn-success">Pilih Foto</button>
+                                                    <input type="file" name="berkas_foto" id="berkas_foto" onchange="displayImage(this)" style="display: none">
+
+                                                    <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
+                                                    <input type="hidden" name="nama_depan" value="<?= $result_get[0]["nama_depan"]; ?>">
+                                                    <input type="hidden" name="nama_belakang" value="<?= $result_get[0]["nama_belakang"]; ?>">
+                                                    <input type="hidden" name="email" value="<?= $result_get[0]["email"]; ?>">
+                                                    <input type="hidden" name="password" value="<?= $result_get[0]["password"]; ?>">
+                                                    <input type="hidden" name="tgl_lahir" value="<?= $result_get[0]["tgl_lahir"]; ?>">
+                                                    <input type="hidden" name="jenis_kelamin" value="<?= $result_get[0]["jenis_kelamin"]; ?>">
+                                                    <input type="hidden" name="status" value="<?= $result_get[0]["status"]; ?>">
+                                                    <input type="hidden" name="provinsi" value="<?= $result_get[0]["provinsi"]; ?>">
+                                                    <input type="hidden" name="kota" value="<?= $result_get[0]["kota"]; ?>">
+                                                    <input type="hidden" name="alamat" value="<?= $result_get[0]["alamat"]; ?>">
+                                                    <input type="hidden" name="telepon" value="<?= $result_get[0]["telepon"]; ?>">
+                                                    <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
+                                                    <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
+                                                    <input type="hidden" name="ringkasan_pribadi" value="<?= $result_get[0]["ringkasan_pribadi"]; ?>">
+                                                    <input type="hidden" name="pengalaman_kerja" value="<?= $result_get[0]["pengalaman_kerja"]; ?>">
+                                                    <input type="hidden" name="mencari_pekerjaan" value="<?= $result_get[0]["mencari_pekerjaan"]; ?>">
+                                                    <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
+                                                    <input type="hidden" name="pendidikan_terakhir" value="<?= $result_get[0]["pendidikan_terakhir"]; ?>">
+                                                    <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
+                                                    <input type="hidden" name="ketunaan" value="<?= $result_get[0]["ketunaan"]; ?>">
+                                                    <input type="hidden" name="alat_bantu" value="<?= $result_get[0]["alat_bantu"]; ?>">
+                                                    <input type="hidden" name="detail_tambahan" value="<?= $result_get[0]["detail_tambahan"]; ?>">
+                                                    <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
+                                                    <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Ini adalah Bagian Footer Modal -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                </div>
-
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="btn_foto">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -2703,6 +2754,25 @@ $_SESSION['ema'] = 'bgbudi@gmail.com';
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>
+
+
+    <script>
+        function triggerClick() {
+            document.querySelector('#berkas_foto').click();
+        }
+
+        function displayImage(e) {
+            if (e.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    document.querySelector('#foto_display').setAttribute('src', e.target.result);
+                }
+
+                reader.readAsDataURL(e.files[0]);
+            }
+        }
+    </script>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>

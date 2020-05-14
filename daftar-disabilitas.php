@@ -52,9 +52,6 @@ if (isset($_POST['daftar'])) {
 
     $pesan = json_decode($result, true);
 
-    var_dump($form_data);
-    echo '<br><br>';
-    var_dump($pesan);die;
 
     if ($pesan['message'] == 'Berhasil') {
         header('location:login.php');
@@ -221,8 +218,7 @@ if (isset($_POST['daftar'])) {
                                             <div class="form-group position-relative" style="margin-bottom: 0">
                                                 <label style="margin-bottom:0px ! important" class="text-secondary">Jenis Kelamin <span class="text-danger">*</span></label>
                                                 <div class="form-button" style="width: 50%">
-                                                    <select class="nice-select rounded" name="jk" required>
-                                                        <option value="">Jenis Kelamin</option>
+                                                    <select class="nice-select rounded" name="jk" required> 
                                                         <option value="L">Laki-Laki</option>
                                                         <option value="P">Perempuan</option>
                                                     </select>
