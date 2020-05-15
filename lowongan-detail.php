@@ -319,6 +319,21 @@ $result_get = json_decode($result_get, true);
                         <?php if (isset($_SESSION["login"])) : ?>
 
                             <?php
+
+                            $email = $_SESSION["email"];
+
+                            $curl_get = curl_init();
+                            curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email . '');
+                            curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+                            $result = curl_exec($curl_get);
+                            curl_close($curl_get);
+
+                            $result_profile = json_decode($result, true);
+                            $result_profile = $result_profile[0];
+
+                            ?>
+
+                            <?php
                             //File Upload
                             if (isset($_FILES['file-lamaran']['tmp_name'])) {
 
@@ -344,14 +359,13 @@ $result_get = json_decode($result_get, true);
                                 $ext = pathinfo($cFile, PATHINFO_EXTENSION);
                                 $size = $_FILES['file-lamaran']['size'];
 
-                                //Ngecek Ektensi
                                 if (!in_array($ext, $valid_ext)) {
                                     echo '<script>
                                             swal("Terjadi Kesalahan!", "Pastikan ekstensi file yang dikirim benar ", "error")
                                         </script>';
                                 } else {
 
-                                    if ($size < 2000000) {
+                                    if ($size <= 2000000) {
                                         curl_setopt($ch, CURLOPT_URL, "http://lokeritas.xyz/api-v1/uploadLamaran.php");
                                         curl_setopt($ch, CURLOPT_POST, true);
                                         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -385,8 +399,6 @@ $result_get = json_decode($result_get, true);
                                         $formCom = curl_exec($curl);
                                         curl_close($curl);
 
-                                        var_dump($response);
-
                                         if ($response == true) {
 
                                             echo '<script>
@@ -407,7 +419,11 @@ $result_get = json_decode($result_get, true);
 
                             ?>
 
-                            <button style="width:100%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalku"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
+                            <?php if ($result_profile['foto'] != null && $result_profile['nama_depan'] != null && $result_profile['nama_belakang'] != null && $result_profile['telepon'] != null && $result_profile['jenis_kelamin'] != null && $result_profile['tgl_lahir'] != null && $result_profile['status'] != null && $result_profile['mencari_pekerjaan'] != null && $result_profile['ringkasan_pribadi'] != null && $result_profile['alamat'] != null && $result_profile['kota'] != null && $result_profile['provinsi'] != null && $result_profile['ketunaan'] != null && $result_profile['alat_bantu'] != null && $result_profile['detail_tambahan'] != null && $result_profile['pendidikan_terakhir'] != null && $result_profile['keterampilan'] != null && $result_profile['kariryangdimininati'] != null && $result_profile['dok1'] != null || $result_profile['dok2'] != null) : ?>
+                                <button style="width:100%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalku"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
+                            <?php else : ?>
+                                <button onclick="lamaranEx();" style="width:100%" type="button" class="btn btn-primary" data-toggle="modal"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
+                            <?php endif; ?>
 
 
                             <!-- The Modal -->
@@ -565,6 +581,11 @@ $result_get = json_decode($result_get, true);
     <script>
         function loginEx() {
             swal("Perhatian!", "Anda harus masuk terlebih dahulu", "warning");
+        }
+    </script>
+    <script>
+        function lamaranEx() {
+            swal("Perhatian!", "Anda harus melengkapi profil terlebih dahulu", "warning");
         }
     </script>
 
