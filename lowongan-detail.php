@@ -30,7 +30,8 @@ $result_get = json_decode($result_get, true);
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-
+    <script src="js/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href="css/sweetalert2.min.css">
     <!--Material Icon -->
     <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
 
@@ -300,7 +301,6 @@ $result_get = json_decode($result_get, true);
                             </div>
                         </div>
                     </div>
-
                     <div class="job-detail border rounded mt-4 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                         <h5 class="text-muted text-center pb-2"><i class="mdi mdi-share-variant mr-2"></i>Bagikan</h5>
 
@@ -317,6 +317,96 @@ $result_get = json_decode($result_get, true);
                     <div class="job-detail border rounded mt-4">
 
                         <?php if (isset($_SESSION["login"])) : ?>
+
+                            <?php
+                            //File Upload
+                            if (isset($_FILES['file-lamaran']['tmp_name'])) {
+
+                                function generateRandomString($length = 20)
+                                {
+                                    $characters = 'abcdefghijklmnopqrstuvwxyz';
+                                    $charactersLength = strlen($characters);
+                                    $randomString = '';
+                                    for ($i = 0; $i < $length; $i++) {
+                                        $randomString .= $characters[rand(0, $charactersLength - 1)];
+                                    }
+                                    return $randomString . ' - ';
+                                }
+
+                                $ch = curl_init();
+
+                                $cFile = new CURLFile($_FILES['file-lamaran']['tmp_name'], $_FILES['file-lamaran']['type'], $fname = generateRandomString(20) . $_FILES['file-lamaran']['name']);
+                                $data = array("file" => $cFile);
+
+                                $cFile = $_FILES['file-lamaran']['name'];
+
+                                $valid_ext = array('docx', 'pdf', 'rar', 'zip');
+                                $ext = pathinfo($cFile, PATHINFO_EXTENSION);
+                                $size = $_FILES['file-lamaran']['size'];
+
+                                //Ngecek Ektensi
+                                if (!in_array($ext, $valid_ext)) {
+                                    echo '<script>
+                                            swal("Terjadi Kesalahan!", "Pastikan ekstensi file yang dikirim benar ", "error")
+                                        </script>';
+                                } else {
+
+                                    if ($size < 2000000) {
+                                        curl_setopt($ch, CURLOPT_URL, "http://lokeritas.xyz/api-v1/uploadLamaran.php");
+                                        curl_setopt($ch, CURLOPT_POST, true);
+                                        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+                                        $response = curl_exec($ch);
+                                        curl_close($ch);
+
+
+                                        //////////
+
+                                        $id_lowongan = $_GET['id'];
+                                        $id_user = $_SESSION["login"];
+                                        $pesan_tambahan = $_POST['keterangan'];
+
+                                        $curl = curl_init();
+                                        curl_setopt_array($curl, array(
+                                            CURLOPT_URL => "http://lokeritas.xyz/api-v1/kirim_lamaran.php",
+                                            CURLOPT_RETURNTRANSFER => true,
+                                            CURLOPT_ENCODING => "",
+                                            CURLOPT_MAXREDIRS => 10,
+                                            CURLOPT_TIMEOUT => 0,
+                                            CURLOPT_FOLLOWLOCATION => true,
+                                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                            CURLOPT_CUSTOMREQUEST => "POST",
+                                            CURLOPT_POSTFIELDS => "id_lowongan=$id_lowongan&id_user=$id_user&file=$fname&pesan_tambahan=$pesan_tambahan",
+                                            CURLOPT_HTTPHEADER => array(
+                                                "Content-Type: application/x-www-form-urlencoded"
+                                            ),
+                                        ));
+
+                                        $formCom = curl_exec($curl);
+                                        curl_close($curl);
+
+                                        var_dump($response);
+
+                                        if ($response == true) {
+
+                                            echo '<script>
+                                            swal("Lamaran Terkirim!", "Cek profile kamu untuk melihat status lamaran ", "success")
+                                        </script>';
+                                        } else {
+                                            echo '<script>
+                                            swal("Kesalahan Sistem!", "Tunggu beberapa saat lagi untuk mencoba kembali", "warning")
+                                        </script>';
+                                        }
+                                    } else {
+                                        echo '<script>
+                                            swal("Terjadi Kesalahan!", "File yang dikirim tidak boleh melebihi 2MB", "error")
+                                        </script>';
+                                    }
+                                }
+                            }
+
+                            ?>
+
                             <button style="width:100%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalku"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
 
 
@@ -332,21 +422,21 @@ $result_get = json_decode($result_get, true);
 
                                         <!-- Ini adalah Bagian Body Modal -->
                                         <div class="modal-body">
-                                            <form>
+                                            <form action="" method="POST" enctype="multipart/form-data">
                                                 <p style="margin:0px 0px 0px 0px">Silahkan unggah berkas lamaran anda</p>
-                                                <span class="text-danger" style="font-size: 14px;">* Unggah berkas lamaran yang akan dikirim harus dalam bentuk .docx, .rar atau .zip dan ukuran berkas tidak lebih dari 1.5MB</span><br>
-                                                <input type="file" name="file-lamaran" id="file-lamaran" style="margin-top: 18px"><br><br>
-                                                <label class="text-info rounded">Atau</label> <br>
-                                                <span style="padding:10px 10px 10px 0px"> Tulis lamaran anda !</span>
-                                                <textarea name="lamaran" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                                                <span class="text-danger" style="font-size: 14px;">* Unggah berkas lamaran yang akan dikirim harus dalam bentuk .docx, .pdf, .rar, atau .zip dan ukuran berkas tidak lebih dari 2MB</span><br>
+                                                <input type="file" name="file-lamaran" id="file-lamaran" style="margin-top: 18px" required=""><br><br>
+                                                <span style="padding:10px 10px 10px 0px">Keterangan :</span>
+                                                <textarea id="keterangan" name="keterangan" rows="4" cols="50" class="form-control" required=""></textarea>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary" value="POST">Kirim</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                                </div>
                                             </form>
                                         </div>
 
                                         <!-- Ini adalah Bagian Footer Modal -->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Kirim</button>
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -472,10 +562,9 @@ $result_get = json_decode($result_get, true);
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function loginEx() {
-            swal("Perhatian!", "Anda harus masuk terlebih dahulu!", "warning");
+            swal("Perhatian!", "Anda harus masuk terlebih dahulu", "warning");
         }
     </script>
 
