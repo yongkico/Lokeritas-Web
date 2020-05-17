@@ -189,7 +189,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                                                         echo 'images/profil/default.png';
                                                     } else {
                                                         echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
-                                                    }  ?>" height="150" style="width:150px" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                                                    }  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4" >
                             
                             <div class="author" style="margin:50px 0px 0px 169px">
                                 <p class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-account-edit text-light"></i> Ubah</p>

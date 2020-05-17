@@ -1,21 +1,60 @@
 <?php
 require("functions.php");
 
-if (isset($_POST["daftar"])) {
-    if (daftar($_POST) > 0) {
+if (isset($_POST["btn_daftar"])) {
+    
+    $nama_perusahaan = $_POST['nama_perusahaan'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password2 = $_POST['password2'];
+    $telepon = $_POST['telepon'];
+    $sektor = $_POST['sektor'];
+    $alamat = $_POST['alamat'];
+
+
+    if ($password !== $password2) {
         echo "
-        <script>
-            alert('User baru berhasil didaftar');
-        </script>
-        ";
-        header("Location:login.php");
-    } else {
-        echo "
-        <script>
-            alert('User baru gagal didaftar');
-        </script>
-        ";
+                <script>
+                    alert('Password tidak sesuai !');
+                </script>
+            ";
+        header("Refresh:0");
+        exit;
     }
+
+    //enkripsi password
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    $form_data = array(
+        "nama_perusahaan" => $nama_perusahaan,
+        "email" => $email,
+        "password" => $password,
+        "sektor_perusahaan" => $sektor,
+        "telepon" => $telepon,
+        "alamat" => $alamat  
+    );
+
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_perusahaan.php');
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($curl);
+    curl_close($curl);
+
+    $pesan = json_decode($result, true);
+
+
+    if ($pesan['message'] == 'Berhasil') {
+        header('location:login.php');
+    } else if ($pesan['message'] == 'unavailable') {
+        echo '<script>
+                alert("Email sudah terdaftar !");
+            </script>';
+    }
+
+
 }
 
 ?>
@@ -72,12 +111,12 @@ if (isset($_POST["daftar"])) {
                                 <div class="text-center">
                                     <h4 class="mb">Daftar</h4>
                                 </div>
-                                <form class="login-form" action="" method="POST">
+                                <form class="login-form" action="" method="POST" onsubmit="if(document.getElementById('setuju').checked) { return true; } else { alert('Pastikan anda setuju dengan syarat dan ketentuan Lokeritas'); return false; }">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label>Nama Perusahaan <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama_depan" required="">
+                                                <input type="text" class="form-control" placeholder="Nama Perusahaan" name="nama_perusahaan" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -89,13 +128,19 @@ if (isset($_POST["daftar"])) {
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label>Password <span class="text-danger">*</span></label>
-                                                <input type="password" class="form-control" placeholder="Password" name="password" required="">
+                                                <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password harus terdiri dari 8 karakter dan mengandung huruf besar, huruf kecil dan angka" class="form-control" placeholder="Password" name="password" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label>Konfirmasi Password <span class="text-danger">*</span></label>
-                                                <input type="password" class="form-control" placeholder="Konfirmasi Password" name="password2" required="">
+                                                <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Password harus terdiri dari 8 karakter dan mengandung huruf besar, huruf kecil dan angka" class="form-control" placeholder="Konfirmasi Password" name="password2" required="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group position-relative">
+                                                <label>Telepon <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" placeholder="Telepon" name="telepon" required="">
                                             </div>
                                         </div>
 
@@ -103,7 +148,7 @@ if (isset($_POST["daftar"])) {
                                             <div class="form-group position-relative">
                                                 <label>Sektor Perusahaan <span class="text-danger">*</span></label>
                                                 <div class="form-button">
-                                                    <select class="rounded" style="width:100%;padding-left:10px; height: 40px ! important">
+                                                    <select class="rounded" name="sektor" style="width:100%;padding-left:10px; height: 40px ! important" required>
                                                         <option selected value="" disabled>Sektor Perusahaan</option>
                                                         <option value="Advertising, Printing & Media">Advertising, Printing & Media</option>
                                                         <option value="Asuransi">Asuransi</option>
@@ -161,20 +206,20 @@ if (isset($_POST["daftar"])) {
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label>Alamat <span class="text-danger">*</span></label>
-                                                <textarea name="alamat" class="form-control" id="" cols="30" rows="10" placeholder="Masukan alamat"></textarea>
+                                                <textarea name="alamat" class="form-control" id="" cols="30" rows="10" placeholder="Alamat" required></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="custom-control m-0 custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                                    <label class="custom-control-label" for="customCheck7">Saya Setuju dengan <a href="#" class="text-primary">Syarat dan Ketentuan</a></label>
+                                                    <input type="checkbox" id="setuju" class="custom-control-input">
+                                                    <label class="custom-control-label" for="setuju">Saya Setuju dengan <a href="#" class="text-primary">Syarat dan Ketentuan</a></label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button class="btn btn-primary w-100" name="daftar">Daftar</button>
+                                            <button type="submit" class="btn btn-primary w-100" name="btn_daftar">Daftar</button>
                                         </div>
                                         <div class="mx-auto">
                                             <p class="mb-0 mt-3"><small class="text-dark mr-2">Sudah mempunyai akun ?</small> <a href="login.php" class="text-dark font-weight-bold">Masuk</a></p>
