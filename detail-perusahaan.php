@@ -1,7 +1,15 @@
 <?php
 session_start();
-require("functions.php");
 
+$id = $_GET['id_perusahaan'];
+
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/perusahaan_detail.php?id_perusahaan=' . $id . '');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get_perusahaan = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get_perusahaan = json_decode($result_get_perusahaan, true);
 
 ?>
 
@@ -49,11 +57,6 @@ require("functions.php");
     <!-- Loader -->
 
     <?php if (isset($_SESSION["login"])) : ?>
-        <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
-        ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
 
@@ -62,8 +65,8 @@ require("functions.php");
                 <!-- Logo container-->
                 <div>
                     <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!--end login button-->
@@ -92,7 +95,7 @@ require("functions.php");
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -118,8 +121,8 @@ require("functions.php");
                 <!-- Logo container-->
                 <div>
                     <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
@@ -165,17 +168,17 @@ require("functions.php");
     <?php endif; ?>
 
     <!-- Start home -->
-    <section class="bg-half page-next-level" style="padding: 110px 0px 10px 0px;background: url('images/bg-2.jpg') center center;">
+    <section class="bg-half page-next-level" style="padding: 110px 0px 10px 0px;background: url('http://lokeritas.xyz/assets/perusahaan/<?php echo $result_get_perusahaan['0']['sampul'] ?>') center center;">
         <div class="bg-overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-sm-center">
-                        <img src="images/featured-job/img-3.png" alt="" class="img-fluid mx-md-auto d-block">
-                        <h4 class="mt-3"><a href="#" class="text-white">CV. Rumah Siap Kerja</a></h4>
+                        <img src="http://lokeritas.xyz/assets/perusahaan/<?php echo $result_get_perusahaan['0']['logo'] ?>" alt="" class="img-fluid mx-md-auto d-block" width="50">
+                        <h4 class="mt-3"><a href="#" class="text-white"><?php echo strtoupper($result_get_perusahaan['0']['nama_perusahaan']) ?></a></h4>
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item mr-3">
-                                <p class="text-white"><i class="mdi mdi-map-marker mr-2"></i>Jl. Cokroaminoto, Kota Pematang Siantar</p>
+                                <p class="text-white" style="text-transform: capitalize"><i class="mdi mdi-map-marker mr-2"></i><?php echo strtolower($result_get_perusahaan['0']['alamat']) ?></p>
                             </li>
                         </ul>
                     </div>
@@ -192,19 +195,6 @@ require("functions.php");
 
                 <div class="col-lg-12 mt-4 pt-2" style="margin:0px 0px 0px 0px !important">
                     <div class="p-4">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ul style="box-shadow: 1px 2px 4px 1px #e1e0e0;" class="nav nav-pills nav nav-pills bg-light rounded nav-justified flex-column flex-sm-row" id="pills-tab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link rounded active" id="pills-cloud-tab" data-toggle="pill" href="#pills-cloud" role="tab" aria-controls="pills-cloud" aria-selected="true">Profil</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link rounded" id="pills-smart-tab" data-toggle="pill" href="#pills-smart" role="tab" aria-controls="pills-smart" aria-selected="false">Daftar Lowongan</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!--end col-->
-                        </div>
                         <!--end row-->
 
                         <div class="row mt-4 pt-2">
@@ -218,7 +208,7 @@ require("functions.php");
                                                 <div class="col-lg-8 col-md-7">
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <h5 class="text-muted mt-4">Deskripsi Pekerjaan :</h5>
+                                                            <h5 class="text-muted mt-4">Deskripsi Perusahaan :</h5>
                                                         </div>
                                                     </div>
 
@@ -226,7 +216,7 @@ require("functions.php");
                                                         <div class="col-lg-12">
                                                             <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                                                 <div class="job-detail-desc">
-                                                                    <p class="text-dark mb-3">PT. Bisi International, Tbk merupakan perusahaan multinasional yang memproduksi pertanian dan bermarkas di Surabaya, Indonesia. Perusahaan ini didirikan pada 22 Juni 1983 dan memiliki pabrik pengolahan benih di Plosoklaten dan Pare Kabupaten Kediri. Perusahaan ini menghasilkan berbagai macam-macam benih pertanian serta melakukan kegiatan usaha lain di sektor perdagangan, industri, dan distribusi.</p>
+                                                                    <p class="text-dark mb-3"><?php echo strtolower($result_get_perusahaan['0']['deskripsi']) ?></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -242,7 +232,7 @@ require("functions.php");
                                                         <div class="col-lg-12">
                                                             <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                                                 <div class="job-detail-desc">
-                                                                    <p class="text-dark mb-3">Senin - Jumat / 08.00 WIB - 17.00 WIB</p>
+                                                                    <p class="text-dark mb-3"><?php echo $result_get_perusahaan['0']['hari_kerja'] ?></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -259,9 +249,7 @@ require("functions.php");
                                                             <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                                                 <div class="job-detail-desc">
                                                                     <ul style="list-style-type: none; padding:0px 0px 0px 0px">
-                                                                        <li class="mdi mdi-chevron-right text-dark"> BPJS</li>
-                                                                        <li class="mdi mdi-chevron-right text-dark"> THR</li>
-                                                                        <li class="mdi mdi-chevron-right text-dark"> Tunjangan Kesehatan</li>
+                                                                        <li class="mdi mdi-chevron-right text-dark"> <?php echo $result_get_perusahaan['0']['benefit'] ?></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -278,7 +266,7 @@ require("functions.php");
                                                         <div class="col-lg-12">
                                                             <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                                                 <div class="job-detail-desc">
-                                                                    <p class="text-dark mb-3">Bahasa Indonesia & Bahasa Tionghoa</p>
+                                                                    <p class="text-dark mb-3">Menguasai bahasa <?php echo $result_get_perusahaan['0']['bahasa'] ?></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -296,21 +284,21 @@ require("functions.php");
                                                                 <div class="float-left mr-2">
                                                                     <i class="mdi mdi-web text-dark"></i>
                                                                 </div>
-                                                                <p class="text-dark mb-2">: https://www.rumahkerja.com</p>
+                                                                <p class="mb-2" style="color: #3c4858">: <?php echo $result_get_perusahaan['0']['informasi_kontak'] ?></p>
                                                             </div>
 
                                                             <div class="job-details-desc-item">
                                                                 <div class="float-left mr-2">
                                                                     <i class="mdi mdi-cellphone-iphone text-dark"></i>
                                                                 </div>
-                                                                <p class="text-dark mb-2">: 082277678890</p>
+                                                                <p class="text-dark mb-2">: (+62) <?php echo $result_get_perusahaan['0']['telepon'] ?></p>
                                                             </div>
 
                                                             <div class="job-details-desc-item">
                                                                 <div class="float-left mr-2">
                                                                     <i class="mdi mdi-email-variant text-dark"></i>
                                                                 </div>
-                                                                <p class="text-dark mb-2">: karyajaya@gmail.com</p>
+                                                                <p class="mb-2" style="color: #3c4858">: <?php echo strtolower($result_get_perusahaan['0']['email']) ?></p>
                                                             </div>
 
 
@@ -322,233 +310,6 @@ require("functions.php");
 
                                         </div>
 
-                                    </div>
-                                    <!--end teb pane-->
-
-                                    <div class="tab-pane fade" id="pills-smart" role="tabpanel" aria-labelledby="pills-smart-tab">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="tab-content mt-2" id="pills-tabContent">
-                                                        <div class="tab-pane fade show active" id="recent-job" role="tabpanel" aria-labelledby="recent-job-tab">
-                                                            <div class="row">
-
-                                                                <div class="col-lg-12">
-
-                                                                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                                                        <div class="p-4">
-                                                                            <div class="row align-items-center">
-                                                                                <div class="col-md-2">
-                                                                                    <div class="mo-mb-2">
-                                                                                        <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
-                                                                                        <p class="text-muted mb-0">PT. Rumah Kerja</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="p-3 bg-light">
-                                                                            <div class="row">
-                                                                                <div class="col-md-5">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-4">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                                                        <div class="p-4">
-                                                                            <div class="row align-items-center">
-                                                                                <div class="col-md-2">
-                                                                                    <div class="mo-mb-2">
-                                                                                        <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
-                                                                                        <p class="text-muted mb-0">PT. Rumah Kerja</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="p-3 bg-light">
-                                                                            <div class="row">
-                                                                                <div class="col-md-5">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-4">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                                                        <div class="p-4">
-                                                                            <div class="row align-items-center">
-                                                                                <div class="col-md-2">
-                                                                                    <div class="mo-mb-2">
-                                                                                        <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
-                                                                                        <p class="text-muted mb-0">PT. Rumah Kerja</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="p-3 bg-light">
-                                                                            <div class="row">
-                                                                                <div class="col-md-5">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-4">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                                                        <div class="p-4">
-                                                                            <div class="row align-items-center">
-                                                                                <div class="col-md-2">
-                                                                                    <div class="mo-mb-2">
-                                                                                        <img src="images/featured-job/img-1.png" alt="" class="img-fluid mx-auto d-block">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <h5 class="f-18"><a href="lowongan-detail.php" class="text-dark">Penjahit</a></h5>
-                                                                                        <p class="text-muted mb-0">PT. Rumah Kerja</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>Konveksi dan Produksi</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>Kota Pematang Siantar</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="p-3 bg-light">
-                                                                            <div class="row">
-                                                                                <div class="col-md-5">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-4">
-                                                                                    <div>
-                                                                                        <p class="text-muted mb-0 mo-mb-2">Tutup :<span class="text-dark"> 04 Apr 2020 </span></p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-3">
-                                                                                    <a href="lowongan-detail.php" class="btn btn-info">Selengkapnya</a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- end row -->
-
-                                            <!-- end row -->
-                                            <div class="row">
-                                                <div class="col-lg-12 mt-4 pt-2">
-                                                    <nav aria-label="Page navigation example">
-                                                        <ul class="pagination job-pagination mb-0 justify-content-center">
-                                                            <li class="page-item disabled">
-                                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                                                    <i class="mdi mdi-chevron-double-left f-15"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                                            <li class="page-item">
-                                                                <a class="page-link" href="#">
-                                                                    <i class="mdi mdi-chevron-double-right f-15"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </nav>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end containar -->
                                     </div>
                                     <!--end teb pane-->
                                 </div>
@@ -643,7 +404,7 @@ require("functions.php");
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
-    
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function loginEx() {

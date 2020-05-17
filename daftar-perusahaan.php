@@ -1,7 +1,13 @@
 <?php
 session_start();
-require("functions.php");
 
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_perusahaan.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_get = json_decode($result_get, true);
 
 ?>
 <!DOCTYPE html>
@@ -48,11 +54,6 @@ require("functions.php");
     <!-- Loader -->
 
     <?php if (isset($_SESSION["login"])) : ?>
-        <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
-        ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
 
@@ -91,7 +92,7 @@ require("functions.php");
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -170,7 +171,7 @@ require("functions.php");
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">DAFTAR PERUSAHAAN</h4>
+                        <h4 class="text-uppercase title mb-4">SEMUA PERUSAHAAN</h4>
                     </div>
                 </div>
             </div>
@@ -183,14 +184,13 @@ require("functions.php");
                                     <div class="col-lg-9 col-md-6">
                                         <div class="registration-form-box">
                                             <i class="fa fa-briefcase"></i>
-                                            <input type="text" id="exampleInputName1" class="form-control rounded registration-input-box" placeholder="Nama Perusahaan...">
+                                            <input type="text" id="exampleInputName1" name="q" class="form-control rounded registration-input-box" placeholder="Cari Nama Perusahaan..." required="asa">
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
                                         <div class="registration-form-box">
-                                            <a href="lowongan.php">
-                                                <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
-                                            </a>
+
+                                            <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
                                         </div>
                                     </div>
                                 </div>
@@ -207,120 +207,148 @@ require("functions.php");
     <section class="section" style="padding: 30px 0px 40px 0px">
         <div class="container">
             <div class="row">
+                <?php
+                foreach ($result_get as $row) :
+                ?>
 
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4>CV. Pradipta Paramita</h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <?php if (isset($_SESSION["login"])) : ?>
-                                <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                            <?php else : ?>
-                                <button onclick="loginEx();" type="button" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></button>
-                            <?php endif; ?>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
 
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4>CV. Pradipta Paramita</h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
+                    <?php
+                    if (isset($_GET['q'])) {
+                        $cari = strtolower($_GET['q']);
+                        $kalimat = strtolower($row['nama_perusahaan']);
 
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
+                        if (preg_match("/$cari/i", $kalimat)) {
+                            echo ' <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                            <div class="blog position-relative overflow-hidden shadow rounded">
+                                <div class="position-relative overflow-hidden">
+                                    <img src="' . $row['logo'] . '" style="width: 30%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                                </div>
+                                <div class="content p-4 bg-light">
+                                    <h4>' . strtoupper($row['nama_perusahaan']) . '</h4>
+                                    <p class="text-muted" style="text-transform: capitalize">' . strtolower($row['sektor_perusahaan']) . ' | ' . strtolower($row['alamat']) . '</p>
+                                    <a href="detail-perusahaan.php?id_perusahaan=' . $row['id_perusahaan'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    </div>
+                            </div>
+                        </div>';
+                        }
+                    } else {
+                        echo ' <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                        <div class="blog position-relative overflow-hidden shadow rounded">
+                            <div class="position-relative overflow-hidden">
+                                <img src="' . $row['logo'] . '" style="width: 30%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                            </div>
+                            <div class="content p-4 bg-light">
+                                <h4>' . strtoupper($row['nama_perusahaan']) . '</h4>
+                                <p class="text-muted" style="text-transform: capitalize">' . strtolower($row['sektor_perusahaan']) . ' | ' . strtolower($row['alamat']) . '</p>
+                                <a href="detail-perusahaan.php?id_perusahaan=' . $row['id_perusahaan'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                </div>
                         </div>
-                        <div class="content p-4 bg-light">
-                            <h4>CV. Pradipta Paramita</h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
+                    </div>';
+                    }
+                    ?>
 
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4>CV. Pradipta Paramita</h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
+                <?php
+                endforeach; ?>
 
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4>CV. Pradipta Paramita</h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
 
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4>CV. Pradipta Paramita</h4>
-                            <p class="text-muted">Peternakan | Karanganyar - Medan, Tembung</p>
-                            <a href="detail-perusahaan.php" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
+                <!-- <?php
+
+                        $total = count($result_get);
+                        $page = (isset($_GET['page'])) ? $_GET['page'] : 0;
+                        $content = range(1, $total);
+                        $pages = array_chunk($content, 3);
+                        $a = array_slice($result_get, $page, 1);
+                        $totalpag = count($result_get);
+
+                        ?>
 
                 <div class="col-lg-12">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination job-pagination justify-content-center mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                    <i class="mdi mdi-chevron-double-left f-15"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="mdi mdi-chevron-double-right f-15"></i>
-                                </a>
-                            </li>
+                        <ul class="pagination job-pagination mb-0 justify-content-center">
+
+                            <?php
+
+
+                            $total_pages = count($pages);
+                            $prevpage = $page - 1;
+                            $nextpage = $page + 1;
+
+                            if ($page == 0) {
+                                echo '
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="?page=' . $prevpage . '" tabindex="-1" aria-disabled="true">
+                                                            <i class="mdi mdi-chevron-double-left f-15"></i>
+                                                        </a>
+                                                    </li>
+                                                    ';
+
+                                $j = 1;
+                                for ($i = 0; $i < $total; $i++) {
+                                    echo '
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page=' . $i . '" tabindex="-1" aria-disabled="true">
+                                                            ' . $j . '
+                                                        </a>
+                                                    </li>
+                                                    ';
+                                    $j++;
+                                }
+                                echo '
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
+                                                            <i class="mdi mdi-chevron-double-right f-15"></i>
+                                                        </a>
+                                                    </li>';
+                            }
+
+                            if ($page > 0) {
+                                echo '
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page=' . $prevpage . '" tabindex="-1" aria-disabled="true">
+                                                            <i class="mdi mdi-chevron-double-left f-15"></i>
+                                                        </a>
+                                                    </li>
+                                                    ';
+
+                                $j = 1;
+                                for ($i = 0; $i < $total; $i++) {
+                                    echo '
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page=' . $i . '" tabindex="-1" aria-disabled="true">
+                                                            ' . $j . '
+                                                        </a>
+                                                    </li>
+                                                    ';
+                                    $j++;
+                                }
+
+                                if ($page == $totalpag - 1) {
+                                    echo '
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
+                                                            <i class="mdi mdi-chevron-double-right f-15"></i>
+                                                        </a>
+                                                    </li>';
+                                } else {
+                                    echo '
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
+                                                            <i class="mdi mdi-chevron-double-right f-15"></i>
+                                                        </a>
+                                                    </li>';
+                                }
+                            }
+                            ?>
                         </ul>
                     </nav>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
     <!-- blog end -->
+
+
+
 
     <!-- The Modal Daftar -->
     <div class="modal" id="pilihanDaftar">
