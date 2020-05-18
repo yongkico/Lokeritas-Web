@@ -1,7 +1,49 @@
 <?php
 session_start();
-require("functions.php");
 
+$site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
+$secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+
+if (isset($_POST['send'])) {
+
+    if (isset($_POST['g-recaptcha-response'])) {
+        $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
+        $response = @file_get_contents($api_url);
+        $data = json_decode($response, true);
+
+        if ($data['success']) {
+            $success = true;
+            $nama = $_POST['name'];
+            $email = $_POST['email'];
+            $judul = $_POST['judul'];
+            $pesan = $_POST['pesan'];
+
+            //API Hubungi Kami
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "http://lokeritas.xyz/api-v1/hubungi.php",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "nama=$nama&email=$email&judul=$judul&pesan=$pesan",
+                CURLOPT_HTTPHEADER => array(
+                    "Content-Type: application/x-www-form-urlencoded"
+                ),
+            ));
+
+            $response_hubungi = curl_exec($curl);
+            curl_close($curl);
+        } else {
+            $success = false;
+        }
+    } else {
+        $success = false;
+    }
+}
 
 ?>
 
@@ -49,11 +91,6 @@ require("functions.php");
     <!-- Loader -->
 
     <?php if (isset($_SESSION["login"])) : ?>
-        <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
-        ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
 
@@ -92,7 +129,7 @@ require("functions.php");
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -118,8 +155,8 @@ require("functions.php");
                 <!-- Logo container-->
                 <div>
                     <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
@@ -192,33 +229,43 @@ require("functions.php");
                 <div class="col-lg-8 col-md-7 mt-4 pt-2">
                     <div class="custom-form rounded border p-4">
                         <div id="message"></div>
-                        <form method="post" action="php/contact.php" name="contact-form" id="contact-form">
+                        <?php if (isset($success)) {
+                            if ($success == true) {
+                                echo '<p class="text-center" style="color: red; font-weight: bold;">Pesan Anda berhasil dikirim, terimakasih telah menghubungi kami</p>
+                                ';
+                            } else {
+                                echo '<p class="text-center" style="color: red; font-weight: bold;">Pesan Anda gagal dikirim, harap verifikasi captcha</p>
+                                ';
+                            }
+                        } ?>
+                        <form method="post" action="" name="contact-form" id="contact-form">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Nama</label>
-                                        <input name="name" id="name2" type="text" class="form-control resume" placeholder="Masukan nama..">
+                                        <input name="name" id="name2" type="text" class="form-control resume" placeholder="Masukan nama.." required="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Email</label>
-                                        <input name="email" id="email1" type="email" class="form-control resume" placeholder="Masukan email..">
+                                        <input name="email" id="email1" type="email" class="form-control resume" placeholder="Masukan email.." required="">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Judul</label>
-                                        <input type="text" class="form-control resume" id="subject" placeholder="Judul..">
+                                        <input type="text" class="form-control resume" name="judul" id="subject" placeholder="Judul.." required="">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Pesan</label>
-                                        <textarea name="comments" id="comments" rows="5" class="form-control resume" placeholder="Pesan.."></textarea>
+                                        <textarea name="pesan" id="comments" rows="5" class="form-control resume" placeholder="Pesan.." required=""></textarea>
                                     </div>
                                 </div>
                             </div>
+                            <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim">
@@ -229,7 +276,7 @@ require("functions.php");
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-5 mt-4 pt-2" >
+                <div class="col-lg-4 col-md-5 mt-4 pt-2">
                     <div class="border rounded text-center p-4" style="box-shadow: 1px 4px 8px 1px #e1e0e0;">
                         <h5 class="text-dark pb-3">Informasi Kontak</h5>
                         <div class="contact-location rounded mt-5 p-4 job-box" style="box-shadow: 1px 4px 8px 1px #657efd;">
@@ -257,35 +304,35 @@ require("functions.php");
 
     <!-- The Modal Daftar -->
     <div class="modal" id="pilihanDaftar">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Daftar</h4>
-                        <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
-                    </div>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Daftar</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
-                                    <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang Disabilitas Pencari Kerja</p>
-                                    <p style="text-align: center;margin-top:30px"><a href="daftar-disabilitas.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
-                                </div>
-                                <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
-                                    <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja Penyandang Disabilitas</p>
-                                    <p style="text-align: center;margin-top:30px"><a href="daftar-penyedia-kerja.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
-                                </div>
-
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang Disabilitas Pencari Kerja</p>
+                                <p style="text-align: center;margin-top:30px"><a href="daftar-disabilitas.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
                             </div>
+                            <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja Penyandang Disabilitas</p>
+                                <p style="text-align: center;margin-top:30px"><a href="daftar-penyedia-kerja.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
+                            </div>
+
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
-        <!-- End Modal Ubah Foto Profil -->
+    </div>
+    <!-- End Modal Ubah Foto Profil -->
 
     <!-- footer start -->
     <footer class="footer" style="padding: 40px 0px 10px 0px">
@@ -310,16 +357,16 @@ require("functions.php");
                         <li><a href="hubungi-kami.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
                         <li><a href="kebijakan-privasi.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
                         <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
-                        
+
                     </ul>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title f-17">Penyedia Kerja</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="daftar-penyedia-kerja.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mendaftar</a></li>
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right" disabled></i> Lihat Daftar Kandidat</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pasang Iklan Lowongan</a></li>                           
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pasang Iklan Lowongan</a></li>
                     </ul>
                 </div>
 
@@ -327,11 +374,11 @@ require("functions.php");
                     <p class="text-white mb-4 footer-list-title">Lainnya</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="tips-karir.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
-                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>                        
+                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
                         <li><a href="lowongan.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Mobile Lokeritas</a></li>
                     </ul>
-                </div>                
+                </div>
             </div>
         </div>
     </footer>
@@ -370,6 +417,8 @@ require("functions.php");
     <script src="js/jquery.nice-select.min.js"></script>
 
     <script src="js/app.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </body>
 
