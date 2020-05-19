@@ -120,7 +120,7 @@ if (isset($_POST['daftar'])) {
                                 <div class="text-center">
                                     <h4 class="mb">Daftar</h4>
                                 </div>
-                                <form class="login-form" id="form-daftar" action="" method="POST" onsubmit="if(document.getElementById('setuju').checked) { return true; } else { alert('Pastikan anda setuju dengan syarat dan ketentuan Lokeritas'); return false; }">
+                                <form class="login-form" id="form-daftar" action="" method="POST" onsubmit="if(document.getElementById('setuju').checked) { return true; } else { swal('Perhatian!', 'Pastikan anda setuju dengan syarat dan ketentuan Lokeritas !', 'warning'); return false; }">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
@@ -279,6 +279,13 @@ if (isset($_POST['daftar'])) {
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function loginEx() {
+            swal('Perhatian!', 'Berkas yang diunggah maksimal 2 !', 'warning');
+        }
+    </script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>

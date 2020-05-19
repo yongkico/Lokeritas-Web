@@ -2606,11 +2606,11 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                                         <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
                                             <div class="col-md-12" style="margin-bottom: 10px;">
                                                 <div class="position-relative overflow-hidden">
-                                                    <img id="foto_display" src="images/profil/<?php if (empty($result_get[0]['foto'])) {
-                                                                                                    echo 'default.png';
-                                                                                                } else {
-                                                                                                    echo $result_get[0]['foto'];
-                                                                                                }  ?>" height="200" style="width:200px" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                                                <img id="foto_display" src="<?php if (empty($result_get[0]['foto'])) {
+                                                        echo 'images/profil/default.png';
+                                                    } else {
+                                                        echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
+                                                    }  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4" >
                                                     <!-- <img id="foto_display" src="/api-v1/uploads/Foto/<?php if (empty($result_get[0]['foto'])) {
                                                                                                     echo 'default.png';
                                                                                                 } else {

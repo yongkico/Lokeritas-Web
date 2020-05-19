@@ -3,6 +3,29 @@ session_start();
 require("functions.php");
 
 
+$id = 1;
+
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/lamaranUser.php?id_user=' . $id);
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result = curl_exec($curl_get);
+curl_close($curl_get);
+
+$lamaran = json_decode($result, true);
+$lamaranTerbaru = array_reverse($lamaran);
+
+
+$jlhDataPerHalaman = 6;
+$jlhData = count($lamaranTerbaru);
+$jlhHalaman = ceil($jlhData / $jlhDataPerHalaman);
+$halamanAktif = (isset($_GET['hal'])) ? $_GET['hal'] : 1;
+$awalData = ($jlhDataPerHalaman * $halamanAktif) - $jlhDataPerHalaman;
+
+
+$dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -182,79 +205,86 @@ require("functions.php");
     <!-- blog start -->
     <section class="section" style="padding: 20px 0px 40px 0px">
         <div class="container">
-            <h4>Daftar Lamaran</h4>
-            <span>Urutkan berdasarkan </span>
-            <select class="">
-                <option value="">Terbaru </option>
-                <option value="">Terlama </option>
-            </select><br><br>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded" style="box-shadow: 1px 4px 8px 1px #e1e0e0 ! important">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>
-                            <p class="text-muted">hi@hotama.co.id</p>
-                            <p class="text-info" style="margin-bottom: 0px"><i class="mdi mdi-send"></i> Dikirim Tanggal : 22 Feb 2020</p>
-                            <p class="text-info"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
+                <div class="col-12">
+                    <h4 class="text-primary">Daftar Lamaran</h4>
+                </div>
+                <div class="col-12"><span>Urutkan berdasarkan </span></div>
+                <div class="col-12">
+                    <input type="hidden" value="<?= $id; ?>" id="idnya">
+                    <select class="form-control" id="waktu" style="width: 250px" onchange="urutkan(this)">
+                        <option selected disabled>Urutkan Berdasarkan </option>
+                        <option value="terbaru">Terbaru </option>
+                        <option value="terlama">Terlama </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-5" id="daftarLamaran">
+                <?php foreach ($dataLimit as $data) : ?>
+                    <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                        <div class="blog position-relative overflow-hidden shadow rounded" style="box-shadow: 1px 4px 8px 1px #e1e0e0 ! important">
+                            <div class="position-relative overflow-hidden">
+                                <img src="<?= $data['logo']; ?>" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
+                            </div>
+                            <div class="content p-4 bg-light">
+                                <h4><a href="#" class="title text-dark"><?= $data['nama_pekerjaan']; ?></a></h4>
+                                <p class="text-muted"><?= $data['email']; ?></p>
+                                <p class="text-info" style="margin-bottom: 0px"><i class="mdi mdi-send"></i> Dikirim Tanggal : <?= $data['tgl_submit']; ?></p>
+                                <?php if ($data['status'] == '0') : ?>
+                                    <p class="text-primary"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
+                                <?php elseif ($data['status'] == '1') : ?>
+                                    <p class="text-info"><i class="mdi mdi-book-open"></i> Status : Review</p>
+                                <?php elseif ($data['status'] == '2') : ?>
+                                    <p class="text-warning"><i class="mdi mdi-calendar-clock"></i> Status : Pending</p>
+                                <?php elseif ($data['status'] == '3') : ?>
+                                    <p class="text-success"><i class="mdi mdi-checkbox-marked-circle"></i> Status : Diterima</p>
+                                <?php elseif ($data['status'] == '4') : ?>
+                                    <p class="text-danger"><i class="mdi mdi-close-circle"></i> Status : Ditolak</p>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded" style="box-shadow: 1px 4px 8px 1px #e1e0e0 ! important">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>
-                            <p class="text-muted">hi@hotama.co.id</p>
-                            <p class="text-info" style="margin-bottom: 0px"><i class="mdi mdi-send"></i> Dikirim Tanggal : 22 Feb 2020</p>
-                            <p class="text-info"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded" style="box-shadow: 1px 4px 8px 1px #e1e0e0 ! important">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2019/1/5/42164186/42164186_abd49369-460e-4163-b355-96cf75803f21_1000_1000.png" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
-                        </div>
-                        <div class="content p-4 bg-light">
-                            <h4><a href="#" class="title text-dark">Programmer PHP</a></h4>
-                            <p class="text-muted">hi@hotama.co.id</p>
-                            <p class="text-info" style="margin-bottom: 0px"><i class="mdi mdi-send"></i> Dikirim Tanggal : 22 Feb 2020</p>
-                            <p class="text-info"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
+                    <!--end col-->
+                <?php endforeach; ?>
                 <div class="col-lg-12">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination job-pagination justify-content-center mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                    <i class="mdi mdi-chevron-double-left f-15"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="mdi mdi-chevron-double-right f-15"></i>
-                                </a>
+                                <?php if ($halamanAktif > 1) : ?>
+                                    <a class="page-link" href="?hal=<?= $halamanAktif - 1; ?>">
+                                        <i class="mdi mdi-chevron-double-left f-15"></i>
+                                    </a>
+                                <?php else : ?>
+                                    <a class="page-link" href="?hal=<?= 1; ?>">
+                                        <i class="mdi mdi-chevron-double-left f-15"></i>
+                                    </a>
+                                <?php endif; ?>
+                            </li>
+
+                            <?php for ($i = 1; $i <= $jlhHalaman; $i++) : ?>
+                                <?php if ($i == $halamanAktif) : ?>
+                                    <li class="page-item active"><a class="page-link" href="?hal=<?= $i; ?>"><?= $i; ?></a></li>
+                                <?php else : ?>
+                                    <li class="page-item"><a class="page-link" href="?hal=<?= $i; ?>"><?= $i; ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+
+                            <li class="page-item">
+                                <?php if ($halamanAktif < $jlhHalaman) : ?>
+                                    <a class="page-link" href="?hal=<?= $halamanAktif + 1; ?>">
+                                        <i class="mdi mdi-chevron-double-right f-15"></i>
+                                    </a>
+                                <?php else : ?>
+                                    <a class="page-link" href="?hal=<?= $jlhHalaman; ?>">
+                                        <i class="mdi mdi-chevron-double-right f-15"></i>
+                                    </a>
+                                <?php endif; ?>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
+
         </div>
     </section>
     <!-- blog end -->
@@ -284,16 +314,16 @@ require("functions.php");
                         <li><a href="hubungi-kami.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Hubungi Kami</a></li>
                         <li><a href="kebijakan-privasi.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Kebijakan Privasi</a></li>
                         <li><a href="faq.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> F.A.Q.</a></li>
-                        
+
                     </ul>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <p class="text-white mb-4 footer-list-title f-17">Penyedia Kerja</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="daftar-penyedia-kerja.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mendaftar</a></li>
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right" disabled></i> Lihat Daftar Kandidat</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pasang Iklan Lowongan</a></li>                           
+                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pasang Iklan Lowongan</a></li>
                     </ul>
                 </div>
 
@@ -301,11 +331,11 @@ require("functions.php");
                     <p class="text-white mb-4 footer-list-title">Lainnya</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="tips-karir.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tips Karir</a></li>
-                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>                        
+                        <li><a href="karyaku.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Karyaku</a></li>
                         <li><a href="lowongan.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lowongan Terbaru</a></li>
                         <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Unduh Aplikasi Mobile Lokeritas</a></li>
                     </ul>
-                </div>                
+                </div>
             </div>
         </div>
     </footer>
@@ -337,6 +367,28 @@ require("functions.php");
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+
+    <script>
+        function urutkan(el) {
+            var urutan = document.getElementById("waktu").value;
+            var daftarLamaran = document.getElementById("daftarLamaran");
+            var id = document.getElementById("idnya");
+
+            //buat object ajax
+            var xhr = new XMLHttpRequest();
+
+            //cek kesiapan ajax
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    daftarLamaran.innerHTML = xhr.responseText;
+                }
+            }
+
+            //eksekusi ajax
+            xhr.open('GET', 'ajax/onchangeLamaran.php?urutan=' + urutan + '&id=' + id.value, true);
+            xhr.send();
+        }
+    </script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>
