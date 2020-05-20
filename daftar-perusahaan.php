@@ -118,8 +118,8 @@ $result_get = json_decode($result_get, true);
                 <!-- Logo container-->
                 <div>
                     <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
@@ -249,99 +249,6 @@ $result_get = json_decode($result_get, true);
 
                 <?php
                 endforeach; ?>
-
-
-                <!-- <?php
-
-                        $total = count($result_get);
-                        $page = (isset($_GET['page'])) ? $_GET['page'] : 0;
-                        $content = range(1, $total);
-                        $pages = array_chunk($content, 3);
-                        $a = array_slice($result_get, $page, 1);
-                        $totalpag = count($result_get);
-
-                        ?>
-
-                <div class="col-lg-12">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination job-pagination mb-0 justify-content-center">
-
-                            <?php
-
-
-                            $total_pages = count($pages);
-                            $prevpage = $page - 1;
-                            $nextpage = $page + 1;
-
-                            if ($page == 0) {
-                                echo '
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link" href="?page=' . $prevpage . '" tabindex="-1" aria-disabled="true">
-                                                            <i class="mdi mdi-chevron-double-left f-15"></i>
-                                                        </a>
-                                                    </li>
-                                                    ';
-
-                                $j = 1;
-                                for ($i = 0; $i < $total; $i++) {
-                                    echo '
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?page=' . $i . '" tabindex="-1" aria-disabled="true">
-                                                            ' . $j . '
-                                                        </a>
-                                                    </li>
-                                                    ';
-                                    $j++;
-                                }
-                                echo '
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
-                                                            <i class="mdi mdi-chevron-double-right f-15"></i>
-                                                        </a>
-                                                    </li>';
-                            }
-
-                            if ($page > 0) {
-                                echo '
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?page=' . $prevpage . '" tabindex="-1" aria-disabled="true">
-                                                            <i class="mdi mdi-chevron-double-left f-15"></i>
-                                                        </a>
-                                                    </li>
-                                                    ';
-
-                                $j = 1;
-                                for ($i = 0; $i < $total; $i++) {
-                                    echo '
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?page=' . $i . '" tabindex="-1" aria-disabled="true">
-                                                            ' . $j . '
-                                                        </a>
-                                                    </li>
-                                                    ';
-                                    $j++;
-                                }
-
-                                if ($page == $totalpag - 1) {
-                                    echo '
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
-                                                            <i class="mdi mdi-chevron-double-right f-15"></i>
-                                                        </a>
-                                                    </li>';
-                                } else {
-                                    echo '
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="?page=' . $nextpage . '" tabindex="-1" aria-disabled="true">
-                                                            <i class="mdi mdi-chevron-double-right f-15"></i>
-                                                        </a>
-                                                    </li>';
-                                }
-                            }
-                            ?>
-                        </ul>
-                    </nav>
-                </div> -->
             </div>
         </div>
     </section>

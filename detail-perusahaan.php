@@ -1,15 +1,19 @@
 <?php
 session_start();
 
-$id = $_GET['id_perusahaan'];
+if (isset($_GET['id_perusahaan'])) {
+    $id = $_GET['id_perusahaan'];
 
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/perusahaan_detail.php?id_perusahaan=' . $id . '');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get_perusahaan = curl_exec($curl_get);
-curl_close($curl_get);
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/perusahaan_detail.php?id_perusahaan=' . $id . '');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get_perusahaan = curl_exec($curl_get);
+    curl_close($curl_get);
 
-$result_get_perusahaan = json_decode($result_get_perusahaan, true);
+    $result_get_perusahaan = json_decode($result_get_perusahaan, true);
+} else {
+    header('location: 404.html');
+}
 
 ?>
 
