@@ -266,9 +266,9 @@ $result_get = json_decode($result_get, true);
                                     </div>
                                 </div>';
                                 }
-                            } elseif (isset($_GET['keyworddd'])) {
+                            } elseif (isset($_GET['q'])) {
                                 $kalimat = strtolower($row['judul']);
-                                $cari = strtolower($_GET['keyworddd']);
+                                $cari = strtolower($_GET['q']);
                                 if (preg_match("/$cari/i", $kalimat)) {
                                     echo '<div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
                                     <div class="blog position-relative overflow-hidden shadow rounded">
