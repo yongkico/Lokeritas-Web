@@ -15,96 +15,97 @@ if (isset($_GET['id'])) {
     curl_close($curl_get);
 
     $result_get = json_decode($result_get, true);
-}
+    //Semua Tips
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get_TK = curl_exec($curl_get);
+    curl_close($curl_get);
 
-//Semua Tips
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get_TK = curl_exec($curl_get);
-curl_close($curl_get);
+    $result_get_TK = json_decode($result_get_TK, true);
 
-$result_get_TK = json_decode($result_get_TK, true);
+    //API Counter Visitor
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://lokeritas.xyz/api-v1/updateView.php",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "id_tips=" . $id_tips . "",
+        CURLOPT_HTTPHEADER => array(
+            "Content-Type: application/x-www-form-urlencoded"
+        ),
+    ));
 
-//API Counter Visitor
-$curl = curl_init();
-curl_setopt_array($curl, array(
-    CURLOPT_URL => "http://lokeritas.xyz/api-v1/updateView.php",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS => "id_tips=" . $id_tips . "",
-    CURLOPT_HTTPHEADER => array(
-        "Content-Type: application/x-www-form-urlencoded"
-    ),
-));
+    $response = curl_exec($curl);
 
-$response = curl_exec($curl);
+    curl_close($curl);
+    /////////////////////////////
 
-curl_close($curl);
-/////////////////////////////
+    if (isset($_POST['send'])) {
 
-if (isset($_POST['send'])) {
+        if (isset($_POST['g-recaptcha-response'])) {
+            $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
+            $response = @file_get_contents($api_url);
+            $data = json_decode($response, true);
 
-    if (isset($_POST['g-recaptcha-response'])) {
-        $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
-        $response = @file_get_contents($api_url);
-        $data = json_decode($response, true);
+            if ($data['success']) {
+                $comment = $_POST['komentar'];
+                $success = true;
 
-        if ($data['success']) {
-            $comment = $_POST['komentar'];
-            $success = true;
+                $id_tips = $_GET['id'];
+                $id_komentar = '';
+                $nama = $_POST['nama'];
+                $email = $_POST['email'];
+                $website = $_POST['website'];
+                $komentar = $_POST['komentar'];
 
-            $id_tips = $_GET['id'];
-            $id_komentar = '';
-            $nama = $_POST['nama'];
-            $email = $_POST['email'];
-            $website = $_POST['website'];
-            $komentar = $_POST['komentar'];
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => "http://lokeritas.xyz/api-v1/comments.php",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => "id_tips=$id_tips&id_komentar=$id_komentar&nama=$nama&email=$email&website=$website&komentar=$komentar",
+                    CURLOPT_HTTPHEADER => array(
+                        "Content-Type: application/x-www-form-urlencoded"
+                    ),
+                ));
 
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://lokeritas.xyz/api-v1/comments.php",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => "id_tips=$id_tips&id_komentar=$id_komentar&nama=$nama&email=$email&website=$website&komentar=$komentar",
-                CURLOPT_HTTPHEADER => array(
-                    "Content-Type: application/x-www-form-urlencoded"
-                ),
-            ));
+                $formCom = curl_exec($curl);
 
-            $formCom = curl_exec($curl);
-
-            curl_close($curl);
+                curl_close($curl);
+            } else {
+                $success = false;
+            }
         } else {
             $success = false;
         }
-    } else {
-        $success = false;
     }
+
+    /////////////////////////
+
+    //Semua Tips
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/comments.php?id_tips=' . $id_tips . '');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get_comment = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $result_get_comment = json_decode($result_get_comment, true);
+
+    // echo $result_get_comment['2']['nama'];
+} else {
+    header('location: 404.html');
 }
-
-/////////////////////////
-
-//Semua Tips
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/comments.php?id_tips=' . $id_tips . '');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get_comment = curl_exec($curl_get);
-curl_close($curl_get);
-
-$result_get_comment = json_decode($result_get_comment, true);
-
-// echo $result_get_comment['2']['nama'];
 
 ?>
 
