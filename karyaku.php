@@ -501,7 +501,7 @@ require("functions.php");
                                                                     <div class="row">
                                                                         <div class="col-12">
                                                                             <p class="text-dark">Pengguna ini siap untuk bekerja !</p>
-                                                                            <a href="#" class="btn btn-info"><i class="mdi mdi-email"></i> Hire Saya</a>
+                                                                            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#hireSaya"><i class="mdi mdi-email"></i> Hire Saya</a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mt-3">
@@ -555,6 +555,78 @@ require("functions.php");
     </div>
     <!-- End Modal Ubah Foto Profil -->
 
+    <!-- The Modal Daftar -->
+    <div class="modal" id="hireSaya">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="images/profil/default.png" height="70" style="width:70px;" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                            </div>
+                            <div class="col-9">
+                                <h5 class="mt-3">Kirim Hengky Sulaiman Pengajuan Pekerjaan</h5>
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p style="margin-bottom: 0px;font-weight:700">Tipe Pekerjaan <i class="text-danger">*</i></p>
+
+                                <div class="p-4" style="padding: 0px 0px 0px 0px ! important">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <div class="form-group">
+                                            <input type="radio" onchange="myFunction()" id="myCheck1" name="customRadio" class="custom-control-input">
+                                            <label class="custom-control-label" for="myCheck1">Full Time</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <div class="form-group">
+                                            <input type="radio" onchange="myFunction()" id="myCheck2" name="customRadio" class="custom-control-input">
+                                            <label class="custom-control-label" for="myCheck2">Half Time</label>
+                                        </div>
+                                    </div>
+                                    <div id="ketGaji1" style="display:none">
+                                        <p style="font: 700">Keterangan Gaji</p>
+                                        <p class="text-muted">Rp. 3.000.000 - Rp. 4.000.000</p>
+                                    </div>
+                                    <div id="ketGaji2" style="display:none">
+                                        <p style="font: 700">Keterangan Gaji</p>
+                                        <p class="text-muted">Rp. 1.500.000 - Rp. 2.000.000</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <p style="margin-bottom: 0px;font-weight:700">Deskripsi Pekerjaan <i class="text-danger">*</i></p>
+                                <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal body -->
+                <!-- <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <button type="submit" id="btnGetStudent" name="btn_karir" class="btn btn-primary">Kirim</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Ubah Foto Profil -->
 
     <!-- footer start -->
     <footer class="footer" style="padding: 40px 0px 10px 0px">
@@ -632,6 +704,31 @@ require("functions.php");
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+
+    <script>
+        function myFunction() {
+            // Get the checkbox
+            var checkBox1 = document.getElementById("myCheck1");
+            var checkBox2 = document.getElementById("myCheck2");
+            // Get the output text
+            var text1 = document.getElementById("ketGaji1");
+            var text2 = document.getElementById("ketGaji2");
+
+            // If the checkbox is checked, display the output text
+            if (checkBox1.checked == true) {
+                text1.style.display = "block";
+            } else {
+                text1.style.display = "none";
+            }
+
+            // If the checkbox is checked, display the output text
+            if (checkBox2.checked == true) {
+                text2.style.display = "block";
+            } else {
+                text2.style.display = "none";
+            }
+        }
+    </script>
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>
