@@ -180,20 +180,33 @@ require("functions.php");
     </section>
     <!-- end home -->
 
-    <!-- Section Search -->
-    <section style="padding:40px 0px 0px 0px">
-        <div class="container">
+    <!-- Search -->
+    <div class="container" style="height: 53px">
+        <div class="home-form-position">
             <div class="row">
-                <div class="col-lg-10">
-                    <input id="middle-name" type="text" class="form-control resume" placeholder="Kata kunci pencarian...">
-                </div>
-                <div class="col-lg-2">
-                    <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
+                <div class="col-lg-12">
+                    <div class="home-registration-form p-4 mb-3">
+                        <form class="registration-form" action="lowongan.php" method="post">
+                            <div class="row">
+                                <div class="col-lg-9 col-md-6">
+                                    <div class="registration-form-box">
+                                        <i class="mdi-library-books"></i>
+                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Judul, Nama Author..." required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="registration-form-box">
+                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Section Search -->
+    </div>
+    <!-- end Search -->
 
     <!-- blog start -->
     <section class="section" style="padding:0px 0px 50px 0px">
@@ -201,7 +214,7 @@ require("functions.php");
             <div class="row">
 
                 <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
+                    <div class="blog position-relative overflow-hidden shadow rounded" style="height: 250px">
                         <div class="position-relative overflow-hidden">
                             <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
                             <div class="overlay rounded-top bg-dark"></div>
@@ -209,118 +222,12 @@ require("functions.php");
                         </div>
                         <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
                             <div>
-                                <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
+                                <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="#" data-toggle="modal" data-target="#detailKaryaku" class="text-dark">Samsul Sinaga</p>
+                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33 <i class="mdi mdi-comment mr-1"></i>20</p>
                             </div>
-                            <h5><a href="#" data-toggle="modal" data-target="#detailKaryaku" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
                         </div>
                         <div class="author">
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-
-                        </div>
-                        <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
-                            <div>
-                                <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
-                            </div>
-                            <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
-                        </div>
-                        <div class="author">
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-
-                        </div>
-                        <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
-                            <div>
-                                <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
-                            </div>
-                            <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
-                        </div>
-                        <div class="author">
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-
-                        </div>
-                        <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
-                            <div>
-                                <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
-                            </div>
-                            <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
-                        </div>
-                        <div class="author">
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-
-                        </div>
-                        <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
-                            <div>
-                                <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
-                            </div>
-                            <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
-                        </div>
-                        <div class="author">
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-
-                        </div>
-                        <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
-                            <div>
-                                <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
-                            </div>
-                            <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
-                        </div>
-                        <div class="author">
-                            <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                            <p class="text-light mb-0 date" style="line-height: 320px"><i class="mdi mdi-library-books"></i> Mengukir sudah menjadi keahlianku</p>
                         </div>
                     </div>
                 </div>
