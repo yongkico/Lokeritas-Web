@@ -23,8 +23,8 @@ File: main stylesheet
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
 
 #hr {
-  margin-top: 22px;
-  margin-bottom: 30px;
+  margin-top: 19px;
+  margin-bottom: 27px;
   border: 0;
   border-top: 1px solid #dee2e6;
 }

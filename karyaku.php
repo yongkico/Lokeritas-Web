@@ -212,7 +212,7 @@ require("functions.php");
                                 <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
                                 <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33</p>
                             </div>
-                            <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
+                            <h5><a href="#" data-toggle="modal" data-target="#detailKaryaku" class="text-dark">Mengukir sudah menjadi keahlianku</a></h5>
                         </div>
                         <div class="author">
                             <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
@@ -383,6 +383,178 @@ require("functions.php");
         </div>
     </div>
     <!-- End Modal Ubah Foto Profil -->
+
+    <!-- The Modal Daftar -->
+    <div class="modal" id="detailKaryaku">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-1">
+                                <img src="images/profil/default.png" width="60px">
+                            </div>
+                            <div class="col-8" style="padding-left: 30px">
+                                <h5 style="margin-bottom:0px">Mengukir sudah menjadi keahlianku</h5>
+                                <p>oleh <a href="#" class="text-danger">Hengky Sulaiman</a></p>
+                            </div>
+                            <div class="col-2">
+                                <a href="#" class="btn btn-light" style="padding: 8px 18px 8px 18px ! important"><i class="mdi mdi-heart"></i> Suka</a>
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="images/profil/default.png" width="100%">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 mt-4 pt-2" style="margin:0px 0px 0px 0px !important">
+                                <div>
+                                    <!--end row-->
+                                    <div class="row pt-2">
+                                        <div class="col-12">
+                                            <div class="tab-content" id="pills-tabContent">
+                                                <div class="tab-pane fade show active" id="pills-cloud" role="tabpanel" aria-labelledby="pills-cloud-tab">
+                                                    <div class="container" style="padding: 0px 0px 0px 0px ! important">
+                                                        <div class="row">
+                                                            <div class="col-lg-8 col-md-7">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="job-detail">
+                                                                            <div class="job-detail-desc">
+                                                                                <p class="text-dark mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum consequatur ea at quas odio labore fugiat perferendis quo, inventore, animi voluptate beatae esse sit id? Iusto sit nobis odit eius.</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="job-detail">
+                                                                            <div class="job-detail-desc">
+                                                                                <p style="font-weight: bold;margin-bottom: 0px ! important"><i class="mdi mdi-comment-text"></i> 3 Komentar</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="job-detail">
+                                                                            <div class="job-detail-desc">
+                                                                                <hr id="hr">
+                                                                                <div class="media mt-4">
+                                                                                    <div class="blog-comment-img">
+                                                                                        <img class="d-block mx-auto rounded-pill" height="60" alt="" src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/">
+                                                                                    </div>
+                                                                                    <div class="media-body ml-3">
+                                                                                        <h6 class="mb-0"><a href="#" class="text-dark" style="font-weight: bold">Ruby Poe</a></h6>
+                                                                                        <p class="text-dark mb-2">Similique sunt in culpa qui officia deserunt mollitia animi id est laborum et dolorum fuga et harum quidem rerum.</p>
+                                                                                        <p class="text-muted mb-0">4 Desember 2020</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="job-detail">
+                                                                            <div class="job-detail-desc">
+                                                                                <hr id="hr">
+                                                                                <div class="media mt-4">
+                                                                                    <div class="blog-comment-img">
+                                                                                        <img class="d-block mx-auto rounded-pill" height="60" alt="" src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/">
+                                                                                    </div>
+                                                                                    <div class="media-body ml-3">
+                                                                                        <h6 class="mb-0"><a href="#" class="text-dark" style="font-weight: bold">Ruby Poe</a></h6>
+                                                                                        <p class="text-dark mb-2">Similique sunt in culpa qui officia deserunt mollitia animi id est laborum et dolorum fuga et harum quidem rerum.</p>
+                                                                                        <p class="text-muted mb-0">4 Desember 2020</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="job-detail">
+                                                                            <div class="job-detail-desc">
+                                                                                <hr id="hr">
+                                                                                <div class="media mt-4">
+                                                                                    <div class="blog-comment-img">
+                                                                                        <img class="d-block mx-auto rounded-pill" height="60" alt="" src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/">
+                                                                                    </div>
+                                                                                    <div class="media-body ml-3">
+                                                                                        <h6 class="mb-0"><a href="#" class="text-dark" style="font-weight: bold">Ruby Poe</a></h6>
+                                                                                        <p class="text-dark mb-2">Similique sunt in culpa qui officia deserunt mollitia animi id est laborum et dolorum fuga et harum quidem rerum.</p>
+                                                                                        <p class="text-muted mb-0">4 Desember 2020</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-5 mt-4 mt-sm-0">
+                                                                <div class="job-detail">
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <p class="text-dark">Pengguna ini siap untuk bekerja !</p>
+                                                                            <a href="#" class="btn btn-info"><i class="mdi mdi-email"></i> Hire Saya</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-3">
+                                                                        <div class="col-12">
+                                                                            <div class="single-post-item mb-2">
+                                                                                <div class="float-left mr-3">
+                                                                                    <i class="mdi mdi-tag text-muted mdi-24px"></i>
+                                                                                </div>
+                                                                                <div class="overview-details">
+                                                                                    <h6 class="text-muted mb-0">app app design calendar courier delivery app delivery service kajal kashyap location tracker logistics map</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="single-post-item mb-2">
+                                                                                <div class="float-left mr-3">
+                                                                                    <i class="mdi mdi-heart text-muted mdi-24px"></i>
+                                                                                </div>
+                                                                                <div class="overview-details">
+                                                                                    <h6 class="text-muted mt-1">33 Suka</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="single-post-item mb-4">
+                                                                                <div class="float-left mr-3">
+                                                                                    <i class="mdi mdi-calendar-today text-muted mdi-24px"></i>
+                                                                                </div>
+                                                                                <div class="overview-details">
+                                                                                    <h6 class="text-muted mt-1">33 Januari 2014</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end teb pane-->
+                                            </div>
+                                            <!--end tab content-->
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Ubah Foto Profil -->
+
 
     <!-- footer start -->
     <footer class="footer" style="padding: 40px 0px 10px 0px">
