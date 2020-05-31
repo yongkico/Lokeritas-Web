@@ -34,32 +34,23 @@ if (isset($_POST['send'])) {
                 curl_close($ch);
             }
         }
-
-
-        // function compressImage($source, $destination, $quality)
-        // {
-
-        //     $info = getimagesize($source);
-
-        //     if ($info['mime'] == 'image/jpeg')
-        //         $image = imagecreatefromjpeg($source);
-
-        //     elseif ($info['mime'] == 'image/gif')
-        //         $image = imagecreatefromgif($source);
-
-        //     elseif ($info['mime'] == 'image/png')
-        //         $image = imagecreatefrompng($source);
-
-        //     imagejpeg($image, $destination, $quality);
-        // }
-
-        // compressImage($fname, array("file" => $cFile), 60);
     }
+
+    $email = $_SESSION["email"];
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $result_get = json_decode($result, true);
+
+    $id_user = $result_get['0']['id_user'];
 
     $judul = $_POST['judul'];
     $tag = $_POST['tag'];
     $deskripsi = $_POST['deskripsi'];
-    $gambar = $fname[$i];
+    $gambar = $fname;
     $status = '1';
     $komen = $_POST['komen'];
 
