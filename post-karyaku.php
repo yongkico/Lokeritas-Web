@@ -5,6 +5,19 @@ if (isset($_POST['send'])) {
 
     if (isset($_FILES['file-img']['tmp_name'])) {
 
+        function compress($source, $destination, $quality)
+        {
+            $info = getimagesize($source);
+            if ($info['mime'] == 'image/jpeg')
+                $image = imagecreatefromjpeg($source);
+            elseif ($info['mime'] == 'image/gif')
+                $image = imagecreatefromgif($source);
+            elseif ($info['mime'] == 'image/png')
+                $image = imagecreatefrompng($source);
+            imagejpeg($image, $destination, $quality);
+            return $destination;
+        }
+
         function generateRandomString($length = 20)
         {
             $characters = 'abcdefghijklmnopqrstuvwxyz';
@@ -17,22 +30,23 @@ if (isset($_POST['send'])) {
         }
 
         $ch = curl_init();
-        $jumlahFile = count($_FILES['file-img']['name']);
 
-        for ($i = 0; $i < $jumlahFile; $i++) {
-            $cFile = new CURLFile($_FILES['file-img']['tmp_name'][$i], $_FILES['file-img']['type'][$i], $fname = generateRandomString(20) . $_FILES['file-img']['name'][$i]);
-            $data = array("file" => $cFile);
-            $cFile = $_FILES['file-img']['name'][$i];
-            $size = $_FILES['file-img']['size'][$i];
+        $cFile = new CURLFile($_FILES['file-img']['tmp_name'], $_FILES['file-img']['type'], $fname = generateRandomString(20) . $_FILES['file-img']['name']);
+        $data = array("file" => $cFile);
+        $cFile = $_FILES['file-img']['name'];
+        $size = $_FILES['file-img']['size'];
+        $source_img = $_FILES['file-img']['tmp_name'];
+        $destination_img = $cFile;
 
-            if ($size <= 1000000) {
-                curl_setopt($ch, CURLOPT_URL, "http://lokeritas.xyz/api-v1/uploadKaryaku.php");
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        compress($source_img, $destination_img, 50);
 
-                $response = curl_exec($ch);
-                curl_close($ch);
-            }
+        if ($size <= 1000000) {
+            curl_setopt($ch, CURLOPT_URL, "http://lokeritas.xyz/api-v1/uploadKaryaku.php");
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+            $response = curl_exec($ch);
+            curl_close($ch);
         }
     }
 
@@ -282,7 +296,7 @@ if (isset($_POST['send'])) {
                                         <i class="glyphicon glyphicon-download-alt"></i>
                                         <p>Pilih gambar yang anda inginkan atau tarik kesini</p>
                                     </div>
-                                    <input type="file" name="file-img[]" class="dropzone" accept="image/*" multiple="multiple" required="">
+                                    <input type="file" name="file-img" class="dropzone" accept="image/*" required="">
                                 </div>
                             </div>
                         </div>
