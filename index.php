@@ -1,5 +1,50 @@
 <?php
 session_start();
+$site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
+$secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+
+if (isset($_POST['send'])) {
+    if (isset($_POST['g-recaptcha-response'])) {
+        $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
+        $response = @file_get_contents($api_url);
+        $data = json_decode($response, true);
+
+        if ($data['success']) {
+            $comment = $_POST['komentar'];
+            $success = true;
+
+            $id_karyaku = $_POST['id'];
+            $id_user = '92';
+            $komentar = $_POST['komentar'];
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "http://lokeritas.xyz/api-v1/karyaku_comments.php",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "id_karyaku=$id_karyaku&id_user=$id_user&komentar=$komentar",
+                CURLOPT_HTTPHEADER => array(
+                    "Content-Type: application/x-www-form-urlencoded"
+                ),
+            ));
+
+            $formCom = curl_exec($curl);
+
+            curl_close($curl);
+
+            echo '<script>alert("Komentar Berhasil dikirim");</script>';
+        } else {
+            echo '<script>alert("Komentar Gagal dikirim");</script>';
+        }
+    } else {
+        echo '<script>alert("Komentar Gagal dikirim");</script>';
+    }
+}
 
 //API Tips Karir
 $curl_get = curl_init();
@@ -18,6 +63,15 @@ $result_get_lowongan = curl_exec($curl_get);
 curl_close($curl_get);
 
 $result_get_lowongan = json_decode($result_get_lowongan, true);
+
+//API Semua Karyaku
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_karyaku.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_karyaku = curl_exec($curl_get);
+curl_close($curl_get);
+
+$result_karyaku = json_decode($result_karyaku, true);
 ?>
 
 <!DOCTYPE html>
@@ -462,80 +516,126 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
                         </div>
                     </div>
                 </div>
+
+
                 <div class="row">
-
-                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                        <div class="blog position-relative overflow-hidden shadow rounded">
-                            <div class="position-relative overflow-hidden">
-                                <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                                <div class="overlay rounded-top bg-dark"></div>
-
-                            </div>
-                            <div class="content p-4 bg-white" style="padding: 10px 24px 24px 24px ! important">
-                                <div>
-                                    <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                    <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33
-                                    </p>
+                    <?php $i = 0;
+                    foreach ($result_karyaku as $row) :  if ($i == 3) {
+                            break;
+                        } ?>
+                        <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
+                            <div class="view_data blog position-relative overflow-hidden shadow rounded" id="<?= $row['id_karyaku']; ?>" data-toggle="modal" data-target="#myModal">
+                                <div class="position-relative overflow-hidden">
+                                    <img src="<?= $row['gambar']; ?>" class="img-fluid rounded-top" alt="">
+                                    <div class="overlay rounded-top bg-dark"></div>
+                                    <div class="likes">
+                                        <p class="text-white" style="text-align: left;"><?= $row['judul']; ?> </p>
+                                    </div>
                                 </div>
-                                <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a>
-                                </h5>
-                            </div>
-                            <div class="author">
-                                <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
+                                <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
+                                    <div>
+                                        <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></p>
+                                        <p class="text-secondary" style="text-align: right"><i class="mdi mdi-eye mr-1"></i><?= $row['hit']; ?> <i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--end col-->
+                        <!--end col-->
+                    <?php $i++;
+                    endforeach; ?>
+                </div>
 
-                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                        <div class="blog position-relative overflow-hidden shadow rounded">
-                            <div class="position-relative overflow-hidden">
-                                <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                                <div class="overlay rounded-top bg-dark"></div>
-
-                            </div>
-                            <div class="content p-4 bg-white" style="padding: 10px 24px 24px 24px ! important">
-                                <div>
-                                    <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                    <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33
-                                    </p>
-                                </div>
-                                <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a>
-                                </h5>
-                            </div>
-                            <div class="author">
-                                <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                            </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <a href="karyaku.php" class="btn btn-info-outline">Lihat Semuanya</a>
                         </div>
                     </div>
-                    <!--end col-->
-
-                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                        <div class="blog position-relative overflow-hidden shadow rounded">
-                            <div class="position-relative overflow-hidden">
-                                <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                                <div class="overlay rounded-top bg-dark"></div>
-
-                            </div>
-                            <div class="content p-4 bg-white" style="padding: 10px 24px 24px 24px ! important">
-                                <div>
-                                    <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="javascript:void(0)" class="text-secondary user">Samsul Sinaga</a></p>
-                                    <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33
-                                    </p>
-                                </div>
-                                <h5><a href="javascript:void(0)" class="text-dark">Mengukir sudah menjadi keahlianku</a>
-                                </h5>
-                            </div>
-                            <div class="author">
-                                <p class="text-light mb-0 date"><i class="mdi mdi-calendar-check"></i> 25 Sep, 2019</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end col-->
                 </div>
             </div>
         </section>
         <!-- blog end -->
+
+
+        <!-- The Modal Daftar -->
+        <!-- memulai modal nya. pada id="$myModal" harus sama dengan data-target="#myModal" pada tombol di atas -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" id="data_siswa">
+                </div>
+            </div>
+        </div>
+        <!-- The Modal Daftar -->
+        <div class="modal" id="hireSaya">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="images/profil/default.png" height="70" style="width:70px;" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                                </div>
+                                <div class="col-9">
+                                    <h5 class="mt-3">Kirim Hengky Sulaiman Pengajuan Pekerjaan</h5>
+                                </div>
+                                <div class="col-1">
+                                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p style="margin-bottom: 0px;font-weight:700">Tipe Pekerjaan <i class="text-danger">*</i></p>
+
+                                    <div class="p-4" style="padding: 0px 0px 0px 0px ! important">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <div class="form-group">
+                                                <input type="radio" onchange="myFunction()" id="myCheck1" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="myCheck1">Full Time</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <div class="form-group">
+                                                <input type="radio" onchange="myFunction()" id="myCheck2" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="myCheck2">Half Time</label>
+                                            </div>
+                                        </div>
+                                        <div id="ketGaji1" style="display:none">
+                                            <p style="font: 700">Keterangan Gaji</p>
+                                            <p class="text-muted">Rp. 3.000.000 - Rp. 4.000.000</p>
+                                        </div>
+                                        <div id="ketGaji2" style="display:none">
+                                            <p style="font: 700">Keterangan Gaji</p>
+                                            <p class="text-muted">Rp. 1.500.000 - Rp. 2.000.000</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p style="margin-bottom: 0px;font-weight:700">Deskripsi Pekerjaan <i class="text-danger">*</i></p>
+                                    <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal body -->
+                    <!-- <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                        </div>
+                    </div>
+                </div> -->
+
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" id="btnGetStudent" name="btn_karir" class="btn btn-primary">Kirim</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     <?php
     else : ?>
@@ -1223,6 +1323,32 @@ $result_get_lowongan = json_decode($result_get_lowongan, true);
 
     <script src="js/app.js"></script>
     <script src="js/home.js"></script>
+
+    <script>
+        // ini menyiapkan dokumen agar siap grak :)
+        $(document).ready(function() {
+            // yang bawah ini bekerja jika tombol lihat data (class="view_data") di klik
+            $('.view_data').click(function() {
+                // membuat variabel id, nilainya dari attribut id pada button
+                // id="'.$row['id'].'" -> data id dari database ya sob, jadi dinamis nanti id nya
+                var id = $(this).attr("id");
+
+                // memulai ajax
+                $.ajax({
+                    url: 'ajax/detail-karyaku.php', // set url -> ini file yang menyimpan query tampil detail data siswa
+                    method: 'post', // method -> metodenya pakai post. Tahu kan post? gak tahu? browsing aja :)
+                    data: {
+                        id: id
+                    }, // nah ini datanya -> {id:id} = berarti menyimpan data post id yang nilainya dari = var id = $(this).attr("id");
+                    success: function(data) { // kode dibawah ini jalan kalau sukses
+                        $('#data_siswa').html(data); // mengisi konten dari -> <div class="modal-body" id="data_siswa">
+                        $('#myModal').modal("show"); // menampilkan dialog modal nya
+                    }
+                });
+            });
+        });
+    </script>
+
 
 </body>
 
