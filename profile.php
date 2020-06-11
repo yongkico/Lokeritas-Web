@@ -109,6 +109,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
+                                <li><a href="history-karyaku.php">History Karyaku</a></li>
                                 <li><a href="logout.php">Logout</a></li>
                             </ul>
                         </li>

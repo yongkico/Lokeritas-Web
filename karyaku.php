@@ -101,121 +101,62 @@ if (isset($_POST['send'])) {
     </div>
     <!-- Loader -->
 
-    <?php if (isset($_SESSION["login"])) : ?>
-        <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
-        ?>
-        <!-- Navigation Bar-->
-        <header id="topnav" class="defaultscroll scroll-active">
+    <!-- Navigation Bar-->
+    <header id="topnav" class="defaultscroll scroll-active">
 
-            <!-- Menu Start -->
-            <div class="container">
-                <!-- Logo container-->
-                <div>
-                    <a href="index.php" class="logo">
-                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
-                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
-                    </a>
-                </div>
-                <!--end login button-->
-                <!-- End Logo container-->
-                <div class="menu-extras">
-                    <div class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </div>
-                </div>
-
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
-                        <li><a href="index.php">Beranda</a></li>
-                        <li><a href="lowongan.php">Lowongan</a></li>
-                        <li><a href="tips-karir.php">Tips Karir</a></li>
-                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
-                        <li><a href="karyaku.php">Karyaku</a></li>
-                        <li><a href="#" style="font-size: 30px">|</a></li>
-                        <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2 " style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="profile.php">Profil</a></li>
-                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
-                                <li><a href="logout.php">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!--end navigation menu-->
-                </div>
-                <!--end navigation-->
+        <!-- Menu Start -->
+        <div class="container">
+            <!-- Logo container-->
+            <div>
+                <a href="index.php" class="logo">
+                    <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                    <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
+                </a>
             </div>
-            <!--end container-->
-            <!--end end-->
-        </header>
-        <!--end header-->
-        <!-- Navbar End -->
-    <?php else : ?>
-        <!-- Navigation Bar-->
-        <header id="topnav" class="defaultscroll scroll-active">
-
-            <!-- Menu Start -->
-            <div class="container">
-                <!-- Logo container-->
-                <div>
-                    <a href="index.php" class="logo">
-                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
-                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
-                    </a>
-                </div>
-                <!-- <div class="buy-button">
-                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
-            </div> -->
-                <!--end login button-->
-                <!-- End Logo container-->
-                <div class="menu-extras">
-                    <div class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </div>
-                </div>
-
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
-                        <li><a href="lowongan.php">Cari Lowongan</a></li>
-                        <li><a href="tips-karir.php">Tips Karir</a></li>
-                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
-                        <li><a href="karyaku.php">Karyaku</a></li>
-                        <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
+            <!--end login button-->
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
-                    </ul>
-                    <!--end navigation menu-->
+                    </a>
+                    <!-- End mobile menu toggle-->
                 </div>
-                <!--end navigation-->
             </div>
-            <!--end container-->
-            <!--end end-->
-        </header>
-        <!--end header-->
-        <!-- Navbar End -->
-    <?php endif; ?>
+
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+                    <li><a href="index.php">Beranda</a></li>
+                    <li><a href="lowongan.php">Lowongan</a></li>
+                    <li><a href="tips-karir.php">Tips Karir</a></li>
+                    <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                    <li><a href="karyaku.php">Karyaku</a></li>
+                    <li><a href="#" style="font-size: 30px">|</a></li>
+                    <li class="has-submenu">
+                        <a href="#"><i class="mdi mdi-account mr-2 " style="color: gray; font-size:16px"></i>Bambang</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="profile.php">Profil</a></li>
+                            <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
+                            <li><a href="history-karyaku.php">History Karyaku</a></li>
+                            <li><a href="logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--end navigation menu-->
+            </div>
+            <!--end navigation-->
+        </div>
+        <!--end container-->
+        <!--end end-->
+    </header>
+    <!--end header-->
+    <!-- Navbar End -->
 
 
     <!-- Start home -->
@@ -299,6 +240,14 @@ if (isset($_POST['send'])) {
             $karyaku = array_slice($result_karyaku, $limitStart, $limit);
 
             ?>
+
+            <?php if ($keyword !== "") : ?>
+                <div class="row mt-5">
+                    <p class="text-info">Pencarian dengan kata kunci "<?= $keyword ?>" ...</p>
+                </div>
+            <?php else : ?>
+                <div class="row mt-5"></div>
+            <?php endif; ?>
 
             <div class="row">
                 <?php foreach ($karyaku as $row) : ?>
