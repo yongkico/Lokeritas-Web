@@ -186,11 +186,11 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                     <div class="candidates-profile-details text-center">
                         <div class="blog">
                             <img src="<?php if (empty($result_get[0]['foto'])) {
-                                                        echo 'images/profil/default.png';
-                                                    } else {
-                                                        echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
-                                                    }  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4" >
-                            
+                                            echo 'images/profil/default.png';
+                                        } else {
+                                            echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
+                                        }  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+
                             <div class="author" style="margin:50px 0px 0px 169px">
                                 <p class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-account-edit text-light"></i> Ubah</p>
                             </div>
@@ -247,11 +247,11 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                                         <td style="font-weight:bold">Nomor HP</td>
                                         <td>
                                             <?php
-                                                if (empty($result_get[0]['telepon'])) {
-                                                    echo '-';
-                                                } else {
-                                                    echo '+62 '. $result_get[0]['telepon'];
-                                                }
+                                            if (empty($result_get[0]['telepon'])) {
+                                                echo '-';
+                                            } else {
+                                                echo '+62 ' . $result_get[0]['telepon'];
+                                            }
                                             ?>
                                         </td>
                                     </tr>
@@ -673,6 +673,12 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Nomor HP :</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1">+62</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                                    </div>
                                                     <input id="surname-name" name="telepon" type="text" class="form-control resume" autocomplete="off" value="<?php if ($result_get[0]["telepon"] == '0') {
                                                                                                                                                                     echo '+62';
                                                                                                                                                                 } else {
@@ -2249,49 +2255,49 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                     <h4 class="modal-title">Edit Keterampilan</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-                
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="container" id="container_keterampilan">
-                            <div class="row">
-                                <div class="col-12 mt-3" style="margin-top:0px ! important">
-                                    <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
-                                        <div class="row mt-1">
-                                            <div class="col-md-12">
-                                                <p>Silahkan masukan keterampilan yang anda miliki !</p>
-                                            </div>
-                                            <div class="col-md-8 mt-1">
-                                                <div class="form-group app-label">
-                                                    <input type="hidden" id="emailku" value="<?= $result_get[0]['email']; ?>">
-                                                    <input id="keterampilanku" type="text" class="form-control resume" placeholder="Nama keterampilan ...">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 mt-1">
-                                                <div class="form-group app-label">
-                                                    <button type="button" id="btnKeterampilan" class="btn btn-primary">Tambah</button>
-                                                </div>
-                                            </div>
 
-                                            <div class="col-12 mt-3" id="daftarKeterampilan">
-                                                <?php if(empty($result_get[0]['keterampilan'])) : ?>
-                                                    <i>Keterampilan belum diisi !</i>
-                                                <?php else: ?>
-                                                    <?php
-                                                        $b = explode(',',$result_get[0]['keterampilan']);
-                                                    ?>
-                                                    <?php foreach ($b as $t) : ?>
-                                                        <a class="badge badge-secondary text-white" onclick="remove(this)" id="<?= $t; ?>" style="font-size: 15px;padding:7px 15px 7px 15px"> <?= $t; ?> &nbsp; <i class="mdi mdi-close"></i></a>
-                                                    <?php endforeach; ?>
-                                                <?php endif; ?>
-                                            </div>
-
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container" id="container_keterampilan">
+                        <div class="row">
+                            <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                    <div class="row mt-1">
+                                        <div class="col-md-12">
+                                            <p>Silahkan masukan keterampilan yang anda miliki !</p>
                                         </div>
+                                        <div class="col-md-8 mt-1">
+                                            <div class="form-group app-label">
+                                                <input type="hidden" id="emailku" value="<?= $result_get[0]['email']; ?>">
+                                                <input id="keterampilanku" type="text" class="form-control resume" placeholder="Nama keterampilan ...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mt-1">
+                                            <div class="form-group app-label">
+                                                <button type="button" id="btnKeterampilan" class="btn btn-primary">Tambah</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mt-3" id="daftarKeterampilan">
+                                            <?php if (empty($result_get[0]['keterampilan'])) : ?>
+                                                <i>Keterampilan belum diisi !</i>
+                                            <?php else : ?>
+                                                <?php
+                                                $b = explode(',', $result_get[0]['keterampilan']);
+                                                ?>
+                                                <?php foreach ($b as $t) : ?>
+                                                    <a class="badge badge-secondary text-white" onclick="remove(this)" id="<?= $t; ?>" style="font-size: 15px;padding:7px 15px 7px 15px"> <?= $t; ?> &nbsp; <i class="mdi mdi-close"></i></a>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <form action="edit_profil.php" method="POST">                            
+                </div>
+                <form action="edit_profil.php" method="POST">
                     <!-- Ini adalah Bagian Footer Modal -->
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" name="btn_keterampilan">Simpan</button>
@@ -2606,16 +2612,16 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                                         <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
                                             <div class="col-md-12" style="margin-bottom: 10px;">
                                                 <div class="position-relative overflow-hidden">
-                                                <img id="foto_display" src="<?php if (empty($result_get[0]['foto'])) {
-                                                        echo 'images/profil/default.png';
-                                                    } else {
-                                                        echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
-                                                    }  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4" >
+                                                    <img id="foto_display" src="<?php if (empty($result_get[0]['foto'])) {
+                                                                                    echo 'images/profil/default.png';
+                                                                                } else {
+                                                                                    echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
+                                                                                }  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
                                                     <!-- <img id="foto_display" src="/api-v1/uploads/Foto/<?php if (empty($result_get[0]['foto'])) {
-                                                                                                    echo 'default.png';
-                                                                                                } else {
-                                                                                                    echo $result_get[0]['foto'];
-                                                                                                }  ?>" height="200" style="width:200px" alt="" class="d-block mx-auto shadow rounded-pill mb-4"> -->
+                                                                                                                echo 'default.png';
+                                                                                                            } else {
+                                                                                                                echo $result_get[0]['foto'];
+                                                                                                            }  ?>" height="200" style="width:200px" alt="" class="d-block mx-auto shadow rounded-pill mb-4"> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -2965,27 +2971,27 @@ $_SESSION['ema'] = 'rocky@gmail.com';
 
     <script>
         function remove(el) {
-            var email  = document.getElementById("emailku");
+            var email = document.getElementById("emailku");
             var daftarKeterampilan = document.getElementById("daftarKeterampilan");
             var element = el;
 
-                //buat object ajax
-                var xhr = new XMLHttpRequest();
+            //buat object ajax
+            var xhr = new XMLHttpRequest();
 
-                //cek kesiapan ajax
-                xhr.onreadystatechange = function(){
-                    if(xhr.readyState == 4 && xhr.status == 200){
-                        daftarKeterampilan.innerHTML = xhr.responseText;            
-                    }
-                }    
+            //cek kesiapan ajax
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    daftarKeterampilan.innerHTML = xhr.responseText;
+                }
+            }
 
-                //eksekusi ajax
-                xhr.open('GET','ajax/hapus_keterampilan.php?email=' + email.value + '&keterampilan=' + element.id,true);
-                xhr.send();
-            
+            //eksekusi ajax
+            xhr.open('GET', 'ajax/hapus_keterampilan.php?email=' + email.value + '&keterampilan=' + element.id, true);
+            xhr.send();
+
             element.remove();
-            
-            
+
+
         }
     </script>
 

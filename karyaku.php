@@ -1,6 +1,57 @@
 <?php
 session_start();
 require("functions.php");
+$site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
+$secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+
+
+
+if (isset($_POST['send'])) {
+    if (isset($_POST['g-recaptcha-response'])) {
+        $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
+        $response = @file_get_contents($api_url);
+        $data = json_decode($response, true);
+
+        if ($data['success']) {
+            $comment = $_POST['komentar'];
+            $success = true;
+
+            $id_karyaku = $_POST['id'];
+            $id_user = '92';
+            $komentar = $_POST['komentar'];
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "http://lokeritas.xyz/api-v1/karyaku_comments.php",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "id_karyaku=$id_karyaku&id_user=$id_user&komentar=$komentar",
+                CURLOPT_HTTPHEADER => array(
+                    "Content-Type: application/x-www-form-urlencoded"
+                ),
+            ));
+
+            $formCom = curl_exec($curl);
+
+            curl_close($curl);
+
+            echo '<script>alert("Komentar Berhasil dikirim");</script>';
+        } else {
+            echo '<script>alert("Komentar Gagal dikirim");</script>';
+        }
+    } else {
+        echo '<script>alert("Komentar Gagal dikirim");</script>';
+    }
+}
+
+
+
+
 
 
 ?>
@@ -32,6 +83,9 @@ require("functions.php");
 
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/initial.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 
@@ -60,7 +114,7 @@ require("functions.php");
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="#" class="logo">
+                    <a href="index.php" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
                         <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
@@ -116,9 +170,9 @@ require("functions.php");
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                    <a href="index.php" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
@@ -186,15 +240,15 @@ require("functions.php");
             <div class="row">
                 <div class="col-lg-12">
                     <div class="home-registration-form p-4 mb-3">
-                        <form class="registration-form" action="lowongan.php" method="post">
+                        <form class="registration-form" action="">
                             <div class="row">
-                                <div class="col-lg-9 col-md-6">
+                                <div class="col-lg-9 col-md-6" style="padding-left: 0px;">
                                     <div class="registration-form-box">
-                                        <i class="mdi-library-books"></i>
+                                        <i class="mdi mdi-library-books"></i>
                                         <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Judul, Nama Author..." required="">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6">
+                                <div class="col-lg-3 col-md-6" style="padding-right: 0px;">
                                     <div class="registration-form-box">
                                         <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
                                     </div>
@@ -211,45 +265,91 @@ require("functions.php");
     <!-- blog start -->
     <section class="section" style="padding:0px 0px 50px 0px">
         <div class="container">
+
+            <?php
+            $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+            $keyword = (isset($_GET['keyword'])) ? $_GET['keyword'] : "";
+
+            $limit = 6;
+            $limitStart = ($page - 1) * $limit;
+
+            if ($keyword == "") {
+                $curl_get_karyaku = curl_init();
+                curl_setopt($curl_get_karyaku, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_karyaku.php');
+                curl_setopt($curl_get_karyaku, CURLOPT_RETURNTRANSFER, 1);
+                $results_karyaku = curl_exec($curl_get_karyaku);
+                curl_close($curl_get_karyaku);
+
+                $result_karyaku = json_decode($results_karyaku, true);
+            } else {
+                $curl_search_karyaku = curl_init();
+                curl_setopt($curl_search_karyaku, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_karyaku.php');
+                curl_setopt($curl_search_karyaku, CURLOPT_RETURNTRANSFER, 1);
+                $results_search_karyaku = curl_exec($curl_search_karyaku);
+                curl_close($curl_search_karyaku);
+
+                $search = json_decode($results_search_karyaku, true);
+                $result_karyaku = FILTER_ARRAY_VALUES_REGEXP("/$keyword/i", $search);
+            }
+
+
+            $jumlahData = count($result_karyaku);
+            $jumlahHalaman = ceil($jumlahData / $limit);
+
+            $karyaku = array_slice($result_karyaku, $limitStart, $limit);
+
+            ?>
+
             <div class="row">
-
-                <div class="col-lg-4 col-md-6 mt-4 pt-2">
-                    <div class="blog position-relative overflow-hidden shadow rounded" style="height: 250px">
-                        <div class="position-relative overflow-hidden">
-                            <img src="https://v-images2.antarafoto.com/penyandang-disabilitas-mf7nx1-prv.jpg" class="img-fluid rounded-top" alt="">
-                            <div class="overlay rounded-top bg-dark"></div>
-
-                        </div>
-                        <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
-                            <div>
-                                <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <a href="#" data-toggle="modal" data-target="#detailKaryaku" class="text-dark">Samsul Sinaga</p>
-                                <p class="text-secondary" style="text-align: right"><i class="mdi mdi-heart mr-1"></i>33 <i class="mdi mdi-comment mr-1"></i>20</p>
+                <?php foreach ($karyaku as $row) : ?>
+                    <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
+                        <div class="view_data blog position-relative overflow-hidden shadow rounded" id="<?= $row['id_karyaku']; ?>" data-toggle="modal" data-target="#myModal">
+                            <div class="position-relative overflow-hidden">
+                                <img src="<?= $row['gambar']; ?>" class="img-fluid rounded-top" alt="">
+                                <div class="overlay rounded-top bg-dark"></div>
+                                <div class="likes">
+                                    <p class="text-white" style="text-align: left;"><?= $row['judul']; ?> </p>
+                                </div>
+                            </div>
+                            <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
+                                <div>
+                                    <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></p>
+                                    <p class="text-secondary" style="text-align: right"><i class="mdi mdi-eye mr-1"></i><?= $row['hit']; ?> <i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="author">
-                            <p class="text-light mb-0 date" style="line-height: 320px"><i class="mdi mdi-library-books"></i> Mengukir sudah menjadi keahlianku</p>
-                        </div>
                     </div>
-                </div>
+                    <!--end col-->
+                <?php endforeach; ?>
                 <!--end col-->
 
+                <!-- Pagination -->
                 <div class="col-lg-12" style="margin-top: 30px ! important">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination job-pagination justify-content-center mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                    <i class="mdi mdi-chevron-double-left f-15"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="mdi mdi-chevron-double-right f-15"></i>
-                                </a>
-                            </li>
+                            <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                <?php if ($keyword == "") : ?>
+                                    <?php
+                                    if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                        if (($limitStart == 1) && ($i != 2))  echo "...";
+                                        if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                        if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                        else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                        $limitStart = $i;
+                                    }
+                                    ?>
+                                <?php else : ?>
+                                    <?php
+                                    if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                        if (($limitStart == 1) && ($i != 2))  echo "...";
+                                        if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                        if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                        else echo "<li class='page-item'> <a class='page-link' href='" . "?keyword=$keyword" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
+                                        $limitStart = $i;
+                                    }
+                                    ?>
+                                <?php endif; ?>
+                            <?php endfor; ?>
                         </ul>
                     </nav>
                 </div>
@@ -292,171 +392,10 @@ require("functions.php");
     <!-- End Modal Ubah Foto Profil -->
 
     <!-- The Modal Daftar -->
-    <div class="modal" id="detailKaryaku">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-1">
-                                <img src="images/profil/default.png" width="60px">
-                            </div>
-                            <div class="col-8" style="padding-left: 30px">
-                                <h5 style="margin-bottom:0px">Mengukir sudah menjadi keahlianku</h5>
-                                <p>oleh <a href="#" class="text-danger">Hengky Sulaiman</a></p>
-                            </div>
-                            <div class="col-2">
-                                <a href="#" class="btn btn-light" style="padding: 8px 18px 8px 18px ! important"><i class="mdi mdi-heart"></i> Suka</a>
-                            </div>
-                            <div class="col-1">
-                                <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <img src="images/profil/default.png" width="100%">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 mt-4 pt-2" style="margin:0px 0px 0px 0px !important">
-                                <div>
-                                    <!--end row-->
-                                    <div class="row pt-2">
-                                        <div class="col-12">
-                                            <div class="tab-content" id="pills-tabContent">
-                                                <div class="tab-pane fade show active" id="pills-cloud" role="tabpanel" aria-labelledby="pills-cloud-tab">
-                                                    <div class="container" style="padding: 0px 0px 0px 0px ! important">
-                                                        <div class="row">
-                                                            <div class="col-lg-8 col-md-7">
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <div class="job-detail">
-                                                                            <div class="job-detail-desc">
-                                                                                <p class="text-dark mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum consequatur ea at quas odio labore fugiat perferendis quo, inventore, animi voluptate beatae esse sit id? Iusto sit nobis odit eius.</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <div class="job-detail">
-                                                                            <div class="job-detail-desc">
-                                                                                <p style="font-weight: bold;margin-bottom: 0px ! important"><i class="mdi mdi-comment-text"></i> 3 Komentar</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-12">
-                                                                        <div class="job-detail">
-                                                                            <div class="job-detail-desc">
-                                                                                <hr id="hr">
-                                                                                <div class="media mt-4">
-                                                                                    <div class="blog-comment-img">
-                                                                                        <img class="d-block mx-auto rounded-pill" height="60" alt="" src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/">
-                                                                                    </div>
-                                                                                    <div class="media-body ml-3">
-                                                                                        <h6 class="mb-0"><a href="#" class="text-dark" style="font-weight: bold">Ruby Poe</a></h6>
-                                                                                        <p class="text-dark mb-2">Similique sunt in culpa qui officia deserunt mollitia animi id est laborum et dolorum fuga et harum quidem rerum.</p>
-                                                                                        <p class="text-muted mb-0">4 Desember 2020</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="job-detail">
-                                                                            <div class="job-detail-desc">
-                                                                                <hr id="hr">
-                                                                                <div class="media mt-4">
-                                                                                    <div class="blog-comment-img">
-                                                                                        <img class="d-block mx-auto rounded-pill" height="60" alt="" src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/">
-                                                                                    </div>
-                                                                                    <div class="media-body ml-3">
-                                                                                        <h6 class="mb-0"><a href="#" class="text-dark" style="font-weight: bold">Ruby Poe</a></h6>
-                                                                                        <p class="text-dark mb-2">Similique sunt in culpa qui officia deserunt mollitia animi id est laborum et dolorum fuga et harum quidem rerum.</p>
-                                                                                        <p class="text-muted mb-0">4 Desember 2020</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="job-detail">
-                                                                            <div class="job-detail-desc">
-                                                                                <hr id="hr">
-                                                                                <div class="media mt-4">
-                                                                                    <div class="blog-comment-img">
-                                                                                        <img class="d-block mx-auto rounded-pill" height="60" alt="" src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/">
-                                                                                    </div>
-                                                                                    <div class="media-body ml-3">
-                                                                                        <h6 class="mb-0"><a href="#" class="text-dark" style="font-weight: bold">Ruby Poe</a></h6>
-                                                                                        <p class="text-dark mb-2">Similique sunt in culpa qui officia deserunt mollitia animi id est laborum et dolorum fuga et harum quidem rerum.</p>
-                                                                                        <p class="text-muted mb-0">4 Desember 2020</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4 col-md-5 mt-4 mt-sm-0">
-                                                                <div class="job-detail">
-                                                                    <div class="row">
-                                                                        <div class="col-12">
-                                                                            <p class="text-dark">Pengguna ini siap untuk bekerja !</p>
-                                                                            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#hireSaya"><i class="mdi mdi-email"></i> Hire Saya</a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row mt-3">
-                                                                        <div class="col-12">
-                                                                            <div class="single-post-item mb-2">
-                                                                                <div class="float-left mr-3">
-                                                                                    <i class="mdi mdi-tag text-muted mdi-24px"></i>
-                                                                                </div>
-                                                                                <div class="overview-details">
-                                                                                    <h6 class="text-muted mb-0">app app design calendar courier delivery app delivery service kajal kashyap location tracker logistics map</h6>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="single-post-item mb-2">
-                                                                                <div class="float-left mr-3">
-                                                                                    <i class="mdi mdi-heart text-muted mdi-24px"></i>
-                                                                                </div>
-                                                                                <div class="overview-details">
-                                                                                    <h6 class="text-muted mt-1">33 Suka</h6>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="single-post-item mb-4">
-                                                                                <div class="float-left mr-3">
-                                                                                    <i class="mdi mdi-calendar-today text-muted mdi-24px"></i>
-                                                                                </div>
-                                                                                <div class="overview-details">
-                                                                                    <h6 class="text-muted mt-1">33 Januari 2014</h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--end teb pane-->
-                                            </div>
-                                            <!--end tab content-->
-                                        </div>
-                                        <!--end col-->
-                                    </div>
-                                    <!--end row-->
-                                </div>
-                            </div>
-                            <!--end col-->
-                        </div>
-                    </div>
-                </div>
+    <!-- memulai modal nya. pada id="$myModal" harus sama dengan data-target="#myModal" pada tombol di atas -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" id="data_siswa">
             </div>
         </div>
     </div>
@@ -611,6 +550,12 @@ require("functions.php");
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <script language="javascript">
+        $('body').on('hidden.bs.modal', '.modal', function() {
+            $(this).removeData('bs.modal');
+        });
+    </script>
 
     <script>
         function myFunction() {
@@ -643,6 +588,31 @@ require("functions.php");
     <script src="js/jquery.nice-select.min.js"></script>
 
     <script src="js/app.js"></script>
+
+    <script>
+        // ini menyiapkan dokumen agar siap grak :)
+        $(document).ready(function() {
+            // yang bawah ini bekerja jika tombol lihat data (class="view_data") di klik
+            $('.view_data').click(function() {
+                // membuat variabel id, nilainya dari attribut id pada button
+                // id="'.$row['id'].'" -> data id dari database ya sob, jadi dinamis nanti id nya
+                var id = $(this).attr("id");
+
+                // memulai ajax
+                $.ajax({
+                    url: 'ajax/detail-karyaku.php', // set url -> ini file yang menyimpan query tampil detail data siswa
+                    method: 'post', // method -> metodenya pakai post. Tahu kan post? gak tahu? browsing aja :)
+                    data: {
+                        id: id
+                    }, // nah ini datanya -> {id:id} = berarti menyimpan data post id yang nilainya dari = var id = $(this).attr("id");
+                    success: function(data) { // kode dibawah ini jalan kalau sukses
+                        $('#data_siswa').html(data); // mengisi konten dari -> <div class="modal-body" id="data_siswa">
+                        $('#myModal').modal("show"); // menampilkan dialog modal nya
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

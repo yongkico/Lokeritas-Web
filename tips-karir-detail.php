@@ -93,6 +93,8 @@ if (isset($_GET['id'])) {
 
     /////////////////////////
 
+
+
     //Semua Tips
     $curl_get = curl_init();
     curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/comments.php?id_tips=' . $id_tips . '');
