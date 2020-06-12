@@ -71,12 +71,8 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
     </div>
     <!-- Loader -->
 
-    <?php if (isset($_SESSION["login"])) : ?>
-        <?php
-        $id = $_SESSION["id"];
-        $result = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id'");
-        $row = mysqli_fetch_assoc($result);
-        ?>
+   
+        
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
 
@@ -115,7 +111,7 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $row["nama"]; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i>Bambang</a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -133,60 +129,9 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
         </header>
         <!--end header-->
         <!-- Navbar End -->
-    <?php else : ?>
-        <!-- Navigation Bar-->
-        <header id="topnav" class="defaultscroll scroll-active">
-
-            <!-- Menu Start -->
-            <div class="container">
-                <!-- Logo container-->
-                <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
-                    </a>
-                </div>
-                <!-- <div class="buy-button">
-                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
-            </div> -->
-                <!--end login button-->
-                <!-- End Logo container-->
-                <div class="menu-extras">
-                    <div class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </div>
-                </div>
-
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
-                        <li><a href="contact.html">Cari Lowongan</a></li>
-                        <li><a href="index.html">Tips Karir</a></li>
-                        <li><a href="contact.html">Daftar Perusahaan</a></li>
-                        <li><a href="index.html">Karyaku</a></li>
-                        <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary">Masuk</a>
-                            <a href="register.php" class="btn btn-primary">Daftar</a>
-                        </div>
-                    </ul>
-                    <!--end navigation menu-->
-                </div>
-                <!--end navigation-->
-            </div>
-            <!--end container-->
-            <!--end end-->
-        </header>
-        <!--end header-->
-        <!-- Navbar End -->
-    <?php endif; ?>
+  
+      
+    
 
     <!-- Start home -->
     <section class="bg-half page-next-level" style="padding: 120px 0px 50px 0px;background: url('images/bg-2.jpg') center center;">
