@@ -27,8 +27,9 @@ if (isset($_POST['daftar'])) {
     }
 
 
-    //enkripsi password
-    $password = password_hash($password, PASSWORD_DEFAULT);
+    // //enkripsi password
+    // $password = password_hash
+    $password = sha1($password);
 
     $form_data = array(
         "nama_depan" => $namaDepan,

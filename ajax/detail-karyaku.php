@@ -25,8 +25,6 @@ if ($_POST['id']) {
     curl_close($curl_get);
 
     $result_get_comment = json_decode($result_get_comment, true);
-
-    
 }
 ?>
 
@@ -35,7 +33,7 @@ if ($_POST['id']) {
     <div class="container">
         <div class="row">
             <div class="col-1">
-                <img src="<?= $result[0]['foto']; ?>" width="60px">
+                <img src="<?= $result[0]['foto']; ?>" width="50" height="50" alt="" class="d-block mx-auto shadow rounded-pill mb-4" width="100%">
             </div>
             <div class="col-10" style="padding-left: 30px">
                 <h5 style="margin-bottom:0px"><?= $result[0]['judul']; ?></h5>
@@ -129,7 +127,7 @@ if ($_POST['id']) {
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <p class="text-dark">Pengguna ini siap untuk bekerja !</p>
-                                                            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#hireSaya"><i class="mdi mdi-email"></i> Hire Saya</a>
+                                                            <a href="mailto:<?= $result[0]['email']; ?>" class="btn btn-info"><i class="mdi mdi-email"></i> Hire Saya</a>
                                                         </div>
                                                     </div>
                                                     <div class="row mt-3">

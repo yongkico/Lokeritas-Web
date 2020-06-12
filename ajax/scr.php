@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/initial.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>s
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>

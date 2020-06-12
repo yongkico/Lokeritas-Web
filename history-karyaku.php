@@ -4,7 +4,8 @@ require("functions.php");
 $site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
 $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
-
+$id_user = '94';
+$data_karyaku = [];
 if (isset($_POST['send'])) {
     if (isset($_POST['g-recaptcha-response'])) {
         $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
@@ -165,8 +166,8 @@ if (isset($_POST['send'])) {
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h3 class="text-uppercase title mb-4">karyaku</h3>
-                        <p>Kami ingin buktikan, bahwa kami memiliki keahlian dan kami mampu bekerja layaknya orang normal </p>
+                        <h3 class="text-uppercase title mb-4">History Karyaku</h3>
+                        
                     </div>
                 </div>
             </div>
@@ -174,33 +175,6 @@ if (isset($_POST['send'])) {
     </section>
     <!-- end home -->
 
-    <!-- Search -->
-    <div class="container" style="height: 53px">
-        <div class="home-form-position">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="home-registration-form p-4 mb-3">
-                        <form class="registration-form" action="">
-                            <div class="row">
-                                <div class="col-lg-9 col-md-6" style="padding-left: 0px;">
-                                    <div class="registration-form-box">
-                                        <i class="mdi mdi-library-books"></i>
-                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Kata kunci pencarian .." required="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6" style="padding-right: 0px;">
-                                    <div class="registration-form-box">
-                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end Search -->
 
     <!-- blog start -->
     <section class="section" style="padding:0px 0px 50px 0px">
@@ -213,42 +187,29 @@ if (isset($_POST['send'])) {
             $limit = 6;
             $limitStart = ($page - 1) * $limit;
 
-            if ($keyword == "") {
-                $curl_get_karyaku = curl_init();
-                curl_setopt($curl_get_karyaku, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_karyaku.php');
-                curl_setopt($curl_get_karyaku, CURLOPT_RETURNTRANSFER, 1);
-                $results_karyaku = curl_exec($curl_get_karyaku);
-                curl_close($curl_get_karyaku);
+            $curl_get_karyaku = curl_init();
+            curl_setopt($curl_get_karyaku, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_karyaku.php');
+            curl_setopt($curl_get_karyaku, CURLOPT_RETURNTRANSFER, 1);
+            $results_karyaku = curl_exec($curl_get_karyaku);
+            curl_close($curl_get_karyaku);
 
-                $result_karyaku = json_decode($results_karyaku, true);
-            } else {
-                $curl_search_karyaku = curl_init();
-                curl_setopt($curl_search_karyaku, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_karyaku.php');
-                curl_setopt($curl_search_karyaku, CURLOPT_RETURNTRANSFER, 1);
-                $results_search_karyaku = curl_exec($curl_search_karyaku);
-                curl_close($curl_search_karyaku);
+            $result_karyaku = json_decode($results_karyaku, true);
 
-                $search = json_decode($results_search_karyaku, true);
-                $result_karyaku = FILTER_ARRAY_VALUES_REGEXP("/$keyword/i", $search);
+            foreach ($result_karyaku as $row) {
+                if ($row['id_user'] == $id_user) {
+                    $data_karyaku[] = $row;
+                }
             }
 
-
-            $jumlahData = count($result_karyaku);
+            $jumlahData = count($data_karyaku);
             $jumlahHalaman = ceil($jumlahData / $limit);
 
-            $karyaku = array_slice($result_karyaku, $limitStart, $limit);
+            $karyaku = array_slice($data_karyaku, $limitStart, $limit);
 
             ?>
 
-            <?php if ($keyword !== "") : ?>
-                <div class="row mt-5">
-                    <p class="text-info">Pencarian dengan kata kunci "<?= $keyword ?>" ...</p>
-                </div>
-            <?php else : ?>
-                <div class="row mt-5"></div>
-            <?php endif; ?>
 
-            <div class="row">
+            <div class="row mt-3">
                 <?php foreach ($karyaku as $row) : ?>
                     <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
                         <div class="view_data blog position-relative overflow-hidden shadow rounded" id="<?= $row['id_karyaku']; ?>" data-toggle="modal" data-target="#myModal">
@@ -259,10 +220,16 @@ if (isset($_POST['send'])) {
                                     <p class="text-white" style="text-align: left;"><?= $row['judul']; ?> </p>
                                 </div>
                             </div>
-                            <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
+                            <div class="content bg-light" style="padding: 10px 24px 1px 24px ! important">
                                 <div>
                                     <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></p>
                                     <p class="text-secondary" style="text-align: right"><i class="mdi mdi-eye mr-1"></i><?= $row['hit']; ?> <i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
+                                </div>
+                            </div>
+                            <div class="content bg-light" style="padding: 0px 24px 20px 24px ! important">
+                                <div>
+                                    <a href="" class="badge badge-success"><i class="mdi mdi-account-edit"></i> Edit</a>
+                                    <a href="" class="badge badge-danger"><i class="mdi mdi-delete"></i> Hapus</a>
                                 </div>
                             </div>
                         </div>
@@ -271,32 +238,23 @@ if (isset($_POST['send'])) {
                 <?php endforeach; ?>
                 <!--end col-->
 
+                <?php if (count($data_karyaku) == 0) : ?>
+                    <p class="alert alert-success justify-content-center mx-auto">Tidak ada postingan karyaku !</p>
+                <?php endif; ?>
                 <!-- Pagination -->
                 <div class="col-lg-12" style="margin-top: 30px ! important">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination job-pagination justify-content-center mb-0">
                             <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-                                <?php if ($keyword == "") : ?>
-                                    <?php
-                                    if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                        if (($limitStart == 1) && ($i != 2))  echo "...";
-                                        if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                        if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                        else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
-                                        $limitStart = $i;
-                                    }
-                                    ?>
-                                <?php else : ?>
-                                    <?php
-                                    if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                        if (($limitStart == 1) && ($i != 2))  echo "...";
-                                        if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                        if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                        else echo "<li class='page-item'> <a class='page-link' href='" . "?keyword=$keyword" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
-                                        $limitStart = $i;
-                                    }
-                                    ?>
-                                <?php endif; ?>
+                                <?php
+                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                    if (($limitStart == 1) && ($i != 2))  echo "...";
+                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                    $limitStart = $i;
+                                }
+                                ?>
                             <?php endfor; ?>
                         </ul>
                     </nav>
