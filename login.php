@@ -4,75 +4,50 @@ session_start();
 if (isset($_POST["masuk"])) {
 
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $password = sha1($_POST["password"]);
 
-    $curl_get = curl_init();
-    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
-    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-    $result_get = curl_exec($curl_get);
-    curl_close($curl_get);
+    $form_data = [
+        'email' => $email,
+        'password' => $password
+    ];
 
-    $result_get = json_decode($result_get, true);
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/login_user.php');
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($curl);
+    curl_close($curl);
 
-    if (empty($result_get)) {
-        echo    ' <div style="position: absolute;width:100%">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="alert-wrap justify-content-center" >
-                                <div class="alert alert-danger">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                    <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Kamu belum terdaftar ! </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                ';
+    $pesan = json_decode($result, true);
+
+    // var_dump($pesan);
+    // die;
+
+    $pesan = $pesan['data'];
+    if ($pesan) {
+        $_SESSION['login'] = true;
+        $_SESSION['userdata'] = [
+            "user_id" => $pesan['id_user'],
+            "email" => $pesan['email'],
+            "nama_depan" => $pesan['nama_depan'],
+            "nama_belakang" => $pesan['nama_belakang'],
+        ];
+        header('location: index.php');
+        exit;
     } else {
-        $pw = ($result_get[0]['password']);
-
-        if (password_verify($password, $pw)) {
-            $form_data = array(
-                "email" => $email,
-                "password" => $pw
-            );
-
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/login_user.php');
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            $result = curl_exec($curl);
-            curl_close($curl);
-
-            $pesan = json_decode($result, true);
-        
-            $_SESSION['login'] = true;
-            // $_SESSION['data'] = array(
-            //     "email" => $result['email'],
-            //     "password" => $result['password'],
-            //     "nama_depan" => $result['nama_depan'],
-            //     "nama_belakang" => $result['nama_belakang'],
-            // );
-            $_SESSION['email'] = $email;
-            $_SESSION['nama_depan'] = $pesan['data']['nama_depan'];
-            header('location: index.php');
-            exit;
-        } else {
-            echo    ' <div style="position: absolute;width:100%">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="alert-wrap justify-content-center" >
-                                <div class="alert alert-danger">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                    <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Password kamu salah ! </p>
-                                </div>
-                            </div>
-                        </div>
+        echo '<div style="position: absolute;width:100%">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert-wrap justify-content-center" >
+                    <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Password kamu salah ! </p>
                     </div>
                 </div>
-                ';
-        }
+            </div>
+        </div>
+    </div>';
     }
 }
 
@@ -219,7 +194,7 @@ if (isset($_POST["masuk"])) {
             </div>
         </div>
     </div>
-    
+
     <!-- End Modal Ubah Foto Profil -->
 
     <!-- javascript -->
