@@ -21,21 +21,25 @@ if (isset($_POST["masuk"])) {
 
     $pesan = json_decode($result, true);
 
-    // var_dump($pesan);
-    // die;
+    // $curl_get = curl_init();
+    // curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
+    // curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    // $result = curl_exec($curl_get);
+    // curl_close($curl_get);
 
-    $pesan = $pesan['data'];
-    if ($pesan) {
+    // $result_get = json_decode($result, true);
+
+    if ($pesan['message'] == 'Berhasil') {
         $_SESSION['login'] = true;
         $_SESSION['userdata'] = [
-            "user_id" => $pesan['id_user'],
-            "email" => $pesan['email'],
-            "nama_depan" => $pesan['nama_depan'],
-            "nama_belakang" => $pesan['nama_belakang'],
+            "user_id" => $pesan['data']['id_user'],
+            "email" => $pesan['data']['email'],
+            "nama_depan" => $pesan['data']['nama_depan'],
+            "nama_belakang" => $pesan['data']['nama_belakang'],
         ];
         header('location: index.php');
         exit;
-    } else {
+    } else if ($pesan['message'] == 'gagal') {
         echo '<div style="position: absolute;width:100%">
         <div class="row">
             <div class="col-lg-12">
@@ -43,6 +47,19 @@ if (isset($_POST["masuk"])) {
                     <div class="alert alert-danger">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Password kamu salah ! </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>';
+    } else {
+        echo '<div style="position: absolute;width:100%">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert-wrap justify-content-center" >
+                    <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Kamu belum terdaftar ! </p>
                     </div>
                 </div>
             </div>
