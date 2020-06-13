@@ -678,13 +678,13 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text" id="basic-addon1">+62</span>
                                                         </div>
-                                                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                                        <input type="text" name="telepon" class="form-control" placeholder="Nomor HP" aria-label="Username" aria-describedby="basic-addon1" value="<?php if ($result_get[0]["telepon"] == '0') {
+                                                                                                                                                                                                        echo '+62';
+                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                        echo $result_get[0]["telepon"];
+                                                                                                                                                                                                    } ?>">
                                                     </div>
-                                                    <input id="surname-name" name="telepon" type="text" class="form-control resume" autocomplete="off" value="<?php if ($result_get[0]["telepon"] == '0') {
-                                                                                                                                                                    echo '+62';
-                                                                                                                                                                } else {
-                                                                                                                                                                    echo $result_get[0]["telepon"];
-                                                                                                                                                                } ?>">
+                                                    
                                                 </div>
                                             </div>
 

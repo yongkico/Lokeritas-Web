@@ -177,7 +177,7 @@ if (isset($_POST['send'])) {
     <!-- Search -->
     <div class="container" style="height: 53px">
         <div class="home-form-position">
-            <div class="row">
+            <div class="row ">
                 <div class="col-lg-12">
                     <div class="home-registration-form p-4 mb-3">
                         <form class="registration-form" action="">
@@ -188,9 +188,9 @@ if (isset($_POST['send'])) {
                                         <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Kata kunci pencarian .." required="">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6" style="padding-right: 0px;">
+                                <div class="col-lg-3 col-md-6 " style="padding-right: 0px;">
                                     <div class="registration-form-box">
-                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
+                                        <button type="submit" class="btn btn-primary mb-3" style="width: 100%">Cari </button>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +242,7 @@ if (isset($_POST['send'])) {
 
             <?php if ($keyword !== "") : ?>
                 <div class="row mt-5">
-                    <p class="text-info">Pencarian dengan kata kunci "<?= $keyword ?>" ...</p>
+                    <i class="ml-5">Pencarian dengan kata kunci <strong>"<?= $keyword; ?>"</strong></i>
                 </div>
             <?php else : ?>
                 <div class="row mt-5"></div>

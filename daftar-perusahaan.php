@@ -1,13 +1,39 @@
 <?php
 session_start();
+require_once("functions.php");
 
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_perusahaan.php');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get = curl_exec($curl_get);
-curl_close($curl_get);
 
-$result_get = json_decode($result_get, true);
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+$limit = 6;
+$limitStart = ($page - 1) * $limit;
+
+
+
+if ($search == "") {
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_perusahaan.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $result_perusahaan = json_decode($result_get, true);
+} else {
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_perusahaan.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $search_result = json_decode($result_get, true);
+
+    $result_perusahaan = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
+}
+
+$jumlahData = count($result_perusahaan);
+$jumlahHalaman = ceil($jumlahData / $limit);
+$daftar_perusahaan = array_slice($result_perusahaan, $limitStart, $limit);
 
 ?>
 <!DOCTYPE html>
@@ -53,117 +79,62 @@ $result_get = json_decode($result_get, true);
     </div>
     <!-- Loader -->
 
-    <?php if (isset($_SESSION["login"])) : ?>
-        <!-- Navigation Bar-->
-        <header id="topnav" class="defaultscroll scroll-active">
+    <!-- Navigation Bar-->
+    <header id="topnav" class="defaultscroll scroll-active">
 
-            <!-- Menu Start -->
-            <div class="container">
-                <!-- Logo container-->
-                <div>
-                    <a href="#" class="logo">
-                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
-                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
-                    </a>
-                </div>
-                <!--end login button-->
-                <!-- End Logo container-->
-                <div class="menu-extras">
-                    <div class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </div>
-                </div>
-
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
-                        <li><a href="index.php">Beranda</a></li>
-                        <li><a href="lowongan.php">Lowongan</a></li>
-                        <li><a href="tips-karir.php">Tips Karir</a></li>
-                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
-                        <li><a href="karyaku.php">Karyaku</a></li>
-                        <li><a href="#" style="font-size: 30px">|</a></li>
-                        <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="profile.php">Profil</a></li>
-                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
-                                <li><a href="history-karyaku.php">History Karyaku</a></li>
-                                <li><a href="logout.php">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!--end navigation menu-->
-                </div>
-                <!--end navigation-->
+        <!-- Menu Start -->
+        <div class="container">
+            <!-- Logo container-->
+            <div>
+                <a href="#" class="logo">
+                    <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                    <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
+                </a>
             </div>
-            <!--end container-->
-            <!--end end-->
-        </header>
-        <!--end header-->
-        <!-- Navbar End -->
-    <?php else : ?>
-        <!-- Navigation Bar-->
-        <header id="topnav" class="defaultscroll scroll-active">
-
-            <!-- Menu Start -->
-            <div class="container">
-                <!-- Logo container-->
-                <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
-                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
-                    </a>
-                </div>
-                <!-- <div class="buy-button">
-                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
-            </div> -->
-                <!--end login button-->
-                <!-- End Logo container-->
-                <div class="menu-extras">
-                    <div class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </div>
-                </div>
-
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
-                        <li><a href="lowongan.php">Cari Lowongan</a></li>
-                        <li><a href="tips-karir.php">Tips Karir</a></li>
-                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
-                        <li><a href="karyaku.php">Karyaku</a></li>
-                        <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
+            <!--end login button-->
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
-                    </ul>
-                    <!--end navigation menu-->
+                    </a>
+                    <!-- End mobile menu toggle-->
                 </div>
-                <!--end navigation-->
             </div>
-            <!--end container-->
-            <!--end end-->
-        </header>
-        <!--end header-->
-        <!-- Navbar End -->
-    <?php endif; ?>
+
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+                    <li><a href="index.php">Beranda</a></li>
+                    <li><a href="lowongan.php">Lowongan</a></li>
+                    <li><a href="tips-karir.php">Tips Karir</a></li>
+                    <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                    <li><a href="karyaku.php">Karyaku</a></li>
+                    <li><a href="#" style="font-size: 30px">|</a></li>
+                    <li class="has-submenu">
+                        <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="profile.php">Profil</a></li>
+                            <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
+                            <li><a href="history-karyaku.php">History Karyaku</a></li>
+                            <li><a href="logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--end navigation menu-->
+            </div>
+            <!--end navigation-->
+        </div>
+        <!--end container-->
+        <!--end end-->
+    </header>
+    <!--end header-->
+    <!-- Navbar End -->
 
     <!-- Start home -->
     <section class="bg-half page-next-level" style="padding: 120px 0px 10px 0px;background: url('images/bg-2.jpg') center center;">
@@ -185,13 +156,13 @@ $result_get = json_decode($result_get, true);
                                     <div class="col-lg-9 col-md-6">
                                         <div class="registration-form-box">
                                             <i class="fa fa-briefcase"></i>
-                                            <input type="text" id="exampleInputName1" name="q" class="form-control rounded registration-input-box" placeholder="Cari Nama Perusahaan..." required="asa">
+                                            <input type="text" id="exampleInputName1" name="search" class="form-control rounded registration-input-box" placeholder="Cari Nama Perusahaan..." required="asa">
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-6">
                                         <div class="registration-form-box">
 
-                                            <button type="button" class="btn btn-primary" style="width: 100%">Cari</button>
+                                            <button type="submit" class="btn btn-primary" style="width: 100%">Cari</button>
                                         </div>
                                     </div>
                                 </div>
@@ -204,52 +175,68 @@ $result_get = json_decode($result_get, true);
     </section>
     <!-- end home -->
 
+
     <!-- blog start -->
     <section class="section" style="padding: 30px 0px 40px 0px">
         <div class="container">
+            <?php if ($search !== "") : ?>
+                <div class="row mt-3 mb-3">
+                    <i class="ml-5">Pencarian dengan kata kunci <strong>"<?= $search; ?>"</strong></i>
+                </div>
+            <?php else : ?>
+                <div class="row mt-3 mb-3"></div>
+            <?php endif; ?>
             <div class="row">
-                <?php
-                foreach ($result_get as $row) :
-                ?>
-
-
-                    <?php
-                    if (isset($_GET['q'])) {
-                        $cari = strtolower($_GET['q']);
-                        $kalimat = strtolower($row['nama_perusahaan']);
-
-                        if (preg_match("/$cari/i", $kalimat)) {
-                            echo ' <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                <?php if (!empty($daftar_perusahaan)) : ?>
+                    <?php foreach ($daftar_perusahaan as $row) : ?>
+                        <div class="col-lg-4 col-md-6 mb-4 pb-2">
                             <div class="blog position-relative overflow-hidden shadow rounded">
                                 <div class="position-relative overflow-hidden">
-                                    <img src="' . $row['logo'] . '" style="width: 30%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                                    <img src="<?= $row['logo']; ?>" style="width: 30%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
                                 </div>
                                 <div class="content p-4 bg-light">
-                                    <h4>' . strtoupper($row['nama_perusahaan']) . '</h4>
-                                    <p class="text-muted" style="text-transform: capitalize">' . strtolower($row['sektor_perusahaan']) . ' | ' . strtolower($row['alamat']) . '</p>
-                                    <a href="detail-perusahaan.php?id_perusahaan=' . $row['id_perusahaan'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                    </div>
-                            </div>
-                        </div>';
-                        }
-                    } else {
-                        echo ' <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog position-relative overflow-hidden shadow rounded">
-                            <div class="position-relative overflow-hidden">
-                                <img src="' . $row['logo'] . '" style="width: 30%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
-                            </div>
-                            <div class="content p-4 bg-light">
-                                <h4>' . strtoupper($row['nama_perusahaan']) . '</h4>
-                                <p class="text-muted" style="text-transform: capitalize">' . strtolower($row['sektor_perusahaan']) . ' | ' . strtolower($row['alamat']) . '</p>
-                                <a href="detail-perusahaan.php?id_perusahaan=' . $row['id_perusahaan'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
+                                    <h5><?= $row['nama_perusahaan']; ?></h5>
+                                    <p class="text-muted" style="text-transform: capitalize"><?= $row['sektor_perusahaan']; ?> | <?= $row['alamat']; ?></p>
+                                    <a href="detail-perusahaan.php?id_perusahaan=<?= $row['id_perusahaan']; ?>" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
+                            </div>
                         </div>
-                    </div>';
-                    }
-                    ?>
-
-                <?php
-                endforeach; ?>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="alert alert-warning mx-auto" role="alert">
+                        Perusahaan tidak ada/belum terdaftar !
+                    </div>
+                <?php endif; ?>
+            </div>
+            <!-- Pagination -->
+            <div class="col-lg-12" style="margin-top: 30px ! important">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination job-pagination justify-content-center mb-0">
+                        <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                            <?php if ($search == "") : ?>
+                                <?php
+                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                    if (($limitStart == 1) && ($i != 2))  echo "...";
+                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                    $limitStart = $i;
+                                }
+                                ?>
+                            <?php else : ?>
+                                <?php
+                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                    if (($limitStart == 1) && ($i != 2))  echo "...";
+                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
+                                    $limitStart = $i;
+                                }
+                                ?>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </ul>
+                </nav>
             </div>
         </div>
     </section>

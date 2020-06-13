@@ -162,12 +162,18 @@ if (isset($_POST['send'])) {
     <!-- Start home -->
     <section class="bg-half page-next-level" style="padding: 120px 0px 10px 0px;background: url('images/bg-2.jpg') center center;">
         <div class="bg-overlay"></div>
-        <div class="container">
+        <div class="container mb-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
                         <h3 class="text-uppercase title mb-4">History Karyaku</h3>
-                        
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center">
+                        <a href="post-karyaku.php" class="btn btn-primary">+ Tambah Karyaku</a>
                     </div>
                 </div>
             </div>
@@ -206,6 +212,7 @@ if (isset($_POST['send'])) {
 
             $karyaku = array_slice($data_karyaku, $limitStart, $limit);
 
+
             ?>
 
 
@@ -226,12 +233,10 @@ if (isset($_POST['send'])) {
                                     <p class="text-secondary" style="text-align: right"><i class="mdi mdi-eye mr-1"></i><?= $row['hit']; ?> <i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
                                 </div>
                             </div>
-                            <div class="content bg-light" style="padding: 0px 24px 20px 24px ! important">
-                                <div>
-                                    <a href="" class="badge badge-success"><i class="mdi mdi-account-edit"></i> Edit</a>
-                                    <a href="" class="badge badge-danger"><i class="mdi mdi-delete"></i> Hapus</a>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <a href="edit-karyaku?id=<?= $row['id_karyaku']; ?>" class="badge badge-success"><i class="mdi mdi-account-edit"></i> Edit</a>
+                            <a href="hapus-karyaku?id=<?= $row['id_karyaku']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus?')" class="badge badge-danger"><i class="mdi mdi-delete"></i> Hapus</a>
                         </div>
                     </div>
                     <!--end col-->
@@ -264,6 +269,8 @@ if (isset($_POST['send'])) {
     </section>
     <!-- blog end -->
     <!-- subscribe end -->
+
+  
 
     <!-- The Modal Daftar -->
     <div class="modal" id="pilihanDaftar">

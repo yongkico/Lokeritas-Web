@@ -15,14 +15,14 @@ $lamaran = json_decode($result, true);
 $lamaranTerbaru = array_reverse($lamaran);
 
 
-$jlhDataPerHalaman = 6;
-$jlhData = count($lamaranTerbaru);
-$jlhHalaman = ceil($jlhData / $jlhDataPerHalaman);
-$halamanAktif = (isset($_GET['hal'])) ? $_GET['hal'] : 1;
-$awalData = ($jlhDataPerHalaman * $halamanAktif) - $jlhDataPerHalaman;
+$limit = 6;
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$limitStart = ($page - 1) * $limit;
+$jumlahData = count($lamaranTerbaru);
+$jumlahHalaman = ceil($jumlahData / $limit);
 
 
-$dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
+$dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
 
 
 
@@ -71,67 +71,67 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
     </div>
     <!-- Loader -->
 
-   
-        
-        <!-- Navigation Bar-->
-        <header id="topnav" class="defaultscroll scroll-active">
 
-            <!-- Menu Start -->
-            <div class="container">
-                <!-- Logo container-->
-                <div>
-                    <a href="#" class="logo">
-                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
-                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
-                    </a>
-                </div>
-                <!--end login button-->
-                <!-- End Logo container-->
-                <div class="menu-extras">
-                    <div class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </div>
-                </div>
 
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
-                        <li><a href="index.php">Beranda</a></li>
-                        <li><a href="lowongan.php">Lowongan</a></li>
-                        <li><a href="tips-karir.php">Tips Karir</a></li>
-                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
-                        <li><a href="karyaku.php">Karyaku</a></li>
-                        <li><a href="#" style="font-size: 30px">|</a></li>
-                        <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i>Bambang</a><span class="menu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="profile.php">Profil</a></li>
-                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
-                                <li><a href="history-karyaku.php">History Karyaku</a></li>
-                                <li><a href="logout.php">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!--end navigation menu-->
-                </div>
-                <!--end navigation-->
+    <!-- Navigation Bar-->
+    <header id="topnav" class="defaultscroll scroll-active">
+
+        <!-- Menu Start -->
+        <div class="container">
+            <!-- Logo container-->
+            <div>
+                <a href="#" class="logo">
+                    <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                    <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
+                </a>
             </div>
-            <!--end container-->
-            <!--end end-->
-        </header>
-        <!--end header-->
-        <!-- Navbar End -->
-  
-      
-    
+            <!--end login button-->
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- End mobile menu toggle-->
+                </div>
+            </div>
+
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+                    <li><a href="index.php">Beranda</a></li>
+                    <li><a href="lowongan.php">Lowongan</a></li>
+                    <li><a href="tips-karir.php">Tips Karir</a></li>
+                    <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                    <li><a href="karyaku.php">Karyaku</a></li>
+                    <li><a href="#" style="font-size: 30px">|</a></li>
+                    <li class="has-submenu">
+                        <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i>Bambang</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="profile.php">Profil</a></li>
+                            <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
+                            <li><a href="history-karyaku.php">History Karyaku</a></li>
+                            <li><a href="logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--end navigation menu-->
+            </div>
+            <!--end navigation-->
+        </div>
+        <!--end container-->
+        <!--end end-->
+    </header>
+    <!--end header-->
+    <!-- Navbar End -->
+
+
+
 
     <!-- Start home -->
     <section class="bg-half page-next-level" style="padding: 120px 0px 50px 0px;background: url('images/bg-2.jpg') center center;">
@@ -155,7 +155,7 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
                 <div class="col-12">
                     <h4 class="text-primary">Daftar Lamaran</h4>
                 </div>
-                <div class="col-12"><span>Urutkan berdasarkan </span></div>
+                <!-- <div class="col-12"><span>Urutkan berdasarkan </span></div>
                 <div class="col-12">
                     <input type="hidden" value="<?= $id; ?>" id="idnya">
                     <select class="form-control" id="waktu" style="width: 250px" onchange="urutkan(this)">
@@ -163,7 +163,7 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
                         <option value="terbaru">Terbaru </option>
                         <option value="terlama">Terlama </option>
                     </select>
-                </div>
+                </div> -->
             </div>
             <div class="row mt-5" id="daftarLamaran">
                 <?php foreach ($dataLimit as $data) : ?>
@@ -195,7 +195,7 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
                 <div class="col-lg-12">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination job-pagination justify-content-center mb-0">
-                            <li class="page-item">
+                            <!-- <li class="page-item">
                                 <?php if ($halamanAktif > 1) : ?>
                                     <a class="page-link" href="?hal=<?= $halamanAktif - 1; ?>">
                                         <i class="mdi mdi-chevron-double-left f-15"></i>
@@ -205,17 +205,21 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
                                         <i class="mdi mdi-chevron-double-left f-15"></i>
                                     </a>
                                 <?php endif; ?>
-                            </li>
+                            </li> -->
 
-                            <?php for ($i = 1; $i <= $jlhHalaman; $i++) : ?>
-                                <?php if ($i == $halamanAktif) : ?>
-                                    <li class="page-item active"><a class="page-link" href="?hal=<?= $i; ?>"><?= $i; ?></a></li>
-                                <?php else : ?>
-                                    <li class="page-item"><a class="page-link" href="?hal=<?= $i; ?>"><?= $i; ?></a></li>
-                                <?php endif; ?>
+                            <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                <?php
+                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                    if (($limitStart == 1) && ($i != 2))  echo "...";
+                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                    $limitStart = $i;
+                                }
+                                ?>
                             <?php endfor; ?>
 
-                            <li class="page-item">
+                            <!-- <li class="page-item">
                                 <?php if ($halamanAktif < $jlhHalaman) : ?>
                                     <a class="page-link" href="?hal=<?= $halamanAktif + 1; ?>">
                                         <i class="mdi mdi-chevron-double-right f-15"></i>
@@ -225,7 +229,7 @@ $dataLimit = array_slice($lamaranTerbaru, $awalData, $jlhDataPerHalaman);
                                         <i class="mdi mdi-chevron-double-right f-15"></i>
                                     </a>
                                 <?php endif; ?>
-                            </li>
+                            </li> -->
                         </ul>
                     </nav>
                 </div>
