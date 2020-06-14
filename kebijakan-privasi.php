@@ -193,7 +193,7 @@ require("functions.php");
                         <li>Penyandang disabilitas jenis apapun</li>
                         <li>Usia 18-40 tahun</li>
                         <li>Pendidikan minal SMA/SMK/Sederajat</li>
-                        <li>Mampu mengoperasikan internet dan/atau smartphone berbasis android</li>
+                        <li>Mampu mengoperasikan komputer, internet dan/atau smartphone berbasis android</li>
                     </ol>
                     <p class="text-dark" style="text-align: justify;margin:0px 0px 0px 0px">Syarat Khusus :</p>
                     <ol>
@@ -201,10 +201,10 @@ require("functions.php");
                     </ol>
                     <p class="text-dark" style="text-align: justify;margin:0px 0px 0px 0px">Ketentuan :</p>
                     <ol>
-                        <li>Mendaftarkan diri ke lokeritas.com, mengisi data diri, melengkapi profil pencari kerja, mengunggah CV dan foto sesuai dengan ukuran yang berlaku.</li>
-                        <li>Semua lowongan kerja yang tercantum di Kerjabilitas tidak dipungut biaya dalam proses pengiklanannya. Sehingga semua pelamar pekerjaan untuk semua lowongan di Lokeritas juga tidak dikenakan biaya apapun.</li>
+                        <li>Mendaftarkan diri ke lokeritas.xyz, mengisi data diri, melengkapi profil pencari kerja, mengunggah CV dan foto sesuai dengan ukuran yang berlaku.</li>
+                        <li>Semua lowongan kerja yang tercantum di Lokeritas tidak dipungut biaya dalam proses pengiklanannya. Sehingga semua pelamar pekerjaan untuk semua lowongan di Lokeritas juga tidak dikenakan biaya apapun.</li>
                     </ol>
-                    <p class="text-dark" style="text-align: justify">Apabila ada perusahaan atau penyedia kerja yang melakukan pemungutan biaya atau permintaan untuk melakukan transfer sejumlah uang kepada pengguna Kerjabilitas, kamu dapat menginformasikannya kepada tim Kerjabilitas melalui kotak pesan di laman Kerjabilitas, atau melalui email di info@lokeritas.com, dan dapat juga menghubungi kami di 08122219983</p>
+                    <p class="text-dark" style="text-align: justify">Apabila ada perusahaan atau penyedia kerja yang melakukan pemungutan biaya atau permintaan untuk melakukan transfer sejumlah uang kepada pengguna Lokeritas, kamu dapat menginformasikannya kepada tim Lokeritas melalui kotak pesan di laman Lokeritas, atau melalui email di info@lokeritas.xyz, dan dapat juga menghubungi kami di 08122219983</p>
                 </div>
                 <div class="col-lg-1"></div>
             </div>

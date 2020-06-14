@@ -2584,6 +2584,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
 
                 <!-- Ini adalah Bagian Footer Modal -->
                 <div class="modal-footer">
+                    <a href="profile.php" class="btn btn-primary">Simpan</a>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                 </div>
 

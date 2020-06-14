@@ -181,73 +181,134 @@ require("functions.php");
     <!-- end home -->
 
     <!-- blog start -->
-    <section class="section bg-light" style="padding: 40px 0px 40px 0px">
+    <!-- blog start -->
+    <section class="section" style="padding: 30px 0px 40px 0px">
         <div class="container">
             <div class="row">
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" data-toggle="tooltip" title="PT. Sempoerna Tbk." style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" data-toggle="tooltip" title="PT. Sempoerna Tbk." style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" data-toggle="tooltip" title="PT. Sempoerna Tbk." style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
+                <div class="col-lg-2 col-md-6 mb-4 pb-2">
+                    <div class="blog position-relative overflow-hidden shadow rounded">
+                        <div class="position-relative overflow-hidden">
+                            <img src="images/logo.png" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="content p-4 bg-light">
+                            <p>PT. Sampoerna</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
-                </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
-                </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
-                </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
-                </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
-                </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
-                </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
-                </div>
-                <div class="col-sm-1 position-relative overflow-hidden bg-white" style="padding:5px 3px 5px 3px; margin:5px 5px 5px 5px ! important;height:60px ! important;box-shadow: 1px 4px 8px 1px #e1e0e0;">
-                    <img src="images/logo.png" style="width: 75px" alt="" class="img-fluid mx-auto d-block">
-                </div>
-
             </div>
         </div>
     </section>
+    <!-- blog end -->
     <!-- blog end -->
 
     <!-- The Modal Daftar -->

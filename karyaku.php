@@ -211,7 +211,7 @@ if (isset($_POST['send'])) {
             $keyword = (isset($_GET['keyword'])) ? $_GET['keyword'] : "";
 
             $limit = 6;
-            $limitStart = ($page - 1) * $limit;
+            $limitStart = ($page - 1) * $limit; 
 
             if ($keyword == "") {
                 $curl_get_karyaku = curl_init();

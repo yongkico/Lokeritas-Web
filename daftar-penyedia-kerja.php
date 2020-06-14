@@ -23,7 +23,7 @@ if (isset($_POST["btn_daftar"])) {
     }
 
     //enkripsi password
-    $password = sha1($password);
+    // $password = sha1($password);
 
     $form_data = array(
         "nama_perusahaan" => $nama_perusahaan,
