@@ -4,7 +4,7 @@ session_start();
 if (isset($_POST["masuk"])) {
 
     $email = $_POST["email"];
-    $password = sha1($_POST["password"]);
+    $password = $_POST["password"];
 
     $form_data = [
         'email' => $email,
