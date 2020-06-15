@@ -1,16 +1,72 @@
 <?php
 session_start();
 
-//GET Parameter
+function FILTER_ARRAY_VALUES_REGEXP($basis, $array, $flag_invert = 0)
+{
+    $found = [];
 
-//Semua Tips
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get = curl_exec($curl_get);
-curl_close($curl_get);
+    foreach ($array as $key => $val) {
+        if (isset($flag_invert) && $flag_invert == 1) {
+            if (!preg_match($basis, $val['judul'])) {
+                $found[] = $val;
+            }
+        } else {
+            if (preg_match($basis, $val['judul'])) {
+                $found[] = $val;
+            }
+        }
+    }
+    return $found;
+}
 
-$result_get = json_decode($result_get, true);
+function FILTER_ARRAY_VALUES_REGEXP_P($basis, $array, $flag_invert = 0)
+{
+    $found = [];
+
+    foreach ($array as $key => $val) {
+        if (isset($flag_invert) && $flag_invert == 1) {
+            if (!preg_match($basis, $val['judul'])) {
+                $found[] = $val;
+            }
+        } else {
+            if (preg_match($basis, $val['judul'])) {
+                $found[] = $val;
+            }
+        }
+    }
+    return $found;
+}
+
+
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+$limit = 4;
+$limitStart = ($page - 1) * $limit;
+
+if ($search == "") {
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $result_tipskarir = json_decode($result_get, true);
+} else {
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $search_result = json_decode($result_get, true);
+
+    $result_tipskarir = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
+}
+
+$jumlahData = count($result_tipskarir);
+$jumlahHalaman = ceil($jumlahData / $limit);
+$daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
 
 ?>
 
@@ -96,7 +152,7 @@ $result_get = json_decode($result_get, true);
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['userdata']['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -187,15 +243,22 @@ $result_get = json_decode($result_get, true);
     <!-- BLOG LIST START -->
     <section class="section" style="padding:30px 0px 40px 0px">
         <div class="container">
+            <?php if ($search !== "") : ?>
+                <div class="row mt-3 mb-3">
+                    <i class="ml-5">Pencarian dengan kata kunci <strong>"<?= $search; ?>"</strong></i>
+                </div>
+            <?php else : ?>
+                <div class="row mt-3 mb-3"></div>
+            <?php endif; ?>
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-12 order-2 order-md-1 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <div class="sidebar mt-sm-30 p-4 rounded shadow">
                         <!-- SEARCH -->
                         <div class="widget mb-4 pb-2">
                             <div id="search2" class="widget-search mb-0">
-                                <form role="search" method="post" id="searchform" class="searchform" action="tips-karir.php">
+                                <form role="search" id="searchform" class="searchform">
                                     <div>
-                                        <input type="text" class="border rounded autocomplete-selected" name="keyword" id="exampleInputName1" placeholder="Cari Keywords..." required="">
+                                        <input type="text" class="border rounded autocomplete-selected" name="search" id="exampleInputName1" placeholder="Cari Keywords..." required="asa">
                                         <input type="submit" id="searchsubmit" value="Search">
                                     </div>
                                 </form>
@@ -220,7 +283,7 @@ $result_get = json_decode($result_get, true);
                         <div class="widget mb-4 pb-2">
                             <h4 class="widget-title">Artikel Terbaru</h4>
                             <?php $i = 0;
-                            foreach ($result_get as $row) : if ($i == 3) {
+                            foreach ($daftar_tipskarir as $row) : if ($i == 3) {
                                     break;
                                 } ?>
                                 <div class="mt-4">
@@ -239,20 +302,9 @@ $result_get = json_decode($result_get, true);
 
                 <div class="col-lg-8 col-md-6 order-1 order-md-2">
                     <div class="row">
-                        <?php $i = 0;
-                        foreach ($result_get as $row) :
-                            if ($i == 4) {
-                                break;
-                            } ?>
-
-                            <?php
-
-                            if (isset($_POST['keyword'])) {
-                                $cari = strtolower($_POST['keyword']);
-                                $kalimat = strtolower($row['judul']);
-
-                                if (preg_match("/$cari/i", $kalimat)) {
-                                    echo '<div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
+                        <?php if (!empty($daftar_tipskarir)) : ?>
+                            <?php foreach ($daftar_tipskarir as $row) : ?>
+                                <?php echo '<div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
                                     <div class="blog position-relative overflow-hidden shadow rounded">
                                         <div class="position-relative overflow-hidden">
                                             <img src="' . $row['gambar'] . '" class="img-fluid rounded-top" alt="" width="100%">
@@ -265,49 +317,45 @@ $result_get = json_decode($result_get, true);
                                             <a href="tips-karir-detail.php?id=' . $row['id_tips'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                         </div>
                                     </div>
-                                </div>';
-                                }
-                            } elseif (isset($_GET['q'])) {
-                                $kalimat = strtolower($row['judul']);
-                                $cari = strtolower($_GET['q']);
-                                if (preg_match("/$cari/i", $kalimat)) {
-                                    echo '<div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                                    <div class="blog position-relative overflow-hidden shadow rounded">
-                                        <div class="position-relative overflow-hidden">
-                                            <img src="' . $row['gambar'] . '" class="img-fluid rounded-top" alt="" width="100%">
-                                            <div class="overlay rounded-top bg-dark"></div>
-                                        </div>
-                                        <div class="content p-4 bg-white">
-                                        <h4 class="title text-dark">' . strtolower(substr($row['judul'], 0, 26)) . '</a>
-                                        </h4>
-                                            <p class="text-muted">' . substr($row['kontent'], 0, 96) . '</p>
-                                            <a href="tips-karir-detail.php?id=' . $row['id_tips'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>';
-                                }
-                            } else {
-                                echo '<div class="col-lg-6 col-md-6 mt-4 pt-2" style="margin:0px 0px 25px 0px !important;padding:0px 15px 0px 15px !important">
-                                    <div class="blog position-relative overflow-hidden shadow rounded">
-                                        <div class="position-relative overflow-hidden">
-                                            <img src="' . $row['gambar'] . '" class="img-fluid rounded-top" alt="" width="100%">
-                                            <div class="overlay rounded-top bg-dark"></div>
-                                        </div>
-                                        <div class="content p-4 bg-white">
-                                            <h4 class="title text-dark">' . strtolower(substr($row['judul'], 0, 26)) . '</a>
-                                            </h4>
-                                            <p class="text-muted">' . substr($row['kontent'], 0, 96) . '</p>
-                                            <a href="tips-karir-detail.php?id=' . $row['id_tips'] . '" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>';
-                            }
-
-                            ?>
-                        <?php $i++;
-                        endforeach; ?>
+                                </div>'; ?>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <div class="alert alert-warning mx-auto" role="alert">
+                                Kata kunci yang kamu masukkan tidak ditemukan
+                            </div>
+                        <?php endif; ?>
                         <!--end col-->
                         <!--end col-->
+                    </div>
+                    <!-- Pagination -->
+                    <div class="col-lg-12" style="margin-top: 30px ! important">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination job-pagination justify-content-center mb-0">
+                                <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                    <?php if ($search == "") : ?>
+                                        <?php
+                                        if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                            if (($limitStart == 1) && ($i != 2))  echo "...";
+                                            if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                            if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                            else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                            $limitStart = $i;
+                                        }
+                                        ?>
+                                    <?php else : ?>
+                                        <?php
+                                        if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                            if (($limitStart == 1) && ($i != 2))  echo "...";
+                                            if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                            if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                            else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
+                                            $limitStart = $i;
+                                        }
+                                        ?>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
