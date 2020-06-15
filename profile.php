@@ -2,7 +2,11 @@
 session_start();
 require("functions.php");
 
-$_SESSION['ema'] = 'rocky@gmail.com';
+if(isset($_SESSION['login'])){
+    $email = $_SESSION['userdata']['email'];
+}else{
+    header('location:login.php');
+}
 
 
 ?>
@@ -53,9 +57,9 @@ $_SESSION['ema'] = 'rocky@gmail.com';
     </div>
     <!-- Loader -->
 
-    <?php if (isset($_SESSION["ema"])) : ?>
+    <?php if (isset($_SESSION["userdata"]['email'])) : ?>
         <?php
-        $email = $_SESSION["ema"];
+        
 
         $curl_get = curl_init();
         curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
@@ -64,6 +68,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
         curl_close($curl_get);
 
         $result_get = json_decode($result, true);
+
 
 
         ?>
@@ -186,11 +191,7 @@ $_SESSION['ema'] = 'rocky@gmail.com';
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
                         <div class="blog">
-                            <img src="<?php if (empty($result_get[0]['foto'])) {
-                                            echo 'images/profil/default.png';
-                                        } else {
-                                            echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
-                                        }  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                            <img src="<?= $result_get[0]['foto'] == 'default.png' ? 'images/profil/default.png' : $result_get['foto']  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
 
                             <div class="author" style="margin:50px 0px 0px 169px">
                                 <p class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-account-edit text-light"></i> Ubah</p>
