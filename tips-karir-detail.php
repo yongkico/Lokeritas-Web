@@ -296,7 +296,7 @@ if (isset($_GET['id'])) {
                             <div id="search2" class="widget-search mb-0">
                                 <form role="search" method="get" id="searchform" class="searchform" action="tips-karir.php">
                                     <div>
-                                        <input type="text" class="border rounded" name="q" id="s" placeholder="Cari Keywords..." required="">
+                                        <input type="text" class="border rounded" name="search" id="s" placeholder="Cari Keywords..." required="">
                                         <input type="submit" id="searchsubmit" value="Search">
                                     </div>
                                 </form>
