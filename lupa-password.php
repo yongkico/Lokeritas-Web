@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +9,7 @@
     <meta name="keywords" content="" />
     <meta name="author" content="Themesdesign" />
 
-    <link rel="shortcut icon" href="images/favicon.ico">    
+    <link rel="shortcut icon" href="images/favicon.ico">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 
@@ -38,18 +37,21 @@
     </div>
     <!-- Loader -->
     <!-- Hero Start -->
-    <section class="vh-100" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
+    <section class="vh-100 bg-dark">
 
         <div class="home-center">
             <div class="home-desc-center">
                 <div class="container">
+                    <div class="row justify-content-center" style="margin-bottom: 20px ! important">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="35" />
+                    </div>
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6">
                             <div class="login_page bg-white shadow rounded p-4">
                                 <form class="login-form">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <p class="text-dark">Masukan email kamu untuk mendapatkan password baru.</p>
+                                            <p class="text-dark">Masukan email kamu untuk mendapatkan password baru</p>
                                             <div class="form-group position-relative">
                                                 <label class="text-muted">Email <span class="text-danger">*</span></label>
                                                 <input type="email" class="form-control" placeholder="Masukan email..." name="email" required="">
@@ -61,12 +63,16 @@
                                     </div>
                                 </form>
                             </div>
-                        </div> <!--end col-->
-                    </div><!--end row-->
-                </div> <!--end container-->
+                        </div>
+                        <!--end col-->
+                    </div>
+                    <!--end row-->
+                </div>
+                <!--end container-->
             </div>
         </div>
-    </section><!--end section-->
+    </section>
+    <!--end section-->
     <!-- Hero End -->
 
     <!-- javascript -->
@@ -82,4 +88,5 @@
 
     <script src="js/app.js"></script>
 </body>
+
 </html>

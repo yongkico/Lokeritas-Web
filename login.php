@@ -21,14 +21,6 @@ if (isset($_POST["masuk"])) {
 
     $pesan = json_decode($result, true);
 
-    // $curl_get = curl_init();
-    // curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
-    // curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-    // $result = curl_exec($curl_get);
-    // curl_close($curl_get);
-
-    // $result_get = json_decode($result, true);
-
     if ($pesan['message'] == 'Berhasil') {
         $_SESSION['login'] = true;
         $_SESSION['userdata'] = [
@@ -152,18 +144,13 @@ if (isset($_POST["masuk"])) {
 
                                         <div class="col-lg-12">
                                             <p class="float-right forgot-pass"><a href="lupa-password.php" class="text-dark font-weight-bold">Lupa password ?</a></p>
-                                            <div class="form-group">
-                                                <div class="custom-control m-0 custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember">
-                                                    <label class="custom-control-label" for="customCheck1">Ingat saya</label>
-                                                </div>
-                                            </div>
+                                            <label for="setcookie" class="text-dark font-weight-bold"><input type="checkbox" name="setcookie" value="true" id="setcookie" /> Ingat Saya</label>
                                         </div>
                                         <div class="col-lg-12 mb-0">
                                             <button class="btn btn-primary w-100" name="masuk">Masuk</button>
                                         </div>
                                         <div class="col-12 text-center">
-                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">Tidak mempunyai akun ?</small> <a href="#" class="text-dark font-weight-bold" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
+                                            <p class="mb-0 mt-3"><small class="text-dark mr-2">Belum mempunyai Akun ?</small> <a href="#" class="text-dark font-weight-bold" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                                         </div>
                                     </div>
                                 </form>

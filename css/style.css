@@ -1010,7 +1010,7 @@ p {
 .login-page .forgot-pass {
   z-index: 99;
   position: relative;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 @media (max-width: 768px) {
