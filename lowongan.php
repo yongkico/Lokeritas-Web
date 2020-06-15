@@ -1,15 +1,74 @@
 <?php
 session_start();
 
+function FILTER_ARRAY_VALUES_REGEXP($basis, $array, $flag_invert = 0)
+{
+    $found = [];
 
-//API Pencarian Lowongan Kerja
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get = curl_exec($curl_get);
-curl_close($curl_get);
+    foreach ($array as $key => $val) {
+        if (isset($flag_invert) && $flag_invert == 1) {
+            if (!preg_match($basis, $val['judul'])) {
+                $found[] = $val;
+            }
+        } else {
+            if (preg_match($basis, $val['judul'])) {
+                $found[] = $val;
+            }
+        }
+    }
+    return $found;
+}
 
-$result_get = json_decode($result_get, true);
+function FILTER_ARRAY_VALUES_REGEXP_P($basis, $array, $flag_invert = 0)
+{
+    $found = [];
+
+    foreach ($array as $key => $val) {
+        if (isset($flag_invert) && $flag_invert == 1) {
+            if (!preg_match($basis, $val['judul'])) {
+                $found[] = $val;
+            }
+        } else {
+            if (preg_match($basis, $val['judul'])) {
+                $found[] = $val;
+            }
+        }
+    }
+    return $found;
+}
+
+
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+$limit = 4;
+$limitStart = ($page - 1) * $limit;
+
+
+if ($search == "") {
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $result_tipskarir = json_decode($result_get, true);
+} else {
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $search_result = json_decode($result_get, true);
+
+    $result_tipskarir = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
+}
+
+
+$jumlahData = count($result_tipskarir);
+$jumlahHalaman = ceil($jumlahData / $limit);
+$daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
 
 ?>
 
@@ -184,33 +243,6 @@ $result_get = json_decode($result_get, true);
     </section>
     <!-- end home -->
 
-    <!-- <div class="container" style="height: 53px">
-        <div class="home-form-position">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="home-registration-form p-4 mb-3">
-                        <form class="registration-form" action="lowongan.php" method="post">
-                            <div class="row">
-                                <div class="col-lg-9 col-md-6">
-                                    <div class="registration-form-box">
-                                        <i class="fa fa-briefcase"></i>
-                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan..." required="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="registration-form-box">
-                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
     <div class="container" style="height: 53px">
         <div class="home-form-position">
             <div class="row">
@@ -222,7 +254,7 @@ $result_get = json_decode($result_get, true);
                                 <div class="col-lg-3 col-md-6">
                                     <div class="registration-form-box">
                                         <i class="fa fa-briefcase"></i>
-                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan / Perusahaan" required="">
+                                        <input type="text" id="exampleInputName1" name="search" class="form-control rounded registration-input-box" placeholder="Nama Pekerjaan / Perusahaan" required="">
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
@@ -328,15 +360,15 @@ $result_get = json_decode($result_get, true);
 
                                 <div class="col-lg-12">
 
-                                    <?php foreach ($result_get as $row) : ?>
+                                    <?php foreach ($result_tipskarir as $row) : ?>
                                         <?php
 
                                         $start_date = $row['tutup'];
                                         $expired = date('Y-m-d', strtotime($start_date));
                                         $currentdate = date('Y-m-d');
 
-                                        if (isset($_POST['keyword'])) {
-                                            $cari = strtolower($_POST['keyword']);
+                                        if (isset($_POST['search'])) {
+                                            $cari = strtolower($_POST['search']);
                                             $bidang = strtolower($_POST['bidang']);
                                             $lokasi = $_POST['lokasi'];
                                             $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
@@ -345,7 +377,7 @@ $result_get = json_decode($result_get, true);
                                             $api_lokasi = strtolower($row['alamat']);
 
 
-                                            if ($expired >= $currentdate) {
+                                            if ($expired <= $currentdate) {
                                                 if (preg_match("/$cari/i", $nama_perusahaan) || preg_match("/$cari/i", $nama_pekerjaan) && preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
                                                     echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                     <div class="p-4">
@@ -466,8 +498,6 @@ $result_get = json_decode($result_get, true);
                                         }
                                         ?>
                                     <?php endforeach; ?>
-
-
                                 </div>
                             </div>
                         </div>
