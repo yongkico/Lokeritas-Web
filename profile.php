@@ -2,9 +2,9 @@
 session_start();
 require("functions.php");
 
-if(isset($_SESSION['login'])){
+if (isset($_SESSION['login'])) {
     $email = $_SESSION['userdata']['email'];
-}else{
+} else {
     header('location:login.php');
 }
 
@@ -59,7 +59,7 @@ if(isset($_SESSION['login'])){
 
     <?php if (isset($_SESSION["userdata"]['email'])) : ?>
         <?php
-        
+
 
         $curl_get = curl_init();
         curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
@@ -191,7 +191,7 @@ if(isset($_SESSION['login'])){
                 <div class="col-md-6">
                     <div class="candidates-profile-details text-center">
                         <div class="blog">
-                            <img src="<?= $result_get[0]['foto'] == 'default.png' ? 'images/profil/default.png' : $result_get['foto']  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                            <img src="<?= $result_get[0]['foto'] == 'default.png' ? 'images/profil/default.png' : 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto']  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
 
                             <div class="author" style="margin:50px 0px 0px 169px">
                                 <p class="btn btn-success btn-sm" data-toggle="modal" data-target="#ubahFotoProfil"><i class="mdi mdi-account-edit text-light"></i> Ubah</p>
@@ -685,7 +685,7 @@ if(isset($_SESSION['login'])){
                                                                                                                                                                                                         echo $result_get[0]["telepon"];
                                                                                                                                                                                                     } ?>">
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
 
@@ -2615,16 +2615,8 @@ if(isset($_SESSION['login'])){
                                         <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
                                             <div class="col-md-12" style="margin-bottom: 10px;">
                                                 <div class="position-relative overflow-hidden">
-                                                    <img id="foto_display" src="<?php if (empty($result_get[0]['foto'])) {
-                                                                                    echo 'images/profil/default.png';
-                                                                                } else {
-                                                                                    echo 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto'];
-                                                                                }  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
-                                                    <!-- <img id="foto_display" src="/api-v1/uploads/Foto/<?php if (empty($result_get[0]['foto'])) {
-                                                                                                                echo 'default.png';
-                                                                                                            } else {
-                                                                                                                echo $result_get[0]['foto'];
-                                                                                                            }  ?>" height="200" style="width:200px" alt="" class="d-block mx-auto shadow rounded-pill mb-4"> -->
+                                                    <img id="foto_display" src="<?= $result_get[0]['foto'] == 'default.png' ? 'images/profil/default.png' : 'http://lokeritas.xyz/api-v1/uploads/Foto/'. $result_get[0]['foto']  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
