@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+if (isset($_SESSION['login'])) {
+    $nama_depan = $_SESSION['userdata']['nama_depan'];
+} 
 $site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
 $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
@@ -90,46 +92,46 @@ if (isset($_POST['send'])) {
     </div>
     <!-- Loader -->
 
-    <?php if (isset($_SESSION["login"])) : ?>
-        <!-- Navigation Bar-->
-        <header id="topnav" class="defaultscroll scroll-active">
+    <!-- Navigation Bar-->
+    <header id="topnav" class="defaultscroll scroll-active">
 
-            <!-- Menu Start -->
-            <div class="container">
-                <!-- Logo container-->
-                <div>
-                    <a href="#" class="logo">
-                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
-                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
+        <!-- Menu Start -->
+        <div class="container">
+            <!-- Logo container-->
+            <div>
+                <a href="#" class="logo">
+                    <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                    <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
+                </a>
+            </div>
+            <!--end login button-->
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </a>
+                    <!-- End mobile menu toggle-->
                 </div>
-                <!--end login button-->
-                <!-- End Logo container-->
-                <div class="menu-extras">
-                    <div class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </div>
-                </div>
+            </div>
 
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
-                        <li><a href="index.php">Beranda</a></li>
-                        <li><a href="lowongan.php">Lowongan</a></li>
-                        <li><a href="tips-karir.php">Tips Karir</a></li>
-                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
-                        <li><a href="karyaku.php">Karyaku</a></li>
-                        <li><a href="#" style="font-size: 30px">|</a></li>
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+                    <li><a href="index.php">Beranda</a></li>
+                    <li><a href="lowongan.php">Lowongan</a></li>
+                    <li><a href="tips-karir.php">Tips Karir</a></li>
+                    <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                    <li><a href="karyaku.php">Karyaku</a></li>
+                    <li><a href="#" style="font-size: 30px">|</a></li>
+                    <?php if (isset($_SESSION['login'])) : ?>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2 text-success" style="color: gray; font-size:16px"></i><?= $nama_depan; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -137,70 +139,22 @@ if (isset($_POST['send'])) {
                                 <li><a href="logout.php">Logout</a></li>
                             </ul>
                         </li>
-                    </ul>
-                    <!--end navigation menu-->
-                </div>
-                <!--end navigation-->
-            </div>
-            <!--end container-->
-            <!--end end-->
-        </header>
-        <!--end header-->
-        <!-- Navbar End -->
-    <?php else : ?>
-        <!-- Navigation Bar-->
-        <header id="topnav" class="defaultscroll scroll-active">
-
-            <!-- Menu Start -->
-            <div class="container">
-                <!-- Logo container-->
-                <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
-                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
-                    </a>
-                </div>
-                <!-- <div class="buy-button">
-                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
-            </div> -->
-                <!--end login button-->
-                <!-- End Logo container-->
-                <div class="menu-extras">
-                    <div class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </div>
-                </div>
-
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
-                        <li><a href="lowongan.php">Cari Lowongan</a></li>
-                        <li><a href="tips-karir.php">Tips Karir</a></li>
-                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
-                        <li><a href="karyaku.php">Karyaku</a></li>
+                    <?php else : ?>
                         <div class="buy-button">
                             <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                         </div>
-                    </ul>
-                    <!--end navigation menu-->
-                </div>
-                <!--end navigation-->
+                    <?php endif; ?>
+                </ul>
+                <!--end navigation menu-->
             </div>
-            <!--end container-->
-            <!--end end-->
-        </header>
-        <!--end header-->
-        <!-- Navbar End -->
-    <?php endif; ?>
+            <!--end navigation-->
+        </div>
+        <!--end container-->
+        <!--end end-->
+    </header>
+    <!--end header-->
+    <!-- Navbar End -->
 
     <!-- Start home -->
     <section class="bg-half page-next-level" style="padding: 120px 0px 50px 0px;background: url('images/bg-2.jpg') center center;">

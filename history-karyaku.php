@@ -1,10 +1,18 @@
 <?php
 session_start();
-require("functions.php");
+
+
+if (isset($_SESSION['login'])) {
+    $id_user = $_SESSION['userdata']['user_id'];
+    $nama_depan = $_SESSION['userdata']['nama_depan'];
+} else {
+    header('location:login.php');
+}
+
+
 $site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
 $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
-$id_user = '94';
 $data_karyaku = [];
 if (isset($_POST['send'])) {
     if (isset($_POST['g-recaptcha-response'])) {
@@ -139,7 +147,7 @@ if (isset($_POST['send'])) {
                     <li><a href="karyaku.php">Karyaku</a></li>
                     <li><a href="#" style="font-size: 30px">|</a></li>
                     <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-account mr-2 " style="color: gray; font-size:16px"></i>Bambang</a><span class="menu-arrow"></span>
+                        <a href="#"><i class="mdi mdi-account mr-2 text-success" style="font-size:16px"></i><?= $nama_depan ?></a><span class="menu-arrow"></span>
                         <ul class="submenu">
                             <li><a href="profile.php">Profil</a></li>
                             <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -244,7 +252,9 @@ if (isset($_POST['send'])) {
                 <!--end col-->
 
                 <?php if (count($data_karyaku) == 0) : ?>
-                    <p class="alert alert-success justify-content-center mx-auto">Tidak ada postingan karyaku !</p>
+                    <div class="alert alert-info mx-auto mt-5">
+                        Tidak ada postingan karyaku !
+                    </div>
                 <?php endif; ?>
                 <!-- Pagination -->
                 <div class="col-lg-12" style="margin-top: 30px ! important">
@@ -270,7 +280,7 @@ if (isset($_POST['send'])) {
     <!-- blog end -->
     <!-- subscribe end -->
 
-  
+
 
     <!-- The Modal Daftar -->
     <div class="modal" id="pilihanDaftar">

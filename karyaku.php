@@ -1,6 +1,12 @@
 <?php
 session_start();
-require("functions.php");
+
+if (isset($_SESSION['login'])) {
+    $user_id = $_SESSION['userdata']['user_id'];
+    $nama_depan = $_SESSION['userdata']['nama_depan'];
+}
+
+
 $site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
 $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
@@ -16,7 +22,7 @@ if (isset($_POST['send'])) {
             $success = true;
 
             $id_karyaku = $_POST['id'];
-            $id_user = '92';
+            $id_user = $user_id;
             $komentar = $_POST['komentar'];
 
             $curl = curl_init();
@@ -137,15 +143,22 @@ if (isset($_POST['send'])) {
                     <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
                     <li><a href="karyaku.php">Karyaku</a></li>
                     <li><a href="#" style="font-size: 30px">|</a></li>
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-account mr-2 " style="color: gray; font-size:16px"></i>Bambang</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="profile.php">Profil</a></li>
-                            <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
-                            <li><a href="history-karyaku.php">History Karyaku</a></li>
-                            <li><a href="logout.php">Logout</a></li>
-                        </ul>
-                    </li>
+                    <?php if (isset($_SESSION['login'])) : ?>
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-account mr-2 text-success" style="color: gray; font-size:16px"></i><?= $nama_depan; ?></a><span class="menu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="profile.php">Profil</a></li>
+                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
+                                <li><a href="history-karyaku.php">History Karyaku</a></li>
+                                <li><a href="logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    <?php else : ?>
+                        <div class="buy-button">
+                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
+                        </div>
+                    <?php endif; ?>
                 </ul>
                 <!--end navigation menu-->
             </div>
@@ -184,7 +197,7 @@ if (isset($_POST['send'])) {
                             <div class="row">
                                 <div class="col-lg-9 col-md-6" style="padding-left: 0px;">
                                     <div class="registration-form-box">
-                                        <i class="mdi mdi-library-books"></i>
+                                        <i class="mdi mdi-magnify"></i>
                                         <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Kata kunci pencarian .." required="">
                                     </div>
                                 </div>
@@ -211,7 +224,7 @@ if (isset($_POST['send'])) {
             $keyword = (isset($_GET['keyword'])) ? $_GET['keyword'] : "";
 
             $limit = 6;
-            $limitStart = ($page - 1) * $limit; 
+            $limitStart = ($page - 1) * $limit;
 
             if ($keyword == "") {
                 $curl_get_karyaku = curl_init();
@@ -503,6 +516,12 @@ if (isset($_POST['send'])) {
         $('body').on('hidden.bs.modal', '.modal', function() {
             $(this).removeData('bs.modal');
         });
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function comentEx() {
+            swal("Perhatian!", "Anda harus login terlebih dahulu!", "warning");
+        }
     </script>
 
     <script>

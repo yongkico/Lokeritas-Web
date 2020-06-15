@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once("functions.php");
 
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
@@ -116,15 +115,22 @@ $daftar_perusahaan = array_slice($result_perusahaan, $limitStart, $limit);
                     <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
                     <li><a href="karyaku.php">Karyaku</a></li>
                     <li><a href="#" style="font-size: 30px">|</a></li>
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            <li><a href="profile.php">Profil</a></li>
-                            <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
-                            <li><a href="history-karyaku.php">History Karyaku</a></li>
-                            <li><a href="logout.php">Logout</a></li>
-                        </ul>
-                    </li>
+                    <?php if (isset($_SESSION['login'])) : ?>
+                        <li class="has-submenu">
+                            <a href="#"><i class="mdi mdi-account mr-2 text-success" style="color: gray; font-size:16px"></i><?= $nama_depan; ?></a><span class="menu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="profile.php">Profil</a></li>
+                                <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
+                                <li><a href="history-karyaku.php">History Karyaku</a></li>
+                                <li><a href="logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    <?php else : ?>
+                        <div class="buy-button">
+                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
+                        </div>
+                    <?php endif; ?>
                 </ul>
                 <!--end navigation menu-->
             </div>

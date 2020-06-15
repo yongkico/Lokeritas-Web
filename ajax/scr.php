@@ -10,6 +10,12 @@
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/initial.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function comentEx() {
+            swal("Perhatian!", "Anda harus login terlebih dahulu!", "warning");
+        }
+    </script>
 </head>
 
 <body>
@@ -17,4 +23,3 @@
 </body>
 
 </html>
-

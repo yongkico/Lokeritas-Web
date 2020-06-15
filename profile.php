@@ -1,6 +1,5 @@
 <?php
 session_start();
-require("functions.php");
 
 if (isset($_SESSION['login'])) {
     $email = $_SESSION['userdata']['email'];

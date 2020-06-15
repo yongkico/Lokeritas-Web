@@ -1,8 +1,8 @@
 <?php
+session_start();
 require_once('scr.php');
 $site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
 $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
-
 
 
 
@@ -115,7 +115,11 @@ if ($_POST['id']) {
                                                         <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
+                                                                <?php if(isset($_SESSION['login'])) : ?>
+                                                                    <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
+                                                                <?php else: ?>
+                                                                    <button type="button" class="btn btn-primary" onclick="comentEx()">Kirim Komentar</button>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     </form>
