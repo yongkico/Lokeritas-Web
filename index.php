@@ -183,7 +183,6 @@ $result_karyaku = json_decode($result_karyaku, true);
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="#">Beranda</a></li>
                         <li><a href="lowongan.php">Lowongan</a></li>
                         <li><a href="#tipskarir">Tips Karir</a></li>
                         <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
@@ -233,7 +232,7 @@ $result_karyaku = json_decode($result_karyaku, true);
                                                 <div class="col-lg-9 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-briefcase"></i>
-                                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan..." required="">
+                                                        <input type="text" id="exampleInputName1" name="q" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan..." required="">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
@@ -460,6 +459,58 @@ $result_karyaku = json_decode($result_karyaku, true);
         </section>
         <!-- all jobs end -->
 
+        <!-- How it Work start -->
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="section-title text-center mb-4 pb-2">
+                            <h4 class="title title-line pb-5">Bagaimana Cara Mendapat Pekerjaan?</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-4 pt-2">
+                        <div class="how-it-work-box bg-light p-4 text-center rounded shadow">
+                            <div class="how-it-work-img position-relative rounded-pill mb-3">
+                                <img src="images/how-it-work/img-1.png" alt="" class="mx-auto d-block" height="50">
+                            </div>
+                            <div>
+                                <h5>Mendaftar Sebagai Member</h5>
+                                <p class="text-muted">Silahkan melakukan pendaftaran akun untuk menjadi member lokeritas dan
+                                    segera lengkapi profil kamu.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4 pt-2">
+                        <div class="how-it-work-box bg-light p-4 text-center rounded shadow">
+                            <div class="how-it-work-img position-relative rounded-pill mb-3">
+                                <img src="images/how-it-work/img-2.png" alt="" class="mx-auto d-block" height="50">
+                            </div>
+                            <div>
+                                <h5>Cari Pekerjaan Kamu</h5>
+                                <p class="text-muted">Lakukan pencarian lowongan pekerjaan sesuai keahlian yang kamu miliki
+                                    pada menu yang sudah tersedia.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4 pt-2">
+                        <div class="how-it-work-box bg-light p-4 text-center rounded shadow">
+                            <div class="how-it-work-img position-relative rounded-pill mb-3">
+                                <img src="images/how-it-work/img-3.png" alt="" class="mx-auto d-block" height="50">
+                            </div>
+                            <div>
+                                <h5>Lamar Pekerjaan</h5>
+                                <p class="text-muted">Setelah menemukan lowongan pekerjaan, kamu bisa langsung melamar
+                                    pekerjaan secara online pada menu yang tersedia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- How it Work end -->
+
         <!-- blog start -->
         <section class="section bg-light" id="tipskarir">
             <div class="container">
@@ -504,6 +555,73 @@ $result_karyaku = json_decode($result_karyaku, true);
             </div>
         </section>
         <!-- blog end -->
+
+        <!-- testimonial start -->
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="section-title text-center mb-4 pb-2">
+                            <h4 class="title title-line pb-5">Testimonial Pengguna</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-4">
+                    <div class="col-lg-12">
+                        <div id="owl-testi" class="owl-carousel owl-theme">
+                            <div class="item testi-box rounded p-4 mr-3 ml-2 mb-4 bg-light position-relative">
+                                <p class="text-muted mb-5">Berkat lokeritas, saya telah menemukan pekerjaan yang tepat
+                                    sesuai dengan keahlian yang saya miliki.</p>
+                                <div class="clearfix">
+                                    <div class="testi-img float-left mr-3">
+                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
+                                    </div>
+                                    <h5 class="f-18 pt-1">Budi Purba</h5>
+                                    <p class="text-muted mb-0">Penjahit</p>
+                                    <div class="testi-icon">
+                                        <i class="mdi mdi-format-quote-open display-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item testi-box rounded p-4 mr-3 ml-2 bg-light position-relative">
+                                <p class="text-muted mb-5">Lokeritas menawarkan mekanisme sistem yang tepat, membuat saya
+                                    dapat langsung melamar pekerjaan secara online </p>
+                                <div class="clearfix">
+                                    <div class="testi-img float-left mr-3">
+                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
+                                    </div>
+                                    <h5 class="f-18 pt-1">Silvana Syafitri</h5>
+                                    <p class="text-muted mb-0">Customer Service</p>
+                                    <div class="testi-icon">
+                                        <i class="mdi mdi-format-quote-open display-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item testi-box rounded p-4 mr-3 ml-2 bg-light position-relative">
+                                <p class="text-muted mb-5">Menurut saya lokeritas adalah suatu pilihan yang tepat jika ingin
+                                    mendapatkan pekerjaan secara cepat</p>
+                                <div class="clearfix">
+                                    <div class="testi-img float-left mr-3">
+                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
+                                    </div>
+                                    <h5 class="f-18 pt-1">Perry Suhendra</h5>
+                                    <p class="text-muted mb-0">Desain Grafis</p>
+                                    <div class="testi-icon">
+                                        <i class="mdi mdi-format-quote-open display-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- testimonial end -->
+
+
         <!-- blog start -->
         <section class="section bg-light">
             <div class="container">
@@ -637,6 +755,77 @@ $result_karyaku = json_decode($result_karyaku, true);
             </div>
         </div>
 
+
+        <!-- klien-->
+        <section class="section bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="container mt-100 mt-60 bg" style="margin-top: 0px ! important">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="section-title text-center mb-4 pb-2">
+                                    <h4 class="title title-line pb-5">Klien Kami</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center">
+                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
+                                <img src="images/clients/1.png" height="50" alt="">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
+                                <img src="images/clients/2.png" height="50" alt="">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
+                                <img src="images/clients/3.png" height="50" alt="">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
+                                <img src="images/clients/4.png" height="50" alt="">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
+                                <img src="images/clients/1.png" height="50" alt="">
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
+                                <img src="images/clients/2.png" height="50" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOWNLOAD APP START -->
+        <section class="section pb-0" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
+            <div class="bg-overlay"></div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-md-1 order-2">
+                        <div class="job-about-app-img mt-40">
+                            <img src="images/app-download.png" alt="" class="img-fluid mx-auto d-block">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 order-md-2 order-1">
+                        <div class="app-about-content">
+                            <div class="app-about-desc text-white">
+                                <h4 class="text-white mb-3">Unduh Aplikas Mobile Lokeritas</h4>
+                                <p class="font-weight text-white-80">Unduh aplikasi mobile lokeritas dan nikmati berbagai
+                                    kemudahan yang sama. Dengan menggunakan aplikasi versi mobile, sangat membantu
+                                    penyandang disabilitas tuna netra dalam mencari dan melamar pekerjaan. Aplikasi
+                                    menyediakan fitur voice command, dimana pengguna menggunakan media suara untuk
+                                    berinteraksi dengan aplikasi .</p>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="list-inline-item"><a href="javascript:void(0)"><img src="images/google.png" class="mt-2" height="60" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- DOWNLOAD APP END -->
+
+
     <?php
     else : ?>
         <!-- Navigation Bar-->
@@ -673,7 +862,7 @@ $result_karyaku = json_decode($result_karyaku, true);
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="lowongan.php">Cari Lowongan</a></li>
+                        <li><a href="lowongan.php">Lowongan</a></li>
                         <li><a href="#tipskarir">Tips Karir</a></li>
                         <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
                         <li><a href="karyaku.php">Karyaku</a></li>
@@ -716,7 +905,7 @@ $result_karyaku = json_decode($result_karyaku, true);
                                                 <div class="col-lg-9 col-md-6">
                                                     <div class="registration-form-box">
                                                         <i class="fa fa-briefcase"></i>
-                                                        <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan..." required="">
+                                                        <input type="text" id="exampleInputName1" name="q" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Nama Pekerjaan, Perusahaan..." required="">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
@@ -1106,6 +1295,141 @@ $result_karyaku = json_decode($result_karyaku, true);
             </div>
         </section>
         <!-- testimonial end -->
+
+        <!-- blog start -->
+        <section class="section bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="section-title text-center mb-4 pb-2">
+                            <h4 class="title title-line pb-5">Karyaku</h4>
+                            <p class="text-muted para-desc mx-auto mb-1">Kami ingin buktikan, bahwa kami memiliki keahlian
+                                dan kami mampu bekerja layaknya orang normal</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <?php $i = 0;
+                    foreach ($result_karyaku as $row) :  if ($i == 3) {
+                            break;
+                        } ?>
+                        <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
+                            <div class="view_data blog position-relative overflow-hidden shadow rounded" id="<?= $row['id_karyaku']; ?>" data-toggle="modal" data-target="#myModal">
+                                <div class="position-relative overflow-hidden">
+                                    <img src="<?= $row['gambar']; ?>" class="img-fluid rounded-top" alt="">
+                                    <div class="overlay rounded-top bg-dark"></div>
+                                    <div class="likes">
+                                        <p class="text-white" style="text-align: left;"><?= $row['judul']; ?> </p>
+                                    </div>
+                                </div>
+                                <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
+                                    <div>
+                                        <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></p>
+                                        <p class="text-secondary" style="text-align: right"><i class="mdi mdi-eye mr-1"></i><?= $row['hit']; ?> <i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end col-->
+                    <?php $i++;
+                    endforeach; ?>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <a href="karyaku.php" class="btn btn-info-outline">Lihat Semuanya</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- blog end -->
+
+        <!-- The Modal Daftar -->
+        <!-- memulai modal nya. pada id="$myModal" harus sama dengan data-target="#myModal" pada tombol di atas -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" id="data_siswa">
+                </div>
+            </div>
+        </div>
+        <!-- The Modal Daftar -->
+        <div class="modal" id="hireSaya">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="images/profil/default.png" height="70" style="width:70px;" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+                                </div>
+                                <div class="col-9">
+                                    <h5 class="mt-3">Kirim Hengky Sulaiman Pengajuan Pekerjaan</h5>
+                                </div>
+                                <div class="col-1">
+                                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p style="margin-bottom: 0px;font-weight:700">Tipe Pekerjaan <i class="text-danger">*</i></p>
+
+                                    <div class="p-4" style="padding: 0px 0px 0px 0px ! important">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <div class="form-group">
+                                                <input type="radio" onchange="myFunction()" id="myCheck1" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="myCheck1">Full Time</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <div class="form-group">
+                                                <input type="radio" onchange="myFunction()" id="myCheck2" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label" for="myCheck2">Half Time</label>
+                                            </div>
+                                        </div>
+                                        <div id="ketGaji1" style="display:none">
+                                            <p style="font: 700">Keterangan Gaji</p>
+                                            <p class="text-muted">Rp. 3.000.000 - Rp. 4.000.000</p>
+                                        </div>
+                                        <div id="ketGaji2" style="display:none">
+                                            <p style="font: 700">Keterangan Gaji</p>
+                                            <p class="text-muted">Rp. 1.500.000 - Rp. 2.000.000</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p style="margin-bottom: 0px;font-weight:700">Deskripsi Pekerjaan <i class="text-danger">*</i></p>
+                                    <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal body -->
+                    <!-- <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                        </div>
+                    </div>
+                </div> -->
+
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" id="btnGetStudent" name="btn_karir" class="btn btn-primary">Kirim</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
 
         <!-- klien-->
         <section class="section bg-light">
