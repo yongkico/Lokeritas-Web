@@ -155,7 +155,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['userdata']['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -359,15 +359,14 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                             <div class="row">
 
                                 <div class="col-lg-12">
+                                    <?php if (isset($_POST['search'])) : ?>
+                                        <?php foreach ($result_tipskarir as $row) : ?>
+                                            <?php
 
-                                    <?php foreach ($result_tipskarir as $row) : ?>
-                                        <?php
+                                            $start_date = $row['tutup'];
+                                            $expired = date('Y-m-d', strtotime($start_date));
+                                            $currentdate = date('Y-m-d');
 
-                                        $start_date = $row['tutup'];
-                                        $expired = date('Y-m-d', strtotime($start_date));
-                                        $currentdate = date('Y-m-d');
-
-                                        if (isset($_POST['search'])) {
                                             $cari = strtolower($_POST['search']);
                                             $bidang = strtolower($_POST['bidang']);
                                             $lokasi = $_POST['lokasi'];
@@ -376,9 +375,91 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                             $api_bidang = strtolower($row['sektor_perusahaan']);
                                             $api_lokasi = strtolower($row['alamat']);
 
+                                            if ($expired <= $currentdate) {
+                                                if (preg_match("/$cari/i", $nama_pekerjaan) || preg_match("/$cari/i", $nama_perusahaan)) {
+                                                    if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
+                                                        echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                                    <div class="p-4">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-md-2">
+                                                                <div class="mo-mb-2">
+                                                                    <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
+                                                                        <h5 class="f-18">
+                                                                            ' . strtolower($row['nama_pekerjaan']) . '
+                                                                        </h5>
+                                                                    </a>
+                                                                    <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-3 bg-light">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
+                                                                        </span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                ';
+                                                    } else {
+                                                        echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
+                                                    }
+                                                } else if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
+                                                    echo 'maaa';
+                                                }
+                                            } else {
+                                                echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
+                                                break;
+                                            }
+
+                                            ?>
+                                        <?php endforeach; ?>
+
+                                    <?php elseif (isset($_POST['q'])) : ?>
+                                        <?php foreach ($result_tipskarir as $row) : ?>
+                                            <?php
+
+                                            $start_date = $row['tutup'];
+                                            $expired = date('Y-m-d', strtotime($start_date));
+                                            $currentdate = date('Y-m-d');
+
+                                            $q = strtolower($_POST['q']);
+
+                                            $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
+                                            $nama_perusahaan = strtolower($row['nama_perusahaan']);
 
                                             if ($expired <= $currentdate) {
-                                                if (preg_match("/$cari/i", $nama_perusahaan) || preg_match("/$cari/i", $nama_pekerjaan) && preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
+                                                if (preg_match("/$q/i", $nama_pekerjaan) || preg_match("/$q/i", $nama_perusahaan)) {
                                                     echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                     <div class="p-4">
                                                         <div class="row align-items-center">
@@ -432,72 +513,85 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                     </div>
                                                 </div>
                                                 ';
-                                                } else {
-                                                    echo '';
                                                 }
                                             } else {
                                                 echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
                                                 break;
                                             }
-                                        } else {
-                                            if ($expired >= $currentdate) {
+
+                                            ?>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <?php foreach ($result_tipskarir as $row) : ?>
+                                            <?php
+
+                                            $start_date = $row['tutup'];
+                                            $expired = date('Y-m-d', strtotime($start_date));
+                                            $currentdate = date('Y-m-d');
+
+
+                                            if ($expired <= $currentdate) {
                                                 echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                                <div class="p-4">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-md-2">
-                                                            <div class="mo-mb-2">
-                                                                <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
+                                                    <div class="p-4">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-md-2">
+                                                                <div class="mo-mb-2">
+                                                                    <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
+                                                                        <h5 class="f-18">
+                                                                            ' . strtolower($row['nama_pekerjaan']) . '
+                                                                        </h5>
+                                                                    </a>
+                                                                    <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
-                                                            <div>
-                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
-                                                                    <h5 class="f-18">
-                                                                        ' . strtolower($row['nama_pekerjaan']) . '
-                                                                    </h5>
-                                                                </a>
-                                                                <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
-                                                                </p>
+                                                    </div>
+                                                    <div class="p-3 bg-light">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div>
-                                                                <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
-                                                                </p>
+                                                            <div class="col-md-4">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
+                                                                        </span></p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div>
-                                                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
-                                                                </p>
+                                                            <div class="col-md-3">
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="p-3 bg-light">
-                                                    <div class="row">
-                                                        <div class="col-md-5">
-                                                            <div>
-                                                                <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div>
-                                                                <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
-                                                                    </span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            ';
+                                                ';
+                                            } else {
+                                                echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
+                                                break;
                                             }
-                                        }
-                                        ?>
-                                    <?php endforeach; ?>
+
+                                            ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
