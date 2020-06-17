@@ -251,6 +251,8 @@ if (isset($_POST['send'])) {
 
             $karyaku = array_slice($result_karyaku, $limitStart, $limit);
 
+            
+
             ?>
 
             <?php if ($keyword !== "") : ?>

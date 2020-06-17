@@ -300,10 +300,18 @@ if (isset($_SESSION['login'])) {
                                         <td style="font-weight:bold">Alamat</td>
                                         <td>
                                             <?php
-                                            if (empty($result_get[0]['alamat'])) {
+                                            if (empty($result_get[0]['alamat']) || $result_get[0]['alamat'] == '-') {
                                                 echo '-';
                                             } else {
-                                                echo $result_get[0]['alamat'] . ', ' . $result_get[0]['kota'] . ', ' . $result_get[0]['provinsi'];
+                                                echo $result_get[0]['alamat'];
+                                            }
+
+                                            if ($result_get[0]['kota'] !== '-' && !empty($result_get[0]['kota'])) {
+                                                echo ', ' . $result_get[0]['kota'];
+                                            }
+
+                                            if ($result_get[0]['provinsi'] !== '-' && !empty($result_get[0]['provinsi'])) {
+                                                echo ', ' . $result_get[0]['provinsi'];
                                             }
                                             ?>
                                         </td>
@@ -678,11 +686,11 @@ if (isset($_SESSION['login'])) {
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text" id="basic-addon1">+62</span>
                                                         </div>
-                                                        <input type="text" name="telepon" class="form-control" placeholder="Nomor HP" aria-label="Username" aria-describedby="basic-addon1" value="<?php if ($result_get[0]["telepon"] == '0') {
-                                                                                                                                                                                                        echo '+62';
-                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                        echo $result_get[0]["telepon"];
-                                                                                                                                                                                                    } ?>">
+                                                        <input type="text" name="telepon" class="form-control" maxlength="12" placeholder="Nomor HP" aria-label="Username" aria-describedby="basic-addon1" value="<?php if ($result_get[0]["telepon"] == '0') {
+                                                                                                                                                                                                                        echo '+62';
+                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                        echo $result_get[0]["telepon"];
+                                                                                                                                                                                                                    } ?>">
                                                     </div>
 
                                                 </div>
@@ -2281,7 +2289,7 @@ if (isset($_SESSION['login'])) {
 
                                         <div class="col-12 mt-3" id="daftarKeterampilan">
                                             <?php if (empty($result_get[0]['keterampilan'])) : ?>
-                                                <i>Keterampilan belum diisi !</i>
+                                                <div class="alert alert-warning" role="alert"> Keterampilan belum diisi! </div>
                                             <?php else : ?>
                                                 <?php
                                                 $b = explode(',', $result_get[0]['keterampilan']);
@@ -2436,9 +2444,7 @@ if (isset($_SESSION['login'])) {
                                                 <input type="hidden" id="emailnya" value="<?= $result_get[0]["email"]; ?>">
                                                 <div id="area_berkas">
                                                     <?php if ($result_get[0]['dok1'] == '' && $result_get[0]['dok2'] == '') : ?>
-                                                        <div style="padding:10px 10px 10px 10px;margin:0px 0px 20px 0px ! important;border:1px solid #8492a6;border-radius:10px" class="bordered">
-                                                            <i class="text-info">Belum ada berkas yang di unggah !</i>
-                                                        </div>
+                                                        <div class="alert alert-warning" role="alert"> Belum ada berkas yang diunggah! </div>
                                                     <?php else : ?>
                                                         <?php
                                                         $berkas1 = $result_get[0]['dok1'];
@@ -2533,9 +2539,7 @@ if (isset($_SESSION['login'])) {
                                                 <input type="hidden" id="emailnya" value="<?= $result_get[0]["email"]; ?>">
                                                 <div>
                                                     <?php if ($result_get[0]['dok1'] == '' && $result_get[0]['dok2'] == '') : ?>
-                                                        <div style="padding:10px 10px 10px 10px;margin:0px 0px 20px 0px ! important;border:1px solid #8492a6;border-radius:10px" class="bordered">
-                                                            <i class="text-info">Belum ada berkas yang di unggah !</i>
-                                                        </div>
+                                                        <div class="alert alert-warning" role="alert"> Belum ada berkas yang diunggah! </div>
                                                     <?php else : ?>
                                                         <?php
                                                         $berkas1 = $result_get[0]['dok1'];
@@ -2614,8 +2618,8 @@ if (isset($_SESSION['login'])) {
                                         <div class="row mt-4" style="margin:0px 0px 0px 0px ! important">
                                             <div class="col-md-12" style="margin-bottom: 10px;">
                                                 <div class="position-relative overflow-hidden">
-                                                    <img id="foto_display" src="<?= $result_get[0]['foto'] == 'default.png' ? 'images/profil/default.png' : 'http://lokeritas.xyz/api-v1/uploads/Foto/'. $result_get[0]['foto']  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
-                                                    
+                                                    <img id="foto_display" src="<?= $result_get[0]['foto'] == 'default.png' ? 'images/profil/default.png' : 'http://lokeritas.xyz/api-v1/uploads/Foto/' . $result_get[0]['foto']  ?>" height="150" style="width:150px;border:7px solid white" alt="" class="d-block mx-auto shadow rounded-pill mb-4">
+
                                                 </div>
                                             </div>
                                             <div class="col-md-12">

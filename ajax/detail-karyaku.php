@@ -115,9 +115,9 @@ if ($_POST['id']) {
                                                         <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <?php if(isset($_SESSION['login'])) : ?>
+                                                                <?php if (isset($_SESSION['login'])) : ?>
                                                                     <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
-                                                                <?php else: ?>
+                                                                <?php else : ?>
                                                                     <button type="button" class="btn btn-primary" onclick="comentEx()">Kirim Komentar</button>
                                                                 <?php endif; ?>
                                                             </div>
@@ -129,10 +129,12 @@ if ($_POST['id']) {
                                             <div class="col-lg-4 col-md-5 mt-4 mt-sm-0">
                                                 <div class="job-detail">
                                                     <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="text-dark">Pengguna ini siap untuk bekerja !</p>
-                                                            <a href="mailto:<?= $result[0]['email']; ?>" class="btn btn-info"><i class="mdi mdi-email"></i> Hire Saya</a>
-                                                        </div>
+                                                        <?php if ($result[0]['mencari_pekerjaan'] == 1) : ?>
+                                                            <div class="col-12">
+                                                                <p class="text-dark">Pengguna sedang mencari pekerjaan !</p>
+                                                                <a href="mailto:<?= $result[0]['email']; ?>" class="btn btn-info"><i class="mdi mdi-email"></i> Hire Saya</a>
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="col-12">

@@ -199,9 +199,7 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
                         <!--end col-->
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="alert alert-info mx-auto">
-                        Tidak ada lamaran kerja yang dikirim
-                    </div>
+                    <div class="alert alert-primary mx-auto" role="alert"> Tidak ada lamaran kerja yang dikirim ! </div>
                 <?php endif; ?>
                 <div class="col-lg-12">
                     <nav aria-label="Page navigation example">

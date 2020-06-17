@@ -252,9 +252,7 @@ if (isset($_POST['send'])) {
                 <!--end col-->
 
                 <?php if (count($data_karyaku) == 0) : ?>
-                    <div class="alert alert-info mx-auto mt-5">
-                        Tidak ada postingan karyaku !
-                    </div>
+                    <div class="alert alert-primary mx-auto mt-5" role="alert"> Tidak ada postingan karyaku ! </div>
                 <?php endif; ?>
                 <!-- Pagination -->
                 <div class="col-lg-12" style="margin-top: 30px ! important">

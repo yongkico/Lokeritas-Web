@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+if (isset($_SESSION['login'])) {
+    $nama_depan = $_SESSION['userdata']['nama_depan'];
+} 
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $search = (isset($_GET['search'])) ? $_GET['search'] : "";
