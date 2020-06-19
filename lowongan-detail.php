@@ -2,16 +2,21 @@
 session_start();
 
 //GET Parameter
-$id_lowongan = $_GET['id'];
 
-//API Pencarian Lowongan Kerja
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/low_detail.php?id_lowongan=' . $id_lowongan . '');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get = curl_exec($curl_get);
-curl_close($curl_get);
+if (isset($_GET['id'])) {
+    $id_lowongan = $_GET['id'];
 
-$result_get = json_decode($result_get, true);
+    //API Pencarian Lowongan Kerja
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/low_detail.php?id_lowongan=' . $id_lowongan . '');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $result_get = json_decode($result_get, true);
+} else {
+    header('location: 404.html');
+}
 
 ?>
 
@@ -98,7 +103,7 @@ $result_get = json_decode($result_get, true);
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['userdata']['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -321,7 +326,7 @@ $result_get = json_decode($result_get, true);
 
                             <?php
 
-                            $email = $_SESSION["email"];
+                            $email = $_SESSION['userdata']["email"];
 
                             $curl_get = curl_init();
                             curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email . '');
