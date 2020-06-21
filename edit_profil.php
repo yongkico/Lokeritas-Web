@@ -152,7 +152,7 @@ if (isset($_POST["btn_rincian_disabilitas"])) {
         $ketunaan .= $list . ',';
     }
 
-    var_dump($ketunaan);
+    
     $form_data = array(
         "id_user" => $id_user,
         "nama_depan" => $nama_depan,

@@ -25,7 +25,6 @@ if (isset($_POST['send'])) {
             $success = true;
 
             $id_karyaku = $_POST['id'];
-            $id_user = '92';
             $komentar = $_POST['komentar'];
 
             $curl = curl_init();
@@ -244,7 +243,7 @@ if (isset($_POST['send'])) {
                         </div>
                         <div class="mt-2">
                             <a href="edit-karyaku?id=<?= $row['id_karyaku']; ?>" class="badge badge-success"><i class="mdi mdi-account-edit"></i> Edit</a>
-                            <a href="hapus-karyaku?id=<?= $row['id_karyaku']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus?')" class="badge badge-danger"><i class="mdi mdi-delete"></i> Hapus</a>
+                            <a href="hapus-karyaku.php?id=<?= $row['id_karyaku']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus?')" class="badge badge-danger"><i class="mdi mdi-delete"></i> Hapus</a>
                         </div>
                     </div>
                     <!--end col-->
