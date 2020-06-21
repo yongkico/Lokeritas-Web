@@ -51,9 +51,9 @@ session_start();
     <?php if (isset($_SESSION["login"])) : ?>
 
         <?php echo '<script>
-                    swal("Postingan Terkirim!", "Cek profile kamu untuk melihat status postingan ", "success")
+                    swal("Postingan Terkirim!", "Cek profile kamu untuk melihat history postingan", "success")
                 </script>';
-        header('Refresh: 3; URL=profile.php');
+        header('Refresh: 3; URL=history-karyaku.php');
         ?>
 
     <?php else : ?>
