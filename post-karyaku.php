@@ -5,19 +5,6 @@ if (isset($_POST['send'])) {
 
     if (isset($_FILES['file-img']['tmp_name'])) {
 
-        function compress($source, $destination, $quality)
-        {
-            $info = getimagesize($source);
-            if ($info['mime'] == 'image/jpeg')
-                $image = imagecreatefromjpeg($source);
-            elseif ($info['mime'] == 'image/gif')
-                $image = imagecreatefromgif($source);
-            elseif ($info['mime'] == 'image/png')
-                $image = imagecreatefrompng($source);
-            imagejpeg($image, $destination, $quality);
-            return $destination;
-        }
-
         function generateRandomString($length = 20)
         {
             $characters = 'abcdefghijklmnopqrstuvwxyz';
@@ -35,59 +22,58 @@ if (isset($_POST['send'])) {
         $data = array("file" => $cFile);
         $cFile = $_FILES['file-img']['name'];
         $size = $_FILES['file-img']['size'];
-        $source_img = $_FILES['file-img']['tmp_name'];
-        $destination_img = $cFile;
 
-        compress($source_img, $destination_img, 50);
-
-        if ($size <= 1000000) {
+        if ($size <= 2000000) {
             curl_setopt($ch, CURLOPT_URL, "http://lokeritas.xyz/api-v1/uploadKaryaku.php");
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
             $response = curl_exec($ch);
             curl_close($ch);
+
+
+            ///
+
+            $email = $_SESSION['userdata']["email"];
+            $curl_get = curl_init();
+            curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
+            curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($curl_get);
+            curl_close($curl_get);
+
+            $result_get = json_decode($result, true);
+
+            $id_user = $result_get['0']['id_user'];
+
+            $judul = $_POST['judul'];
+            $tag = $_POST['tag'];
+            $deskripsi = $_POST['deskripsi'];
+            $gambar = $fname;
+            $status = '1';
+            $komen = $_POST['komen'];
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => "http://lokeritas.xyz/api-v1/createKaryaku.php",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "id_user=$id_user&judul=$judul&tag=$tag&deskripsi=$deskripsi&komen=$komen&gambar=$gambar&status=$status",
+                CURLOPT_HTTPHEADER => array(
+                    "Content-Type: application/x-www-form-urlencoded"
+                ),
+            ));
+
+            $result = curl_exec($curl);
+            curl_close($curl);
+
+            header('location: post-karyaku-success.php');
         }
     }
-
-    $email = $_SESSION["email"];
-    $curl_get = curl_init();
-    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
-    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-    $result = curl_exec($curl_get);
-    curl_close($curl_get);
-
-    $result_get = json_decode($result, true);
-
-    $id_user = $result_get['0']['id_user'];
-
-    $judul = $_POST['judul'];
-    $tag = $_POST['tag'];
-    $deskripsi = $_POST['deskripsi'];
-    $gambar = $fname;
-    $status = '1';
-    $komen = $_POST['komen'];
-
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://lokeritas.xyz/api-v1/createKaryaku.php",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "judul=$judul&tag=$tag&deskripsi=$deskripsi&komen=$komen&gambar=$gambar&status=$status",
-        CURLOPT_HTTPHEADER => array(
-            "Content-Type: application/x-www-form-urlencoded"
-        ),
-    ));
-
-    $result = curl_exec($curl);
-    curl_close($curl);
-
-    header('location: post-karyaku-success.php');
 }
 
 
@@ -242,7 +228,7 @@ if (isset($_POST['send'])) {
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['nama_depan']; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['userdata']['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -268,7 +254,8 @@ if (isset($_POST['send'])) {
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="text-center text-white">
-                            <h4 class="text-uppercase title mb-4">KARYAKU SOLUSI JITU MEMPERMUDAH KARYA</h4>
+                            <h4 class="text-uppercase title mb-4">KARYAKU</h4>
+                            <p>Kami ingin buktikan, bahwa kami memiliki keahlian dan kami mampu bekerja layaknya orang normal </p>
                         </div>
                     </div>
                 </div>
@@ -285,19 +272,17 @@ if (isset($_POST['send'])) {
                                     <div class="box box-solid">
                                         <div class="box-header with-border">
                                             <div><b></b></div>
-                                            <div class="box-tools pull-right">
-
-                                            </div>
                                         </div>
                                         <div class="box-body"></div>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="dropzone-wrapper">
                                     <div class="dropzone-desc">
                                         <i class="glyphicon glyphicon-download-alt"></i>
                                         <p>Pilih gambar yang anda inginkan atau tarik kesini</p>
                                     </div>
-                                    <input type="file" name="file-img" class="dropzone" accept="image/*" required="">
+                                    <input type="file" name="file-img" class="dropzone" accept="image/*" required="" multiple="multiple">
                                 </div>
                             </div>
                         </div>
