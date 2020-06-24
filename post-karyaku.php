@@ -1,76 +1,72 @@
 <?php
 session_start();
 
-if (isset($_POST['send'])) {
+if (isset($_FILES['file-img']['tmp_name'])) {
 
-    if (isset($_FILES['file-img']['tmp_name'])) {
-
-        function generateRandomString($length = 20)
-        {
-            $characters = 'abcdefghijklmnopqrstuvwxyz';
-            $charactersLength = strlen($characters);
-            $randomString = '';
-            for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[rand(0, $charactersLength - 1)];
-            }
-            return $randomString . ' - ';
+    function generateRandomString($length = 20)
+    {
+        $characters = 'abcdefghijklmnopqrstuvwxyz';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-
-        $ch = curl_init();
-
-        $cFile = new CURLFile($_FILES['file-img']['tmp_name'], $_FILES['file-img']['type'], $fname = generateRandomString(20) . $_FILES['file-img']['name']);
-        $data = array("file" => $cFile);
-        $cFile = $_FILES['file-img']['name'];
-        $size = $_FILES['file-img']['size'];
-
-        if ($size <= 2000000) {
-            curl_setopt($ch, CURLOPT_URL, "http://lokeritas.xyz/api-v1/uploadKaryaku.php");
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
-            $response = curl_exec($ch);
-            curl_close($ch);
-        }
+        return $randomString . ' - ';
     }
-    $email = $_SESSION['userdata']["email"];
-    $curl_get = curl_init();
-    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
-    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-    $result = curl_exec($curl_get);
-    curl_close($curl_get);
 
-    $result_get = json_decode($result, true);
+    $ch = curl_init();
 
-    $id_user = $result_get['0']['id_user'];
+    $cFile = new CURLFile($_FILES['file-img']['tmp_name'], $_FILES['file-img']['type'], $fname = generateRandomString(20) . $_FILES['file-img']['name']);
+    $data = array("file" => $cFile);
+    $cFile = $_FILES['file-img']['name'];
+    $size = $_FILES['file-img']['size'];
 
-    $judul = $_POST['judul'];
-    $tag = $_POST['tag'];
-    $deskripsi = $_POST['deskripsi'];
-    $gambar = $fname;
-    $gambar1 =  $fname2;
-    $status = '1';
-    $komen = $_POST['komen'];
+    if ($size <= 2000000) {
+        curl_setopt($ch, CURLOPT_URL, "http://lokeritas.xyz/api-v1/uploadKaryaku.php");
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://lokeritas.xyz/api-v1/createKaryaku.php",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "id_user=$id_user&judul=$judul&tag=$tag&deskripsi=$deskripsi&komen=$komen&gambar=$gambar&status=$status",
-        CURLOPT_HTTPHEADER => array(
-            "Content-Type: application/x-www-form-urlencoded"
-        ),
-    ));
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-    $result = curl_exec($curl);
-    curl_close($curl);
+        $email = $_SESSION['userdata']["email"];
+        $curl_get = curl_init();
+        curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
+        curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($curl_get);
+        curl_close($curl_get);
 
-    header('location: post-karyaku-success.php');
+        $result_get = json_decode($result, true);
+
+        $id_user = $result_get['0']['id_user'];
+
+        $judul = $_POST['judul'];
+        $tag = $_POST['tag'];
+        $deskripsi = $_POST['deskripsi'];
+        $gambar = $fname;
+        $status = '1';
+        $komen = $_POST['komen'];
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://lokeritas.xyz/api-v1/createKaryaku.php",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "id_user=$id_user&judul=$judul&tag=$tag&deskripsi=$deskripsi&komen=$komen&gambar=$gambar&status=$status",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/x-www-form-urlencoded"
+            ),
+        ));
+
+        $result = curl_exec($curl);
+        curl_close($curl);
+        header('Refresh: 0; URL=post-karyaku-success.php');
+    }
 }
 
 
@@ -157,6 +153,8 @@ if (isset($_POST['send'])) {
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <script src="js/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href="css/sweetalert2.min.css">
 
     <!--Material Icon -->
     <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
@@ -259,6 +257,16 @@ if (isset($_POST['send'])) {
             </div>
         </section>
         <!-- end home -->
+
+        <?php if (isset($_POST['send'])) {
+
+            if ($size > 2000000) {
+                echo '<script>
+        swal("Terjadi Kesalahan!", "Ukuran file tidak boleh melebihi 2 MB", "error")
+    </script>';
+            }
+        }
+        ?>
         <section>
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="container">
@@ -277,7 +285,7 @@ if (isset($_POST['send'])) {
                                 <div class="dropzone-wrapper">
                                     <div class="dropzone-desc">
                                         <i class="glyphicon glyphicon-download-alt"></i>
-                                        <p>Pilih gambar yang anda inginkan atau tarik kesini</p>
+                                        <p>Pilih gambar yang diinginkan atau tarik kesini. (Max: 2 MB)</p>
                                     </div>
                                     <input type="file" name="file-img" class="dropzone" accept="image/*" required="" multiple="multiple">
                                 </div>
@@ -288,13 +296,13 @@ if (isset($_POST['send'])) {
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label class="text-secondary">Judul <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="Judul" name="judul" required="">
+                                <input type="text" class="form-control" placeholder="judul" name="judul" required="">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label class="text-secondary">Tags <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="tag" required="">
+                                <input type="text" class="form-control" placeholder="seni" name="tag" required="">
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -305,8 +313,7 @@ if (isset($_POST['send'])) {
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
-                                <input class="text-secondary" name="komen" type="checkbox" id="inlineCheckbox1" value="1">
-                                <label class="text-secondary">Aktifkan Komentar</label>
+                                <label class="text-dark font-weight-bold"><input class="text-secondary" type="checkbox" name="komen" value="1" id="inlineCheckbox1" /> Aktifkan Komentar</label>
                             </div>
                         </div>
                         <div class="col-md-12">

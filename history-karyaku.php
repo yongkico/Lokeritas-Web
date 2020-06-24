@@ -9,7 +9,6 @@ if (isset($_SESSION['login'])) {
     header('location:login.php');
 }
 
-
 $site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
 $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
@@ -225,6 +224,18 @@ if (isset($_POST['send'])) {
 
             <div class="row mt-3">
                 <?php foreach ($karyaku as $row) : ?>
+                    <?php
+
+                    $id_kary = $row['id_karyaku'];
+                    $curl_get = curl_init();
+                    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/karyakuDetail.php?id_karyaku=' . $id_kary);
+                    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+                    $result = curl_exec($curl_get);
+                    curl_close($curl_get);
+
+                    $pesan_detail_karyaku = json_decode($result, true);
+
+                    ?>
                     <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
                         <div class="view_data blog position-relative overflow-hidden shadow rounded" id="<?= $row['id_karyaku']; ?>" data-toggle="modal" data-target="#myModal">
                             <div class="position-relative overflow-hidden">
@@ -242,7 +253,7 @@ if (isset($_POST['send'])) {
                             </div>
                         </div>
                         <div class="mt-2">
-                            <a href="edit-karyaku?id=<?= $row['id_karyaku']; ?>" class="badge badge-success"><i class="mdi mdi-account-edit"></i> Edit</a>
+                            <a href="edit-karyaku.php?id=<?= $row['id_karyaku']; ?>" class="badge badge-success btnEdit" data-id="<?= $row['id_karyaku']; ?>"><i class="mdi mdi-table-edit"></i> Edit</a>
                             <a href="hapus-karyaku.php?id=<?= $row['id_karyaku']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus?')" class="badge badge-danger"><i class="mdi mdi-delete"></i> Hapus</a>
                         </div>
                     </div>
@@ -276,6 +287,66 @@ if (isset($_POST['send'])) {
     </section>
     <!-- blog end -->
     <!-- subscribe end -->
+
+
+    <!-- The Modal Informasi Pribadi -->
+    <div class="modal" id="informasiPribadi">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Postingan Karyaku</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <form action="edit-karyaku.php" method="POST">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container contEdit">
+                            <div class="row">
+                                <div class="col-12 mt-3" style="margin-top:0px ! important">
+                                    <div class="custom-form p-4" style="padding: 0px 24px 0px 24px ! important">
+                                        <div class="row mt-4">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Judul :</label>
+                                                    <input id="judul" type="text" name="judul" class="form-control resume" autocomplete="off" value="<?= $row["judul"]; ?>">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Tags :</label>
+                                                    <input id="tag" type="text" name="tag" class="form-control resume" autocomplete="off" value="<?= $row["tag"]; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Deskripsi :</label>
+                                                    <textarea class="ckeditor" id="ckedtor" name="deskripsi"><?= $row["deskripsi"]; ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ini adalah Bagian Footer Modal -->
+                    <div class="modal-footer">
+                        <button type="submit" name="btn_edit_karyaku" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Informasi Pribadi -->
 
 
 
@@ -471,6 +542,7 @@ if (isset($_POST['send'])) {
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <script language="javascript">
         $('body').on('hidden.bs.modal', '.modal', function() {
             $(this).removeData('bs.modal');
@@ -530,6 +602,17 @@ if (isset($_POST['send'])) {
                         $('#myModal').modal("show"); // menampilkan dialog modal nya
                     }
                 });
+            });
+
+            $('.btnEdit').click(function() {
+                $.getJSON("http://lokeritas.xyz/api-v1/karyakuDetail.php?id_karyaku=" + $(this).data("id"), function(data) {
+                    data = JSON.stringify(data[0]);
+                    data = JSON.parse(data);
+                    console.log(data)
+                    $('#judul').val(data.judul);
+                    $('#tag').val(data.tag);
+                    $('#ckedtor').val(data.deskripsi);
+                })
             });
         });
     </script>

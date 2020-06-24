@@ -53,7 +53,7 @@ session_start();
         <?php echo '<script>
                     swal("Postingan Terkirim!", "Cek profile kamu untuk melihat history postingan", "success")
                 </script>';
-        header('Refresh: 3; URL=history-karyaku.php');
+        header('Refresh: 2; URL=history-karyaku.php');
         ?>
 
     <?php else : ?>
