@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if (isset($_SESSION['login'])) {
     $id_user = $_SESSION['userdata']['user_id'];
     $nama_depan = $_SESSION['userdata']['nama_depan'];
@@ -252,10 +251,13 @@ if (isset($_POST['send'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2">
-                            <a href="edit-karyaku.php?id=<?= $row['id_karyaku']; ?>" class="badge badge-success btnEdit" data-id="<?= $row['id_karyaku']; ?>"><i class="mdi mdi-table-edit"></i> Edit</a>
-                            <a href="hapus-karyaku.php?id=<?= $row['id_karyaku']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus?')" class="badge badge-danger"><i class="mdi mdi-delete"></i> Hapus</a>
-                        </div>
+                        <form action="hapus-karyaku.php" method="POST">
+                            <input type="hidden" name="id_karyaku" value="<?= $row['id_karyaku']; ?>">
+                            <div class="mt-2">
+                                <a href="edit-karyaku.php?id=<?= $row['id_karyaku']; ?>" class="btn btn-success btn-sm" data-id="<?= $row['id_karyaku']; ?>"><i class="mdi mdi-table-edit"></i> Edit</a>
+                                <button type="submit" onclick="return confirm('Apakah anda yakin ingin menghapus ?')" class="btn btn-danger btn-sm" name="btnHapus"><i class="mdi mdi-delete"></i>Hapus</button>
+                            </div>
+                        </form>
                     </div>
                     <!--end col-->
                 <?php endforeach; ?>

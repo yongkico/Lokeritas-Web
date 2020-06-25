@@ -83,6 +83,7 @@ if ($_POST['id']) {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <?php if(count($result_get_comment) > 0) : ?>
                                                 <div class="rounded border mt-4 p-4">
                                                     <h5 class="text-dark">Komentar</h5>
                                                     <?php
@@ -97,9 +98,9 @@ if ($_POST['id']) {
                                                         </script>
                                                     <?php
                                                     endforeach; ?>
-
-
                                                 </div>
+                                                <?php endif; ?>
+                                                <?php if($result[0]['komen'] == 1) : ?>
                                                 <div class="row bg-light rounded mx-auto mt-5" style="padding:20px">
                                                     <form name="contact-form" method="post" action="" style="width: 100%;">
                                                         <div class="row">
@@ -125,6 +126,7 @@ if ($_POST['id']) {
                                                     </form>
                                                     <!-- /form -->
                                                 </div>
+                                                <?php endif ?>
                                             </div>
                                             <div class="col-lg-4 col-md-5 mt-4 mt-sm-0">
                                                 <div class="job-detail">
