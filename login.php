@@ -144,7 +144,6 @@ if (isset($_POST["masuk"])) {
 
                                         <div class="col-lg-12">
                                             <p class="float-right forgot-pass"><a href="lupa-password.php" class="text-dark font-weight-bold">Lupa password ?</a></p>
-                                            <label for="setcookie" class="text-dark font-weight-bold"><input type="checkbox" name="setcookie" value="true" id="setcookie" /> Ingat Saya</label>
                                         </div>
                                         <div class="col-lg-12 mb-0">
                                             <button class="btn btn-primary w-100" name="masuk">Masuk</button>
