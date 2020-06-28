@@ -199,23 +199,17 @@ if (isset($_POST['send'])) {
             $limitStart = ($page - 1) * $limit;
 
             $curl_get_karyaku = curl_init();
-            curl_setopt($curl_get_karyaku, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_karyaku.php');
+            curl_setopt($curl_get_karyaku, CURLOPT_URL, "http://lokeritas.xyz/api-v1/semua_karyakuID.php?id_user=$id_user");
             curl_setopt($curl_get_karyaku, CURLOPT_RETURNTRANSFER, 1);
             $results_karyaku = curl_exec($curl_get_karyaku);
             curl_close($curl_get_karyaku);
 
             $result_karyaku = json_decode($results_karyaku, true);
 
-            foreach ($result_karyaku as $row) {
-                if ($row['id_user'] == $id_user) {
-                    $data_karyaku[] = $row;
-                }
-            }
-
-            $jumlahData = count($data_karyaku);
+            $jumlahData = count($result_karyaku);
             $jumlahHalaman = ceil($jumlahData / $limit);
 
-            $karyaku = array_slice($data_karyaku, $limitStart, $limit);
+            $karyaku = array_slice($result_karyaku, $limitStart, $limit);
 
 
             ?>
@@ -263,7 +257,7 @@ if (isset($_POST['send'])) {
                 <?php endforeach; ?>
                 <!--end col-->
 
-                <?php if (count($data_karyaku) == 0) : ?>
+                <?php if (count($result_karyaku) == 0) : ?>
                     <div class="alert alert-primary mx-auto mt-5" role="alert"> Tidak ada postingan karyaku ! </div>
                 <?php endif; ?>
                 <!-- Pagination -->
