@@ -31,19 +31,6 @@ if (isset($_POST["masuk"])) {
         ];
         header('location: index.php');
         exit;
-    } else if ($pesan['message'] == 'gagal') {
-        echo '<div style="position: absolute;width:100%">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="alert-wrap justify-content-center" >
-                    <div class="alert alert-danger">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Password kamu salah ! </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>';
     } else {
         echo '<div style="position: absolute;width:100%">
         <div class="row">
@@ -51,7 +38,7 @@ if (isset($_POST["masuk"])) {
                 <div class="alert-wrap justify-content-center" >
                     <div class="alert alert-danger">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Kamu belum terdaftar ! </p>
+                        <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Kata sandi salah atau Kamu belum terdaftar !</p>
                     </div>
                 </div>
             </div>

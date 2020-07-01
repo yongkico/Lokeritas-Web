@@ -44,7 +44,6 @@ $search = (isset($_GET['search'])) ? $_GET['search'] : "";
 $limit = 4;
 $limitStart = ($page - 1) * $limit;
 
-
 if ($search == "") {
     $curl_get = curl_init();
     curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
@@ -263,34 +262,54 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                         <select id="select-category" class="demo-default" name="bidang" required="">
                                             <option value="">Bidang</option>
                                             <option value="ABC">Semua Bidang</option>
-                                            <option value="Administrasi">Administrasi</option>
-                                            <option value="Desain dan Arsitektur">Desain dan Arsitektur</option>
-                                            <option value="Editing, Media dan Informasi">Editing, Media dan Informasi</option>
-                                            <option value="Elektronik">Elektronik</option>
-                                            <option value="Hotel dan Katering">Hotel dan Katering</option>
-                                            <option value="House Keeping">House Keeping</option>
-                                            <option value="IT dan Telekomunikasi">IT dan Telekomunikasi</option>
-                                            <option value="Keamanan dan Perlindungan Sipil">Keamanan dan Perlindungan Sipil</option>
+                                            <option value="Advertising, Printing & Media">Advertising, Printing & Media</option>
+                                            <option value="Asuransi">Asuransi</option>
+                                            <option value="Badan Usaha Milik Negara (BUMN)">Badan Usaha Milik Negara (BUMN)</option>
+                                            <option value="Bank">Bank</option>
+                                            <option value="Design & Productions">Design & Productions</option>
+                                            <option value="Event Organizer">Event Organizer</option>
+                                            <option value="Farmasi">Farmasi</option>
+                                            <option value="Hotel & Pariwisata">Hotel & Pariwisata</option>
+                                            <option value="Jasa Komputer & Perangkatnya">Jasa Komputer & Perangkatnya</option>
+                                            <option value="Kabel">Kabel</option>
+                                            <option value="Kayu & Pengolahannya">Kayu & Pengolahannya</option>
+                                            <option value="Keramik, Porselen dan Kaca">Keramik, Porselen dan Kaca</option>
                                             <option value="Kesehatan dan Kecantikan">Kesehatan dan Kecantikan</option>
-                                            <option value="Keuangan dan Akuntansi">Keuangan dan Akuntansi</option>
-                                            <option value="Layanan Sipil / Asosiasi">Layanan Sipil / Asosiasi</option>
-                                            <option value="Legal">Legal</option>
-                                            <option value="Manajemen, Manajemen Eksekutif dan Strategis">Manajemen, Manajemen Eksekutif dan Strategis</option>
-                                            <option value="Pelatihan / Instruksi">Pelatihan / Instruksi</option>
+                                            <option value="Kimia">Kimia</option>
+                                            <option value="Konstruksi Bangunan">Konstruksi Bangunan</option>
+                                            <option value="Kosmetik & Barang Keperluan Rumah Tangga">Kosmetik & Barang Keperluan Rumah Tangga</option>
+                                            <option value="Lembaga Pelatihan atau Kursus">Lembaga Pelatihan atau Kursus</option>
+                                            <option value="Lembaga Pembiayaan">Lembaga Pembiayaan</option>
+                                            <option value="Lembaga Pendidikan">Lembaga Pendidikan</option>
+                                            <option value="Logam dan Sejenisnya">Logam dan Sejenisnya</option>
+                                            <option value="Makanan & Minuman">Makanan & Minuman</option>
+                                            <option value="Non Profit">Non Profit</option>
+                                            <option value="Otomotif & Komponennya">Otomotif & Komponennya</option>
+                                            <option value="Seni, Budaya dan Hiburan">Pakaian & Alas Kaki</option>
+                                            <option value="Pakan Ternak">Pakan Ternak</option>
                                             <option value="Pelayanan Pelanggan">Pelayanan Pelanggan</option>
-                                            <option value="Pemasaran">Pemasaran</option>
-                                            <option value="Pemeliharaan">Pemeliharaan</option>
-                                            <option value="Penelitian, Pengembangan dan Ilmu Pengetahuan">Penelitian, Pengembangan dan Ilmu Pengetahuan</option>
-                                            <option value="Penjualan dan Perdagangan">Penjualan dan Perdagangan</option>
-                                            <option value="Perbankan, Asuransi dan Keuangan">Perbankan, Asuransi dan Keuangan</option>
-                                            <option value="Pertanian, Kehutanan, Laut dan Lingkungan">Pertanian, Kehutanan, Laut dan Lingkungan</option>
-                                            <option value="Produksi, Konstruksi dan Perdagangan">Produksi, Konstruksi dan Perdagangan</option>
-                                            <option value="Quality Control">Quality Control</option>
-                                            <option value="Seni, Budaya dan Hiburan">Seni, Budaya dan Hiburan</option>
+                                            <option value="Peralatan Rumah Tangga">Peralatan Rumah Tangga</option>
+                                            <option value="Perdagangan Besar Barang Produksi">Perdagangan Besar Barang Produksi</option>
+                                            <option value="Perdagangan Eceran">Perdagangan Eceran</option>
+                                            <option value="Perikanan">Perikanan</option>
+                                            <option value="Perkebunan">Perkebunan</option>
+                                            <option value="Pertambangan">Pertambangan</option>
+                                            <option value="Perusahaan Efek">Perusahaan Efek</option>
+                                            <option value="Peternakan">Peternakan</option>
+                                            <option value="Plastik & Kemasan">Plastik & Kemasan</option>
+                                            <option value="Pulp & Kertas">Pulp & Kertas</option>
+                                            <option value="Real Estate & Properti">Real Estate & Properti</option>
+                                            <option value="Restoran">Restoran</option>
+                                            <option value="Retail">Retail</option>
+                                            <option value="Rokok">Rokok</option>
+                                            <option value="SDM (Sumber Daya Manusia)">SDM (Sumber Daya Manusia)</option>
+                                            <option value="Semen">Semen</option>
+                                            <option value="Software House">Software House</option>
                                             <option value="Sosial">Sosial</option>
-                                            <option value="Sumber Daya Manusia">Sumber Daya Manusia</option>
-                                            <option value="Teknik">Teknik</option>
-                                            <option value="Transportasi dan Logistik">Transportasi dan Logistik</option>
+                                            <option value="Teknologi Informasi">Teknologi Informasi</option>
+                                            <option value="Tekstil & Garmen">Tekstil & Garmen</option>
+                                            <option value="Telekomunikasi">Telekomunikasi</option>
+                                            <option value="Transportasi">Transportasi</option>
                                         </select>
                                     </div>
                                 </div>
@@ -299,7 +318,6 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                         <i class="fa fa-location-arrow"></i>
                                         <select id="select-country" class="demo-default" name="lokasi" required="">
                                             <option value="">Lokasi</option>
-                                            <option value="Bandung">Bandung (Kota) - Jawa Barat</option>
                                             <option value="Kab. Asahan">Kab. Asahan</option>
                                             <option value="Kab. Batu Bara">Kab. Batu Bara</option>
                                             <option value="Kab. Dairi">Kab. Dairi</option>
@@ -328,8 +346,9 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                             <option value="Kab. Binjai">Kota Binjai</option>
                                             <option value="Kab. Gunung Sitoli">Kota Gunung Sitoli</option>
                                             <option value="Kota Medan">Kota Medan</option>
-                                            <option value="Kota PadangSidempuan">Kota Padangsidempuan</option>
+                                            <option value="Kota Padang Sidempuan">Kota Padang Sidempuan</option>
                                             <option value="Kota Pematang Siantar">Kota Pematang Siantar</option>
+                                            <option value="Kota Siantar">Kota Siantar</option>
                                             <option value="Kota Sibolga">Kota Sibolga</option>
                                             <option value="Kota Tanjung Balai">Kota Tanjung Balai</option>
                                             <option value="Kota Tebing Tinggi">Kota Tebing Tinggi</option>
@@ -433,9 +452,8 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                 ';
                                                     } else {
                                                         echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
+                                                        break;
                                                     }
-                                                } else if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
-                                                    echo 'maaa';
                                                 }
                                             } else {
                                                 echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
