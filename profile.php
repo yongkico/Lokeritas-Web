@@ -686,11 +686,12 @@ if (isset($_SESSION['login'])) {
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text" id="basic-addon1">+62</span>
                                                         </div>
-                                                        <input type="text" name="telepon" class="form-control" maxlength="12" placeholder="Nomor HP" aria-label="Username" aria-describedby="basic-addon1" value="<?php if ($result_get[0]["telepon"] == '0') {
-                                                                                                                                                                                                                        echo '+62';
-                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                        echo $result_get[0]["telepon"];
-                                                                                                                                                                                                                    } ?>">
+                                                        <input type="text" class="form-control" name="telepon" maxlength="12" value="<?php if ($result_get[0]["telepon"] == '0') {
+                                                                                                                                            echo '+62';
+                                                                                                                                        } else {
+                                                                                                                                            echo $result_get[0]["telepon"];
+                                                                                                                                        } ?>" required onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" />
+
                                                     </div>
 
                                                 </div>
@@ -773,11 +774,11 @@ if (isset($_SESSION['login'])) {
                                             <div class="col-md-12">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Ringkasan Pribadi</label>
-                                                    <textarea id="surname-name" name="ringkasan_pribadi" class="form-control" rows="3"><?php if (empty($result_get[0]["ringkasan_pribadi"])) {
-                                                                                                                                            echo '-';
-                                                                                                                                        } else {
-                                                                                                                                            echo $result_get[0]["ringkasan_pribadi"];
-                                                                                                                                        } ?></textarea>
+                                                    <textarea id="surname-name" maxlength="375" name="ringkasan_pribadi" class="form-control" rows="3"><?php if (empty($result_get[0]["ringkasan_pribadi"])) {
+                                                                                                                                                            echo '-';
+                                                                                                                                                        } else {
+                                                                                                                                                            echo $result_get[0]["ringkasan_pribadi"];
+                                                                                                                                                        } ?></textarea>
                                                 </div>
                                             </div>
 
@@ -965,11 +966,11 @@ if (isset($_SESSION['login'])) {
                                             <div class="col-md-12">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Penjelasan Singkat :</label>
-                                                    <textarea id="surname-name" name="penjelasan" type="text" class="form-control resume" autocomplete="off"><?php if (empty($result_get[0]['detail_tambahan'])) {
-                                                                                                                                                                    echo '-';
-                                                                                                                                                                } else {
-                                                                                                                                                                    echo $result_get[0]['detail_tambahan'];
-                                                                                                                                                                } ?></textarea>
+                                                    <textarea id="surname-name" maxlength="400" name="penjelasan" type="text" class="form-control resume" autocomplete="off"><?php if (empty($result_get[0]['detail_tambahan'])) {
+                                                                                                                                                                                    echo '-';
+                                                                                                                                                                                } else {
+                                                                                                                                                                                    echo $result_get[0]['detail_tambahan'];
+                                                                                                                                                                                } ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -1062,7 +1063,7 @@ if (isset($_SESSION['login'])) {
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="jurusan form-group app-label" id="jurusan">
+                                                    <div class="jurusan form-group app-label" id="jurusan" style="display: none;">
                                                         <label class="text-muted">Jurusan :</label>
                                                         <input id="middle-name" name="jurusan" type="text" class="form-control resume">
                                                     </div>
@@ -1243,17 +1244,31 @@ if (isset($_SESSION['login'])) {
 
                                                 <?php if ($jlh_sklh == 3) : ?>
                                                     <div class="col-md-6">
-                                                        <div class="jurusan form-group app-label" id="jurusan">
-                                                            <label class="text-muted">Jurusan :</label>
-                                                            <input id="middle-name" name="jurusan" type="text" class="form-control resume" value="<?= $sklh[1]; ?>">
-                                                        </div>
+                                                        <?php if ($sklh[0] == "SD" || $sklh[0] == "SMP" || $sklh[0] == "SMA") : ?>
+                                                            <div class="jurusan form-group app-label" id="jurusan" style="display: none;">
+                                                                <label class="text-muted">Jurusan :</label>
+                                                                <input id="middle-name" name="jurusan" type="text" class="form-control resume" value="<?= $sklh[1]; ?>">
+                                                            </div>
+                                                        <?php else : ?>
+                                                            <div class="jurusan form-group app-label" id="jurusan">
+                                                                <label class="text-muted">Jurusan :</label>
+                                                                <input id="middle-name" name="jurusan" type="text" class="form-control resume" value="<?= $sklh[1]; ?>">
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </div>
                                                 <?php else : ?>
                                                     <div class="col-md-6">
-                                                        <div class="jurusan form-group app-label" id="jurusan">
-                                                            <label class="text-muted">Jurusan :</label>
-                                                            <input id="middle-name" name="jurusan" type="text" class="form-control resume">
-                                                        </div>
+                                                        <?php if ($sklh[0] == "SD" || $sklh[0] == "SMP" || $sklh[0] == "SMA") : ?>
+                                                            <div class="jurusan form-group app-label" id="jurusan" style="display: none;">
+                                                                <label class="text-muted">Jurusan :</label>
+                                                                <input id="middle-name" name="jurusan" type="text" class="form-control resume">
+                                                            </div>
+                                                        <?php else : ?>
+                                                            <div class="jurusan form-group app-label" id="jurusan">
+                                                                <label class="text-muted">Jurusan :</label>
+                                                                <input id="middle-name" name="jurusan" type="text" class="form-control resume">
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </div>
                                                 <?php endif; ?>
 
@@ -2819,82 +2834,148 @@ if (isset($_SESSION['login'])) {
 
             oAllStudent.push({
                 StudentId: 1,
-                Name: "Administrasi"
+                Name: "Advertising, Printing & Media"
             }, {
                 StudentId: 2,
-                Name: "Desain dan Arsitektur"
+                Name: "Asuransi"
             }, {
                 StudentId: 3,
-                Name: "Editing, Media dan Informasi"
+                Name: "Badan Usaha Milik Negara (BUMN)"
             }, {
                 StudentId: 4,
-                Name: "Hotel dan Katering"
+                Name: "Bank"
             }, {
                 StudentId: 5,
-                Name: "IT dan Telekomunikasi"
+                Name: "Design & Productions"
             }, {
                 StudentId: 6,
-                Name: "Keamanan dan Perlindungan Sipil"
+                Name: "Event Organizer"
             }, {
                 StudentId: 7,
-                Name: "Kesehatan dan Kecantikan"
+                Name: "Farmasi"
             }, {
                 StudentId: 8,
-                Name: "Keuangan dan Akuntansi"
+                Name: "Hotel & Pariwisata"
             }, {
                 StudentId: 9,
-                Name: "Layanan Sipil / Asosiasi"
+                Name: "Jasa Komputer & Perangkatnya"
             }, {
                 StudentId: 10,
-                Name: "Legal"
+                Name: "Kabel"
             }, {
                 StudentId: 11,
-                Name: "Manajemen, Manajemen Eksekutif dan Strategis"
+                Name: "Kayu & Pengolahannya"
             }, {
                 StudentId: 12,
-                Name: "Pelatihan"
+                Name: "Keramik , Porselen dan Kaca"
             }, {
                 StudentId: 13,
-                Name: "Pelayanan Pelanggan"
+                Name: "Kesehatan dan Kecantikan"
             }, {
                 StudentId: 14,
-                Name: "Pemasaran dan Periklanan "
+                Name: "Kimia"
             }, {
                 StudentId: 15,
-                Name: "Pemeliharaan"
+                Name: "Konstruksi Bangunan"
             }, {
                 StudentId: 16,
-                Name: "Penelitian, Pengembangan dan Ilmu Pengetahuan"
+                Name: "Kosmetik & Barang Keperluan Rumah Tangga"
             }, {
                 StudentId: 17,
-                Name: "Penjualan dan Perdagangan"
+                Name: "Lembaga Pelatihan atau Kursus"
             }, {
                 StudentId: 18,
-                Name: "Perbankan, Asuransi dan Keuangan"
+                Name: "Lembaga Pembiayaan"
             }, {
                 StudentId: 19,
-                Name: "Pertanian, Kehutanan, Laut dan Lingkungan"
+                Name: "Lembaga Pendidikan"
             }, {
                 StudentId: 20,
-                Name: "Produksi, Konstruksi dan Perdagangan "
+                Name: "Logam dan Sejenisnya"
             }, {
                 StudentId: 21,
-                Name: "Quality Control"
+                Name: "Makanan & Minuman"
             }, {
                 StudentId: 22,
-                Name: "Seni, Budaya dan Hiburan"
+                Name: "Non Profit"
             }, {
                 StudentId: 23,
-                Name: "Sosial"
+                Name: "Otomotif & Komponennya"
             }, {
                 StudentId: 24,
-                Name: "Sumber Daya Manusia "
+                Name: "Pakaian & Alas Kaki"
             }, {
                 StudentId: 25,
-                Name: "Teknik"
+                Name: "Pakan Ternak"
             }, {
                 StudentId: 26,
-                Name: "Transportasi dan Logistik"
+                Name: "Pelayanan Pelanggan"
+            }, {
+                StudentId: 27,
+                Name: "Peralatan Rumah Tangga"
+            }, {
+                StudentId: 28,
+                Name: "Perdagangan Besar Barang Produksi"
+            }, {
+                StudentId: 29,
+                Name: "Perdagangan Eceran"
+            }, {
+                StudentId: 30,
+                Name: "Perikanan"
+            }, {
+                StudentId: 31,
+                Name: "Perkebunan"
+            }, {
+                StudentId: 32,
+                Name: "Pertambangan"
+            }, {
+                StudentId: 33,
+                Name: "Perusahaan Efek"
+            }, {
+                StudentId: 34,
+                Name: "Peternakan"
+            }, {
+                StudentId: 35,
+                Name: "Plastik & Kemasan"
+            }, {
+                StudentId: 36,
+                Name: "Pulp & Kertas"
+            }, {
+                StudentId: 37,
+                Name: "Real Estate & Properti"
+            }, {
+                StudentId: 38,
+                Name: "Restoran"
+            }, {
+                StudentId: 39,
+                Name: "Retail"
+            }, {
+                StudentId: 40,
+                Name: "Rokok"
+            }, {
+                StudentId: 41,
+                Name: "SDM (Sumber Daya Manusia)"
+            }, {
+                StudentId: 42,
+                Name: "Semen"
+            }, {
+                StudentId: 43,
+                Name: "Software House"
+            }, {
+                StudentId: 44,
+                Name: "Sosial"
+            }, {
+                StudentId: 45,
+                Name: "Teknologi Informasi"
+            }, {
+                StudentId: 46,
+                Name: "Tekstil & Garmen"
+            }, {
+                StudentId: 47,
+                Name: "Telekomunikasi"
+            }, {
+                StudentId: 48,
+                Name: "Transportasi"
             });
 
             $("#cboStudent").ikrLoadfSelectCombo({

@@ -189,7 +189,7 @@ if (isset($_POST['daftar'])) {
                                                     <div class="form-check form-check-inline" style="margin-right: 10px ! important">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:4px 0px 0px 0px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Disabilitas Runggu">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Disabilitas Rungu">
                                                                 <label class="custom-control-label" for="customCheck3">Disabilitas Rungu</label>
                                                             </div>
                                                         </div>

@@ -2,7 +2,7 @@
 require("functions.php");
 
 if (isset($_POST["btn_daftar"])) {
-    
+
     $nama_perusahaan = $_POST['nama_perusahaan'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -10,7 +10,9 @@ if (isset($_POST["btn_daftar"])) {
     $telepon = $_POST['telepon'];
     $sektor = $_POST['sektor'];
     $alamat = $_POST['alamat'];
+    $kab_kota = $_POST['kab_kota'];
 
+    $alamat_lengkap = $alamat . ', ' . $kab_kota . ', Sumatera Utara';
 
     if ($password !== $password2) {
         echo "
@@ -31,9 +33,8 @@ if (isset($_POST["btn_daftar"])) {
         "password" => $password,
         "sektor_perusahaan" => $sektor,
         "telepon" => $telepon,
-        "alamat" => $alamat  
+        "alamat" => $alamat_lengkap
     );
-
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_perusahaan.php');
@@ -53,8 +54,6 @@ if (isset($_POST["btn_daftar"])) {
                 alert("Email sudah terdaftar !");
             </script>';
     }
-
-
 }
 
 ?>
@@ -140,7 +139,8 @@ if (isset($_POST["btn_daftar"])) {
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label>Telepon <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" placeholder="Telepon" name="telepon" required="">
+                                                <input type="text" name="telepon" class="form-control" placeholder="Telepon" maxlength="13" required onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" />
+                                                
                                             </div>
                                         </div>
 
@@ -206,7 +206,21 @@ if (isset($_POST["btn_daftar"])) {
                                         <div class="col-md-12">
                                             <div class="form-group position-relative">
                                                 <label>Alamat <span class="text-danger">*</span></label>
-                                                <textarea name="alamat" class="form-control" id="" cols="30" rows="10" placeholder="Alamat" required></textarea>
+                                                <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group position-relative">
+                                                <label>Kabupaten/Kota <span class="text-danger">*</span></label>
+                                                <input type="text" name="kab_kota" class="form-control" placeholder="Kabupaten/Kota" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group position-relative">
+                                                <label>Provinsi <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control bg-light" value="Sumatera Utara" readonly>
                                             </div>
                                         </div>
 

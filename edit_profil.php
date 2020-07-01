@@ -246,6 +246,11 @@ if (isset($_POST["btn_pendidikan_terakhir"])) {
     $tahun_akhir = $_POST["tahun_akhir"];
     $pendidikan_terakhir = '';
 
+
+    $nama_sekolah = str_replace(",", "", $nama_sekolah);
+    $jurusan = str_replace(",", "",$jurusan);
+
+
     if ($pendidikan === "SD" || $pendidikan === "SMP" || $pendidikan === "SMA") {
         $jurusan = '';
         $pendidikan_terakhir = $tahun_mulai . '-' . $tahun_akhir . ',' . $pendidikan . '-' . $nama_sekolah;
@@ -334,17 +339,23 @@ if (isset($_POST["btn_pengalaman_kerja"])) {
 
 
     $nama_perusahaan1 = $_POST['nama_perusahaan1'];
+    $nama_perusahaan1 = str_replace(",", "", $nama_perusahaan1);
     $jabatan1 = $_POST['jabatan1'];
+    $jabatan1 = str_replace(",", "",$jabatan1);
     $tahun_mulai1 = $_POST['tahun_mulai1'];
     $tahun_akhir1 = $_POST['tahun_akhir1'];
 
     $nama_perusahaan2 = $_POST['nama_perusahaan2'];
+    $nama_perusahaan2 = str_replace(",", "", $nama_perusahaan2);
     $jabatan2 = $_POST['jabatan2'];
+   $jabatan2 = str_replace(",", "",$jabatan2);
     $tahun_mulai2 = $_POST['tahun_mulai2'];
     $tahun_akhir2 = $_POST['tahun_akhir2'];
 
     $nama_perusahaan3 = $_POST['nama_perusahaan3'];
+    $nama_perusahaan3 = str_replace(",", "", $nama_perusahaan3);
     $jabatan3 = $_POST['jabatan3'];
+    $jabatan3 = str_replace(",", "", $jabatan3);
     $tahun_mulai3 = $_POST['tahun_mulai3'];
     $tahun_akhir3 = $_POST['tahun_akhir3'];
 
