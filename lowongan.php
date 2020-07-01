@@ -207,7 +207,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="lowongan.php">Cari Lowongan</a></li>
+                        <li><a href="lowongan.php">Lowongan</a></li>
                         <li><a href="tips-karir.php">Tips Karir</a></li>
                         <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
                         <li><a href="karyaku.php">Karyaku</a></li>
