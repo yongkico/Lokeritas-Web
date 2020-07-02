@@ -72,7 +72,7 @@ if (isset($_GET['id'])) {
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
                         <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
@@ -129,7 +129,7 @@ if (isset($_GET['id'])) {
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
                         <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
@@ -156,7 +156,7 @@ if (isset($_GET['id'])) {
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-                        <li><a href="lowongan.php">Cari Lowongan</a></li>
+                        <li><a href="lowongan.php">Lowongan</a></li>
                         <li><a href="tips-karir.php">Tips Karir</a></li>
                         <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
                         <li><a href="karyaku.php">Karyaku</a></li>
