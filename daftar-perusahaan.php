@@ -32,7 +32,6 @@ if ($search == "") {
     $result_perusahaan = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
 }
 
-var_dump($result_perusahaan);die;
 
 $jumlahData = count($result_perusahaan);
 $jumlahHalaman = ceil($jumlahData / $limit);
