@@ -121,7 +121,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="#" class="logo">
+                    <a href="index.php" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
                         <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
@@ -178,9 +178,9 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
-                        <img src="images/logo-light.png" alt="" class="logo-light" height="18" />
-                        <img src="images/logo-dark.png" alt="" class="logo-dark" height="18" />
+                    <a href="index.php" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
                 </div>
                 <!-- <div class="buy-button">
