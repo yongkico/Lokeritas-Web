@@ -304,18 +304,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <!-- SEARCH -->
 
-                        <!-- CATAGORIES -->
-                        <div class="widget mb-4 pb-2">
-                            <h4 class="widget-title">Kategori</h4>
-                            <ul class="list-unstyled mt-4 mb-0 catagories">
-                                <li><a href="jvascript:void(0)">Keuangan</a> <span class="float-right">13</span></li>
-                                <li><a href="jvascript:void(0)">Bisnis</a> <span class="float-right">09</span></li>
-                                <li><a href="jvascript:void(0)">Blog</a> <span class="float-right">18</span></li>
-                                <li><a href="jvascript:void(0)">Investasi</a> <span class="float-right">20</span></li>
-                                <li><a href="jvascript:void(0)">Prestasi</a> <span class="float-right">22</span></li>
-                            </ul>
-                        </div>
-                        <!-- CATAGORIES -->
+
 
                         <!-- RECENT POST -->
                         <div class="widget mb-4 pb-2">
