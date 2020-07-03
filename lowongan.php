@@ -394,7 +394,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                             $api_bidang = strtolower($row['sektor_perusahaan']);
                                             $api_lokasi = strtolower($row['alamat']);
 
-                                            if ($expired <= $currentdate) {
+                                            if ($expired >= $currentdate) {
                                                 if (preg_match("/$cari/i", $nama_pekerjaan) || preg_match("/$cari/i", $nama_perusahaan)) {
                                                     if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
                                                         echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
@@ -476,7 +476,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                             $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
                                             $nama_perusahaan = strtolower($row['nama_perusahaan']);
 
-                                            if ($expired <= $currentdate) {
+                                            if ($expired >= $currentdate) {
                                                 if (preg_match("/$q/i", $nama_pekerjaan) || preg_match("/$q/i", $nama_perusahaan)) {
                                                     echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                     <div class="p-4">
@@ -548,7 +548,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                             $currentdate = date('Y-m-d');
 
 
-                                            if ($expired <= $currentdate) {
+                                            if ($expired >= $currentdate) {
                                                 echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                     <div class="p-4">
                                                         <div class="row align-items-center">
@@ -603,7 +603,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                 </div>
                                                 ';
                                             } else {
-                                                echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
+                                                echo '<br><p class="text-center">Maaf tidak ada lowongan ditemukan saat ini atau sudah tutup</p>';
                                                 break;
                                             }
 
