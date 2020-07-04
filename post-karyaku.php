@@ -296,13 +296,13 @@ if (isset($_FILES['file-img']['tmp_name'])) {
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label class="text-secondary">Judul <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="judul" name="judul" required="">
+                                <input type="text" maxlength="55" class="form-control" placeholder="judul" name="judul" required="">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label class="text-secondary">Tags <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" placeholder="seni" name="tag" required="">
+                                <input type="text" maxlength="70" class="form-control" placeholder="seni" name="tag" required="">
                             </div>
                         </div>
                         <div class="col-md-12">

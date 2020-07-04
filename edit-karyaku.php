@@ -269,13 +269,13 @@ if (isset($_SESSION["login"])) {
                             <div class="col-md-12">
                                 <div class="form-group position-relative">
                                     <label class="text-secondary">Judul <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" placeholder="Judul" name="judul" value="<?= $pesan_detail_karyaku['judul'] ?>" required="">
+                                    <input type="text" maxlength="55" class="form-control" placeholder="Judul" name="judul" value="<?= $pesan_detail_karyaku['judul'] ?>" required="">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group position-relative">
                                     <label class="text-secondary">Tags <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="tag" value="<?= $pesan_detail_karyaku['tag'] ?>" required="">
+                                    <input type="text" maxlength="70" class="form-control" name="tag" value="<?= $pesan_detail_karyaku['tag'] ?>" required="">
                                 </div>
                             </div>
                             <div class="col-md-12">
