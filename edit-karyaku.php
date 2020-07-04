@@ -31,6 +31,10 @@ if (isset($_SESSION["login"])) {
                 $tag = $_POST['tag'];
             }
 
+            if (isset($_POST['isi_komentar'])) {
+                $komen = $_POST['isi_komentar'];
+            }
+
             if (isset($_POST['deskripsi'])) {
                 $deskripsi = $_POST['deskripsi'];
             }
@@ -256,7 +260,7 @@ if (isset($_SESSION["login"])) {
             </section>
             <!-- end home -->
             <section>
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data" id="myForm">
                     <div class="container">
                         <div class="row mt-5">
                             <div class="col-md-12 mb-3 mx-auto text-center">
@@ -280,7 +284,18 @@ if (isset($_SESSION["login"])) {
                                     <textarea class="ckeditor" id="ckedtor" name="deskripsi"><?= $pesan_detail_karyaku['deskripsi'] ?></textarea>
                                 </div>
                             </div>
-
+                            <div class="col-md-12">
+                                <div class="form-group position-relative">
+                                    <div class="form-group" style="margin:0px 0px 0px 0px">
+                                        <div class="custom-control custom-checkbox" style="margin:0px 12px 20px 0px">
+                                            <input type="hidden" id="isi_komentar" name="isi_komentar">
+                                            <span id="result"></span>
+                                            <input type="checkbox" class="custom-control-input" id="customCheck6" name="komen" value="1" <?php if ($pesan_detail_karyaku['komen'] != 0) : ?> checked <?php endif; ?>>
+                                            <label class="custom-control-label" for="customCheck6">Aktifkan Komentar</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group position-relative">
                                     <button type="submit" name="send" class="btn btn-primary pull-right">Edit</button>
@@ -412,6 +427,20 @@ if (isset($_SESSION["login"])) {
                     window.history.back();
                 }
             </script>
+
+            <script type="text/javascript">
+                window.onload = function() {
+                    var input = document.querySelector('input[type=checkbox]');
+
+                    function check() {
+                        var a = input.checked ? "1" : "0";
+                        document.getElementById('isi_komentar').value = a;
+                    }
+                    input.onchange = check;
+                    check();
+                }
+            </script>
+
 
             <!-- selectize js -->
             <script src="js/selectize.min.js"></script>
