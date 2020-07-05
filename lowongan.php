@@ -598,39 +598,39 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
 
                                             ?>
                                         <?php endforeach; ?>
+                                        <!-- Pagination -->
+                                        <div class="col-lg-12" style="margin-top: 30px ! important">
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination job-pagination justify-content-center mb-0">
+                                                    <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                                        <?php if ($search == "") : ?>
+                                                            <?php
+                                                            if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                                                if (($limitStart == 1) && ($i != 2))  echo "...";
+                                                                if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                                                if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                                                else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                                                $limitStart = $i;
+                                                            }
+                                                            ?>
+                                                        <?php else : ?>
+                                                            <?php
+                                                            if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                                                if (($limitStart == 1) && ($i != 2))  echo "...";
+                                                                if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                                                if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                                                else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
+                                                                $limitStart = $i;
+                                                            }
+                                                            ?>
+                                                        <?php endif; ?>
+                                                    <?php endfor; ?>
+                                                </ul>
+                                            </nav>
+                                        </div>
                                     <?php endif; ?>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Pagination -->
-                        <div class="col-lg-12" style="margin-top: 30px ! important">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination job-pagination justify-content-center mb-0">
-                                    <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-                                        <?php if ($search == "") : ?>
-                                            <?php
-                                            if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                                if (($limitStart == 1) && ($i != 2))  echo "...";
-                                                if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                                if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                                else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
-                                                $limitStart = $i;
-                                            }
-                                            ?>
-                                        <?php else : ?>
-                                            <?php
-                                            if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                                if (($limitStart == 1) && ($i != 2))  echo "...";
-                                                if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                                if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                                else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
-                                                $limitStart = $i;
-                                            }
-                                            ?>
-                                        <?php endif; ?>
-                                    <?php endfor; ?>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>
