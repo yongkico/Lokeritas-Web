@@ -51,7 +51,7 @@ if ($search == "") {
     $result_get = curl_exec($curl_get);
     curl_close($curl_get);
 
-    $result_tipskarir = json_decode($result_get, true);
+    $daftar_tipskarir = json_decode($result_get, true);
 } else {
     $curl_get = curl_init();
     curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
@@ -61,13 +61,13 @@ if ($search == "") {
 
     $search_result = json_decode($result_get, true);
 
-    $result_tipskarir = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
+    $daftar_tipskarir = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
 }
 
 
-$jumlahData = count($result_tipskarir);
+$jumlahData = count($daftar_tipskarir);
 $jumlahHalaman = ceil($jumlahData / $limit);
-$daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
+$daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
 
 ?>
 
@@ -317,7 +317,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                     <div class="registration-form-box">
                                         <i class="fa fa-location-arrow"></i>
                                         <select id="select-country" class="demo-default" name="lokasi" required="">
-                                            <option value="">Lokasi</option>
+                                            <option value=" ">Semua Lokasi</option>
                                             <option value="Kab. Asahan">Kab. Asahan</option>
                                             <option value="Kab. Batu Bara">Kab. Batu Bara</option>
                                             <option value="Kab. Dairi">Kab. Dairi</option>
@@ -379,7 +379,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
 
                                 <div class="col-lg-12">
                                     <?php if (isset($_POST['search'])) : ?>
-                                        <?php foreach ($result_tipskarir as $row) : ?>
+                                        <?php foreach ($daftar_tipskarir as $row) : ?>
                                             <?php
 
                                             $start_date = $row['tutup'];
@@ -434,7 +434,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <div>
-                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">' . $row['ketunaan'] . '</span></p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
@@ -450,21 +450,15 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                     </div>
                                                 </div>
                                                 ';
-                                                    } else {
-                                                        echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
-                                                        break;
                                                     }
                                                 }
-                                            } else {
-                                                echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
-                                                break;
                                             }
 
                                             ?>
                                         <?php endforeach; ?>
 
                                     <?php elseif (isset($_POST['q'])) : ?>
-                                        <?php foreach ($result_tipskarir as $row) : ?>
+                                        <?php foreach ($daftar_tipskarir as $row) : ?>
                                             <?php
 
                                             $start_date = $row['tutup'];
@@ -515,7 +509,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <div>
-                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">' . $row['ketunaan'] . '</span></p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
@@ -534,19 +528,17 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                 }
                                             } else {
                                                 echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
-                                                break;
                                             }
 
                                             ?>
                                         <?php endforeach; ?>
                                     <?php else : ?>
-                                        <?php foreach ($result_tipskarir as $row) : ?>
+                                        <?php foreach ($daftar_tipskarir as $row) : ?>
                                             <?php
 
                                             $start_date = $row['tutup'];
                                             $expired = date('Y-m-d', strtotime($start_date));
                                             $currentdate = date('Y-m-d');
-
 
                                             if ($expired >= $currentdate) {
                                                 echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
@@ -586,7 +578,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <div>
-                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">Semua Jenis Disabilitas</span></p>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">' . $row['ketunaan'] . '</span></p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
@@ -602,9 +594,6 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                                     </div>
                                                 </div>
                                                 ';
-                                            } else {
-                                                echo '<br><p class="text-center">Maaf tidak ada lowongan ditemukan saat ini atau sudah tutup</p>';
-                                                break;
                                             }
 
                                             ?>
@@ -613,7 +602,36 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                                 </div>
                             </div>
                         </div>
-
+                        <!-- Pagination -->
+                        <div class="col-lg-12" style="margin-top: 30px ! important">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination job-pagination justify-content-center mb-0">
+                                    <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                        <?php if ($search == "") : ?>
+                                            <?php
+                                            if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                                if (($limitStart == 1) && ($i != 2))  echo "...";
+                                                if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                                if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                                else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                                $limitStart = $i;
+                                            }
+                                            ?>
+                                        <?php else : ?>
+                                            <?php
+                                            if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                                if (($limitStart == 1) && ($i != 2))  echo "...";
+                                                if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                                if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                                else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
+                                                $limitStart = $i;
+                                            }
+                                            ?>
+                                        <?php endif; ?>
+                                    <?php endfor; ?>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
