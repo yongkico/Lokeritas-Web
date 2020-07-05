@@ -197,7 +197,7 @@ if (isset($_GET['id'])) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="text-info mb-3 text-dark" style="margin:0px 0px 2px 0px !important"><?php echo strtolower($result_get[0]['nama_pekerjaan']); ?></h3>
+                    <h3 class="text-info mb-3 text-dark" style="margin:0px 0px 2px 0px !important">Sebagai <?php echo strtolower($result_get[0]['nama_pekerjaan']); ?></h3>
                 </div>
             </div>
             <div class="row" style="margin:20px 0px 0px 0px">
@@ -205,7 +205,7 @@ if (isset($_GET['id'])) {
                     <img src="http://lokeritas.xyz/assets/perusahaan/<?= $result_get[0]['logo']; ?>" alt="" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block">
                 </div>
                 <div class="col-lg-11">
-                    <h5 class="text-dark mb-3" style="margin:0px 0px 2px 0px !important"><?php echo $result_get[0]['nama_perusahaan']; ?> </h5>
+                    <h5 class="text-dark mb-3" style="margin:0px 0px 2px 0px !important"><a href="detail-perusahaan.php?id_perusahaan=<?php echo $result_get[0]['id_perusahaan']; ?>"> <?php echo $result_get[0]['nama_perusahaan']; ?> </a></h5>
                     <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i><?php echo $result_get[0]['alamat']; ?> </p>
                 </div>
             </div>
@@ -256,29 +256,10 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h5 class="text-muted mt-4">Tugas :</h5>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
-                                <div class="job-detail-desc">
-                                    <ul style="list-style-type: none; padding:0px 0px 0px 0px">
-                                        <li class="mdi mdi-chevron-right text-dark"> Menjahit untuk produk Kakha Series</li>
-                                        <li class="mdi mdi-chevron-right text-dark"> Menjahit untuk produk Kakha Series</li>
-                                        <li class="mdi mdi-chevron-right text-dark"> Menjahit untuk produk Kakha Series</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h5 class="text-muted mt-4">Persyaratan :</h5>
+                            <h5 class="text-muted mt-4">Kriteria Umum :</h5>
                         </div>
                     </div>
 
@@ -294,6 +275,40 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="text-muted mt-4">Kriteria Khusus :</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
+                                <div class="job-detail-desc">
+                                    <ul style="list-style-type: none; padding:0px 0px 0px 0px">
+                                        <?php echo $result_get[0]['kriteria_khusus']; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="text-muted mt-4">Catatan :</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
+                                <div class="job-detail-desc">
+                                    <ul style="list-style-type: none; padding:0px 0px 0px 0px">
+                                        <?php echo $result_get[0]['catatan']; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 
