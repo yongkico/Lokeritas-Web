@@ -270,7 +270,7 @@ if (isset($_SESSION["login"])) {
                                 <div class="form-group position-relative">
                                     <label class="text-secondary">Judul <span class="text-danger">*</span></label>
                                     <input type="text" maxlength="55" class="form-control" placeholder="Judul" name="judul" value="<?= $pesan_detail_karyaku['judul'] ?>" required="">
-                                </div>
+                                </div>  
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group position-relative">

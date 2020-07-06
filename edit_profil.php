@@ -618,6 +618,7 @@ if (isset($_POST['btn_berkas'])) {
         );
 
 
+
         $chFile = new CURLFile($tmpBerkas, $tipeBerkas, $namaBerkasBaru);
         $datas = array("file" => $chFile);
         $chs = curl_init();
@@ -678,7 +679,6 @@ if (isset($_POST['btn_berkas'])) {
             "dok2" => $dokumen2,
             "param" => 'berkas'
         );
-
 
         $chFile = new CURLFile($tmpBerkas, $tipeBerkas, $namaBerkasBaru);
         $datas = array("file" => $chFile);

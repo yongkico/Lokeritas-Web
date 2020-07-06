@@ -68,8 +68,7 @@ if (isset($_SESSION['login'])) {
 
         $result_get = json_decode($result, true);
 
-
-
+        
         ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">

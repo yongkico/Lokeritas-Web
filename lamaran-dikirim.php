@@ -18,6 +18,7 @@ $lamaran = json_decode($result, true);
 $lamaranTerbaru = array_reverse($lamaran);
 
 
+
 $limit = 6;
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $limitStart = ($page - 1) * $limit;

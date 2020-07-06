@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 //GET Parameter
 
 if (isset($_GET['id'])) {
@@ -398,7 +399,7 @@ if (isset($_GET['id'])) {
                                         //////////
 
                                         $id_lowongan = $_GET['id'];
-                                        $id_user = $_SESSION["login"];
+                                        $id_user = $_SESSION['userdata']['id_user'];
                                         $pesan_tambahan = $_POST['keterangan'];
 
                                         $curl = curl_init();
