@@ -781,7 +781,7 @@ $result_karyaku = json_decode($result_karyaku, true);
         </section>
 
         <!-- DOWNLOAD APP START -->
-        <section class="section pb-0" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
+        <section class="section pb-0" style="background: url('images/image.jpg') center center;">
             <div class="bg-overlay"></div>
             <div class="container">
                 <div class="row align-items-center">
@@ -1380,7 +1380,7 @@ $result_karyaku = json_decode($result_karyaku, true);
         </section>
 
         <!-- DOWNLOAD APP START -->
-        <section class="section pb-0" style="background: url('https://www.expatica.com/app/uploads/2018/11/Networking-1-1920x1080.jpg') center center;">
+        <section class="section pb-0" style="background: url('images/image.jpg') center center;">
             <div class="bg-overlay"></div>
             <div class="container">
                 <div class="row align-items-center">

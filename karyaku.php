@@ -238,20 +238,20 @@ if (isset($_POST['send'])) {
     <!-- end home -->
 
     <!-- Search -->
-    <div class="container" style="height: 53px">
+    <div class="container mt-3">
         <div class="home-form-position">
             <div class="row ">
                 <div class="col-lg-12">
                     <div class="home-registration-form p-4 mb-3">
                         <form class="registration-form" action="">
                             <div class="row">
-                                <div class="col-lg-9 col-md-6" style="padding-left: 0px;">
+                                <div class="col-lg-9">
                                     <div class="registration-form-box">
                                         <i class="mdi mdi-magnify"></i>
                                         <input type="text" id="exampleInputName1" name="keyword" class="form-control rounded registration-input-box autocomplete-selected" placeholder="Kata kunci pencarian .." required="">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-6 " style="padding-right: 0px;">
+                                <div class="col-lg-3">
                                     <div class="registration-form-box">
                                         <button type="submit" class="btn btn-primary mb-3" style="width: 100%">Cari </button>
                                     </div>
@@ -306,11 +306,11 @@ if (isset($_POST['send'])) {
             ?>
 
             <?php if ($keyword !== "") : ?>
-                <div class="row mt-5">
+                <div class="row">
                     <i class="ml-5">Pencarian dengan kata kunci <strong>"<?= $keyword; ?>"</strong></i>
                 </div>
             <?php else : ?>
-                <div class="row mt-5"></div>
+                <div class="row"></div>
             <?php endif; ?>
 
             <div class="row">

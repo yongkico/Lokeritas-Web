@@ -244,7 +244,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
     </section>
     <!-- end home -->
 
-    <div class="container" style="height: 53px">
+    <div class="container mt-3" >
         <div class="home-form-position">
             <div class="row">
                 <div class="col-lg-12">

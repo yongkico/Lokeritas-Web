@@ -160,7 +160,7 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
             <div class="row">
                 <?php if (!empty($dataLimit)) : ?>
                     <div class="col-12">
-                        <h4 class="text-primary">Daftar Lamaran</h4>
+                        <h5 class="text-primary">Daftar Lamaran Yang Sudah Dikirim</h5>
                     </div>
                 <?php endif; ?>
                 <!-- <div class="col-12"><span>Urutkan berdasarkan </span></div>

@@ -260,7 +260,7 @@ $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
                             <div id="search2" class="widget-search mb-0">
                                 <form role="search" id="searchform" class="searchform">
                                     <div>
-                                        <input type="text" class="border rounded autocomplete-selected" name="search" id="exampleInputName1" placeholder="Cari Keywords..." required="asa">
+                                        <input type="text" class="border rounded autocomplete-selected" name="search" id="exampleInputName1" placeholder="kata kunci..." required="asa">
                                         <input type="submit" id="searchsubmit" value="Search">
                                     </div>
                                 </form>
