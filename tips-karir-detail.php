@@ -197,13 +197,15 @@ if (isset($_GET['id'])) {
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2" style="color: gray; font-size:16px"></i><?= $_SESSION['userdata']['nama_depan']; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2 text-success" style="color: gray; font-size:16px"></i><?= $_SESSION['userdata']['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
                                 <li><a href="history-karyaku.php">History Karyaku</a></li>
                                 <li><a href="logout.php">Logout</a></li>
                             </ul>
+                        </li>
+                        <li class="has-submenu">
                         </li>
                     </ul>
                     <!--end navigation menu-->

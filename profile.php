@@ -68,7 +68,7 @@ if (isset($_SESSION['login'])) {
 
         $result_get = json_decode($result, true);
 
-        
+
         ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
@@ -108,13 +108,16 @@ if (isset($_SESSION['login'])) {
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2 text-success" style="font-size:16px"></i><?= $result_get[0]['nama_depan']; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2 text-success" style="font-size:16px"></i><?= $result_get[0]['nama_depan']; ?></a>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
                                 <li><a href="history-karyaku.php">History Karyaku</a></li>
                                 <li><a href="logout.php">Logout</a></li>
                             </ul>
+                        </li>
+
+                        <li class="has-submenu">
                         </li>
                     </ul>
                     <!--end navigation menu-->

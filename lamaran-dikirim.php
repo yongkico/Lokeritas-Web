@@ -123,6 +123,8 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
                             <li><a href="logout.php">Logout</a></li>
                         </ul>
                     </li>
+                    <li class="has-submenu">
+                    </li>
                 </ul>
                 <!--end navigation menu-->
             </div>
