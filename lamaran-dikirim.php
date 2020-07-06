@@ -177,7 +177,7 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
                         <div class="col-lg-4 col-md-6 mb-4 pb-2">
                             <div class="blog position-relative overflow-hidden shadow rounded" style="box-shadow: 1px 4px 8px 1px #e1e0e0 ! important">
                                 <div class="position-relative overflow-hidden">
-                                    <img src="<?= $data['logo']; ?>" style="width: 180px" alt="" class="img-fluid mx-auto d-block">
+                                    <img src="<?= $data['logo']; ?>" style="height: 120px" alt="" class="img-fluid mx-auto d-block">
                                 </div>
                                 <div class="content p-4 bg-light">
                                     <h4><a href="#" class="title text-dark"><?= $data['nama_pekerjaan']; ?></a></h4>

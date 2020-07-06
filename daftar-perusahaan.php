@@ -249,7 +249,7 @@ $daftar_perusahaan = array_slice($result_perusahaan, $limitStart, $limit);
                         <div class="col-lg-4 col-md-6 mb-4 pb-2">
                             <div class="blog position-relative overflow-hidden shadow rounded">
                                 <div class="position-relative overflow-hidden">
-                                    <img src="<?= $row['logo']; ?>" style="width: 30%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                                    <img src="<?= $row['logo']; ?>" style="height: 120px; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
                                 </div>
                                 <div class="content p-4 bg-light">
                                     <h5><?= $row['nama_perusahaan']; ?></h5>
