@@ -399,7 +399,7 @@ if (isset($_GET['id'])) {
                                         //////////
 
                                         $id_lowongan = $_GET['id'];
-                                        $id_user = $_SESSION['userdata']['id_user'];
+                                        $id_user = $_SESSION['userdata']['user_id'];
                                         $pesan_tambahan = $_POST['keterangan'];
 
                                         $curl = curl_init();
