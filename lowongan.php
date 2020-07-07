@@ -1,70 +1,25 @@
 <?php
 session_start();
 
-function FILTER_ARRAY_VALUES_REGEXP($basis, $array, $flag_invert = 0)
-{
-    $found = [];
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get = curl_exec($curl_get);
+curl_close($curl_get);
 
-    foreach ($array as $key => $val) {
-        if (isset($flag_invert) && $flag_invert == 1) {
-            if (!preg_match($basis, $val['judul'])) {
-                $found[] = $val;
-            }
-        } else {
-            if (preg_match($basis, $val['judul'])) {
-                $found[] = $val;
-            }
-        }
-    }
-    return $found;
-}
-
-function FILTER_ARRAY_VALUES_REGEXP_P($basis, $array, $flag_invert = 0)
-{
-    $found = [];
-
-    foreach ($array as $key => $val) {
-        if (isset($flag_invert) && $flag_invert == 1) {
-            if (!preg_match($basis, $val['judul'])) {
-                $found[] = $val;
-            }
-        } else {
-            if (preg_match($basis, $val['judul'])) {
-                $found[] = $val;
-            }
-        }
-    }
-    return $found;
-}
-
+$daftar_tipskarir = json_decode($result_get, true);
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $search = (isset($_GET['search'])) ? $_GET['search'] : "";
 
-$limit = 4;
-$limitStart = ($page - 1) * $limit;
-
-if ($search == "") {
-    $curl_get = curl_init();
-    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
-    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-    $result_get = curl_exec($curl_get);
-    curl_close($curl_get);
-
-    $daftar_tipskarir = json_decode($result_get, true);
+if (isset($_POST['q'])) {
+    $limit = 100;
+} else if (isset($_POST['cari'])) {
+    $limit = 100;
 } else {
-    $curl_get = curl_init();
-    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
-    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-    $result_get = curl_exec($curl_get);
-    curl_close($curl_get);
-
-    $search_result = json_decode($result_get, true);
-
-    $daftar_tipskarir = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
+    $limit = 4;
 }
-
-
+$limitStart = ($page - 1) * $limit;
 $jumlahData = count($daftar_tipskarir);
 $jumlahHalaman = ceil($jumlahData / $limit);
 $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
@@ -214,7 +169,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                         <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanMasuk">Masuk</a>
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                         </div>
                     </ul>
@@ -244,7 +199,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
     </section>
     <!-- end home -->
 
-    <div class="container mt-3" >
+    <div class="container mt-3">
         <div class="home-form-position">
             <div class="row">
                 <div class="col-lg-12">
@@ -263,7 +218,6 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                         <i class="fa fa-list-alt"></i>
                                         <select id="select-category" class="demo-default" name="bidang" required="">
                                             <option value="">Bidang</option>
-                                            <option value="ABC">Semua Bidang</option>
                                             <option value="Advertising, Printing & Media">Advertising, Printing & Media</option>
                                             <option value="Asuransi">Asuransi</option>
                                             <option value="Badan Usaha Milik Negara (BUMN)">Badan Usaha Milik Negara (BUMN)</option>
@@ -359,7 +313,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                 </div>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="registration-form-box">
-                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
+                                        <button type="submit" name="cari" class="btn btn-primary" style="width: 100%">Cari </button>
                                     </div>
                                 </div>
                             </div>
@@ -380,14 +334,13 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                             <div class="row">
 
                                 <div class="col-lg-12">
-                                    <?php if (isset($_POST['search'])) : ?>
+                                    <?php if (isset($_POST['cari'])) : ?>
                                         <?php foreach ($daftar_tipskarir as $row) : ?>
                                             <?php
 
                                             $start_date = $row['tutup'];
                                             $expired = date('Y-m-d', strtotime($start_date));
                                             $currentdate = date('Y-m-d');
-
                                             $cari = strtolower($_POST['search']);
                                             $bidang = strtolower($_POST['bidang']);
                                             $lokasi = $_POST['lokasi'];
@@ -396,84 +349,14 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                             $api_bidang = strtolower($row['sektor_perusahaan']);
                                             $api_lokasi = strtolower($row['alamat']);
 
-                                            if ($expired >= $currentdate) {
-                                                if (preg_match("/$cari/i", $nama_pekerjaan) || preg_match("/$cari/i", $nama_perusahaan)) {
-                                                    if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
-                                                        echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
-                                                    <div class="p-4">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-md-2">
-                                                                <div class="mo-mb-2">
-                                                                    <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div>
-                                                                    <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
-                                                                        <h5 class="f-18">
-                                                                            ' . strtolower($row['nama_pekerjaan']) . '
-                                                                        </h5>
-                                                                    </a>
-                                                                    <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div>
-                                                                    <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div>
-                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="p-3 bg-light">
-                                                        <div class="row">
-                                                            <div class="col-md-5">
-                                                                <div>
-                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">' . $row['ketunaan'] . '</span></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div>
-                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
-                                                                        </span></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                ';
-                                                    }
-                                                }
+                                            if ($expired <= $currentdate) {
+                                                $tutup = 'Sudah Tutup';
+                                            } else {
+                                                $tutup =  date("d F Y", strtotime($row['tutup']));
                                             }
 
-                                            ?>
-                                        <?php endforeach; ?>
-
-                                    <?php elseif (isset($_POST['q'])) : ?>
-                                        <?php foreach ($daftar_tipskarir as $row) : ?>
-                                            <?php
-
-                                            $start_date = $row['tutup'];
-                                            $expired = date('Y-m-d', strtotime($start_date));
-                                            $currentdate = date('Y-m-d');
-
-                                            $q = strtolower($_POST['q']);
-
-                                            $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
-                                            $nama_perusahaan = strtolower($row['nama_perusahaan']);
-
-                                            if ($expired >= $currentdate) {
-                                                if (preg_match("/$q/i", $nama_pekerjaan) || preg_match("/$q/i", $nama_perusahaan)) {
+                                            if (preg_match("/$cari/i", $nama_pekerjaan) || preg_match("/$cari/i", $nama_perusahaan)) {
+                                                if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
                                                     echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                     <div class="p-4">
                                                         <div class="row align-items-center">
@@ -516,24 +399,100 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div>
-                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
+                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . $tutup . '<span class="text-dark">
                                                                         </span></p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary" target="_blank">Selengkapnya</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 ';
                                                 }
-                                            } else {
-                                                echo '<br><p class="text-center">Maaf hasil pencarian <b>' . $cari . '</b> tidak ditemukan / sudah tutup</p>';
                                             }
+
+
 
                                             ?>
                                         <?php endforeach; ?>
+
+                                    <?php elseif (isset($_POST['q'])) : ?>
+                                        <?php foreach ($daftar_tipskarir as $row) : ?>
+                                            <?php
+                                            $start_date = $row['tutup'];
+                                            $expired = date('Y-m-d', strtotime($start_date));
+                                            $currentdate = date('Y-m-d');
+                                            $q = strtolower($_POST['q']);
+                                            $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
+                                            $nama_perusahaan = strtolower($row['nama_perusahaan']);
+
+                                            if ($expired <= $currentdate) {
+                                                $tutup = 'Sudah Tutup';
+                                            } else {
+                                                $tutup =  date("d F Y", strtotime($row['tutup']));
+                                            }
+
+
+                                            if (preg_match("/$q/i", $nama_pekerjaan) || preg_match("/$q/i", $nama_perusahaan)) {
+                                                echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                            <div class="p-4">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-2">
+                                                        <div class="mo-mb-2">
+                                                            <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
+                                                                <h5 class="f-18">
+                                                                    ' . strtolower($row['nama_pekerjaan']) . '
+                                                                </h5>
+                                                            </a>
+                                                            <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-3 bg-light">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div>
+                                                            <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">' . $row['ketunaan'] . '</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div>
+                                                            <p class="text-muted mb-0 mo-mb-2">Tutup : ' . $tutup . '<span class="text-dark">
+                                                                </span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary" target="_blank">Selengkapnya</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>';
+                                            }
+                                            ?>
+                                        <?php endforeach; ?>
+
+
                                     <?php else : ?>
                                         <?php foreach ($daftar_tipskarir as $row) : ?>
                                             <?php
@@ -590,7 +549,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary" target="_blank">Selengkapnya</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -631,6 +590,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                             </nav>
                                         </div>
                                     <?php endif; ?>
+
                                 </div>
                             </div>
                         </div>
@@ -665,6 +625,40 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                             <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
                                 <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja Penyandang Disabilitas</p>
                                 <p style="text-align: center;margin-top:30px"><a href="daftar-penyedia-kerja.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Daftar</a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- The Modal Login -->
+    <div class="modal" id="pilihanMasuk">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Masuk</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang
+                                    Disabilitas Pencari Kerja</p>
+                                <p style="text-align: center;margin-top:30px"><a href="login.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                </p>
+                            </div>
+                            <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja
+                                    Penyandang Disabilitas</p>
+                                <p style="text-align: center;margin-top:30px"><a href="http://lokeritas.xyz/company" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                </p>
                             </div>
 
                         </div>
