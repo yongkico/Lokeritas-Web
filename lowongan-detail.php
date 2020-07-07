@@ -164,7 +164,7 @@ if (isset($_GET['id'])) {
                         <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanMasuk">Masuk</a>
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                         </div>
                     </ul>
@@ -443,7 +443,15 @@ if (isset($_GET['id'])) {
 
                             ?>
 
-                            <?php if ($result_profile['foto'] != null && $result_profile['nama_depan'] != null && $result_profile['nama_belakang'] != null && $result_profile['telepon'] != null && $result_profile['jenis_kelamin'] != null && $result_profile['tgl_lahir'] != null && $result_profile['status'] != null && $result_profile['mencari_pekerjaan'] != null && $result_profile['ringkasan_pribadi'] != null && $result_profile['alamat'] != null && $result_profile['kota'] != null && $result_profile['provinsi'] != null && $result_profile['ketunaan'] != null && $result_profile['alat_bantu'] != null && $result_profile['detail_tambahan'] != null && $result_profile['pendidikan_terakhir'] != null && $result_profile['keterampilan'] != null && $result_profile['kariryangdimininati'] != null && $result_profile['dok1'] != null || $result_profile['dok2'] != null) : ?>
+                            <?php
+                            $start_date = $result_get[0]['tutup'];
+                            $expired = date('Y-m-d', strtotime($start_date));
+                            $currentdate = date('Y-m-d');
+                            ?>
+
+                            <?php if ($expired <= $currentdate) : ?>
+                                <button onclick="lamaranExpired()" style="width:100%" type="button" class="btn btn-primary" data-toggle="modal"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
+                            <?php elseif ($result_profile['foto'] != null && $result_profile['nama_depan'] != null && $result_profile['nama_belakang'] != null && $result_profile['telepon'] != null && $result_profile['jenis_kelamin'] != null && $result_profile['tgl_lahir'] != null && $result_profile['status'] != null && $result_profile['mencari_pekerjaan'] != null && $result_profile['ringkasan_pribadi'] != null && $result_profile['alamat'] != null && $result_profile['kota'] != null && $result_profile['provinsi'] != null && $result_profile['ketunaan'] != null && $result_profile['alat_bantu'] != null && $result_profile['detail_tambahan'] != null && $result_profile['pendidikan_terakhir'] != null && $result_profile['keterampilan'] != null && $result_profile['kariryangdimininati'] != null && $result_profile['dok1'] != null || $result_profile['dok2'] != null) : ?>
                                 <button style="width:100%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalku"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
                             <?php else : ?>
                                 <button onclick="lamaranEx();" style="width:100%" type="button" class="btn btn-primary" data-toggle="modal"><i class="mdi mdi-send mr-2" style="color: white; font-size:16px"></i>Kirim Lamaran</button>
@@ -491,6 +499,40 @@ if (isset($_GET['id'])) {
     </section>
     <!-- JOB DETAILS END -->
 
+    <!-- The Modal Login -->
+    <div class="modal" id="pilihanMasuk">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Masuk</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang
+                                    Disabilitas Pencari Kerja</p>
+                                <p style="text-align: center;margin-top:30px"><a href="login.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                </p>
+                            </div>
+                            <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja
+                                    Penyandang Disabilitas</p>
+                                <p style="text-align: center;margin-top:30px"><a href="http://lokeritas.xyz/company" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- The Modal Daftar -->
     <div class="modal" id="pilihanDaftar">
@@ -610,6 +652,11 @@ if (isset($_GET['id'])) {
     <script>
         function lamaranEx() {
             swal("Perhatian!", "Anda harus melengkapi profil terlebih dahulu", "warning");
+        }
+    </script>
+    <script>
+        function lamaranExpired() {
+            swal("Perhatian!", "Lowongan Kerja Ini Sudah Tutup", "warning");
         }
     </script>
 

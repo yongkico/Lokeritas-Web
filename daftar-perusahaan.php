@@ -180,7 +180,7 @@ $daftar_perusahaan = array_slice($result_perusahaan, $limitStart, $limit);
                         <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
                         <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanMasuk">Masuk</a>
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                         </div>
                     </ul>
@@ -302,6 +302,40 @@ $daftar_perusahaan = array_slice($result_perusahaan, $limitStart, $limit);
     <!-- blog end -->
 
 
+    <!-- The Modal Login -->
+    <div class="modal" id="pilihanMasuk">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Masuk</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang
+                                    Disabilitas Pencari Kerja</p>
+                                <p style="text-align: center;margin-top:30px"><a href="login.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                </p>
+                            </div>
+                            <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja
+                                    Penyandang Disabilitas</p>
+                                <p style="text-align: center;margin-top:30px"><a href="http://lokeritas.xyz/company" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <!-- The Modal Daftar -->
