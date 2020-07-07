@@ -183,7 +183,7 @@ if (isset($_GET['id_perusahaan'])) {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-sm-center">
-                        <img src="http://lokeritas.xyz/assets/perusahaan/<?php echo $result_get_perusahaan['0']['logo'] ?>" alt="" class="img-fluid mx-md-auto d-block" width="50">
+                        <img src="http://lokeritas.xyz/assets/perusahaan/<?php echo $result_get_perusahaan['0']['logo'] ?>" alt="" class="img-fluid mx-md-auto d-block" width="100">
                         <h4 class="mt-3"><a href="#" class="text-white"><?php echo strtoupper($result_get_perusahaan['0']['nama_perusahaan']) ?></a></h4>
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item mr-3">
@@ -233,7 +233,7 @@ if (isset($_GET['id_perusahaan'])) {
 
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <h5 class="text-muted mt-4">Hari/Waktu Bekerja :</h5>
+                                                            <h5 class="text-muted mt-4">Waktu Bekerja :</h5>
                                                         </div>
                                                     </div>
 
@@ -249,7 +249,7 @@ if (isset($_GET['id_perusahaan'])) {
 
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <h5 class="text-muted mt-4">Tunjangan :</h5>
+                                                            <h5 class="text-muted mt-4">Benefit :</h5>
                                                         </div>
                                                     </div>
 
@@ -258,7 +258,7 @@ if (isset($_GET['id_perusahaan'])) {
                                                             <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                                                 <div class="job-detail-desc">
                                                                     <ul style="list-style-type: none; padding:0px 0px 0px 0px">
-                                                                        <li class="mdi mdi-chevron-right text-dark"> <?php echo $result_get_perusahaan['0']['benefit'] ?></li>
+                                                                        <li class="mdi text-dark"> <?php echo $result_get_perusahaan['0']['benefit'] ?></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -267,7 +267,7 @@ if (isset($_GET['id_perusahaan'])) {
 
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <h5 class="text-muted mt-4">Bahasa :</h5>
+                                                            <h5 class="text-muted mt-4">Menguasai Bahasa :</h5>
                                                         </div>
                                                     </div>
 
@@ -275,7 +275,7 @@ if (isset($_GET['id_perusahaan'])) {
                                                         <div class="col-lg-12">
                                                             <div class="job-detail border rounded mt-2 p-4 bg-light" style="box-shadow: 1px 2px 4px 1px #e1e0e0;">
                                                                 <div class="job-detail-desc">
-                                                                    <p class="text-dark mb-3">Menguasai bahasa <?php echo $result_get_perusahaan['0']['bahasa'] ?></p>
+                                                                    <p class="text-dark mb-3"><?php echo $result_get_perusahaan['0']['bahasa'] ?></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -290,26 +290,8 @@ if (isset($_GET['id_perusahaan'])) {
 
 
                                                             <div class="job-details-desc-item" style="margin:10px 0px 0px 0px;">
-                                                                <div class="float-left mr-2">
-                                                                    <i class="mdi mdi-web text-dark"></i>
-                                                                </div>
-                                                                <p class="mb-2" style="color: #3c4858">: <?php echo $result_get_perusahaan['0']['informasi_kontak'] ?></p>
+                                                                <p class="mb-2" style="color: #3c4858"><?php echo $result_get_perusahaan['0']['informasi_kontak'] ?></p>
                                                             </div>
-
-                                                            <div class="job-details-desc-item">
-                                                                <div class="float-left mr-2">
-                                                                    <i class="mdi mdi-cellphone-iphone text-dark"></i>
-                                                                </div>
-                                                                <p class="text-dark mb-2">: (+62) <?php echo $result_get_perusahaan['0']['telepon'] ?></p>
-                                                            </div>
-
-                                                            <div class="job-details-desc-item">
-                                                                <div class="float-left mr-2">
-                                                                    <i class="mdi mdi-email-variant text-dark"></i>
-                                                                </div>
-                                                                <p class="mb-2" style="color: #3c4858">: <?php echo strtolower($result_get_perusahaan['0']['email']) ?></p>
-                                                            </div>
-
 
                                                         </div>
                                                     </div>

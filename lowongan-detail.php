@@ -223,7 +223,7 @@ if (isset($_GET['id'])) {
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
                     <div class="border rounded p-4 bg-white">
                         <p class="text-muted" style="margin:0px 0px 0px 0px">Jenis Disabilitas</p>
-                        <h6 style="font-weight: bolder" class="text-info">Semua Jenis Disabilitas</h6>
+                        <h6 style="font-weight: bolder" class="text-info"><?php echo $result_get[0]['ketunaan']; ?></h6>
                     </div>
                 </div>
                 <div class="col-lg-3" style="margin:20px 0px 20px 0px">
