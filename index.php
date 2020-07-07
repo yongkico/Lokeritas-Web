@@ -821,7 +821,7 @@ $result_karyaku = json_decode($result_karyaku, true);
             <div class="container">
                 <!-- Logo container-->
                 <div>
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
                         <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
