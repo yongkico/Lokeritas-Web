@@ -148,14 +148,14 @@ if ($_POST['id']) {
                                                                     <h6 class="text-muted mt-1"><?= $result[0]['tag']; ?></h6>
                                                                 </div>
                                                             </div>
-                                                            <div class="single-post-item mb-2">
+                                                            <!-- <div class="single-post-item mb-2">
                                                                 <div class="float-left mr-3">
                                                                     <i class="mdi mdi-eye text-muted mdi-24px"></i>
                                                                 </div>
                                                                 <div class="overview-details">
                                                                     <h6 class="text-muted mt-1"><?= $result[0]['hit']; ?></h6>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="single-post-item mb-4">
                                                                 <div class="float-left mr-3">
                                                                     <i class="mdi mdi-calendar-today text-muted mdi-24px"></i>

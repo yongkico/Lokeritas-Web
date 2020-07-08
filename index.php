@@ -409,39 +409,16 @@ $result_karyaku = json_decode($result_karyaku, true);
                                 </div>
                             </div>
                             <!-- end row -->
-
-                            <!-- Pagination -->
-                            <div class="col-lg-12" style="margin-top: 30px ! important">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination job-pagination justify-content-center mb-0">
-                                        <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-                                            <?php if ($search == "") : ?>
-                                                <?php
-                                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                                    if (($limitStart == 1) && ($i != 2))  echo "...";
-                                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
-                                                    $limitStart = $i;
-                                                }
-                                                ?>
-                                            <?php else : ?>
-                                                <?php
-                                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                                    if (($limitStart == 1) && ($i != 2))  echo "...";
-                                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
-                                                    $limitStart = $i;
-                                                }
-                                                ?>
-                                            <?php endif; ?>
-                                        <?php endfor; ?>
-                                    </ul>
-                                </nav>
-                            </div>
                         </div>
                         <!-- end containar -->
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col text-center">
+                        <a href="lowongan.php" class="btn btn-info-outline">Lihat Semuanya</a>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- all jobs end -->
 
@@ -1006,39 +983,16 @@ $result_karyaku = json_decode($result_karyaku, true);
                                 </div>
                             </div>
                             <!-- end row -->
-
-                            <!-- Pagination -->
-                            <div class="col-lg-12" style="margin-top: 30px ! important">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination job-pagination justify-content-center mb-0">
-                                        <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-                                            <?php if ($search == "") : ?>
-                                                <?php
-                                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                                    if (($limitStart == 1) && ($i != 2))  echo "...";
-                                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
-                                                    $limitStart = $i;
-                                                }
-                                                ?>
-                                            <?php else : ?>
-                                                <?php
-                                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                                    if (($limitStart == 1) && ($i != 2))  echo "...";
-                                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
-                                                    $limitStart = $i;
-                                                }
-                                                ?>
-                                            <?php endif; ?>
-                                        <?php endfor; ?>
-                                    </ul>
-                                </nav>
-                            </div>
                         </div>
                         <!-- end containar -->
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col text-center">
+                        <a href="Lowongan.php" class="btn btn-info-outline">Lihat Semuanya</a>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- all jobs end -->
 
