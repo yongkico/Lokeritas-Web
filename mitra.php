@@ -57,46 +57,46 @@ $result_perusahaan = json_decode($result_get, true);
     </div>
     <!-- Loader -->
 
-    <!-- Navigation Bar-->
-    <header id="topnav" class="defaultscroll scroll-active">
+    <?php if (isset($_SESSION["login"])) : ?>
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll scroll-active">
 
-        <!-- Menu Start -->
-        <div class="container">
-            <!-- Logo container-->
-            <div>
-                <a href="#" class="logo">
-                    <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
-                    <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
-                </a>
-            </div>
-            <!--end login button-->
-            <!-- End Logo container-->
-            <div class="menu-extras">
-                <div class="menu-item">
-                    <!-- Mobile menu toggle-->
-                    <a class="navbar-toggle">
-                        <div class="lines">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+            <!-- Menu Start -->
+            <div class="container">
+                <!-- Logo container-->
+                <div>
+                    <a href="index.php" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
                     </a>
-                    <!-- End mobile menu toggle-->
                 </div>
-            </div>
+                <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
 
-            <div id="navigation">
-                <!-- Navigation Menu-->
-                <ul class="navigation-menu">
-                    <li><a href="index.php">Beranda</a></li>
-                    <li><a href="lowongan.php">Lowongan</a></li>
-                    <li><a href="tips-karir.php">Tips Karir</a></li>
-                    <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
-                    <li><a href="karyaku.php">Karyaku</a></li>
-                    <li><a href="#" style="font-size: 30px">|</a></li>
-                    <?php if (isset($_SESSION['login'])) : ?>
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="index.php">Beranda</a></li>
+                        <li><a href="lowongan.php">Lowongan</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
+                        <li><a href="#" style="font-size: 30px">|</a></li>
                         <li class="has-submenu">
-                            <a href="#"><i class="mdi mdi-account mr-2 text-success" style="color: gray; font-size:16px"></i><?= $nama_depan; ?></a><span class="menu-arrow"></span>
+                            <a href="#"><i class="mdi mdi-account mr-2  text-success" style="color: gray; font-size:16px"></i><?= $_SESSION['userdata']['nama_depan']; ?></a><span class="menu-arrow"></span>
                             <ul class="submenu">
                                 <li><a href="profile.php">Profil</a></li>
                                 <li><a href="lamaran-dikirim.php">Lamaran dikirim</a></li>
@@ -104,22 +104,72 @@ $result_perusahaan = json_decode($result_get, true);
                                 <li><a href="logout.php">Logout</a></li>
                             </ul>
                         </li>
-                    <?php else : ?>
+                        <li class="has-submenu">
+                        </li>
+                    </ul>
+                    <!--end navigation menu-->
+                </div>
+                <!--end navigation-->
+            </div>
+            <!--end container-->
+            <!--end end-->
+        </header>
+        <!--end header-->
+        <!-- Navbar End -->
+    <?php else : ?>
+        <!-- Navigation Bar-->
+        <header id="topnav" class="defaultscroll scroll-active">
+
+            <!-- Menu Start -->
+            <div class="container">
+                <!-- Logo container-->
+                <div>
+                    <a href="index.php" class="logo">
+                        <img src="images/logo-lokeritas2.png" alt="" class="logo-light" height="24" />
+                        <img src="images/logo-lokeritas1.png" alt="" class="logo-dark" height="24" />
+                    </a>
+                </div>
+                <!-- <div class="buy-button">
+                <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-cloud-upload"></i> Post a Job</a>
+            </div> -->
+                <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                        <li><a href="lowongan.php">Lowongan</a></li>
+                        <li><a href="tips-karir.php">Tips Karir</a></li>
+                        <li><a href="daftar-perusahaan.php">Daftar Perusahaan</a></li>
+                        <li><a href="karyaku.php">Karyaku</a></li>
                         <div class="buy-button">
-                            <a href="login.php" class="btn btn-primary" style="margin-right: 10px ! important">Masuk</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanMasuk">Masuk</a>
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#pilihanDaftar">Daftar</a>
                         </div>
-                    <?php endif; ?>
-                </ul>
-                <!--end navigation menu-->
+                    </ul>
+                    <!--end navigation menu-->
+                </div>
+                <!--end navigation-->
             </div>
-            <!--end navigation-->
-        </div>
-        <!--end container-->
-        <!--end end-->
-    </header>
-    <!--end header-->
-    <!-- Navbar End -->
+            <!--end container-->
+            <!--end end-->
+        </header>
+        <!--end header-->
+        <!-- Navbar End -->
+    <?php endif; ?>
 
     <!-- Start home -->
     <section class="bg-half page-next-level" style="padding: 120px 0px 50px 0px;background: url('images/bg-2.jpg') center center;">
@@ -144,8 +194,8 @@ $result_perusahaan = json_decode($result_get, true);
                 <?php foreach ($result_perusahaan as $row) : ?>
                     <div class="col-lg-2 col-md-6 mb-4 pb-2">
                         <div class="blog position-relative overflow-hidden shadow rounded">
-                            <div class="position-relative overflow-hidden" data-toggle="tooltip" title="<?= $row['nama_perusahaan'] ?>">
-                                <img src="<?= $row['logo'] ?>" style="width: 90%; padding-top:20px;" alt="" class="img-fluid mx-auto d-block">
+                            <div class="position-relative overflow-hidden" data-toggle="tooltip" title="<?= $row['nama_perusahaan'] ?>" style="height:150px ! important">
+                                <img src="<?= $row['logo'] ?>" style="width: 90%; padding:10px;" alt="" class="img-fluid mx-auto d-block">
                             </div>
                         </div>
                     </div>
@@ -155,7 +205,41 @@ $result_perusahaan = json_decode($result_get, true);
     </section>
     <!-- blog end -->
     <!-- blog end -->
+    
+    <!-- The Modal Login -->
+    <div class="modal" id="pilihanMasuk">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Masuk</h4>
+                    <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
+                </div>
 
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang
+                                    Disabilitas Pencari Kerja</p>
+                                <p style="text-align: center;margin-top:30px"><a href="login.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                </p>
+                            </div>
+                            <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
+                                <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja
+                                    Penyandang Disabilitas</p>
+                                <p style="text-align: center;margin-top:30px"><a href="http://lokeritas.xyz/company" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <!-- The Modal Daftar -->
     <div class="modal" id="pilihanDaftar">
         <div class="modal-dialog modal-lg">
@@ -219,8 +303,8 @@ $result_perusahaan = json_decode($result_get, true);
                     <p class="text-white mb-4 footer-list-title f-17">Penyedia Kerja</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="daftar-penyedia-kerja.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mendaftar</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right" disabled></i> Lihat Daftar Kandidat</a></li>
-                        <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-right"></i> Pasang Iklan Lowongan</a></li>
+                        <li><a href="http://www.lokeritas.xyz/company" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tambah Lowongan Pekerjaan</a></li>
+                        <li><a href="http://www.lokeritas.xyz/company" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lihat Lamaran Masuk</a></li>
                     </ul>
                 </div>
 
