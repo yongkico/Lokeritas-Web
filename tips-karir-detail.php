@@ -380,59 +380,126 @@ if (isset($_GET['id'])) {
 
                     </div>
 
-                    <div class="rounded border mt-4 p-4">
-                        <?php if (isset($success)) {
-                            if ($success == true) {
-                                echo '<p class="text-center" style="color: red; font-weight: bold;">Komentar anda berhasil dikirim</p>
+
+                    <?php if (isset($_SESSION["login"])) : ?>
+
+                        <div class="rounded border mt-4 p-4">
+                            <?php if (isset($success)) {
+                                if ($success == true) {
+                                    echo '<p class="text-center" style="color: red; font-weight: bold;">Komentar anda berhasil dikirim</p>
                                 ';
-                            } else {
-                                echo '<p class="text-center" style="color: red; font-weight: bold;">Komentar anda gagal dikirim, harap verifikasi captcha</p>
+                                } else {
+                                    echo '<p class="text-center" style="color: red; font-weight: bold;">Komentar anda gagal dikirim, harap verifikasi captcha</p>
                                 ';
-                            }
-                        } ?>
+                                }
+                            } ?>
 
-                        <form name="contact-form" method="post" action="tips-karir-detail.php?id=<?php echo $_GET['id']; ?>">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group blog-details-form">
-                                        <i class="mdi mdi-account text-muted f-17"></i>
-                                        <input name="nama" id="name" type="text" class="form-control blog-details" placeholder="Nama" required="">
+                            <form name="contact-form" method="post" action="tips-karir-detail.php?id=<?php echo $_GET['id']; ?>">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-account text-muted f-17"></i>
+                                            <?php
+                                            $first = $_SESSION['userdata']['nama_depan'];
+                                            $last = $_SESSION['userdata']['nama_belakang'];
+                                            $email = $_SESSION['userdata']['email'];
+                                            ?>
+                                            <input name="nama" id="name" type="text" class="form-control blog-details" value="<?php echo '' . $first . ' ' . $last . '
+                                                                                                                                 ' ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-email text-muted f-17"></i>
+                                            <input name="email" id="email" type="email" class="form-control blog-details" value="<?php echo $email;
+                                                                                                                                    ?>" readonly>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group blog-details-form">
-                                        <i class="mdi mdi-email text-muted f-17"></i>
-                                        <input name="email" id="email" type="email" class="form-control blog-details" placeholder="Email" required="">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-web text-muted f-17"></i>
+                                            <input name="website" id="url" type="url" class="form-control blog-details" placeholder="Website" required="">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group blog-details-form">
-                                        <i class="mdi mdi-web text-muted f-17"></i>
-                                        <input name="website" id="url" type="url" class="form-control blog-details" placeholder="Website" required="">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-comment-processing text-muted f-17"></i>
+                                            <textarea name="komentar" id="comments" rows="4" class="form-control blog-details" placeholder="Komentar" required=""></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group blog-details-form">
-                                        <i class="mdi mdi-comment-processing text-muted f-17"></i>
-                                        <textarea name="komentar" id="comments" rows="4" class="form-control blog-details" placeholder="Komentar" required=""></textarea>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
+                                <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <!-- /form -->
+                            </form>
+                            <!-- /form -->
 
-                    </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="rounded border mt-4 p-4">
+                            <?php if (isset($success)) {
+                                if ($success == true) {
+                                    echo '<p class="text-center" style="color: red; font-weight: bold;">Komentar anda berhasil dikirim</p>
+                                ';
+                                } else {
+                                    echo '<p class="text-center" style="color: red; font-weight: bold;">Komentar anda gagal dikirim, harap verifikasi captcha</p>
+                                ';
+                                }
+                            } ?>
+
+                            <form name="contact-form" method="post" action="tips-karir-detail.php?id=<?php echo $_GET['id']; ?>">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-account text-muted f-17"></i>
+                                            <input name="nama" id="name" type="text" class="form-control blog-details" value="dsd" placeholder="Nama" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-email text-muted f-17"></i>
+                                            <input name="email" id="email" type="email" class="form-control blog-details" placeholder="Email" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-web text-muted f-17"></i>
+                                            <input name="website" id="url" type="url" class="form-control blog-details" placeholder="Website" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group blog-details-form">
+                                            <i class="mdi mdi-comment-processing text-muted f-17"></i>
+                                            <textarea name="komentar" id="comments" rows="4" class="form-control blog-details" placeholder="Komentar" required=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- /form -->
+
+                        </div>
+                    <?php endif ?>
+
+
                 </div>
             </div>
         </div>
