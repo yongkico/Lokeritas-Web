@@ -1,5 +1,8 @@
 <?php
 session_start();
+require("functions.php");
+
+
 if (isset($_SESSION['login'])) {
     $nama_depan = $_SESSION['userdata']['nama_depan'];
 }

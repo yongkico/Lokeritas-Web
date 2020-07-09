@@ -1,5 +1,6 @@
 <?php
 session_start();
+require("functions.php");
 
 if (isset($_SESSION['login'])) {
     $user_id = $_SESSION['userdata']['user_id'];
@@ -307,12 +308,17 @@ if (isset($_POST['send'])) {
 
             <?php if ($keyword !== "") : ?>
                 <div class="row">
-                    <i class="ml-5">Pencarian dengan kata kunci <strong>"<?= $keyword; ?>"</strong></i>
+                    <i class="ml-5">Pencarian dengan kata kunci <strong>"<?= $keyword; ?>"</strong> ...</i>
                 </div>
             <?php else : ?>
                 <div class="row"></div>
             <?php endif; ?>
 
+            <?php if (empty($karyaku)) : ?>
+                <div class="row">
+                    <i class="mx-auto mt-5 alert alert-warning">Karyaku tidak ada !</i>
+                </div>
+            <?php endif; ?>
             <div class="row">
                 <?php foreach ($karyaku as $row) : ?>
                     <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
@@ -553,7 +559,7 @@ if (isset($_POST['send'])) {
                     <p class="text-white mb-4 footer-list-title f-17">Penyedia Kerja</p>
                     <ul class="list-unstyled footer-list">
                         <li><a href="daftar-penyedia-kerja.php" class="text-foot"><i class="mdi mdi-chevron-right"></i> Mendaftar</a></li>
-                        <li><a href="http://www.lokeritas.xyz/company" class="text-foot"><i class="mdi mdi-chevron-right" ></i> Tambah Lowongan Pekerjaan</a></li>
+                        <li><a href="http://www.lokeritas.xyz/company" class="text-foot"><i class="mdi mdi-chevron-right"></i> Tambah Lowongan Pekerjaan</a></li>
                         <li><a href="http://www.lokeritas.xyz/company" class="text-foot"><i class="mdi mdi-chevron-right"></i> Lihat Lamaran Masuk</a></li>
                     </ul>
                 </div>
