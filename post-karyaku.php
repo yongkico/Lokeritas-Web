@@ -288,7 +288,7 @@ if (isset($_FILES['file-img']['tmp_name'])) {
                                         <i class="glyphicon glyphicon-download-alt"></i>
                                         <p>Pilih gambar yang diinginkan atau tarik kesini. (Max: 2 MB)</p>
                                     </div>
-                                    <input type="file" name="file-img" class="dropzone" accept="image/*" required="" multiple="multiple">
+                                    <input type="file" name="file-img" class="dropzone" accept="image/*" required="">
                                 </div>
                             </div>
                         </div>
