@@ -44,7 +44,7 @@ if (isset($_FILES['file-img']['tmp_name'])) {
         $tag = $_POST['tag'];
         $deskripsi = $_POST['deskripsi'];
         $gambar = $fname;
-        $status = '1';
+        $status = '0';
         $komen = $_POST['komen'];
 
         $curl = curl_init();
@@ -57,7 +57,7 @@ if (isset($_FILES['file-img']['tmp_name'])) {
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "id_user=$id_user&judul=$judul&tag=$tag&deskripsi=$deskripsi&komen=$komen&gambar=$gambar&status=$status",
+            CURLOPT_POSTFIELDS => "id_user=$id_user&judul=$judul&tag=$tag&deskripsi=$deskripsi&komen=$komen&gambar=$gambar&statuskaryaku=$status",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/x-www-form-urlencoded"
             ),
