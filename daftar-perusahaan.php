@@ -258,7 +258,7 @@ $daftar_perusahaan = array_slice($result_perusahaan, $limitStart, $limit);
                                 </div>
                                 <div class="content p-4 bg-light">
                                     <h5><?= $row['nama_perusahaan']; ?></h5>
-                                    <p class="text-muted" style="text-transform: capitalize"><?= $row['sektor_perusahaan']; ?> | <?= $row['alamat']; ?></p>
+                                    <p class="text-muted" style="text-transform: capitalize"><?= $row['sektor_perusahaan']; ?> | <?= $row['kota']; ?></p>
                                     <a href="detail-perusahaan.php?id_perusahaan=<?= $row['id_perusahaan']; ?>" class="btn btn-info">Selengkapnya <i class="mdi mdi-chevron-right"></i></a>
                                 </div>
                             </div>

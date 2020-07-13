@@ -386,7 +386,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div>
-                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['kota'] . '
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -471,7 +471,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
-                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['kota'] . '
                                                             </p>
                                                         </div>
                                                     </div>
@@ -540,7 +540,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div>
-                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['kota'] . '
                                                                     </p>
                                                                 </div>
                                                             </div>

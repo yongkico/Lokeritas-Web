@@ -11,55 +11,6 @@ if (isset($_SESSION['login'])) {
 $site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
 $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
-
-if (isset($_POST['send'])) {
-    if (isset($_POST['g-recaptcha-response'])) {
-        $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
-        $response = @file_get_contents($api_url);
-        $data = json_decode($response, true);
-
-        if ($data['success']) {
-            $comment = $_POST['komentar'];
-            $success = true;
-
-            $id_karyaku = $_POST['id'];
-            $id_user = $user_id;
-            $komentar = $_POST['komentar'];
-
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://lokeritas.xyz/api-v1/karyaku_comments.php",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => "id_karyaku=$id_karyaku&id_user=$id_user&komentar=$komentar",
-                CURLOPT_HTTPHEADER => array(
-                    "Content-Type: application/x-www-form-urlencoded"
-                ),
-            ));
-
-            $formCom = curl_exec($curl);
-
-            curl_close($curl);
-
-            echo '<script>alert("Komentar Berhasil dikirim");</script>';
-        } else {
-            echo '<script>alert("Komentar Gagal dikirim");</script>';
-        }
-    } else {
-        echo '<script>alert("Komentar Gagal dikirim");</script>';
-    }
-}
-
-
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -76,6 +27,7 @@ if (isset($_POST['send'])) {
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <script src="js/sweetalert2.all.min.js"></script>
 
     <!--Material Icon -->
     <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
@@ -106,6 +58,56 @@ if (isset($_POST['send'])) {
         </div>
     </div>
     <!-- Loader -->
+    <?php
+    if (isset($_POST['send'])) {
+        if (isset($_POST['g-recaptcha-response'])) {
+            $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response=' . $_POST['g-recaptcha-response'];
+            $response = @file_get_contents($api_url);
+            $data = json_decode($response, true);
+
+            if ($data['success']) {
+                $comment = $_POST['komentar'];
+                $success = true;
+
+                $id_karyaku = $_POST['id'];
+                $id_user = $user_id;
+                $komentar = $_POST['komentar'];
+
+                $curl = curl_init();
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => "http://lokeritas.xyz/api-v1/karyaku_comments.php",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => "id_karyaku=$id_karyaku&id_user=$id_user&komentar=$komentar",
+                    CURLOPT_HTTPHEADER => array(
+                        "Content-Type: application/x-www-form-urlencoded"
+                    ),
+                ));
+
+                $formCom = curl_exec($curl);
+
+                curl_close($curl);
+
+                echo '<script>
+                    swal("Komentar berhasil dikirim!")
+                </script>';
+            } else {
+                echo '<script>
+                    swal("Komentar gagal dikirim", "harap lengkapi reChapta !", "warning")
+                </script>';
+            }
+        } else {
+            echo '<script>
+                    swal("Komentar gagal dikirim!")
+                </script>';
+        }
+    }
+    ?>
 
     <?php if (isset($_SESSION["login"])) : ?>
         <!-- Navigation Bar-->

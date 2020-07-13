@@ -1,7 +1,6 @@
 <?php
 session_start();
 require("functions.php");
-
 if (isset($_POST["btn_informasi_pribadi"])) {
 
     $id_user = $_POST['id_user'];
@@ -32,8 +31,8 @@ if (isset($_POST["btn_informasi_pribadi"])) {
     $kota = $_POST['kota'];
     $provinsi = $_POST['provinsi'];
     $pw = '';
-    $password = mysqli_real_escape_string($conn, $_POST["password"]);
-    $password2 = mysqli_real_escape_string($conn, $_POST["password2"]);
+    $password = $_POST["password"];
+    $password2 = $_POST["password2"];
 
 
     //set mencari pekerjaan
@@ -108,7 +107,10 @@ if (isset($_POST["btn_informasi_pribadi"])) {
     $pesan = json_decode($result, true);
 
     if ($pesan['message'] == 'Berhasil') {
-        header('location:profile.php');
+        echo "<script>
+                alert('Informasi pribadi berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
     } else if ($pesan['message'] == 'unavailable') {
         echo '<script>
                 alert("Terjadi Kesalahan !");
@@ -194,7 +196,10 @@ if (isset($_POST["btn_rincian_disabilitas"])) {
     $pesan = json_decode($result, true);
 
     if ($pesan['message'] == 'Berhasil') {
-        header('location:profile.php');
+        echo "<script>
+                alert('Rincian disabilitas berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
     } else if ($pesan['message'] == 'unavailable') {
         echo '<script>
                 alert("Terjadi Kesalahan !");
@@ -299,7 +304,10 @@ if (isset($_POST["btn_pendidikan_terakhir"])) {
     $pesan = json_decode($result, true);
 
     if ($pesan['message'] == 'Berhasil') {
-        header('location:profile.php');
+        echo "<script>
+                alert('Pendidikan terakhir berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
     } else if ($pesan['message'] == 'unavailable') {
         echo '<script>
                 alert("Terjadi Kesalahan !");
@@ -420,7 +428,10 @@ if (isset($_POST["btn_pengalaman_kerja"])) {
     $pesan = json_decode($result, true);
 
     if ($pesan['message'] == 'Berhasil') {
-        header('location:profile.php');
+        echo "<script>
+                alert('Pengalaman bekerja berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
     } else if ($pesan['message'] == 'unavailable') {
         echo '<script>
                 alert("Terjadi Kesalahan !");
@@ -429,7 +440,10 @@ if (isset($_POST["btn_pengalaman_kerja"])) {
 }
 
 if (isset($_POST["btn_keterampilan"])) {
-    header('location:profile.php');
+    echo "<script>
+                alert('Keterampilan berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
 }
 
 if (isset($_POST['btn_karir'])) {
@@ -503,7 +517,10 @@ if (isset($_POST['btn_karir'])) {
     $pesan = json_decode($result, true);
 
     if ($pesan['message'] == 'Berhasil') {
-        header('location:profile.php');
+        echo "<script>
+                alert('Karir yang diminati berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
     } else if ($pesan['message'] == 'unavailable') {
         echo '<script>
                 alert("Terjadi Kesalahan !");
@@ -640,7 +657,10 @@ if (isset($_POST['btn_berkas'])) {
         $pesan = json_decode($result, true);
 
         if ($pesan['message'] == 'Berhasil') {
-            header('location:profile.php');
+            echo "<script>
+                alert('Unggah berkas berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
         } else if ($pesan['message'] == 'unavailable') {
             echo '<script>
                     alert("Terjadi Kesalahan !");
@@ -701,7 +721,10 @@ if (isset($_POST['btn_berkas'])) {
         $pesan = json_decode($result, true);
 
         if ($pesan['message'] == 'Berhasil') {
-            header('location:profile.php');
+            echo "<script>
+                alert('Unggah berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
         } else if ($pesan['message'] == 'unavailable') {
             echo '<script>
                     alert("Terjadi Kesalahan !");
@@ -824,7 +847,10 @@ if (isset($_POST['btn_foto'])) {
     $pesan = json_decode($result, true);
 
     if ($pesan['message'] == 'Berhasil') {
-        header('location:profile.php');
+        echo "<script>
+                alert('Foto profil berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
     } else if ($pesan['message'] == 'unavailable') {
         echo '<script>
                     alert("Terjadi Kesalahan !");

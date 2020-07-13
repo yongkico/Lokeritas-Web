@@ -158,6 +158,7 @@ if (isset($_SESSION["login"])) {
 
             <!-- Bootstrap core CSS -->
             <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+            <script src="js/sweetalert2.all.min.js"></script>
 
             <!--Material Icon -->
             <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
