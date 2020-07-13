@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (isset($_SESSION['login'])) {
+    $user_id = $_SESSION['userdata']['user_id'];
+}
+
+
 $site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
 $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
@@ -14,7 +20,7 @@ if (isset($_POST['send'])) {
             $success = true;
 
             $id_karyaku = $_POST['id'];
-            $id_user = '92';
+            $id_user = $user_id;
             $komentar = $_POST['komentar'];
 
             $curl = curl_init();
@@ -132,6 +138,12 @@ $result_karyaku = curl_exec($curl_get);
 curl_close($curl_get);
 
 $result_karyaku = json_decode($result_karyaku, true);
+foreach ($result_karyaku as $row) {
+    if ($row['statuskaryaku'] == '1') {
+        $karyaku_diterima[] = $row;
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -536,7 +548,7 @@ $result_karyaku = json_decode($result_karyaku, true);
 
                 <div class="row">
                     <?php $i = 0;
-                    foreach ($result_karyaku as $row) :  if ($i == 3) {
+                    foreach ($karyaku_diterima as $row) :  if ($i == 3) {
                             break;
                         } ?>
                         <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
@@ -654,7 +666,7 @@ $result_karyaku = json_decode($result_karyaku, true);
         </div>
 
 
-      
+
 
         <!-- DOWNLOAD APP START -->
         <section class="section pb-0" style="background: url('images/image.jpg') center center;">
@@ -994,7 +1006,7 @@ $result_karyaku = json_decode($result_karyaku, true);
         </section>
         <!-- blog end -->
 
-     
+
 
         <!-- blog start -->
         <section class="section">
@@ -1012,7 +1024,7 @@ $result_karyaku = json_decode($result_karyaku, true);
 
                 <div class="row">
                     <?php $i = 0;
-                    foreach ($result_karyaku as $row) :  if ($i == 3) {
+                    foreach ($karyaku_diterima as $row) :  if ($i == 3) {
                             break;
                         } ?>
                         <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
