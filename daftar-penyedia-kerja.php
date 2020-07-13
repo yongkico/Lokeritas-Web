@@ -48,7 +48,7 @@ if (isset($_POST["btn_daftar"])) {
 
     if ($pesan['message'] == 'Berhasil') {
         echo "<script>
-                alert('Daftar berhasil, silahkan masuk untuk mendapatkan fitur Admin Perusahaan !');
+                alert('Daftar berhasil, silahkan konfirmasi email untuk masuk dan mendapatkan fitur Admin Perusahaan !');
                 document.location.href ='lokeritas.xyz/company/login.php';
             </script>";
         exit;

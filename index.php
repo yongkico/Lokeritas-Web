@@ -519,74 +519,9 @@ $result_karyaku = json_decode($result_karyaku, true);
         </section>
         <!-- blog end -->
 
-        <!-- testimonial start -->
-        <section class="section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <div class="section-title text-center mb-4 pb-2">
-                            <h4 class="title title-line pb-5">Testimonial Pengguna</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="row pt-4">
-                    <div class="col-lg-12">
-                        <div id="owl-testi" class="owl-carousel owl-theme">
-                            <div class="item testi-box rounded p-4 mr-3 ml-2 mb-4 bg-light position-relative">
-                                <p class="text-muted mb-5">Berkat lokeritas, saya telah menemukan pekerjaan yang tepat
-                                    sesuai dengan keahlian yang saya miliki.</p>
-                                <div class="clearfix">
-                                    <div class="testi-img float-left mr-3">
-                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
-                                    </div>
-                                    <h5 class="f-18 pt-1">Budi Purba</h5>
-                                    <p class="text-muted mb-0">Penjahit</p>
-                                    <div class="testi-icon">
-                                        <i class="mdi mdi-format-quote-open display-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item testi-box rounded p-4 mr-3 ml-2 bg-light position-relative">
-                                <p class="text-muted mb-5">Lokeritas menawarkan mekanisme sistem yang tepat, membuat saya
-                                    dapat langsung melamar pekerjaan secara online </p>
-                                <div class="clearfix">
-                                    <div class="testi-img float-left mr-3">
-                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
-                                    </div>
-                                    <h5 class="f-18 pt-1">Silvana Syafitri</h5>
-                                    <p class="text-muted mb-0">Customer Service</p>
-                                    <div class="testi-icon">
-                                        <i class="mdi mdi-format-quote-open display-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item testi-box rounded p-4 mr-3 ml-2 bg-light position-relative">
-                                <p class="text-muted mb-5">Menurut saya lokeritas adalah suatu pilihan yang tepat jika ingin
-                                    mendapatkan pekerjaan secara cepat</p>
-                                <div class="clearfix">
-                                    <div class="testi-img float-left mr-3">
-                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
-                                    </div>
-                                    <h5 class="f-18 pt-1">Perry Suhendra</h5>
-                                    <p class="text-muted mb-0">Desain Grafis</p>
-                                    <div class="testi-icon">
-                                        <i class="mdi mdi-format-quote-open display-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- testimonial end -->
-
 
         <!-- blog start -->
-        <section class="section bg-light">
+        <section class="section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
@@ -719,43 +654,7 @@ $result_karyaku = json_decode($result_karyaku, true);
         </div>
 
 
-        <!-- klien-->
-        <section class="section bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="container mt-100 mt-60 bg" style="margin-top: 0px ! important">
-                        <div class="row justify-content-center">
-                            <div class="col-12">
-                                <div class="section-title text-center mb-4 pb-2">
-                                    <h4 class="title title-line pb-5">Klien Kami</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row align-items-center">
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/1.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/2.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/3.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/4.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/1.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/2.png" height="50" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      
 
         <!-- DOWNLOAD APP START -->
         <section class="section pb-0" style="background: url('images/image.jpg') center center;">
@@ -1095,73 +994,10 @@ $result_karyaku = json_decode($result_karyaku, true);
         </section>
         <!-- blog end -->
 
-        <!-- testimonial start -->
-        <section class="section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <div class="section-title text-center mb-4 pb-2">
-                            <h4 class="title title-line pb-5">Testimonial Pengguna</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="row pt-4">
-                    <div class="col-lg-12">
-                        <div id="owl-testi" class="owl-carousel owl-theme">
-                            <div class="item testi-box rounded p-4 mr-3 ml-2 mb-4 bg-light position-relative">
-                                <p class="text-muted mb-5">Berkat lokeritas, saya telah menemukan pekerjaan yang tepat
-                                    sesuai dengan keahlian yang saya miliki.</p>
-                                <div class="clearfix">
-                                    <div class="testi-img float-left mr-3">
-                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
-                                    </div>
-                                    <h5 class="f-18 pt-1">Budi Purba</h5>
-                                    <p class="text-muted mb-0">Penjahit</p>
-                                    <div class="testi-icon">
-                                        <i class="mdi mdi-format-quote-open display-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item testi-box rounded p-4 mr-3 ml-2 bg-light position-relative">
-                                <p class="text-muted mb-5">Lokeritas menawarkan mekanisme sistem yang tepat, membuat saya
-                                    dapat langsung melamar pekerjaan secara online </p>
-                                <div class="clearfix">
-                                    <div class="testi-img float-left mr-3">
-                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
-                                    </div>
-                                    <h5 class="f-18 pt-1">Silvana Syafitri</h5>
-                                    <p class="text-muted mb-0">Customer Service</p>
-                                    <div class="testi-icon">
-                                        <i class="mdi mdi-format-quote-open display-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item testi-box rounded p-4 mr-3 ml-2 bg-light position-relative">
-                                <p class="text-muted mb-5">Menurut saya lokeritas adalah suatu pilihan yang tepat jika ingin
-                                    mendapatkan pekerjaan secara cepat</p>
-                                <div class="clearfix">
-                                    <div class="testi-img float-left mr-3">
-                                        <img src="https://via.placeholder.com/400X400//88929f/5a6270C/O https://placeholder.com/" height="64" alt="" class="rounded-circle shadow">
-                                    </div>
-                                    <h5 class="f-18 pt-1">Perry Suhendra</h5>
-                                    <p class="text-muted mb-0">Desain Grafis</p>
-                                    <div class="testi-icon">
-                                        <i class="mdi mdi-format-quote-open display-2"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- testimonial end -->
+     
 
         <!-- blog start -->
-        <section class="section bg-light">
+        <section class="section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12">
@@ -1291,47 +1127,6 @@ $result_karyaku = json_decode($result_karyaku, true);
                 </div>
             </div>
         </div>
-
-
-
-
-        <!-- klien-->
-        <section class="section bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="container mt-100 mt-60 bg" style="margin-top: 0px ! important">
-                        <div class="row justify-content-center">
-                            <div class="col-12">
-                                <div class="section-title text-center mb-4 pb-2">
-                                    <h4 class="title title-line pb-5">Klien Kami</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row align-items-center">
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/1.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/2.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/3.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/4.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/1.png" height="50" alt="">
-                            </div>
-                            <div class="col-lg-2 col-md-4 col-6 mt-4 pt-2 text-center">
-                                <img src="images/clients/2.png" height="50" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- DOWNLOAD APP START -->
         <section class="section pb-0" style="background: url('images/image.jpg') center center;">
