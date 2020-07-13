@@ -20,26 +20,9 @@ if (isset($_POST["masuk"])) {
     curl_close($curl);
 
     $pesan = json_decode($result, true);
+    
 
-    if($pesan['data']['active'] == '0'){
-        echo '<script>
-                alert("Silahkan konfirmasi email terlebih dahulu untuk masuk !");
-                document.location.href ="login.php";
-            </script>';
-        exit;
-    }
-
-    if ($pesan['message'] == 'Berhasil') {
-        $_SESSION['login'] = true;
-        $_SESSION['userdata'] = [
-            "user_id" => $pesan['data']['id_user'],
-            "email" => $pesan['data']['email'],
-            "nama_depan" => $pesan['data']['nama_depan'],
-            "nama_belakang" => $pesan['data']['nama_belakang'],
-        ];
-        header('location: index.php');
-        exit;
-    } else {
+    if ($pesan['message'] == 'gagal') {
         echo '<div style="position: absolute;width:100%">
         <div class="row">
             <div class="col-lg-12">
@@ -51,7 +34,26 @@ if (isset($_POST["masuk"])) {
                 </div>
             </div>
         </div>
-    </div>';
+        </div>';
+        
+    } else {
+        if ($pesan['data']['active'] == '0') {
+            echo '<script>
+                alert("Silahkan konfirmasi email terlebih dahulu untuk masuk !");
+                document.location.href ="login.php";
+            </script>';
+            exit;
+        }else{
+            header('location: index.php');
+            $_SESSION['login'] = true;
+            $_SESSION['userdata'] = [
+                "user_id" => $pesan['data']['id_user'],
+                "email" => $pesan['data']['email'],
+                "nama_depan" => $pesan['data']['nama_depan'],
+                "nama_belakang" => $pesan['data']['nama_belakang'],
+            ];
+            exit;
+        }        
     }
 }
 

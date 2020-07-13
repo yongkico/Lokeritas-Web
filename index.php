@@ -374,7 +374,7 @@ $result_karyaku = json_decode($result_karyaku, true);
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div>
-                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['kota'] . '
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -847,7 +847,7 @@ $result_karyaku = json_decode($result_karyaku, true);
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div>
-                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['alamat'] . '
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['kota'] . '
                                                                     </p>
                                                                 </div>
                                                             </div>

@@ -298,11 +298,16 @@ $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret
                 $result_karyaku = FILTER_ARRAY_VALUES_REGEXP("/$keyword/i", $search);
             }
 
+            foreach ($result_karyaku as $row) {
+                if ($row['statuskaryaku'] == '1') {
+                    $karyaku_diterima[] = $row;
+                }
+            }
 
-            $jumlahData = count($result_karyaku);
+            $jumlahData = count($karyaku_diterima);
             $jumlahHalaman = ceil($jumlahData / $limit);
 
-            $karyaku = array_slice($result_karyaku, $limitStart, $limit);
+            $karyaku = array_slice($karyaku_diterima, $limitStart, $limit);
 
 
 
@@ -321,8 +326,6 @@ $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret
                     <i class="mx-auto mt-5 alert alert-warning">Karyaku tidak ada !</i>
                 </div>
             <?php endif; ?>
-
-            <?php var_dump($karyaku) ?>
             <div class="row">
                 <?php foreach ($karyaku as $row) : ?>
                     <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
@@ -342,7 +345,6 @@ $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret
                             </div>
                         </div>
                     </div>
-                    <!--end col-->
                 <?php endforeach; ?>
                 <!--end col-->
 
