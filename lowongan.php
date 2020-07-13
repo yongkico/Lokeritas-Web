@@ -348,7 +348,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                             $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
                                             $nama_perusahaan = strtolower($row['nama_perusahaan']);
                                             $api_bidang = strtolower($row['sektor_perusahaan']);
-                                            $api_lokasi = strtolower($row['alamat']);
+                                            $api_lokasi = strtolower($row['kota']);
 
                                             if ($expired <= $currentdate) {
                                                 $tutup = 'Sudah Tutup';
