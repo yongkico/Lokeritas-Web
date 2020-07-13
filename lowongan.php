@@ -217,7 +217,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                     <div class="registration-form-box">
                                         <i class="fa fa-list-alt"></i>
                                         <select id="select-category" class="demo-default" name="bidang" required="">
-                                            <option value="">Bidang</option>
+                                            <option value=" ">Semua Bidang</option>
                                             <option value="Advertising, Printing & Media">Advertising, Printing & Media</option>
                                             <option value="Asuransi">Asuransi</option>
                                             <option value="Badan Usaha Milik Negara (BUMN)">Badan Usaha Milik Negara (BUMN)</option>
@@ -335,6 +335,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
 
                                 <div class="col-lg-12">
                                     <?php if (isset($_POST['cari'])) : ?>
+                                        <?php $counter = 0; ?>
                                         <?php foreach ($daftar_tipskarir as $row) : ?>
                                             <?php
 
@@ -357,6 +358,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
 
                                             if (preg_match("/$cari/i", $nama_pekerjaan) || preg_match("/$cari/i", $nama_perusahaan)) {
                                                 if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
+                                                    $counter++;
                                                     echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                     <div class="p-4">
                                                         <div class="row align-items-center">
@@ -417,8 +419,14 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
 
                                             ?>
                                         <?php endforeach; ?>
+                                        <?php if (!$counter) : ?>
+                                            <div class="row">
+                                                <i class="mx-auto mt-5 alert alert-warning">Pencarian tidak ditemukan</i>
+                                            </div>
+                                        <?php endif; ?>
 
                                     <?php elseif (isset($_POST['q'])) : ?>
+                                        <?php $counter = 0; ?>
                                         <?php foreach ($daftar_tipskarir as $row) : ?>
                                             <?php
                                             $start_date = $row['tutup'];
@@ -434,8 +442,8 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                 $tutup =  date("d F Y", strtotime($row['tutup']));
                                             }
 
-
                                             if (preg_match("/$q/i", $nama_pekerjaan) || preg_match("/$q/i", $nama_perusahaan)) {
+                                                $counter++;
                                                 echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                             <div class="p-4">
                                                 <div class="row align-items-center">
@@ -491,8 +499,11 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                             }
                                             ?>
                                         <?php endforeach; ?>
-
-
+                                        <?php if (!$counter) : ?>
+                                            <div class="row">
+                                                <i class="mx-auto mt-5 alert alert-warning">Pencarian tidak ditemukan</i>
+                                            </div>
+                                        <?php endif; ?>
                                     <?php else : ?>
                                         <?php foreach ($daftar_tipskarir as $row) : ?>
                                             <?php

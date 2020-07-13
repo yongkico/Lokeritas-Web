@@ -299,7 +299,7 @@ $result_karyaku = json_decode($result_karyaku, true);
                                                 </div>
                                                 <div class="col-lg-3 col-md-6">
                                                     <div class="registration-form-box">
-                                                        <button type="submit" class="btn btn-primary" style="width: 100%">Cari </button>
+                                                        <button type="submit" class="btn btn-primary" style="width: 100%" formtarget="_blank">Cari </button>
                                                     </div>
                                                 </div>
                                             </div>

@@ -143,7 +143,7 @@ if (isset($_POST["btn_daftar"])) {
                                             <div class="form-group position-relative">
                                                 <label>Telepon <span class="text-danger">*</span></label>
                                                 <input type="text" name="telepon" class="form-control" placeholder="Telepon" maxlength="13" required onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" />
-                                                
+
                                             </div>
                                         </div>
 
