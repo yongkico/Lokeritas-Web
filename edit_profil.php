@@ -59,7 +59,6 @@ if (isset($_POST["btn_informasi_pribadi"])) {
 
         }
         //enkripsi password
-        $password = password_hash($password, PASSWORD_DEFAULT);
         $pw = $password;
     }
 
