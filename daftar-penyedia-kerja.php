@@ -12,8 +12,6 @@ if (isset($_POST["btn_daftar"])) {
     $alamat = $_POST['alamat'];
     $kab_kota = $_POST['kab_kota'];
 
-    $alamat_lengkap = $alamat . ', ' . $kab_kota . ', Sumatera Utara';
-
     if ($password !== $password2) {
         echo "
                 <script>
@@ -33,7 +31,8 @@ if (isset($_POST["btn_daftar"])) {
         "password" => $password,
         "sektor_perusahaan" => $sektor,
         "telepon" => $telepon,
-        "alamat" => $alamat_lengkap
+        "alamat" => $alamat,
+        "kota" => $kab_kota
     );
 
     $curl = curl_init();
@@ -48,7 +47,11 @@ if (isset($_POST["btn_daftar"])) {
 
 
     if ($pesan['message'] == 'Berhasil') {
-        header('location:login.php');
+        echo "<script>
+                alert('Daftar berhasil, silahkan masuk untuk mendapatkan fitur Admin Perusahaan !');
+                document.location.href ='lokeritas.xyz/company/login.php';
+            </script>";
+        exit;
     } else if ($pesan['message'] == 'unavailable') {
         echo '<script>
                 alert("Email sudah terdaftar !");

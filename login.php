@@ -21,6 +21,14 @@ if (isset($_POST["masuk"])) {
 
     $pesan = json_decode($result, true);
 
+    if($pesan['data']['active'] == '0'){
+        echo '<script>
+                alert("Silahkan konfirmasi email terlebih dahulu untuk masuk !");
+                document.location.href ="login.php";
+            </script>';
+        exit;
+    }
+
     if ($pesan['message'] == 'Berhasil') {
         $_SESSION['login'] = true;
         $_SESSION['userdata'] = [

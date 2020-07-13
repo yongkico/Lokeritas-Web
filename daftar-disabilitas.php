@@ -5,8 +5,8 @@ if (isset($_POST['daftar'])) {
     $namaDepan = $_POST["nama_depan"];
     $namaBelakang = $_POST["nama_belakang"];
     $email = strtolower($_POST["email"]);
-    $password = mysqli_real_escape_string($conn, $_POST["password"]);
-    $password2 = mysqli_real_escape_string($conn, $_POST["password2"]);
+    $password = $_POST["password"];
+    $password2 = $_POST["password2"];
     $jk = $_POST["jk"];
     $tgl_lahir = $_POST["tgl_lahir"];
     $tmp_ketunaan = $_POST["ketunaan"];
@@ -39,7 +39,7 @@ if (isset($_POST['daftar'])) {
         "password" => $password,
         "jenis_kelamin" => $jk,
         "tgl_lahir" => $tgl_lahir,
-        "ketunaan" => substr_replace($ketunaan ,"",-1)  
+        "ketunaan" => substr_replace($ketunaan, "", -1)
     );
 
     $data = json_encode($form_data);
@@ -56,7 +56,11 @@ if (isset($_POST['daftar'])) {
 
 
     if ($pesan['message'] == 'Berhasil') {
-        header('location:login.php');
+        echo "<script>
+                alert('Daftar berhasil, silahkan konfirmasi email anda untuk masuk dan mendapatkan fitur Member Disabilitas !');
+                document.location.href ='login.php';
+            </script>";
+        exit;
     } else if ($pesan['message'] == 'unavailable') {
         echo '<script>
                 alert("Email sudah terdaftar !");
@@ -86,7 +90,7 @@ if (isset($_POST['daftar'])) {
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-
+    <script src="js/sweetalert2.all.min.js"></script>
     <!--Material Icon -->
     <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
 
@@ -220,7 +224,7 @@ if (isset($_POST['daftar'])) {
                                             <div class="form-group position-relative" style="margin-bottom: 0">
                                                 <label style="margin-bottom:0px ! important" class="text-secondary">Jenis Kelamin <span class="text-danger">*</span></label>
                                                 <div class="form-button" style="width: 50%">
-                                                    <select class="nice-select rounded" name="jk" required> 
+                                                    <select class="nice-select rounded" name="jk" required>
                                                         <option value="L">Laki-Laki</option>
                                                         <option value="P">Perempuan</option>
                                                     </select>

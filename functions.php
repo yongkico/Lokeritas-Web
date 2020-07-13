@@ -1,7 +1,6 @@
 <?php
 
-//koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "lokeritas_web");
+
 
 
 function FILTER_ARRAY_VALUES_REGEXP($basis, $array, $flag_invert = 0)

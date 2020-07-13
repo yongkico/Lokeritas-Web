@@ -319,6 +319,8 @@ if (isset($_POST['send'])) {
                     <i class="mx-auto mt-5 alert alert-warning">Karyaku tidak ada !</i>
                 </div>
             <?php endif; ?>
+
+            <?php var_dump($karyaku) ?>
             <div class="row">
                 <?php foreach ($karyaku as $row) : ?>
                     <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
