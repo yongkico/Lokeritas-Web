@@ -56,6 +56,10 @@ if (isset($_FILES['file-img']['tmp_name'])) {
         $result = curl_exec($curl);
         curl_close($curl);
         header('Refresh: 0; URL=post-karyaku-success.php');
+    } else {
+        echo '<script>
+        alert("Terjadi Kesalahan! Ukuran file tidak boleh melebihi 2 MB")
+    </script>';
     }
 }
 
@@ -248,16 +252,6 @@ if (isset($_FILES['file-img']['tmp_name'])) {
             </div>
         </section>
         <!-- end home -->
-
-        <?php if (isset($_POST['send'])) {
-
-            if ($size > 2000000) {
-                echo '<script>
-        swal("Terjadi Kesalahan!", "Ukuran file tidak boleh melebihi 2 MB", "error")
-    </script>';
-            }
-        }
-        ?>
         <section>
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="container">
