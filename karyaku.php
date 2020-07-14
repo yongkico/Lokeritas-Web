@@ -340,7 +340,7 @@ $secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret
                             <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
                                 <div>
                                     <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></p>
-                                    <p class="text-secondary" style="text-align: right"><i class="mdi mdi-eye mr-1"></i><?= $row['hit']; ?> <i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
+                                    <p class="text-secondary" style="text-align: right"><i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
                                 </div>
                             </div>
                         </div>
