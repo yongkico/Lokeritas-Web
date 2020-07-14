@@ -1,62 +1,6 @@
 <?php
 session_start();
 
-if (isset($_POST["masuk"])) {
-
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    $form_data = [
-        'email' => $email,
-        'password' => $password
-    ];
-
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/login_user.php');
-    curl_setopt($curl, CURLOPT_POST, 1);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $result = curl_exec($curl);
-    curl_close($curl);
-
-    $pesan = json_decode($result, true);
-    
-
-    if ($pesan['message'] == 'gagal') {
-        echo '<div style="position: absolute;width:100%">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="alert-wrap justify-content-center" >
-                    <div class="alert alert-danger">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <p class="text-dark justify-content-center" style="margin:0px 0px 0px 0px"> Kata sandi salah atau Kamu belum terdaftar !</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>';
-        
-    } else {
-        if ($pesan['data']['active'] == '0') {
-            echo '<script>
-                alert("Silahkan konfirmasi email terlebih dahulu untuk masuk !");
-                document.location.href ="login.php";
-            </script>';
-            exit;
-        }else{
-            header('location: index.php');
-            $_SESSION['login'] = true;
-            $_SESSION['userdata'] = [
-                "user_id" => $pesan['data']['id_user'],
-                "email" => $pesan['data']['email'],
-                "nama_depan" => $pesan['data']['nama_depan'],
-                "nama_belakang" => $pesan['data']['nama_belakang'],
-            ];
-            exit;
-        }        
-    }
-}
-
 ?>
 
 
@@ -77,6 +21,7 @@ if (isset($_POST["masuk"])) {
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <script src="js/sweetalert2.all.min.js"></script>
 
     <!--Material Icon -->
     <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
@@ -92,6 +37,53 @@ if (isset($_POST["masuk"])) {
 </head>
 
 <body>
+
+    <?php
+    if (isset($_POST["masuk"])) {
+
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        $form_data = [
+            'email' => $email,
+            'password' => $password
+        ];
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/login_user.php');
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        $pesan = json_decode($result, true);
+
+
+        if ($pesan['message'] == 'gagal') {
+            echo '<script>
+                        swal("Gagal!", "Kata sandi salah atau akun belum terdaftar", "error")
+                    </script>';
+        } else {
+            if ($pesan['data']['active'] == '0') {
+                echo '<script>
+                        swal("Perhatian!", "Silahkan lakukan konfirmasi email terlebih dahulu untuk masuk", "warning")
+                    </script>';
+            } else {
+                header('location: index.php');
+                $_SESSION['login'] = true;
+                $_SESSION['userdata'] = [
+                    "user_id" => $pesan['data']['id_user'],
+                    "email" => $pesan['data']['email'],
+                    "nama_depan" => $pesan['data']['nama_depan'],
+                    "nama_belakang" => $pesan['data']['nama_belakang'],
+                ];
+                exit;
+            }
+        }
+    }
+    ?>
+
     <!-- Loader -->
     <div id="preloader">
         <div id="status">
@@ -198,6 +190,7 @@ if (isset($_POST["masuk"])) {
     <!-- End Modal Ubah Foto Profil -->
 
     <!-- javascript -->
+    <script data-account="IAsDntwcno" src="https://cdn.userway.org/widget.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>

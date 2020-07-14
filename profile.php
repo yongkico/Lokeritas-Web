@@ -610,7 +610,7 @@ if (isset($_SESSION['login'])) {
                                                 ?>
                                                 <tr>
                                                     <td><?= $tmp_b[1]; ?></td>
-                                                    <td><a href="<?= '/api-v1/uploads/Berkas/' . $tmp_b[0]; ?>" download="<?= $tmp_b[0]; ?>" target="_blank"><?= $tmp_b[0]; ?></a></td>
+                                                    <td><a href="<?= '/api-v1/uploads/Berkas/' . $tmp_b[0]; ?>" download target="_blank"><?= $tmp_b[0]; ?></a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -2763,6 +2763,7 @@ if (isset($_SESSION['login'])) {
 
 
     <!-- javascript -->
+    <script data-account="IAsDntwcno" src="https://cdn.userway.org/widget.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/plugins.js"></script>

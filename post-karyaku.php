@@ -440,6 +440,7 @@ if (isset($_FILES['file-img']['tmp_name'])) {
     <?php endif; ?>
 
     <!-- javascript -->
+    <script data-account="IAsDntwcno" src="https://cdn.userway.org/widget.js"></script>
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>

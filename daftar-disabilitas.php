@@ -1,73 +1,6 @@
 <?php
 require("functions.php");
 
-if (isset($_POST['daftar'])) {
-    $namaDepan = $_POST["nama_depan"];
-    $namaBelakang = $_POST["nama_belakang"];
-    $email = strtolower($_POST["email"]);
-    $password = $_POST["password"];
-    $password2 = $_POST["password2"];
-    $jk = $_POST["jk"];
-    $tgl_lahir = $_POST["tgl_lahir"];
-    $tmp_ketunaan = $_POST["ketunaan"];
-    $ketunaan = "";
-
-    foreach ($tmp_ketunaan as $list) {
-        $ketunaan .= $list . ',';
-    }
-
-    if ($password !== $password2) {
-        echo "
-                <script>
-                    alert('Password tidak sesuai !');
-                </script>
-            ";
-        header("Refresh:0");
-        exit;
-    }
-
-
-    // //enkripsi password
-    // $password = password_hash
-    // $password = sha1($password);
-
-
-    $form_data = array(
-        "nama_depan" => $namaDepan,
-        "nama_belakang" => $namaBelakang,
-        "email" => $email,
-        "password" => $password,
-        "jenis_kelamin" => $jk,
-        "tgl_lahir" => $tgl_lahir,
-        "ketunaan" => substr_replace($ketunaan, "", -1)
-    );
-
-    $data = json_encode($form_data);
-
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_user.php');
-    curl_setopt($curl, CURLOPT_POST, 1);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $result = curl_exec($curl);
-    curl_close($curl);
-
-    $pesan = json_decode($result, true);
-
-
-    if ($pesan['message'] == 'Berhasil') {
-        echo "<script>
-                alert('Daftar berhasil, silahkan konfirmasi email anda untuk masuk dan mendapatkan fitur Member Disabilitas !');
-                document.location.href ='login.php';
-            </script>";
-        exit;
-    } else if ($pesan['message'] == 'unavailable') {
-        echo '<script>
-                alert("Email sudah terdaftar !");
-            </script>';
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -104,6 +37,79 @@ if (isset($_POST['daftar'])) {
 </head>
 
 <body>
+
+    <?php
+
+
+
+    if (isset($_POST['daftar'])) {
+        $namaDepan = $_POST["nama_depan"];
+        $namaBelakang = $_POST["nama_belakang"];
+        $email = strtolower($_POST["email"]);
+        $password = $_POST["password"];
+        $password2 = $_POST["password2"];
+        $jk = $_POST["jk"];
+        $tgl_lahir = $_POST["tgl_lahir"];
+        $tmp_ketunaan = $_POST["ketunaan"];
+        $ketunaan = "";
+
+        foreach ($tmp_ketunaan as $list) {
+            $ketunaan .= $list . ',';
+        }
+
+        if ($password !== $password2) {
+            echo '
+                <script>
+                    swal("Perhatian", "Password tidak sesuai!", "warning")
+                </script>
+            ';
+            header("Refresh:5");
+            exit;
+        }
+
+
+        // //enkripsi password
+        // $password = password_hash
+        // $password = sha1($password);
+
+
+        $form_data = array(
+            "nama_depan" => $namaDepan,
+            "nama_belakang" => $namaBelakang,
+            "email" => $email,
+            "password" => $password,
+            "jenis_kelamin" => $jk,
+            "tgl_lahir" => $tgl_lahir,
+            "ketunaan" => substr_replace($ketunaan, "", -1)
+        );
+
+        $data = json_encode($form_data);
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_user.php');
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        $pesan = json_decode($result, true);
+
+
+        if ($pesan['message'] == 'Berhasil') {
+            echo '<script>
+                swal("Pendaftaran berhasil", "Silahkan lihat email anda untuk melakukan konfirmasi email!", "success")
+            </script>';
+            header('Refresh: 5; URL=login.php');
+        } else if ($pesan['message'] == 'unavailable') {
+            echo '<script>
+                swal("Perhatian", "Email sudah terdaftar!", "warning")
+            </script>';
+            header("Refresh:4");
+            exit;
+        }
+    }
+    ?>
     <!-- Loader -->
     <div id="preloader">
         <div id="status">
@@ -281,6 +287,7 @@ if (isset($_POST['daftar'])) {
     <!-- Hero End -->
 
     <!-- javascript -->
+    <script data-account="IAsDntwcno" src="https://cdn.userway.org/widget.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
