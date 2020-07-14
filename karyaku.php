@@ -606,6 +606,7 @@ $secret_key = '6LcnNLEZAAAAALpYjEuQa8jrtpiOhvgFJuYMGrVD'; // Diisi dengan secret
     <!-- Back to top -->
 
     <!-- javascript -->
+    <script data-account="IAsDntwcno" src="https://cdn.userway.org/widget.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>

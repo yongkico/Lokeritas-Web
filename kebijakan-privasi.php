@@ -3,7 +3,7 @@ session_start();
 require("functions.php");
 if (isset($_SESSION['login'])) {
     $nama_depan = $_SESSION['userdata']['nama_depan'];
-} 
+}
 
 ?>
 
@@ -50,7 +50,7 @@ if (isset($_SESSION['login'])) {
     </div>
     <!-- Loader -->
 
-   <?php if (isset($_SESSION["login"])) : ?>
+    <?php if (isset($_SESSION["login"])) : ?>
         <!-- Navigation Bar-->
         <header id="topnav" class="defaultscroll scroll-active">
 
@@ -210,7 +210,7 @@ if (isset($_SESSION['login'])) {
         </div>
     </section>
     <!-- blog end -->
-    
+
     <!-- The Modal Login -->
     <div class="modal" id="pilihanMasuk">
         <div class="modal-dialog modal-lg">
@@ -349,6 +349,7 @@ if (isset($_SESSION['login'])) {
     <!-- Back to top -->
 
     <!-- javascript -->
+    <script data-account="IAsDntwcno" src="https://cdn.userway.org/widget.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>

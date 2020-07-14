@@ -28,9 +28,9 @@
 
 <body>
 
-    <?php 
+    <?php
 
-    if(isset($_POST['send'])){
+    if (isset($_POST['send'])) {
         $nama_depan = $_POST['nama_depan'];
         $nama_belakang = $_POST['nama_belakang'];
         $email = $_POST['email'];
@@ -52,20 +52,20 @@
 
         $pesan = json_decode($result, true);
 
-        if($pesan['message'] == 'Berhasil'){
+        if ($pesan['message'] == 'Berhasil') {
             echo '<script>
                     swal("Berhasil", "Silahkan cek email anda untuk mendapatkan password baru", "success");
                 </script>';
             header('Refresh: 5; URL=login.php');
-        }else if($pesan['message'] == 'Gagal'){
+        } else if ($pesan['message'] == 'Gagal') {
             echo '<script>
                     swal("Gagal", "Email atau akun belum terdaftar", "warning");
                 </script>';
         }
     }
-    
 
-    
+
+
     ?>
     <!-- Loader -->
     <div id="preloader">
@@ -125,6 +125,7 @@
     <!-- Hero End -->
 
     <!-- javascript -->
+    <script data-account="IAsDntwcno" src="https://cdn.userway.org/widget.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
