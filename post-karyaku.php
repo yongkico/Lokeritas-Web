@@ -28,17 +28,7 @@ if (isset($_FILES['file-img']['tmp_name'])) {
 
         $response = curl_exec($ch);
         curl_close($ch);
-
-        $email = $_SESSION['userdata']["email"];
-        $curl_get = curl_init();
-        curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
-        curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-        $result = curl_exec($curl_get);
-        curl_close($curl_get);
-
-        $result_get = json_decode($result, true);
-
-        $id_user = $result_get['0']['id_user'];
+        $id_user = $_SESSION['userdata']['user_id'];
 
         $judul = $_POST['judul'];
         $tag = $_POST['tag'];
@@ -269,7 +259,7 @@ if (isset($_FILES['file-img']['tmp_name'])) {
         }
         ?>
         <section>
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -440,7 +430,6 @@ if (isset($_FILES['file-img']['tmp_name'])) {
     <?php endif; ?>
 
     <!-- javascript -->
-    <script data-account="IAsDntwcno" src="https://cdn.userway.org/widget.js"></script>
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
