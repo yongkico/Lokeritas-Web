@@ -8,8 +8,8 @@ if (isset($_SESSION['login'])) {
 }
 
 
-$site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
-$secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+$site_key = '6LcnNLEZAAAAANynkV3UH60dg7AgI_2Ccqrajvvk'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
+$secret_key = '6LcnNLEZAAAAALpYjEuQa8jrtpiOhvgFJuYMGrVD'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 
 ?>
 <!DOCTYPE html>
