@@ -331,7 +331,7 @@ if (isset($_GET['id'])) {
                         <div class="job-detail-time border-top pt-4 ">
                             <ul class="social-icon list-inline mt-3 mb-0 text-center">
                                 <li class="list-inline-item"><a href="http://www.facebook.com/sharer.php?u=https://lokeritas.xyz/lowongan-detail.php?id=<?= $result_get[0]['id_lowongan']; ?>" target="_blank" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="https://twitter.com/share?url=https://lokeritas.xyz/lowongan-detail.php?id=<?= $result_get[0]['id_lowongan']; ?>" target="_blank" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
                                 <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-whatsapp"></i></a></li>
                             </ul>
                         </div>
