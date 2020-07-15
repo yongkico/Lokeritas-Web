@@ -298,16 +298,18 @@ $secret_key = '6LcnNLEZAAAAALpYjEuQa8jrtpiOhvgFJuYMGrVD'; // Diisi dengan secret
                 $result_karyaku = FILTER_ARRAY_VALUES_REGEXP("/$keyword/i", $search);
             }
 
-            foreach ($result_karyaku as $row) {
-                if ($row['statuskaryaku'] == '1') {
-                    $karyaku_diterima[] = $row;
+            if (!empty($result_karyaku)) {
+                foreach ($result_karyaku as $row) {
+                    if ($row['statuskaryaku'] == '1') {
+                        $karyaku_diterima[] = $row;
+                    }
                 }
+
+                $jumlahData = count($karyaku_diterima);
+                $jumlahHalaman = ceil($jumlahData / $limit);
+
+                $karyaku = array_slice($karyaku_diterima, $limitStart, $limit);
             }
-
-            $jumlahData = count($karyaku_diterima);
-            $jumlahHalaman = ceil($jumlahData / $limit);
-
-            $karyaku = array_slice($karyaku_diterima, $limitStart, $limit);
 
 
 
@@ -325,60 +327,61 @@ $secret_key = '6LcnNLEZAAAAALpYjEuQa8jrtpiOhvgFJuYMGrVD'; // Diisi dengan secret
                 <div class="row">
                     <i class="mx-auto mt-5 alert alert-warning">Karyaku tidak ada !</i>
                 </div>
-            <?php endif; ?>
-            <div class="row">
-                <?php foreach ($karyaku as $row) : ?>
-                    <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
-                        <div class="view_data blog position-relative overflow-hidden shadow rounded" id="<?= $row['id_karyaku']; ?>" data-toggle="modal" data-target="#myModal">
-                            <div class="position-relative overflow-hidden">
-                                <img src="<?= $row['gambar']; ?>" class="img-fluid rounded-top" alt="">
-                                <div class="overlay rounded-top bg-dark"></div>
-                                <div class="likes">
-                                    <p class="text-white" style="text-align: left;"><?= $row['judul']; ?> </p>
+            <?php else : ?>
+                <div class="row">
+                    <?php foreach ($karyaku as $row) : ?>
+                        <div class="col-lg-4 col-md-6 mb-4 mt-4 pb-2">
+                            <div class="view_data blog position-relative overflow-hidden shadow rounded" id="<?= $row['id_karyaku']; ?>" data-toggle="modal" data-target="#myModal">
+                                <div class="position-relative overflow-hidden">
+                                    <img src="<?= $row['gambar']; ?>" class="img-fluid rounded-top" alt="">
+                                    <div class="overlay rounded-top bg-dark"></div>
+                                    <div class="likes">
+                                        <p class="text-white" style="text-align: left;"><?= $row['judul']; ?> </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
-                                <div>
-                                    <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></p>
-                                    <p class="text-secondary" style="text-align: right"><i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
+                                <div class="content p-4 bg-light" style="padding: 10px 24px 24px 24px ! important">
+                                    <div>
+                                        <p class=" mb-0" style="float: left"><i class="mdi mdi-account text-secondary"></i> <?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></p>
+                                        <p class="text-secondary" style="text-align: right"><i class="mdi mdi-comment mr-1"></i><?= $row['jlhkomen']; ?></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-                <!--end col-->
+                    <?php endforeach; ?>
+                    <!--end col-->
 
-                <!-- Pagination -->
-                <div class="col-lg-12" style="margin-top: 30px ! important">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination job-pagination justify-content-center mb-0">
-                            <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-                                <?php if ($keyword == "") : ?>
-                                    <?php
-                                    if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                        if (($limitStart == 1) && ($i != 2))  echo "...";
-                                        if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                        if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                        else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
-                                        $limitStart = $i;
-                                    }
-                                    ?>
-                                <?php else : ?>
-                                    <?php
-                                    if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                        if (($limitStart == 1) && ($i != 2))  echo "...";
-                                        if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                        if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                        else echo "<li class='page-item'> <a class='page-link' href='" . "?keyword=$keyword" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
-                                        $limitStart = $i;
-                                    }
-                                    ?>
-                                <?php endif; ?>
-                            <?php endfor; ?>
-                        </ul>
-                    </nav>
+                    <!-- Pagination -->
+                    <div class="col-lg-12" style="margin-top: 30px ! important">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination job-pagination justify-content-center mb-0">
+                                <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                    <?php if ($keyword == "") : ?>
+                                        <?php
+                                        if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                            if (($limitStart == 1) && ($i != 2))  echo "...";
+                                            if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                            if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                            else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                            $limitStart = $i;
+                                        }
+                                        ?>
+                                    <?php else : ?>
+                                        <?php
+                                        if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                            if (($limitStart == 1) && ($i != 2))  echo "...";
+                                            if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                            if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                            else echo "<li class='page-item'> <a class='page-link' href='" . "?keyword=$keyword" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
+                                            $limitStart = $i;
+                                        }
+                                        ?>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </section>
     <!-- blog end -->

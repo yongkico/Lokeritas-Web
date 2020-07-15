@@ -186,14 +186,10 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
                                     <p class="text-muted"><?= $data['email']; ?></p>
                                     <p class="text-info" style="margin-bottom: 0px"><i class="mdi mdi-send"></i> Dikirim Tanggal : <?= $data['tgl_submit']; ?></p>
                                     <?php if ($data['status'] == '0') : ?>
-                                        <p class="text-primary"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
+                                        <p class="text-warning"><i class="mdi mdi-file-restore"></i> Status : Menunggu</p>
                                     <?php elseif ($data['status'] == '1') : ?>
-                                        <p class="text-info"><i class="mdi mdi-book-open"></i> Status : Review</p>
-                                    <?php elseif ($data['status'] == '2') : ?>
-                                        <p class="text-warning"><i class="mdi mdi-calendar-clock"></i> Status : Pending</p>
-                                    <?php elseif ($data['status'] == '3') : ?>
                                         <p class="text-success"><i class="mdi mdi-checkbox-marked-circle"></i> Status : Diterima</p>
-                                    <?php elseif ($data['status'] == '4') : ?>
+                                    <?php elseif ($data['status'] == '2') : ?>
                                         <p class="text-danger"><i class="mdi mdi-close-circle"></i> Status : Ditolak</p>
                                     <?php endif; ?>
                                 </div>
