@@ -460,7 +460,7 @@ if (isset($_GET['id'])) {
                                     <div class="col-md-6">
                                         <div class="form-group blog-details-form">
                                             <i class="mdi mdi-account text-muted f-17"></i>
-                                            <input name="nama" id="name" type="text" class="form-control blog-details" value="dsd" placeholder="Nama" required="">
+                                            <input name="nama" id="name" type="text" class="form-control blog-details" placeholder="Nama" required="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

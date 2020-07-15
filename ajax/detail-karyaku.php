@@ -1,8 +1,9 @@
 <?php
 session_start();
 require_once('scr.php');
-$site_key = '6LdxdvUUAAAAAC787QRuDWo3hm4_i4DTYS10fQiS'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
-$secret_key = '6LdxdvUUAAAAALwXeTGq4GMZ_R8RRPZ2WlG21aRh'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+$site_key = '6LcnNLEZAAAAANynkV3UH60dg7AgI_2Ccqrajvvk'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
+$secret_key = '6LcnNLEZAAAAALpYjEuQa8jrtpiOhvgFJuYMGrVD'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+
 
 
 
@@ -83,49 +84,49 @@ if ($_POST['id']) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php if(count($result_get_comment) > 0) : ?>
-                                                <div class="rounded border mt-4 p-4">
-                                                    <h5 class="text-dark">Komentar</h5>
-                                                    <?php
-                                                    foreach ($result_get_comment as $row) : ?>
+                                                <?php if (count($result_get_comment) > 0) : ?>
+                                                    <div class="rounded border mt-4 p-4">
+                                                        <h5 class="text-dark">Komentar</h5>
+                                                        <?php
+                                                        foreach ($result_get_comment as $row) : ?>
 
-                                                        <hr id="hr">
-                                                        <img data-name="<?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?>" class="initial" style="border-radius: 5px;" width="30px">
-                                                        <a href="http://<?php echo $row['email']; ?>"><?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></a><span style="color: #a3a4a4;"> (<?php echo $row['email']; ?>)</span><br><span style="font-size: 30px;">&ldquo;</span> <?php echo $row['komentar']; ?>
-                                                        <br>
-                                                        <script>
-                                                            $('.initial').initial();
-                                                        </script>
-                                                    <?php
-                                                    endforeach; ?>
-                                                </div>
+                                                            <hr id="hr">
+                                                            <img data-name="<?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?>" class="initial" style="border-radius: 5px;" width="30px">
+                                                            <a href="http://<?php echo $row['email']; ?>"><?= $row['nama_depan'] . ' ' . $row['nama_belakang']; ?></a><span style="color: #a3a4a4;"> (<?php echo $row['email']; ?>)</span><br><span style="font-size: 30px;">&ldquo;</span> <?php echo $row['komentar']; ?>
+                                                            <br>
+                                                            <script>
+                                                                $('.initial').initial();
+                                                            </script>
+                                                        <?php
+                                                        endforeach; ?>
+                                                    </div>
                                                 <?php endif; ?>
-                                                <?php if($result[0]['komen'] == 1) : ?>
-                                                <div class="row bg-light rounded mx-auto mt-5" style="padding:20px">
-                                                    <form name="contact-form" method="post" action="" style="width: 100%;">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group blog-details-form">
-                                                                    <i class="mdi mdi-comment-processing text-muted f-17"></i>
-                                                                    <input type="hidden" name="id" value="<?= $id ?>">
-                                                                    <textarea name="komentar" id="comments" rows="4" class="form-control blog-details" placeholder="Komentar" required=""></textarea>
+                                                <?php if ($result[0]['komen'] == 1) : ?>
+                                                    <div class="row bg-light rounded mx-auto mt-5" style="padding:20px">
+                                                        <form name="contact-form" method="post" action="" style="width: 100%;">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group blog-details-form">
+                                                                        <i class="mdi mdi-comment-processing text-muted f-17"></i>
+                                                                        <input type="hidden" name="id" value="<?= $id ?>">
+                                                                        <textarea name="komentar" id="comments" rows="4" class="form-control blog-details" placeholder="Komentar" required=""></textarea>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
-                                                        <div class="row">
-                                                            <div class="col-sm-12">
-                                                                <?php if (isset($_SESSION['login'])) : ?>
-                                                                    <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
-                                                                <?php else : ?>
-                                                                    <button type="button" class="btn btn-primary" onclick="comentEx()">Kirim Komentar</button>
-                                                                <?php endif; ?>
+                                                            <div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div><br>
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <?php if (isset($_SESSION['login'])) : ?>
+                                                                        <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Kirim Komentar">
+                                                                    <?php else : ?>
+                                                                        <button type="button" class="btn btn-primary" onclick="comentEx()">Kirim Komentar</button>
+                                                                    <?php endif; ?>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
-                                                    <!-- /form -->
-                                                </div>
+                                                        </form>
+                                                        <!-- /form -->
+                                                    </div>
                                                 <?php endif ?>
                                             </div>
                                             <div class="col-lg-4 col-md-5 mt-4 mt-sm-0">
