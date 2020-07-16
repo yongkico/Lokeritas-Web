@@ -1,64 +1,6 @@
 <?php
 require("functions.php");
 
-if (isset($_POST["btn_daftar"])) {
-
-    $nama_perusahaan = $_POST['nama_perusahaan'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password2 = $_POST['password2'];
-    $telepon = $_POST['telepon'];
-    $sektor = $_POST['sektor'];
-    $alamat = $_POST['alamat'];
-    $kab_kota = $_POST['kab_kota'];
-
-    if ($password !== $password2) {
-        echo "
-                <script>
-                    alert('Password tidak sesuai !');
-                </script>
-            ";
-        header("Refresh:0");
-        exit;
-    }
-
-    //enkripsi password
-    // $password = sha1($password);
-
-    $form_data = array(
-        "nama_perusahaan" => $nama_perusahaan,
-        "email" => $email,
-        "password" => $password,
-        "sektor_perusahaan" => $sektor,
-        "telepon" => $telepon,
-        "alamat" => $alamat,
-        "kota" => $kab_kota
-    );
-
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_perusahaan.php');
-    curl_setopt($curl, CURLOPT_POST, 1);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    $result = curl_exec($curl);
-    curl_close($curl);
-
-    $pesan = json_decode($result, true);
-
-
-    if ($pesan['message'] == 'Berhasil') {
-        echo "<script>
-                alert('Daftar berhasil, silahkan konfirmasi email untuk masuk dan mendapatkan fitur Admin Perusahaan !');
-                document.location.href ='lokeritas.xyz/company/login.php';
-            </script>";
-        exit;
-    } else if ($pesan['message'] == 'unavailable') {
-        echo '<script>
-                alert("Email sudah terdaftar !");
-            </script>';
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -77,6 +19,7 @@ if (isset($_POST["btn_daftar"])) {
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <script src="js/sweetalert2.all.min.js"></script>
 
     <!--Material Icon -->
     <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
@@ -91,6 +34,69 @@ if (isset($_POST["btn_daftar"])) {
 </head>
 
 <body>
+    <?php
+
+    if (isset($_POST["btn_daftar"])) {
+
+        $nama_perusahaan = $_POST['nama_perusahaan'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $password2 = $_POST['password2'];
+        $telepon = $_POST['telepon'];
+        $sektor = $_POST['sektor'];
+        $alamat = $_POST['alamat'];
+        $kab_kota = $_POST['kab_kota'];
+
+        if ($password !== $password2) {
+            echo '
+                <script>
+                    swal("Perhatian", "Password tidak sesuai!", "warning")
+                </script>
+            ';
+            header("Refresh:5");
+            exit;
+        }
+
+        //enkripsi password
+        // $password = sha1($password);
+
+        $form_data = array(
+            "nama_perusahaan" => $nama_perusahaan,
+            "email" => $email,
+            "password" => $password,
+            "sektor_perusahaan" => $sektor,
+            "telepon" => $telepon,
+            "alamat" => $alamat,
+            "kota" => $kab_kota
+        );
+
+
+        
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_perusahaan.php');
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $form_data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        $pesan = json_decode($result, true);
+
+
+        if ($pesan['message'] == 'Berhasil') {
+            echo '<script>
+                swal("Pendaftaran berhasil", "Silahkan lihat email anda untuk melakukan konfirmasi email!", "success")
+            </script>';
+            header('Refresh: 5; URL=https://lokeritas.xyz/company/login.php');
+        } else if ($pesan['message'] == 'unavailable') {
+            echo '<script>
+                swal("Perhatian", "Email sudah terdaftar!", "warning")
+            </script>';
+            header("Refresh:4");
+            exit;
+        }
+    }
+    ?>
     <!-- Loader -->
     <div id="preloader">
         <div id="status">
