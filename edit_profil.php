@@ -42,7 +42,7 @@ if (isset($_POST["btn_informasi_pribadi"])) {
         $mencari_pekerjaan = 0;
     }
 
-    
+
 
     //cek apakah ganti passwor
     if (empty($password)) {
@@ -144,16 +144,20 @@ if (isset($_POST["btn_rincian_disabilitas"])) {
     $dok1 = $_POST['dok1'];
     $dok2 = $_POST['dok2'];
     $tmp_ketunaan = $_POST["ketunaan"];
-    $alat_bantu = $_POST["alat_bantu"];
+    $tmp_alatbantu = $_POST["alat_bantu"];
     $penjelasan = $_POST["penjelasan"];
     $ketunaan = '';
+    $alat_bantu = '';
 
 
     foreach ($tmp_ketunaan as $list) {
         $ketunaan .= $list . ',';
     }
+    foreach ($tmp_alatbantu as $list) {
+        $alat_bantu .= $list . ',';
+    }
 
-    
+
     $form_data = array(
         "id_user" => $id_user,
         "nama_depan" => $nama_depan,
@@ -170,7 +174,7 @@ if (isset($_POST["btn_rincian_disabilitas"])) {
         "alamat" => $alamat,
         "detail_tambahan" => $penjelasan,
         "telepon" => $telepon,
-        "alat_bantu" => $alat_bantu,
+        "alat_bantu" => substr_replace($alat_bantu, "", -1),
         "hash" => $hash,
         "active" => $active,
         "ringkasan_pribadi" => $ringkasan_pribadi,
@@ -235,13 +239,14 @@ if (isset($_POST["btn_pendidikan_terakhir"])) {
     $alat_bantu = $_POST["alat_bantu"];
     $penjelasan = $_POST["detail_tambahan"];
 
-    if($_POST['nama_sekolah'] == ''){
+    if ($_POST['nama_sekolah'] == '') {
         echo '<script>
                 alert("Harap melengkapi formulir !");
                 document.location.href ="profile.php";
-            </script>'; exit;
+            </script>';
+        exit;
     }
-    
+
 
     $pendidikan = $_POST["pendidikan"];
     $nama_sekolah = $_POST["nama_sekolah"];
@@ -252,7 +257,7 @@ if (isset($_POST["btn_pendidikan_terakhir"])) {
 
 
     $nama_sekolah = str_replace(",", "", $nama_sekolah);
-    $jurusan = str_replace(",", "",$jurusan);
+    $jurusan = str_replace(",", "", $jurusan);
 
 
     if ($pendidikan === "SD" || $pendidikan === "SMP" || $pendidikan === "SMA") {
@@ -348,14 +353,14 @@ if (isset($_POST["btn_pengalaman_kerja"])) {
     $nama_perusahaan1 = $_POST['nama_perusahaan1'];
     $nama_perusahaan1 = str_replace(",", "", $nama_perusahaan1);
     $jabatan1 = $_POST['jabatan1'];
-    $jabatan1 = str_replace(",", "",$jabatan1);
+    $jabatan1 = str_replace(",", "", $jabatan1);
     $tahun_mulai1 = $_POST['tahun_mulai1'];
     $tahun_akhir1 = $_POST['tahun_akhir1'];
 
     $nama_perusahaan2 = $_POST['nama_perusahaan2'];
     $nama_perusahaan2 = str_replace(",", "", $nama_perusahaan2);
     $jabatan2 = $_POST['jabatan2'];
-   $jabatan2 = str_replace(",", "",$jabatan2);
+    $jabatan2 = str_replace(",", "", $jabatan2);
     $tahun_mulai2 = $_POST['tahun_mulai2'];
     $tahun_akhir2 = $_POST['tahun_akhir2'];
 

@@ -61,6 +61,12 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
+    <script src="js/sweetalert2.all.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <link rel='stylesheet' href="css/sweetalert2.min.css">
+
 </head>
 
 <body>
@@ -190,7 +196,12 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
                                     <?php elseif ($data['status'] == '1') : ?>
                                         <p class="text-success"><i class="mdi mdi-checkbox-marked-circle"></i> Status : Diterima</p>
                                     <?php elseif ($data['status'] == '2') : ?>
-                                        <p class="text-danger"><i class="mdi mdi-close-circle"></i> Status : Ditolak</p>
+                                        <p class="text-danger" style="margin-bottom: 0px"><i class="mdi mdi-close-circle"></i> Status : Ditolak</p>
+                                        <?php if (empty($data['alasan'])) : ?>
+                                            <p class="text-success"><i class="mdi mdi-table-large"></i> Alasan : -</p>
+                                        <?php else : ?>
+                                            <p class="text-success"><i class="mdi mdi-table-large"></i> Alasan : <i class="mdi mdi-format-quote-open"></i><?= $data['alasan']; ?><i class="mdi mdi-format-quote-close"></i></p>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -246,6 +257,7 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
         </div>
     </section>
     <!-- blog end -->
+
 
 
 
@@ -328,6 +340,12 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
     <script src="js/plugins.js"></script>
 
     <script>
+        function lamaranExpired() {
+            alert("Perhatian!");
+        }
+    </script>
+
+    <script>
         function urutkan(el) {
             var urutan = document.getElementById("waktu").value;
             var daftarLamaran = document.getElementById("daftarLamaran");
@@ -348,6 +366,22 @@ $dataLimit = array_slice($lamaranTerbaru, $limitStart, $limit);
             xhr.send();
         }
     </script>
+
+
+
+    <!-- <script type="text/javascript">
+        $(document).ready(function() {
+            $(".slideUp").click(function() {
+                $("#wrapper").slideUp();
+            });
+            $(".slideDown").click(function() {
+                $("#wrapper").slideDown();
+            });
+            $(".slideToggle").click(function() {
+                $("#wrapper").slideToggle();
+            });
+        });
+    </script> -->
 
     <!-- selectize js -->
     <script src="js/selectize.min.js"></script>

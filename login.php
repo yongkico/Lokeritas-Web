@@ -74,6 +74,10 @@ if (isset($_SESSION["login"])) {
                 echo '<script>
                         swal("Perhatian!", "Silahkan lakukan konfirmasi email terlebih dahulu untuk masuk", "warning")
                     </script>';
+            } else if ($pesan['data']['active'] == '2') {
+                echo '<script>
+                        swal("Perhatian!", "Akun Anda sedang ditangguhkan, silahkan hubungi Admin", "warning")
+                    </script>';
             } else {
                 header('location: index.php');
                 $_SESSION['login'] = true;

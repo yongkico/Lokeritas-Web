@@ -371,10 +371,10 @@ if (isset($_SESSION['login'])) {
                                         <td style="font-weight:bold">Alat Bantu</td>
                                         <td>
                                             <?php
-                                            if (empty($result_get[0]['alat_bantu'])) {
-                                                echo '-';
-                                            } else {
-                                                echo $result_get[0]['alat_bantu'];
+                                            $tmp_alatbantu = explode(',', $result_get[0]['alat_bantu']);
+                                            foreach ($tmp_alatbantu as $ab) {
+                                                echo $ab;
+                                                echo '<br>';
                                             }
                                             ?>
                                         </td>
@@ -444,7 +444,7 @@ if (isset($_SESSION['login'])) {
                         <div class="container">
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
-                                    <h4 class="text-info"> Pengalaman Bekerja :</h4>
+                                    <h4 class="text-info"> Riwayat Pekerjaan :</h4>
                                 </div>
                                 <div class="col-lg-2">
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#pengalamanBekerja"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
@@ -952,18 +952,94 @@ if (isset($_SESSION['login'])) {
                                                     </div>
 
                                                 </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Alat Bantu :</label>
-                                                    <input id="middle-name" name="alat_bantu" type="text" class="form-control resume" value="<?php if (empty($result_get[0]['alat_bantu'])) {
-                                                                                                                                                    echo '-';
-                                                                                                                                                } else {
-                                                                                                                                                    echo $result_get[0]['alat_bantu'];
-                                                                                                                                                } ?>">
+                                                <label class="text-muted" style="font-weight: 600">Alat Bantu :</label>
+                                                <?php
+                                                $tmp_alatbantu = explode(',', $result_get[0]["alat_bantu"]);
+                                                ?>
+                                                <div class="p-4" style="padding:0px 0px 0px 0px !important">
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:10px 0px 0px 0px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck7" name="alat_bantu[]" value="Tongkat" <?php if (in_array("Tongkat", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck7">Tongkat</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 30px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck8" name="alat_bantu[]" value="Globe Timbul" <?php if (in_array("Globe Timbul", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck8">Globe Timbul</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 30px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck9" name="alat_bantu[]" value="Abacus" <?php if (in_array("Abacus", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck9">Abacus</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 30px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck10" name="alat_bantu[]" value="Reglet" <?php if (in_array("Reglet", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck10">Reglet</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 30px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck11" name="alat_bantu[]" value="Jam Tangan Bicara" <?php if (in_array("Jam Tangan Bicara", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck11">Jam Tangan Bicara</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck12" name="alat_bantu[]" value="Spatel" <?php if (in_array("Spatel", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck12">Spatel</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 41px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck13" name="alat_bantu[]" value="Cermin" <?php if (in_array("Cermin", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck13">Cermin</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 70.5px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck14" name="alat_bantu[]" value="Kaki Palsu" <?php if (in_array("Kaki Palsu", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck14">Kaki Palsu</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 11.5px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck15" name="alat_bantu[]" value="Kursi Roda" <?php if (in_array("Kursi Roda", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck15">Kursi Roda</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 20px 1.5px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck16" name="alat_bantu[]" value="Audio Meter" <?php if (in_array("Audio Meter", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck16">Audio Meter</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+
 
                                             <div class="col-md-12">
                                                 <div class="form-group app-label">
@@ -1076,9 +1152,9 @@ if (isset($_SESSION['login'])) {
                                                 <div class="col-md-6">
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Periode :</label>
+                                                        <label class="text-muted">Tahun Masuk :</label>
                                                         <div class="form-button">
                                                             <select class="rounded" name="tahun_mulai" style="width:100px;padding-left:10px; height: 40px ! important">
 
@@ -1128,15 +1204,10 @@ if (isset($_SESSION['login'])) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-1" style="padding: 38px 15px 0px 30px ! important">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted" style="font-weight: bolder"> - </label>
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-md-9">
+                                                <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
+                                                        <label class="text-muted">Tahun Keluar :</label>
                                                         <div class="form-button">
                                                             <select class="rounded" name="tahun_akhir" style="width:100px;padding-left:10px; height: 40px ! important">
 
@@ -1277,9 +1348,9 @@ if (isset($_SESSION['login'])) {
                                                 <div class="col-md-6">
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Periode :</label>
+                                                        <label class="text-muted">Tahun Masuk :</label>
                                                         <div class="form-button">
                                                             <select class="rounded" name="tahun_mulai" style="width:100px;padding-left:10px; height: 40px ! important">
                                                                 <option value="<?= $t[0]; ?>"><?= $t[0]; ?></option>
@@ -1328,16 +1399,16 @@ if (isset($_SESSION['login'])) {
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-1" style="padding: 38px 15px 0px 30px ! important">
+                                                <!-- 
+                                                <div class="col-md-4" style="padding: 38px 15px 0px 30px ! important">
                                                     <div class="form-group app-label">
                                                         <label class="text-muted" style="font-weight: bolder"> - </label>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
-                                                <div class="col-md-9">
+                                                <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
+                                                        <label class="text-muted">Tahun Keluar :</label>
                                                         <div class="form-button">
                                                             <select class="rounded" name="tahun_akhir" style="width:100px;padding-left:10px; height: 40px ! important">
                                                                 <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option>
@@ -1413,7 +1484,7 @@ if (isset($_SESSION['login'])) {
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Pengalaman Bekerja</h4>
+                    <h4 class="modal-title">Edit Riwayat Pekerjaan</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
                 <form action="edit_profil.php" method="POST">
@@ -2443,11 +2514,19 @@ if (isset($_SESSION['login'])) {
                                                     <input type="file" name="berkas">
                                                 </div>
                                             </div>
-
                                             <div class="col-md-6">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Keterangan :</label>
-                                                    <input id="middle-name" name="keterangan" type="text" class="form-control resume" placeholder="Contoh : Curriculum Vitae">
+                                                    <div class="form-button">
+                                                        <select class="form-control keterangan rounded" name="keterangan">
+                                                            <option value="CV">Curriculum Vitae</option>
+                                                            <option value="Ijazah">Ijazah</option>
+                                                            <option value="TranskripNilai">Transkrip Nilai</option>
+                                                            <option value="Kartu Tanda Penduduk">Kartu Tanda Penduduk</option>
+                                                            <option value="Sertifikat">Sertifikat Pelatihan</option>
+                                                            <option value="Lainnya">Lainnya</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="padding-top:30px">
@@ -2455,8 +2534,6 @@ if (isset($_SESSION['login'])) {
                                                     <button onclick="loginEx()" class="btn btn-primary" style="width: 100%">Tambah</button>
                                                 </div>
                                             </div>
-
-
                                             <div class="col-md-12 mt-3 bordered rounded">
                                                 <input type="hidden" id="emailnya" value="<?= $result_get[0]["email"]; ?>">
                                                 <div id="area_berkas">
@@ -2537,10 +2614,20 @@ if (isset($_SESSION['login'])) {
                                                             </div>
                                                         </div>
 
+                                                        <!-- //DISINI -->
                                                         <div class="col-md-6">
                                                             <div class="form-group app-label">
-                                                                <label class="text-muted">Keterangan :</label>
-                                                                <input id="middle-name" name="keterangan" type="text" class="form-control resume" placeholder="Contoh : Curriculum Vitae" required>
+                                                                <label class="text-muted">Keterangan</label>
+                                                                <div class="form-button">
+                                                                    <select class="form-control keterangan rounded" name="keterangan">
+                                                                        <option value="CV">Curriculum Vitae</option>
+                                                                        <option value="Ijazah">Ijazah</option>
+                                                                        <option value="TranskripNilai">Transkrip Nilai</option>
+                                                                        <option value="Kartu Tanda Penduduk">Kartu Tanda Penduduk</option>
+                                                                        <option value="Sertifikat">Sertifikat Pelatihan</option>
+                                                                        <option value="Lainnya">Lainnya</option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3" style="padding-top:30px">
@@ -2550,7 +2637,12 @@ if (isset($_SESSION['login'])) {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <div class="pilihanLain">
+                                                    </div>
+                                                </div>
                                             </form>
+
 
                                             <div class="col-md-12 mt-3 bordered rounded" id="area_berkas">
                                                 <input type="hidden" id="emailnya" value="<?= $result_get[0]["email"]; ?>">
@@ -3075,6 +3167,25 @@ if (isset($_SESSION['login'])) {
 
 
         }
+    </script>
+
+    <!-- Keterangan Lainnya -->
+    <script>
+        $(".keterangan").on("change", function() {
+            if ($(this).val() == "Lainnya") {
+                $(this).attr("name", "");
+                $(".pilihanLain").append(`
+                    <div class="form-group app-label">
+                        <label class="text-muted">Lainnya</label>
+                        <div class="form-button">
+                            <input id="middle-name" name="keterangan" type="text" class="form-control resume">
+                        </div>
+                    </div>
+                `);
+            } else(
+                $(".pilihanLain .form-group").remove()
+            );
+        });
     </script>
 
     <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>

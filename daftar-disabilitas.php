@@ -173,7 +173,7 @@ require("functions.php");
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck1" name="ketunaan[]" value="Disabilitas Daksa">
-                                                                <label class="custom-control-label" for="customCheck1">Disabilitas Daksa</label>
+                                                                <label class="custom-control-label" for="customCheck1">Daksa</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -182,7 +182,7 @@ require("functions.php");
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck2" name="ketunaan[]" value="Disabilitas Netra">
-                                                                <label class="custom-control-label" for="customCheck2">Disabilitas Netra</label>
+                                                                <label class="custom-control-label" for="customCheck2">Netra</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -191,7 +191,7 @@ require("functions.php");
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck6" name="ketunaan[]" value="Disabilitas Mental">
-                                                                <label class="custom-control-label" for="customCheck6">Disabilitas Mental</label>
+                                                                <label class="custom-control-label" for="customCheck6">Mental</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -200,7 +200,7 @@ require("functions.php");
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:4px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck3" name="ketunaan[]" value="Disabilitas Rungu">
-                                                                <label class="custom-control-label" for="customCheck3">Disabilitas Rungu</label>
+                                                                <label class="custom-control-label" for="customCheck3">Rungu</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -209,7 +209,7 @@ require("functions.php");
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:4px 1px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck4" name="ketunaan[]" value="Disabilitas Wicara">
-                                                                <label class="custom-control-label" for="customCheck4">Disabilitas Wicara</label>
+                                                                <label class="custom-control-label" for="customCheck4">Wicara</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -218,7 +218,7 @@ require("functions.php");
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
                                                             <div class="custom-control custom-checkbox" style="margin:4px 0px 0px 0px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck5" name="ketunaan[]" value="Disabilitas Grahita">
-                                                                <label class="custom-control-label" for="customCheck5">Disabilitas Grahita</label>
+                                                                <label class="custom-control-label" for="customCheck5">Grahita</label>
                                                             </div>
                                                         </div>
                                                     </div>
