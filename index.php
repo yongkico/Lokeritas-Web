@@ -1224,13 +1224,13 @@ foreach ($result_karyaku as $row) {
                                 <div class="col-lg-6 bg-info rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
                                     <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyandang
                                         Disabilitas Pencari Kerja</p>
-                                    <p style="text-align: center;margin-top:30px"><a href="login.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                    <p style="text-align: center;margin-top:30px"><a href="login.php" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Masuk</a>
                                     </p>
                                 </div>
                                 <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
                                     <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja
                                         Penyandang Disabilitas</p>
-                                    <p style="text-align: center;margin-top:30px"><a href="http://lokeritas.xyz/company" class="btn btn-light btn-lg" style="margin-right: 10px ! important" target="_blank">Masuk</a>
+                                    <p style="text-align: center;margin-top:30px"><a href="http://lokeritas.xyz/company" class="btn btn-light btn-lg" style="margin-right: 10px ! important" >Masuk</a>
                                     </p>
                                 </div>
 

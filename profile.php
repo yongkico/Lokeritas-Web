@@ -967,7 +967,7 @@ if (isset($_SESSION['login'])) {
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 30px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck8" name="alat_bantu[]" value="Globe Timbul" <?php if (in_array("Globe Timbul", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
                                                                 <label class="custom-control-label" for="customCheck8">Globe Timbul</label>
                                                             </div>
@@ -975,7 +975,7 @@ if (isset($_SESSION['login'])) {
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 30px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck9" name="alat_bantu[]" value="Abacus" <?php if (in_array("Abacus", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
                                                                 <label class="custom-control-label" for="customCheck9">Abacus</label>
                                                             </div>
@@ -983,7 +983,7 @@ if (isset($_SESSION['login'])) {
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 30px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 20px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck10" name="alat_bantu[]" value="Reglet" <?php if (in_array("Reglet", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
                                                                 <label class="custom-control-label" for="customCheck10">Reglet</label>
                                                             </div>
@@ -991,7 +991,7 @@ if (isset($_SESSION['login'])) {
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 30px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 29px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck11" name="alat_bantu[]" value="Jam Tangan Bicara" <?php if (in_array("Jam Tangan Bicara", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
                                                                 <label class="custom-control-label" for="customCheck11">Jam Tangan Bicara</label>
                                                             </div>
@@ -1007,15 +1007,15 @@ if (isset($_SESSION['login'])) {
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 41px">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck13" name="alat_bantu[]" value="Cermin" <?php if (in_array("Cermin", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
-                                                                <label class="custom-control-label" for="customCheck13">Cermin</label>
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 31px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck13" name="alat_bantu[]" value="Kruk" <?php if (in_array("Kruk", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck13">Kruk</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 70.5px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 77px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck14" name="alat_bantu[]" value="Kaki Palsu" <?php if (in_array("Kaki Palsu", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
                                                                 <label class="custom-control-label" for="customCheck14">Kaki Palsu</label>
                                                             </div>
@@ -1023,7 +1023,7 @@ if (isset($_SESSION['login'])) {
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 11.5px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 1.5px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck15" name="alat_bantu[]" value="Kursi Roda" <?php if (in_array("Kursi Roda", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
                                                                 <label class="custom-control-label" for="customCheck15">Kursi Roda</label>
                                                             </div>
@@ -1031,9 +1031,41 @@ if (isset($_SESSION['login'])) {
                                                     </div>
                                                     <div class="form-check form-check-inline">
                                                         <div class="form-group" style="margin:0px 0px 0px 0px">
-                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 20px 1.5px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck20" name="alat_bantu[]" value="Alat Bantu Dengar" <?php if (in_array("Alat Bantu Dengar", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck20">Alat Bantu Dengar</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck21" name="alat_bantu[]" value="Protesa" <?php if (in_array("Protesa", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck21">Protesa</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 20px 23px">
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck16" name="alat_bantu[]" value="Audio Meter" <?php if (in_array("Audio Meter", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
                                                                 <label class="custom-control-label" for="customCheck16">Audio Meter</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 28px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck22" name="alat_bantu[]" value="Orthesa" <?php if (in_array("Orthesa", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck22">Orthesa</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 0px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 16.4px">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck24" name="alat_bantu[]" value="Kaca Mata Low Vision" <?php if (in_array("Kaca Mata Low Vision", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="customCheck24">Kaca Mata Low Vision</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2524,6 +2556,7 @@ if (isset($_SESSION['login'])) {
                                                             <option value="TranskripNilai">Transkrip Nilai</option>
                                                             <option value="Kartu Tanda Penduduk">Kartu Tanda Penduduk</option>
                                                             <option value="Sertifikat">Sertifikat Pelatihan</option>
+                                                            <option value="Sertifikat Kejuaraan/Lomba">Sertifikat Kejuaraan/Lomba</option>
                                                             <option value="Lainnya">Lainnya</option>
                                                         </select>
                                                     </div>
@@ -2625,6 +2658,7 @@ if (isset($_SESSION['login'])) {
                                                                         <option value="TranskripNilai">Transkrip Nilai</option>
                                                                         <option value="Kartu Tanda Penduduk">Kartu Tanda Penduduk</option>
                                                                         <option value="Sertifikat">Sertifikat Pelatihan</option>
+                                                                        <option value="Sertifikat Kejuaraan/Lomba">Sertifikat Kejuaraan/Lomba</option>
                                                                         <option value="Lainnya">Lainnya</option>
                                                                     </select>
                                                                 </div>

@@ -406,7 +406,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary" target="_blank">Selengkapnya</a>
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -491,7 +491,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary" target="_blank">Selengkapnya</a>
+                                                        <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -560,7 +560,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary" target="_blank">Selengkapnya</a>
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
                                                             </div>
                                                         </div>
                                                     </div>
