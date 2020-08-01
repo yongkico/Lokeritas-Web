@@ -450,34 +450,36 @@ if (isset($_SESSION['login'])) {
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#pengalamanBekerja"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
                                 </div>
                             </div>
-                            <table class="table" style="border:none">
-                                <?php
-                                $pengalaman = explode(',', $result_get[0]['pengalaman_kerja']);
-                                function pisah($data)
-                                {
-                                    $c = explode('-', $data);
-                                    $hslnya = '<strong>' . $c[2] . ' - ' . $c[3] . '</strong>' . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $c[0] . ' - ' . $c[1];
-
-                                    return $hslnya;
-                                }
-                                ?>
-                                <tbody>
-                                    <tr>
-                                        <?php if (empty($result_get[0]['pengalaman_kerja']) || $result_get[0]['pengalaman_kerja'] == '-') : ?>
+                            <?php if ($result_get[0]['pengalaman_kerja'] == "") : ?>
+                                <table class="table" style="border:none">
+                                    <tbody>
+                                        <tr>
                                             <td>-</td>
-                                        <?php else : ?>
-                                            <td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <?php else : ?>
+                                <table class="table" style="border:none">
+                                    <?php
+
+                                    $pengalamanKerja = explode('|', $result_get[0]['pengalaman_kerja']);
+                                    $pengalamanPop = array_pop($pengalamanKerja);
+                                    ?>
+                                    <tbody>
+                                        <?php foreach ($pengalamanKerja as $row) : ?>
+                                            <tr>
                                                 <?php
-                                                foreach ($pengalaman as $r) {
-                                                    echo pisah($r);
-                                                    echo '<br>';
-                                                }
+                                                $pk = explode(',', $row);
                                                 ?>
-                                            </td>
-                                        <?php endif; ?>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                                <td><strong><?= $pk[0]; ?></strong></td>
+                                                <td><?= $pk[1]; ?></td>
+                                                <td><?= $pk[2]; ?></td>
+                                                <td></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -1519,854 +1521,266 @@ if (isset($_SESSION['login'])) {
                     <h4 class="modal-title">Edit Riwayat Pekerjaan</h4>
                     <button type="button" class="close btnClose" data-dismiss="modal">&times;</button>
                 </div>
-                <form action="edit_profil.php" method="POST">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 mt-3" style="margin-top:0px ! important">
-                                    <div class="custom-form p-4" style="padding: 0px 0px 0px 0px ! important">
-                                        <div class="row">
-                                            <?php
-                                            $pengalaman = explode(',', $result_get[0]['pengalaman_kerja']);
-                                            $pengalaman1 = [];
-                                            $pengalaman2 = [];
-                                            $pengalaman3 = [];
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12 md">
+                                        <button class="btn btn-primary" id="btnShowForm" onclick="showForm(this)"> <i class="mdi mdi-plus" style="font-weight: bolder;font-size:20px"></i></button>
+                                    </div>
+                                </div>
+                                <div class="row" id="formPengalaman" style="display: none;">
+                                    <form action="edit_profil.php" method="POST">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-6 md">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Nama Perusahaan :</label>
+                                                        <input id="middle-name" maxlength="38" required name="perusahaan" type="text" class="form-control" placeholder="Nama Perusahaan">
 
-                                            if (!empty($pengalaman[0])) {
-                                                $pengalaman1 = explode('-', $pengalaman[0]);
-                                            }
-
-                                            if (!empty($pengalaman[1])) {
-                                                $pengalaman2 = explode('-', $pengalaman[1]);
-                                            }
-
-                                            if (!empty($pengalaman[2])) {
-                                                $pengalaman3 = explode('-', $pengalaman[2]);
-                                            }
-
-                                            ?>
-
-                                            <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
-                                            <input type="hidden" name="nama_depan" value="<?= $result_get[0]["nama_depan"]; ?>">
-                                            <input type="hidden" name="nama_belakang" value="<?= $result_get[0]["nama_belakang"]; ?>">
-                                            <input type="hidden" name="email" value="<?= $result_get[0]["email"]; ?>">
-                                            <input type="hidden" name="password" value="<?= $result_get[0]["password"]; ?>">
-                                            <input type="hidden" name="tgl_lahir" value="<?= $result_get[0]["tgl_lahir"]; ?>">
-                                            <input type="hidden" name="jenis_kelamin" value="<?= $result_get[0]["jenis_kelamin"]; ?>">
-                                            <input type="hidden" name="status" value="<?= $result_get[0]["status"]; ?>">
-                                            <input type="hidden" name="foto" value="<?= $result_get[0]["foto"]; ?>">
-                                            <input type="hidden" name="provinsi" value="<?= $result_get[0]["provinsi"]; ?>">
-                                            <input type="hidden" name="kota" value="<?= $result_get[0]["kota"]; ?>">
-                                            <input type="hidden" name="alamat" value="<?= $result_get[0]["alamat"]; ?>">
-                                            <input type="hidden" name="telepon" value="<?= $result_get[0]["telepon"]; ?>">
-                                            <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
-                                            <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
-                                            <input type="hidden" name="ringkasan_pribadi" value="<?= $result_get[0]["ringkasan_pribadi"]; ?>">
-                                            <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
-                                            <input type="hidden" name="mencari_pekerjaan" value="<?= $result_get[0]["mencari_pekerjaan"]; ?>">
-                                            <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
-                                            <input type="hidden" name="pendidikan_terakhir" value="<?= $result_get[0]["pendidikan_terakhir"]; ?>">
-                                            <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
-                                            <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
-                                            <input type="hidden" name="ketunaan" value="<?= $result_get[0]["ketunaan"]; ?>">
-                                            <input type="hidden" name="alat_bantu" value="<?= $result_get[0]["alat_bantu"]; ?>">
-                                            <input type="hidden" name="detail_tambahan" value="<?= $result_get[0]["detail_tambahan"]; ?>">
-
-                                            <div class="col-md-12">
-                                                <span>Silahkan masukan 3 pengalaman kerja terbaik kamu !</span>
+                                                        <input type="hidden" name="id_user" value="<?= $result_get[0]["id_user"]; ?>">
+                                                        <input type="hidden" name="nama_depan" value="<?= $result_get[0]["nama_depan"]; ?>">
+                                                        <input type="hidden" name="nama_belakang" value="<?= $result_get[0]["nama_belakang"]; ?>">
+                                                        <input type="hidden" name="email" value="<?= $result_get[0]["email"]; ?>">
+                                                        <input type="hidden" name="password" value="<?= $result_get[0]["password"]; ?>">
+                                                        <input type="hidden" name="tgl_lahir" value="<?= $result_get[0]["tgl_lahir"]; ?>">
+                                                        <input type="hidden" name="jenis_kelamin" value="<?= $result_get[0]["jenis_kelamin"]; ?>">
+                                                        <input type="hidden" name="status" value="<?= $result_get[0]["status"]; ?>">
+                                                        <input type="hidden" name="foto" value="<?= $result_get[0]["foto"]; ?>">
+                                                        <input type="hidden" name="provinsi" value="<?= $result_get[0]["provinsi"]; ?>">
+                                                        <input type="hidden" name="kota" value="<?= $result_get[0]["kota"]; ?>">
+                                                        <input type="hidden" name="alamat" value="<?= $result_get[0]["alamat"]; ?>">
+                                                        <input type="hidden" name="telepon" value="<?= $result_get[0]["telepon"]; ?>">
+                                                        <input type="hidden" name="hash" value="<?= $result_get[0]["hash"]; ?>">
+                                                        <input type="hidden" name="active" value="<?= $result_get[0]["active"]; ?>">
+                                                        <input type="hidden" name="ringkasan_pribadi" value="<?= $result_get[0]["ringkasan_pribadi"]; ?>">
+                                                        <input type="hidden" name="kariryangdimininati" value="<?= $result_get[0]["kariryangdimininati"]; ?>">
+                                                        <input type="hidden" name="mencari_pekerjaan" value="<?= $result_get[0]["mencari_pekerjaan"]; ?>">
+                                                        <input type="hidden" name="keterampilan" value="<?= $result_get[0]["keterampilan"]; ?>">
+                                                        <input type="hidden" name="pendidikan_terakhir" value="<?= $result_get[0]["pendidikan_terakhir"]; ?>">
+                                                        <input type="hidden" name="dok1" value="<?= $result_get[0]["dok1"]; ?>">
+                                                        <input type="hidden" name="dok2" value="<?= $result_get[0]["dok2"]; ?>">
+                                                        <input type="hidden" name="ketunaan" value="<?= $result_get[0]["ketunaan"]; ?>">
+                                                        <input type="hidden" name="alat_bantu" value="<?= $result_get[0]["alat_bantu"]; ?>">
+                                                        <input type="hidden" name="detail_tambahan" value="<?= $result_get[0]["detail_tambahan"]; ?>">
+                                                        <input type="hidden" name="pengalaman_kerja" value="<?= $result_get[0]["pengalaman_kerja"]; ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 md">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Jabatan/Posisi :</label>
+                                                        <input id="middle-name" maxlength="30" required name="jabatan" type="text" class="form-control" placeholder="Jabatan/Posisi">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 md">
+                                                    <div class="form-check form-check-inline">
+                                                        <div class="form-group" style="margin:0px 0px 10px 0px">
+                                                            <div class="custom-control custom-checkbox" style="margin:0px 0px 0px 0px">
+                                                                <input type="checkbox" onclick="hideTanggal()" class="custom-control-input" id="masih_bekerja" checked name="masih_bekerja" value="Protesa" <?php if (in_array("Protesa", $tmp_alatbantu)) : ?> checked <?php endif; ?>>
+                                                                <label class="custom-control-label" for="masih_bekerja">Saya masih bekerja disini.</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 md">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted">Tanggal Mulai :</label>
+                                                        <div class="form-button">
+                                                            <select class="rounded" required name="bulan_mulai" style="width:130px;padding-left:10px; height: 40px ! important">
+                                                                <option selected value="" disabled>Bulan</option>
+                                                                <option value="Jan">Januari</option>
+                                                                <option value="Feb">Februari</option>
+                                                                <option value="Mar">Maret</option>
+                                                                <option value="Apr">April</option>
+                                                                <option value="Mei">Mei</option>
+                                                                <option value="Jun">Juni</option>
+                                                                <option value="Jul">Juli</option>
+                                                                <option value="Agu">Agustus</option>
+                                                                <option value="Sep">September</option>
+                                                                <option value="Okt">Oktober</option>
+                                                                <option value="Nov">November</option>
+                                                                <option value="Des">Desember</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 md">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-white">.</label>
+                                                        <div class="form-button">
+                                                            <select class="rounded" required name="tahun_mulai" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                                <option selected value="" disabled>Tahun</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2019">2019</option>
+                                                                <option value="2018">2018</option>
+                                                                <option value="2017">2017</option>
+                                                                <option value="2016">2016</option>
+                                                                <option value="2015">2015</option>
+                                                                <option value="2014">2014</option>
+                                                                <option value="2013">2013</option>
+                                                                <option value="2012">2012</option>
+                                                                <option value="2011">2011</option>
+                                                                <option value="2010">2010</option>
+                                                                <option value="2009">2009</option>
+                                                                <option value="2008">2008</option>
+                                                                <option value="2007">2007</option>
+                                                                <option value="2006">2006</option>
+                                                                <option value="2005">2005</option>
+                                                                <option value="2004">2004</option>
+                                                                <option value="2003">2003</option>
+                                                                <option value="2002">2002</option>
+                                                                <option value="2001">2001</option>
+                                                                <option value="2000">2000</option>
+                                                                <option value="1999">1999</option>
+                                                                <option value="1998">1998</option>
+                                                                <option value="1997">1997</option>
+                                                                <option value="1996">1996</option>
+                                                                <option value="1995">1995</option>
+                                                                <option value="1994">1994</option>
+                                                                <option value="1993">1993</option>
+                                                                <option value="1992">1992</option>
+                                                                <option value="1991">1991</option>
+                                                                <option value="1990">1990</option>
+                                                                <option value="1989">1989</option>
+                                                                <option value="1988">1988</option>
+                                                                <option value="1987">1987</option>
+                                                                <option value="1986">1986</option>
+                                                                <option value="1985">1985</option>
+                                                                <option value="1984">1984</option>
+                                                                <option value="1983">1983</option>
+                                                                <option value="1982">1982</option>
+                                                                <option value="1981">1981</option>
+                                                                <option value="1980">1980</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 md" id="bulan_selesai" style="display: none;">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-muted" id="bulan">Tanggal Selesai :</label>
+                                                        <div class="form-button">
+                                                            <select class="rounded" name="bulan_selesai" id="bulan_selesai" style="width:130px;padding-left:10px; height: 40px ! important">
+                                                                <option selected value="" disabled>Bulan</option>
+                                                                <option value="Jan">Januari</option>
+                                                                <option value="Feb">Februari</option>
+                                                                <option value="Mar">Maret</option>
+                                                                <option value="Apr">April</option>
+                                                                <option value="Mei">Mei</option>
+                                                                <option value="Jun">Juni</option>
+                                                                <option value="Jul">Juli</option>
+                                                                <option value="Agu">Agustus</option>
+                                                                <option value="Sep">September</option>
+                                                                <option value="Okt">Oktober</option>
+                                                                <option value="Nov">November</option>
+                                                                <option value="Des">Desember</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 md" id="tahun_selesai" style="display : none">
+                                                    <div class="form-group app-label">
+                                                        <label class="text-white">.</label>
+                                                        <div class="form-button">
+                                                            <select class="rounded" name="tahun_selesai" id="tahun_selesai" style="width:100px;padding-left:10px; height: 40px ! important">
+                                                                <option selected value="" disabled>Tahun</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2019">2019</option>
+                                                                <option value="2018">2018</option>
+                                                                <option value="2017">2017</option>
+                                                                <option value="2016">2016</option>
+                                                                <option value="2015">2015</option>
+                                                                <option value="2014">2014</option>
+                                                                <option value="2013">2013</option>
+                                                                <option value="2012">2012</option>
+                                                                <option value="2011">2011</option>
+                                                                <option value="2010">2010</option>
+                                                                <option value="2009">2009</option>
+                                                                <option value="2008">2008</option>
+                                                                <option value="2007">2007</option>
+                                                                <option value="2006">2006</option>
+                                                                <option value="2005">2005</option>
+                                                                <option value="2004">2004</option>
+                                                                <option value="2003">2003</option>
+                                                                <option value="2002">2002</option>
+                                                                <option value="2001">2001</option>
+                                                                <option value="2000">2000</option>
+                                                                <option value="1999">1999</option>
+                                                                <option value="1998">1998</option>
+                                                                <option value="1997">1997</option>
+                                                                <option value="1996">1996</option>
+                                                                <option value="1995">1995</option>
+                                                                <option value="1994">1994</option>
+                                                                <option value="1993">1993</option>
+                                                                <option value="1992">1992</option>
+                                                                <option value="1991">1991</option>
+                                                                <option value="1990">1990</option>
+                                                                <option value="1989">1989</option>
+                                                                <option value="1988">1988</option>
+                                                                <option value="1987">1987</option>
+                                                                <option value="1986">1986</option>
+                                                                <option value="1985">1985</option>
+                                                                <option value="1984">1984</option>
+                                                                <option value="1983">1983</option>
+                                                                <option value="1982">1982</option>
+                                                                <option value="1981">1981</option>
+                                                                <option value="1980">1980</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 md">
+                                                    <button type="submit" name="btnRiwayatPekerjaan" class="btn btn-primary"><i class="mdi mdi-plus"></i> Tambah</button>
+                                                </div>
                                             </div>
-
-                                            <?php if (empty($pengalaman1)) : ?>
-                                                <div class="col-md-12 mt-3">
-                                                    <span class="badge badge-secondary"> Pengalaman Kerja 1 </span>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Nama Perusahaan :</label>
-                                                        <input type="hidden" name="id" placeholder="-">
-                                                        <input id="middle-name" name="nama_perusahaan1" type="text" class="form-control resume" placeholder="Nama Perusahaan">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Jabatan :</label>
-                                                        <input id="middle-name" name="jabatan1" type="text" class="form-control resume" placeholder="Jabatan">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Periode</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_mulai1" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <!-- <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option> -->
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_akhir1" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <!-- <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option> -->
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            <?php else : ?>
-                                                <div class="col-md-12 mt-3">
-                                                    <span class="badge badge-secondary"> Pengalaman Kerja 1 </span>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Nama Perusahaan :</label>
-                                                        <input type="hidden" name="id" placeholder="-">
-                                                        <input id="middle-name" name="nama_perusahaan1" type="text" class="form-control resume" value="<?= $pengalaman1[0]; ?>">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Jabatan :</label>
-                                                        <input id="middle-name" name="jabatan1" type="text" class="form-control resume" value="<?= $pengalaman1[1]; ?>">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Periode</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_mulai1" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <option value="<?= $pengalaman1[2]; ?>"><?= $pengalaman1[2]; ?></option>
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_akhir1" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <option value="<?= $pengalaman1[3]; ?>"><?= $pengalaman1[3]; ?></option>
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <?php if (empty($pengalaman2)) : ?>
-                                                <div class="col-md-12 mt-2">
-                                                    <span class="badge badge-secondary"> Pengalaman Kerja 2 </span>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Nama Perusahaan :</label>
-                                                        <input type="hidden" name="id" placeholder="-">
-                                                        <input id="middle-name" name="nama_perusahaan2" type="text" class="form-control resume" placeholder="Nama Perusahaan">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Jabatan :</label>
-                                                        <input id="middle-name" name="jabatan2" type="text" class="form-control resume" placeholder="Jabatan">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Periode</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_mulai2" style="width:100px;padding-left:10px; height: 40px ! important">
-
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_akhir2" style="width:100px;padding-left:10px; height: 40px ! important">
-
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            <?php else : ?>
-                                                <div class="col-md-12 mt-2">
-                                                    <span class="badge badge-secondary"> Pengalaman Kerja 2 </span>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Nama Perusahaan :</label>
-                                                        <input type="hidden" name="id" placeholder="-">
-                                                        <input id="middle-name" name="nama_perusahaan2" type="text" class="form-control resume" value="<?= $pengalaman2[0]; ?>">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Jabatan :</label>
-                                                        <input id="middle-name" name="jabatan2" type="text" class="form-control resume" value="<?= $pengalaman2[1]; ?>">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Periode</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_mulai2" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <option value="<?= $pengalaman2[2]; ?>"><?= $pengalaman2[2]; ?></option>
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_akhir2" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <option value="<?= $pengalaman2[3]; ?>"><?= $pengalaman2[3]; ?></option>
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <?php if (empty($pengalaman3)) : ?>
-                                                <div class="col-md-12 mt-2">
-                                                    <span class="badge badge-secondary"> Pengalaman Kerja 3 </span>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Nama Perusahaan :</label>
-                                                        <input type="hidden" name="id" placeholder="-">
-                                                        <input id="middle-name" name="nama_perusahaan3" type="text" class="form-control resume" placeholder="Nama Perusahaan">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Jabatan :</label>
-                                                        <input id="middle-name" name="jabatan3" type="text" class="form-control resume" placeholder="Jabatan">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Periode</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_mulai3" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <!-- <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option> -->
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_akhir3" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <!-- <option value="<?= $t[1]; ?>"><?= $t[1]; ?></option> -->
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php else : ?>
-                                                <div class="col-md-12 mt-2">
-                                                    <span class="badge badge-secondary"> Pengalaman Kerja 3 </span>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Nama Perusahaan :</label>
-                                                        <input type="hidden" name="id" placeholder="-">
-                                                        <input id="middle-name" name="nama_perusahaan3" type="text" class="form-control resume" value="<?= $pengalaman3[0]; ?>">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Jabatan :</label>
-                                                        <input id="middle-name" name="jabatan3" type="text" class="form-control resume" value="<?= $pengalaman3[1]; ?>">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-2">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-muted">Periode</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_mulai3" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <option value="<?= $pengalaman3[2]; ?>"><?= $pengalaman3[2]; ?></option>
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <p style="padding:35px 0px 0px 10px;font-weight:bold">-</p>
-                                                </div>
-
-                                                <div class="col-md-1">
-                                                    <div class="form-group app-label">
-                                                        <label class="text-white">.</label>
-                                                        <div class="form-button">
-                                                            <select class="rounded" name="tahun_akhir3" style="width:100px;padding-left:10px; height: 40px ! important">
-                                                                <option value="<?= $pengalaman3[3]; ?>"><?= $pengalaman3[3]; ?></option>
-                                                                <option value="2020">2020</option>
-                                                                <option value="2019">2019</option>
-                                                                <option value="2018">2018</option>
-                                                                <option value="2017">2017</option>
-                                                                <option value="2016">2016</option>
-                                                                <option value="2015">2015</option>
-                                                                <option value="2014">2014</option>
-                                                                <option value="2013">2013</option>
-                                                                <option value="2012">2012</option>
-                                                                <option value="2011">2011</option>
-                                                                <option value="2010">2010</option>
-                                                                <option value="2009">2009</option>
-                                                                <option value="2008">2008</option>
-                                                                <option value="2007">2007</option>
-                                                                <option value="2006">2006</option>
-                                                                <option value="2005">2005</option>
-                                                                <option value="2004">2004</option>
-                                                                <option value="2003">2003</option>
-                                                                <option value="2002">2002</option>
-                                                                <option value="2001">2001</option>
-                                                                <option value="2000">2000</option>
-                                                                <option value="1999">1999</option>
-                                                                <option value="1998">1998</option>
-                                                                <option value="1997">1997</option>
-                                                                <option value="1996">1996</option>
-                                                                <option value="1995">1995</option>
-                                                                <option value="1994">1994</option>
-                                                                <option value="1993">1993</option>
-                                                                <option value="1992">1992</option>
-                                                                <option value="1991">1991</option>
-                                                                <option value="1990">1990</option>
-                                                                <option value="1989">1989</option>
-                                                                <option value="1988">1988</option>
-                                                                <option value="1987">1987</option>
-                                                                <option value="1986">1986</option>
-                                                                <option value="1985">1985</option>
-                                                                <option value="1984">1984</option>
-                                                                <option value="1983">1983</option>
-                                                                <option value="1982">1982</option>
-                                                                <option value="1981">1981</option>
-                                                                <option value="1980">1980</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php endif; ?>
                                         </div>
+                                    </form>
+                                </div>
+                                <div class="row mt-5">
+                                    <div class="col-12" id="tblPengalaman">
+                                        <?php if ($result_get[0]['pengalaman_kerja'] == "" || empty($result_get[0]['pengalaman_kerja'])) : ?>
+                                            <p class="alert alert-warning">Ups ! Riwayat Pekerjaan kamu belum ada ... <i class="mdi mdi-emoticon-sad"></i></p>
+                                        <?php else : ?>
+                                            <table class="table rounded" style="border: 1px solid #e1e0e0;width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nama Perusahaan</th>
+                                                        <th>Jabatan</th>
+                                                        <th>Tanggal Mulai/Selesai</th>
+                                                        <th>#</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($pengalamanKerja as $row) : ?>
+                                                        <tr>
+                                                            <?php
+                                                            $pk2 = explode(',', $row);
+                                                            ?>
+                                                            <td><?= $pk2[0]; ?></td>
+                                                            <td><?= $pk2[1]; ?></td>
+                                                            <td><?= $pk2[2]; ?></td>
+                                                            <td><button type="button" onclick="hapusPengalaman(this)" class="btn btn-danger-outline" id="<?= $row; ?>" data-toggle="tooltip" title="Hapus"><i class="mdi mdi-delete"></i></button></td>
+
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Ini adalah Bagian Footer Modal -->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="btn_pengalaman_kerja">Simpan</button>
+                <!-- Ini adalah Bagian Footer Modal -->
+                <div class="modal-footer">
+                    <form action="edit_profil.php" method="POST">
+                        <button type="submit" class="btn btn-primary" name="btnSimpanPengalaman">Simpan</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -2409,7 +1823,7 @@ if (isset($_SESSION['login'])) {
 
                                         <div class="col-12 mt-3" id="daftarKeterampilan">
                                             <?php if (empty($result_get[0]['keterampilan'])) : ?>
-                                                <div class="alert alert-warning" role="alert"> Keterampilan belum diisi! </div>
+                                                <p class="alert alert-warning" role="alert">Ups ! Keterampilan kamu belum ada ... <i class="mdi mdi-emoticon-sad"></i> </p>
                                             <?php else : ?>
                                                 <?php
                                                 $b = explode(',', $result_get[0]['keterampilan']);
@@ -2951,6 +2365,33 @@ if (isset($_SESSION['login'])) {
         }
     </script>
 
+    <script>
+        function showForm(el) {
+            var form_pendaftaram = document.getElementById("formPengalaman");
+            var element = el;
+
+            form_pendaftaram.style.display = "block";
+
+            element.remove();
+        }
+    </script>
+
+    <script>
+        function hideTanggal() {
+            var masihBekerja = document.getElementById("masih_bekerja");
+            var bulanSelesai = document.getElementById("bulan_selesai");
+            var tahunSelesai = document.getElementById("tahun_selesai");
+
+            if (masihBekerja.checked == true) {
+                bulanSelesai.style.display = "none";
+                tahunSelesai.style.display = "none";
+            } else {
+                bulanSelesai.style.display = "block";
+                tahunSelesai.style.display = "block";
+            }
+        }
+    </script>
+
 
     <!-- for karir yang diminati-->
     <script src="js/jquery-2.2.3.min.js"></script>
@@ -3203,6 +2644,28 @@ if (isset($_SESSION['login'])) {
         }
     </script>
 
+    <script>
+        function hapusPengalaman(el) {
+            var email = document.getElementById("emailku");
+            var tabelPengalaman = document.getElementById("tblPengalaman");
+            var element = el;
+
+            //buat object ajax
+            var xhr = new XMLHttpRequest();
+
+            //cek kesiapan ajax
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    tabelPengalaman.innerHTML = xhr.responseText;
+                }
+            }
+
+            //eksekusi ajax
+            xhr.open('GET', 'ajax/hapus_pengalaman.php?email=' + email.value + '&pengalaman=' + element.id, true);
+            xhr.send();
+
+        }
+    </script>
     <!-- Keterangan Lainnya -->
     <script>
         $(".keterangan").on("change", function() {

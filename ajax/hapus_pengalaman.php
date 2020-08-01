@@ -3,7 +3,7 @@ session_start();
 require("../functions.php");
 
 $email = $_GET['email'];
-$keterampilan = $_GET['keterampilan'];
+$pengalaman = $_GET['pengalaman'];
 
 
 $curl_get = curl_init();
@@ -17,17 +17,17 @@ $data = $result_get[0];
 
 
 // hoby : Catur,Bola,Renang
-$dftKeterampilan = explode(',', $data['keterampilan']);
+$dftPengalaman = explode('|', $data['pengalaman_kerja']);
 
 $tmp = '';
 
 // dftKeterampilan : Catur,Bola,Renang
 // keterampilan : Renang
-foreach ($dftKeterampilan as $i) {
+foreach ($dftPengalaman as $i) {
     //catur
-    if ($i !== $keterampilan) {
+    if ($i !== $pengalaman) {
         $tmp .= $i;
-        $tmp .= ',';
+        $tmp .= '|';
     }
 }
 $tmp = substr($tmp, 0, -1);
@@ -50,13 +50,14 @@ $active = $data['active'];
 $ringkasan_pribadi = $data['ringkasan_pribadi'];
 $kariryangdimininati = $data['kariryangdimininati'];
 $mencari_pekerjaan = $data['mencari_pekerjaan'];
-$pengalaman_kerja = $data['pengalaman_kerja'];
+$keterampilan = $data['keterampilan'];
 $pendidikan_terakhir = $data['pendidikan_terakhir'];
 $dok1 = $data['dok1'];
 $dok2 = $data['dok2'];
 $ketunaan = $data["ketunaan"];
 $alat_bantu = $data["alat_bantu"];
 $penjelasan = $data["detail_tambahan"];
+
 
 $form_data = array(
     "id_user" => $id_user,
@@ -81,11 +82,11 @@ $form_data = array(
     "kariryangdimininati" => $kariryangdimininati,
     "mencari_pekerjaan" => $mencari_pekerjaan,
     "pendidikan_terakhir" => $pendidikan_terakhir,
-    "keterampilan" => $tmp,
-    "pengalaman_kerja" => $pengalaman_kerja,
+    "keterampilan" => $keterampilan,
+    "pengalaman_kerja" => $tmp,
     "dok1" => $dok1,
     "dok2" => $dok2,
-    "param" => 'keterampilan'
+    "param" => 'pengalaman_kerja'
 );
 
 
@@ -108,15 +109,33 @@ $data2 = $result_get2[0];
 
 ?>
 
-<div class="col-12 mt-3" id="daftarKeterampilan">
-    <?php if (empty($data2['keterampilan'])) : ?>
-        <i>Keterampilan belum diisi !</i>
-    <?php else : ?>
-        <?php
-        $b = explode(',', $data2['keterampilan']);
-        ?>
-        <?php foreach ($b as $t) : ?>
-            <a class="badge badge-secondary text-white" onclick="remove(this)" id="<?= $t; ?>" style="font-size: 15px;padding:7px 15px 7px 15px"> <?= $t; ?> &nbsp; <i class="mdi mdi-close"></i></a>
-        <?php endforeach; ?>
-    <?php endif; ?>
+<div class="col-12" id="tblPengalaman">
+    <table class="table rounded" style="border: 1px solid #e1e0e0;width:100%">
+        <thead>
+            <tr>
+                <th>Nama Perusahaan</th>
+                <th>Jabatan</th>
+                <th>Tanggal Mulai/Selesai</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $pengalamanKerja = explode('|', $data2['pengalaman_kerja']);
+            $pengalamanPop = array_pop($pengalamanKerja);
+            ?>
+            <?php foreach ($pengalamanKerja as $row) : ?>
+                <tr>
+                    <?php
+                    $pk2 = explode(',', $row);
+                    ?>
+                    <td><?= $pk2[0]; ?></td>
+                    <td><?= $pk2[1]; ?></td>
+                    <td><?= $pk2[2]; ?></td>
+                    <td><button type="button" onclick="hapusPengalaman(this)" class="btn btn-danger-outline" id="<?= $row; ?>" data-toggle="tooltip" title="Hapus"><i class="mdi mdi-delete"></i></button></td>
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>

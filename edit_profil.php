@@ -321,7 +321,7 @@ if (isset($_POST["btn_pendidikan_terakhir"])) {
 
 
 
-if (isset($_POST["btn_pengalaman_kerja"])) {
+if (isset($_POST["btnRiwayatPekerjaan"])) {
     $id_user = $_POST['id_user'];
     $nama_depan = $_POST['nama_depan'];
     $nama_belakang = $_POST['nama_belakang'];
@@ -347,48 +347,37 @@ if (isset($_POST["btn_pengalaman_kerja"])) {
     $ketunaan = $_POST["ketunaan"];
     $alat_bantu = $_POST["alat_bantu"];
     $penjelasan = $_POST["detail_tambahan"];
+    $pengalaman = $_POST["pengalaman_kerja"];
     $pengalaman_kerja = '';
+    $periode = '';
 
 
-    $nama_perusahaan1 = $_POST['nama_perusahaan1'];
-    $nama_perusahaan1 = str_replace(",", "", $nama_perusahaan1);
-    $jabatan1 = $_POST['jabatan1'];
-    $jabatan1 = str_replace(",", "", $jabatan1);
-    $tahun_mulai1 = $_POST['tahun_mulai1'];
-    $tahun_akhir1 = $_POST['tahun_akhir1'];
+    $perusahaan = $_POST['perusahaan'];
+    $jabatan = $_POST['jabatan'];
 
-    $nama_perusahaan2 = $_POST['nama_perusahaan2'];
-    $nama_perusahaan2 = str_replace(",", "", $nama_perusahaan2);
-    $jabatan2 = $_POST['jabatan2'];
-    $jabatan2 = str_replace(",", "", $jabatan2);
-    $tahun_mulai2 = $_POST['tahun_mulai2'];
-    $tahun_akhir2 = $_POST['tahun_akhir2'];
+    $bulan_mulai = $_POST['bulan_mulai'];
+    $tahun_mulai = $_POST['tahun_mulai'];
 
-    $nama_perusahaan3 = $_POST['nama_perusahaan3'];
-    $nama_perusahaan3 = str_replace(",", "", $nama_perusahaan3);
-    $jabatan3 = $_POST['jabatan3'];
-    $jabatan3 = str_replace(",", "", $jabatan3);
-    $tahun_mulai3 = $_POST['tahun_mulai3'];
-    $tahun_akhir3 = $_POST['tahun_akhir3'];
-
-    if (!empty($nama_perusahaan1) && empty($nama_perusahaan2) && empty($nama_perusahaan3)) {
-        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1;
-    } elseif (empty($nama_perusahaan1) && !empty($nama_perusahaan2) && empty($nama_perusahaan3)) {
-        $pengalaman_kerja .= $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2;
-    } elseif (empty($nama_perusahaan1) && empty($nama_perusahaan2) && !empty($nama_perusahaan3)) {
-        $pengalaman_kerja .= $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3;
-    } elseif (!empty($nama_perusahaan1) && !empty($nama_perusahaan2) && empty($nama_perusahaan3)) {
-        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2;
-    } elseif (!empty($nama_perusahaan1) && empty($nama_perusahaan2) && !empty($nama_perusahaan3)) {
-        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3;
-    } elseif (empty($nama_perusahaan1) && !empty($nama_perusahaan2) && !empty($nama_perusahaan3)) {
-        $pengalaman_kerja .= $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3;
-    } elseif (!empty($nama_perusahaan1) && !empty($nama_perusahaan2) && !empty($nama_perusahaan3)) {
-        $pengalaman_kerja .= $nama_perusahaan1 . '-' . $jabatan1 . '-' . $tahun_mulai1 . '-' . $tahun_akhir1 . ',' . $nama_perusahaan2 . '-' . $jabatan2 . '-' . $tahun_mulai2 . '-' . $tahun_akhir2 . ',' . $nama_perusahaan3 . '-' . $jabatan3 . '-' . $tahun_mulai3 . '-' . $tahun_akhir3;
-    } else {
-        $pengalaman_kerja = '-';
+    if(isset($_POST['bulan_selesai'])){
+        $bulan_selesai = $_POST['bulan_selesai'];
+    }else{
+        $bulan_selesai = "Desember";
     }
 
+    if (isset($_POST['bulan_selesai'])) {
+        $tahun_selesai = $_POST['tahun_selesai'];
+    } else {
+        $tahun_selesai = "2020";
+    }
+
+
+    if (isset($_POST['masih_bekerja'])) {
+        $periode = $bulan_mulai . ' ' . $tahun_mulai . ' - Sekarang';
+    } else {
+        $periode = $bulan_mulai . ' ' . $tahun_mulai . ' - ' . $bulan_selesai . ' ' . $tahun_selesai;
+    }
+
+    $pengalaman_kerja = $pengalaman . $perusahaan . ',' . $jabatan . ',' . $periode . '|';
 
 
     $form_data = array(
@@ -433,7 +422,7 @@ if (isset($_POST["btn_pengalaman_kerja"])) {
 
     if ($pesan['message'] == 'Berhasil') {
         echo "<script>
-                alert('Pengalaman bekerja berhasil diedit !');
+                alert('Riwayat pekerjaan berhasil ditambahkan !');
                 document.location.href ='profile.php';
             </script>";
     } else if ($pesan['message'] == 'unavailable') {
@@ -446,6 +435,13 @@ if (isset($_POST["btn_pengalaman_kerja"])) {
 if (isset($_POST["btn_keterampilan"])) {
     echo "<script>
                 alert('Keterampilan berhasil diedit !');
+                document.location.href ='profile.php';
+            </script>";
+}
+
+if (isset($_POST["btnSimpanPengalaman"])) {
+    echo "<script>
+                alert('Riwayat pekerjaan berhasil disimpan !');
                 document.location.href ='profile.php';
             </script>";
 }
