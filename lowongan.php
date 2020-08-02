@@ -1,28 +1,99 @@
 <?php
 session_start();
 
-$curl_get = curl_init();
-curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
-curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-$result_get = curl_exec($curl_get);
-curl_close($curl_get);
+if (isset($_SESSION['login'])) {
+    $email = $_SESSION['userdata']['email'];
 
-$daftar_tipskarir = json_decode($result_get, true);
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/getbyEmailUser.php?email=' . $email);
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $hsl_user = curl_exec($curl_get);
+    curl_close($curl_get);
 
-$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
-$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+    $hsl_usr = json_decode($hsl_user, true);
 
-if (isset($_POST['q'])) {
-    $limit = 100;
-} else if (isset($_POST['cari'])) {
-    $limit = 100;
+    $ktn = $hsl_usr[0]['ketunaan'];
+
+    $data = explode(",", $ktn);
+
+    $a = $data[0];
+    $data_a = explode(" ", $a);
+    $awal = $data_a[0];
+    $akhir = $data_a[1];
+    $sisip = '%20';
+    $ketunaan = $awal .= $sisip .= $akhir;
+
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan_user.php?ketunaan=' . $ketunaan . '');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $hsl_lowongan = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $hasil_lowongan = json_decode($hsl_lowongan, true);
+
+    $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+    $search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+    if (isset($_POST['q'])) {
+        $limit = 100;
+    } else if (isset($_POST['cari'])) {
+        $limit = 100;
+    } else {
+        $limit = 4;
+    }
+    $limitStart = ($page - 1) * $limit;
+    $jumlahData = count($hasil_lowongan);
+    $jumlahHalaman = ceil($jumlahData / $limit);
+    $hasil_lowongan = array_slice($hasil_lowongan, $limitStart, $limit);
+
+
+
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $daftar_tipskarir = json_decode($result_get, true);
+
+    $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+    $search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+    if (isset($_POST['q'])) {
+        $limit = 100;
+    } else if (isset($_POST['cari'])) {
+        $limit = 100;
+    } else {
+        $limit = 4;
+    }
+    $limitStart = ($page - 1) * $limit;
+    $jumlahData = count($daftar_tipskarir);
+    $jumlahHalaman = ceil($jumlahData / $limit);
+    $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
 } else {
-    $limit = 4;
+    $curl_get = curl_init();
+    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
+    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+    $result_get = curl_exec($curl_get);
+    curl_close($curl_get);
+
+    $daftar_tipskarir = json_decode($result_get, true);
+
+    $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+    $search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+    if (isset($_POST['q'])) {
+        $limit = 100;
+    } else if (isset($_POST['cari'])) {
+        $limit = 100;
+    } else {
+        $limit = 4;
+    }
+    $limitStart = ($page - 1) * $limit;
+    $jumlahData = count($daftar_tipskarir);
+    $jumlahHalaman = ceil($jumlahData / $limit);
+    $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
 }
-$limitStart = ($page - 1) * $limit;
-$jumlahData = count($daftar_tipskarir);
-$jumlahHalaman = ceil($jumlahData / $limit);
-$daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
 
 ?>
 
@@ -324,42 +395,44 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
         </div>
     </div>
 
-    <!-- all jobs start -->
-    <section class="section" style="padding:0px 0px 50px 0px">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="tab-content mt-2" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="recent-job" role="tabpanel" aria-labelledby="recent-job-tab">
-                            <div class="row">
+    <?php if (isset($_SESSION["login"])) : ?>
 
-                                <div class="col-lg-12">
-                                    <?php if (isset($_POST['cari'])) : ?>
-                                        <?php $counter = 0; ?>
-                                        <?php foreach ($daftar_tipskarir as $row) : ?>
-                                            <?php
+        <!-- all jobs start -->
+        <section class="section" style="padding:0px 0px 50px 0px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tab-content mt-2" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="recent-job" role="tabpanel" aria-labelledby="recent-job-tab">
+                                <div class="row">
 
-                                            $start_date = $row['tutup'];
-                                            $expired = date('Y-m-d', strtotime($start_date));
-                                            $currentdate = date('Y-m-d');
-                                            $cari = strtolower($_POST['search']);
-                                            $bidang = strtolower($_POST['bidang']);
-                                            $lokasi = $_POST['lokasi'];
-                                            $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
-                                            $nama_perusahaan = strtolower($row['nama_perusahaan']);
-                                            $api_bidang = strtolower($row['sektor_perusahaan']);
-                                            $api_lokasi = strtolower($row['kota']);
+                                    <div class="col-lg-12">
+                                        <?php if (isset($_POST['cari'])) : ?>
+                                            <?php $counter = 0; ?>
+                                            <?php foreach ($daftar_tipskarir as $row) : ?>
+                                                <?php
 
-                                            if ($expired <= $currentdate) {
-                                                $tutup = 'Sudah Tutup';
-                                            } else {
-                                                $tutup =  date("d F Y", strtotime($row['tutup']));
-                                            }
+                                                $start_date = $row['tutup'];
+                                                $expired = date('Y-m-d', strtotime($start_date));
+                                                $currentdate = date('Y-m-d');
+                                                $cari = strtolower($_POST['search']);
+                                                $bidang = strtolower($_POST['bidang']);
+                                                $lokasi = $_POST['lokasi'];
+                                                $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
+                                                $nama_perusahaan = strtolower($row['nama_perusahaan']);
+                                                $api_bidang = strtolower($row['sektor_perusahaan']);
+                                                $api_lokasi = strtolower($row['kota']);
 
-                                            if (preg_match("/$cari/i", $nama_pekerjaan) || preg_match("/$cari/i", $nama_perusahaan)) {
-                                                if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
-                                                    $counter++;
-                                                    echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                                if ($expired <= $currentdate) {
+                                                    $tutup = 'Sudah Tutup';
+                                                } else {
+                                                    $tutup =  date("d F Y", strtotime($row['tutup']));
+                                                }
+
+                                                if (preg_match("/$cari/i", $nama_pekerjaan) || preg_match("/$cari/i", $nama_perusahaan)) {
+                                                    if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
+                                                        $counter++;
+                                                        echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                     <div class="p-4">
                                                         <div class="row align-items-center">
                                                             <div class="col-md-2">
@@ -412,39 +485,39 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                     </div>
                                                 </div>
                                                 ';
+                                                    }
                                                 }
-                                            }
 
 
 
-                                            ?>
-                                        <?php endforeach; ?>
-                                        <?php if (!$counter) : ?>
-                                            <div class="row">
-                                                <i class="mx-auto mt-5 alert alert-warning">Pencarian tidak ditemukan</i>
-                                            </div>
-                                        <?php endif; ?>
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <?php if (!$counter) : ?>
+                                                <div class="row">
+                                                    <i class="mx-auto mt-5 alert alert-warning">Pencarian tidak ditemukan</i>
+                                                </div>
+                                            <?php endif; ?>
 
-                                    <?php elseif (isset($_POST['q'])) : ?>
-                                        <?php $counter = 0; ?>
-                                        <?php foreach ($daftar_tipskarir as $row) : ?>
-                                            <?php
-                                            $start_date = $row['tutup'];
-                                            $expired = date('Y-m-d', strtotime($start_date));
-                                            $currentdate = date('Y-m-d');
-                                            $q = strtolower($_POST['q']);
-                                            $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
-                                            $nama_perusahaan = strtolower($row['nama_perusahaan']);
+                                        <?php elseif (isset($_POST['q'])) : ?>
+                                            <?php $counter = 0; ?>
+                                            <?php foreach ($daftar_tipskarir as $row) : ?>
+                                                <?php
+                                                $start_date = $row['tutup'];
+                                                $expired = date('Y-m-d', strtotime($start_date));
+                                                $currentdate = date('Y-m-d');
+                                                $q = strtolower($_POST['q']);
+                                                $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
+                                                $nama_perusahaan = strtolower($row['nama_perusahaan']);
 
-                                            if ($expired <= $currentdate) {
-                                                $tutup = 'Sudah Tutup';
-                                            } else {
-                                                $tutup =  date("d F Y", strtotime($row['tutup']));
-                                            }
+                                                if ($expired <= $currentdate) {
+                                                    $tutup = 'Sudah Tutup';
+                                                } else {
+                                                    $tutup =  date("d F Y", strtotime($row['tutup']));
+                                                }
 
-                                            if (preg_match("/$q/i", $nama_pekerjaan) || preg_match("/$q/i", $nama_perusahaan)) {
-                                                $counter++;
-                                                echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                                if (preg_match("/$q/i", $nama_pekerjaan) || preg_match("/$q/i", $nama_perusahaan)) {
+                                                    $counter++;
+                                                    echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                             <div class="p-4">
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
@@ -496,23 +569,27 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                 </div>
                                             </div>
                                         </div>';
-                                            }
-                                            ?>
-                                        <?php endforeach; ?>
-                                        <?php if (!$counter) : ?>
-                                            <div class="row">
-                                                <i class="mx-auto mt-5 alert alert-warning">Pencarian tidak ditemukan</i>
-                                            </div>
-                                        <?php endif; ?>
-                                    <?php else : ?>
-                                        <?php foreach ($daftar_tipskarir as $row) : ?>
-                                            <?php
+                                                }
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <?php if (!$counter) : ?>
+                                                <div class="row">
+                                                    <i class="mx-auto mt-5 alert alert-warning">Pencarian tidak ditemukan</i>
+                                                </div>
+                                            <?php endif; ?>
+                                        <?php else : ?>
+                                            <?php foreach ($hasil_lowongan as $row) : ?>
+                                                <?php
 
-                                            $start_date = $row['tutup'];
-                                            $expired = date('Y-m-d', strtotime($start_date));
-                                            $currentdate = date('Y-m-d');
+                                                $start_date = $row['tutup'];
+                                                $expired = date('Y-m-d', strtotime($start_date));
+                                                $currentdate = date('Y-m-d');
 
-                                            if ($expired >= $currentdate) {
+                                                if ($expired <= $currentdate) {
+                                                    $tutup = 'Sudah Tutup';
+                                                } else {
+                                                    $tutup =  date("d F Y", strtotime($row['tutup']));
+                                                }
                                                 echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
                                                     <div class="p-4">
                                                         <div class="row align-items-center">
@@ -555,7 +632,7 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div>
-                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . date("d F Y", strtotime($row['tutup'])) . '<span class="text-dark">
+                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . $tutup . '<span class="text-dark">
                                                                         </span></p>
                                                                 </div>
                                                             </div>
@@ -566,53 +643,351 @@ $daftar_tipskarir = array_slice($daftar_tipskarir, $limitStart, $limit);
                                                     </div>
                                                 </div>
                                                 ';
-                                            }
 
-                                            ?>
-                                        <?php endforeach; ?>
-                                        <!-- Pagination -->
-                                        <div class="col-lg-12" style="margin-top: 30px ! important">
-                                            <nav aria-label="Page navigation example">
-                                                <ul class="pagination job-pagination justify-content-center mb-0">
-                                                    <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-                                                        <?php if ($search == "") : ?>
-                                                            <?php
-                                                            if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                                                if (($limitStart == 1) && ($i != 2))  echo "...";
-                                                                if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                                                if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                                                else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
-                                                                $limitStart = $i;
-                                                            }
-                                                            ?>
-                                                        <?php else : ?>
-                                                            <?php
-                                                            if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
-                                                                if (($limitStart == 1) && ($i != 2))  echo "...";
-                                                                if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
-                                                                if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
-                                                                else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
-                                                                $limitStart = $i;
-                                                            }
-                                                            ?>
-                                                        <?php endif; ?>
-                                                    <?php endfor; ?>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    <?php endif; ?>
 
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <!-- Pagination -->
+                                            <div class="col-lg-12" style="margin-top: 30px ! important">
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination job-pagination justify-content-center mb-0">
+                                                        <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                                            <?php if ($search == "") : ?>
+                                                                <?php
+                                                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                                                    if (($limitStart == 1) && ($i != 2))  echo "...";
+                                                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                                                    $limitStart = $i;
+                                                                }
+                                                                ?>
+                                                            <?php else : ?>
+                                                                <?php
+                                                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                                                    if (($limitStart == 1) && ($i != 2))  echo "...";
+                                                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
+                                                                    $limitStart = $i;
+                                                                }
+                                                                ?>
+                                                            <?php endif; ?>
+                                                        <?php endfor; ?>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        <?php endif; ?>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- end row -->
             </div>
-            <!-- end row -->
-        </div>
-        <!-- end containar -->
-    </section>
-    <!-- all jobs end -->
+            <!-- end containar -->
+        </section>
+        <!-- all jobs end -->
+
+    <?php else : ?>
+
+        <!-- all jobs start -->
+        <section class="section" style="padding:0px 0px 50px 0px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tab-content mt-2" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="recent-job" role="tabpanel" aria-labelledby="recent-job-tab">
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+                                        <?php if (isset($_POST['cari'])) : ?>
+                                            <?php $counter = 0; ?>
+                                            <?php foreach ($daftar_tipskarir as $row) : ?>
+                                                <?php
+
+                                                $start_date = $row['tutup'];
+                                                $expired = date('Y-m-d', strtotime($start_date));
+                                                $currentdate = date('Y-m-d');
+                                                $cari = strtolower($_POST['search']);
+                                                $bidang = strtolower($_POST['bidang']);
+                                                $lokasi = $_POST['lokasi'];
+                                                $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
+                                                $nama_perusahaan = strtolower($row['nama_perusahaan']);
+                                                $api_bidang = strtolower($row['sektor_perusahaan']);
+                                                $api_lokasi = strtolower($row['kota']);
+
+                                                if ($expired <= $currentdate) {
+                                                    $tutup = 'Sudah Tutup';
+                                                } else {
+                                                    $tutup =  date("d F Y", strtotime($row['tutup']));
+                                                }
+
+                                                if (preg_match("/$cari/i", $nama_pekerjaan) || preg_match("/$cari/i", $nama_perusahaan)) {
+                                                    if (preg_match("/$bidang/i", $api_bidang) && preg_match("/$lokasi/i", $api_lokasi)) {
+                                                        $counter++;
+                                                        echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                                    <div class="p-4">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-md-2">
+                                                                <div class="mo-mb-2">
+                                                                    <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
+                                                                        <h5 class="f-18">
+                                                                            ' . strtolower($row['nama_pekerjaan']) . '
+                                                                        </h5>
+                                                                    </a>
+                                                                    <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['kota'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-3 bg-light">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">' . $row['ketunaan'] . '</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . $tutup . '<span class="text-dark">
+                                                                        </span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                ';
+                                                    }
+                                                }
+
+
+
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <?php if (!$counter) : ?>
+                                                <div class="row">
+                                                    <i class="mx-auto mt-5 alert alert-warning">Pencarian tidak ditemukan</i>
+                                                </div>
+                                            <?php endif; ?>
+
+                                        <?php elseif (isset($_POST['q'])) : ?>
+                                            <?php $counter = 0; ?>
+                                            <?php foreach ($daftar_tipskarir as $row) : ?>
+                                                <?php
+                                                $start_date = $row['tutup'];
+                                                $expired = date('Y-m-d', strtotime($start_date));
+                                                $currentdate = date('Y-m-d');
+                                                $q = strtolower($_POST['q']);
+                                                $nama_pekerjaan = strtolower($row['nama_pekerjaan']);
+                                                $nama_perusahaan = strtolower($row['nama_perusahaan']);
+
+                                                if ($expired <= $currentdate) {
+                                                    $tutup = 'Sudah Tutup';
+                                                } else {
+                                                    $tutup =  date("d F Y", strtotime($row['tutup']));
+                                                }
+
+                                                if (preg_match("/$q/i", $nama_pekerjaan) || preg_match("/$q/i", $nama_perusahaan)) {
+                                                    $counter++;
+                                                    echo '<div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                            <div class="p-4">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-2">
+                                                        <div class="mo-mb-2">
+                                                            <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
+                                                                <h5 class="f-18">
+                                                                    ' . strtolower($row['nama_pekerjaan']) . '
+                                                                </h5>
+                                                            </a>
+                                                            <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['kota'] . '
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-3 bg-light">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div>
+                                                            <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">' . $row['ketunaan'] . '</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div>
+                                                            <p class="text-muted mb-0 mo-mb-2">Tutup : ' . $tutup . '<span class="text-dark">
+                                                                </span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>';
+                                                }
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <?php if (!$counter) : ?>
+                                                <div class="row">
+                                                    <i class="mx-auto mt-5 alert alert-warning">Pencarian tidak ditemukan</i>
+                                                </div>
+                                            <?php endif; ?>
+                                        <?php else : ?>
+                                            <?php foreach ($daftar_tipskarir as $row) : ?>
+                                                <?php
+
+                                                $start_date = $row['tutup'];
+                                                $expired = date('Y-m-d', strtotime($start_date));
+                                                $currentdate = date('Y-m-d');
+
+                                                if ($expired <= $currentdate) {
+                                                    $tutup = 'Sudah Tutup';
+                                                } else {
+                                                    $tutup =  date("d F Y", strtotime($row['tutup']));
+                                                }
+                                                echo ' <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+                                                    <div class="p-4">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-md-2">
+                                                                <div class="mo-mb-2">
+                                                                    <img src="' . $row['logo'] . '" alt="" class="img-fluid mx-auto d-block" width="50%">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="text-dark">
+                                                                        <h5 class="f-18">
+                                                                            ' . strtolower($row['nama_pekerjaan']) . '
+                                                                        </h5>
+                                                                    </a>
+                                                                    <p class="text-muted mb-0">' . $row['nama_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-apps text-primary mr-2"></i>' . $row['sektor_perusahaan'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div>
+                                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>' . $row['kota'] . '
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-3 bg-light">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Jenis Disabilitas : <span class="text-dark">' . $row['ketunaan'] . '</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div>
+                                                                    <p class="text-muted mb-0 mo-mb-2">Tutup : ' . $tutup . '<span class="text-dark">
+                                                                        </span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <a href="lowongan-detail.php?id=' . $row['id_lowongan'] . '" class="btn btn-primary">Selengkapnya</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                ';
+
+
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <!-- Pagination -->
+                                            <div class="col-lg-12" style="margin-top: 30px ! important">
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination job-pagination justify-content-center mb-0">
+                                                        <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                                                            <?php if ($search == "") : ?>
+                                                                <?php
+                                                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                                                    if (($limitStart == 1) && ($i != 2))  echo "...";
+                                                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?page=" . $i . "'>" . $i . "</a> </li>";
+                                                                    $limitStart = $i;
+                                                                }
+                                                                ?>
+                                                            <?php else : ?>
+                                                                <?php
+                                                                if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $jumlahHalaman)) {
+                                                                    if (($limitStart == 1) && ($i != 2))  echo "...";
+                                                                    if (($limitStart != ($jumlahHalaman - 1)) && ($i == $jumlahHalaman))  echo "...";
+                                                                    if ($i == $page) echo "<li class='page-item active'> <a class='page-link' href='" . "?p=" . $i . "'>" . $i . "</a> </li>";
+                                                                    else echo "<li class='page-item'> <a class='page-link' href='" . "?search=$search" . "&" . "page=" . $i . "'>" . $i . "</a> </li>";
+                                                                    $limitStart = $i;
+                                                                }
+                                                                ?>
+                                                            <?php endif; ?>
+                                                        <?php endfor; ?>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        <?php endif; ?>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end containar -->
+        </section>
+        <!-- all jobs end -->
+
+    <?php endif; ?>
 
 
     <!-- The Modal Daftar -->
