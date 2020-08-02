@@ -954,7 +954,7 @@ if (isset($_SESSION['login'])) {
                                                     </div>
 
                                                 </div>
-                                                <label class="text-muted" style="font-weight: 600">Alat Bantu :</label>
+                                                <label class="text-muted" style="font-weight: 600">Alat Bantu </label>
                                                 <?php
                                                 $tmp_alatbantu = explode(',', $result_get[0]["alat_bantu"]);
                                                 ?>
