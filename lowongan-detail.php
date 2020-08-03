@@ -392,8 +392,9 @@ if (isset($_GET['id'])) {
                                         curl_setopt($ch, CURLOPT_URL, "http://lokeritas.xyz/api-v1/uploadLamaran.php");
                                         curl_setopt($ch, CURLOPT_POST, true);
                                         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
+                                        echo '<div style="visibility: hidden; line-height: 0;">';
                                         $response = curl_exec($ch);
+                                        echo '</div>';
                                         curl_close($ch);
 
 
