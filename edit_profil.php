@@ -1,4 +1,6 @@
 <?php
+
+error_reporting(0);
 session_start();
 require("functions.php");
 if (isset($_POST["btn_informasi_pribadi"])) {
@@ -435,7 +437,8 @@ if (isset($_POST["btnRiwayatPekerjaan"])) {
 if (isset($_POST["btn_keterampilan"])) {
     echo "<script>
                 alert('Keterampilan berhasil diedit !');
-                document.location.href ='profile.php';
+                document.location.href ='profile.php'; 
+                
             </script>";
 }
 
@@ -515,6 +518,8 @@ if (isset($_POST['btn_karir'])) {
     curl_close($curl);
 
     $pesan = json_decode($result, true);
+
+    var_dump($pesan);die;
 
     if ($pesan['message'] == 'Berhasil') {
         echo "<script>
@@ -642,7 +647,9 @@ if (isset($_POST['btn_berkas'])) {
         curl_setopt($chs, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/uploadBerkas.php');
         curl_setopt($chs, CURLOPT_POST, 1);
         curl_setopt($chs, CURLOPT_POSTFIELDS, $datas);
+        echo '<div style="color: white;">';
         $response = curl_exec($chs);
+        echo '</div>';
         curl_close($chs);
 
 
@@ -706,7 +713,9 @@ if (isset($_POST['btn_berkas'])) {
         curl_setopt($chs, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/uploadBerkas.php');
         curl_setopt($chs, CURLOPT_POST, 1);
         curl_setopt($chs, CURLOPT_POSTFIELDS, $datas);
+        echo '<div style="color: white;">';
         $response = curl_exec($chs);
+        echo '</div>';
         curl_close($chs);
 
 
@@ -734,6 +743,9 @@ if (isset($_POST['btn_berkas'])) {
 }
 
 if (isset($_POST['btn_foto'])) {
+
+    
+
     $id_user = $_POST['id_user'];
     $nama_depan = $_POST['nama_depan'];
     $nama_belakang = $_POST['nama_belakang'];
@@ -832,9 +844,10 @@ if (isset($_POST['btn_foto'])) {
     curl_setopt($chs, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/uploadFoto.php');
     curl_setopt($chs, CURLOPT_POST, 1);
     curl_setopt($chs, CURLOPT_POSTFIELDS, $datas);
+    echo '<div style="color: white;">';
     $response = curl_exec($chs);
+    echo '</div>';
     curl_close($chs);
-
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/profile.php');
