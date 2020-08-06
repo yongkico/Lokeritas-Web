@@ -518,9 +518,6 @@ if (isset($_POST['btn_karir'])) {
     curl_close($curl);
 
     $pesan = json_decode($result, true);
-
-    var_dump($pesan);die;
-
     if ($pesan['message'] == 'Berhasil') {
         echo "<script>
                 alert('Karir yang diminati berhasil diedit !');
