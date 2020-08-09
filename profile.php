@@ -219,7 +219,7 @@ if (isset($_SESSION['login'])) {
                             <div class="row" style="margin:20px 0px 20px 0px">
                                 <div class="col-lg-10">
                                     <h4 class="text-info"> <i class="text-danger">*</i> Informasi Pribadi :</h4>
-                                </div>                                                            
+                                </div>
                                 <div class="col-lg-2">
                                     <a href="#" class="btn btn-success-outline" data-toggle="modal" data-target="#informasiPribadi"><i class="mdi mdi-account-edit mr-2" style="font-size:16px"></i> Edit</a>
                                 </div>
@@ -1965,11 +1965,11 @@ if (isset($_SESSION['login'])) {
                                                     <label class="text-muted">Keterangan :</label>
                                                     <div class="form-button">
                                                         <select class="form-control keterangan rounded" name="keterangan">
-                                                            <option value="CV">Curriculum Vitae</option>
+                                                            <option value="Curriculum Vitae">Curriculum Vitae</option>
                                                             <option value="Ijazah">Ijazah</option>
-                                                            <option value="TranskripNilai">Transkrip Nilai</option>
+                                                            <option value="Transkrip Nilai">Transkrip Nilai</option>
                                                             <option value="Kartu Tanda Penduduk">Kartu Tanda Penduduk</option>
-                                                            <option value="Sertifikat">Sertifikat Pelatihan</option>
+                                                            <option value="Sertifikat Pelatihan">Sertifikat Pelatihan</option>
                                                             <option value="Sertifikat Kejuaraan/Lomba">Sertifikat Kejuaraan/Lomba</option>
                                                             <option value="Lainnya">Lainnya</option>
                                                         </select>
