@@ -71,10 +71,6 @@ require("functions.php");
         );
 
 
-        var_dump($form_data);
-        die;
-
-
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_perusahaan.php');
