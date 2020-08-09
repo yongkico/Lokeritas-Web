@@ -71,7 +71,11 @@ require("functions.php");
         );
 
 
-        
+        var_dump($form_data);
+        die;
+
+
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/register_perusahaan.php');
         curl_setopt($curl, CURLOPT_POST, 1);
@@ -220,9 +224,45 @@ require("functions.php");
                                         </div>
 
                                         <div class="col-md-6">
-                                            <div class="form-group position-relative">
-                                                <label>Kabupaten/Kota <span class="text-danger">*</span></label>
-                                                <input type="text" name="kab_kota" class="form-control" placeholder="Kabupaten/Kota" required>
+                                            <div class="form-group">
+                                                <label class="text-muted">Kab/Kota :</label>
+                                                <select class="form-control" name="kab_kota" value="">
+                                                    <option value=""></option>
+                                                    <option value="Kab. Asahan">Kab. Asahan</option>
+                                                    <option value="Kab. Batu Bara">Kab. Batu Bara</option>
+                                                    <option value="Kab. Dairi">Kab. Dairi</option>
+                                                    <option value="Kab. Deli Serdang">Kab. Deli Serdang</option>
+                                                    <option value="Kab. Humbang Hasundutan">Kab. Humbang Hasundutan</option>
+                                                    <option value="Kab. Karo">Kab. Karo</option>
+                                                    <option value="Kab. Labuhan Batu">Kab. Labuhan Batu</option>
+                                                    <option value="Kab. Labuhan Batu Selatan">Kab. Labuhan Batu Selatan</option>
+                                                    <option value="Kab. Labuhan Batu Utara">Kab. Labuhan Batu Utara</option>
+                                                    <option value="Kab. Langkat">Kab. Langkat</option>
+                                                    <option value="Kab. Mandailing Natal">Kab. Mandailing Natal</option>
+                                                    <option value="Kab. Nias">Kab. Nias</option>
+                                                    <option value="Kab. Nias Barat">Kab. Nias Barat</option>
+                                                    <option value="Kab. Nias Selatan">Kab. Nias Selatan</option>
+                                                    <option value="Kab. Nias Utara">Kab. Nias Utara</option>
+                                                    <option value="Kab. Padang Lawas">Kab. Padang Lawas</option>
+                                                    <option value="Kab. Padang Lawas Utara">Kab. Padang Lawas Utara</option>
+                                                    <option value="Kab. Pakpak Bharat">Kab. Pakpak Bharat</option>
+                                                    <option value="Kab. Samosir">Kab. Samosir</option>
+                                                    <option value="Kab. Serdang Bedagai">Kab. Serdang Bedagai</option>
+                                                    <option value="Kab. Simalungun">Kab. Simalungun</option>
+                                                    <option value="Kab. Tapanuli Selatan">Kab. Tapanuli Selatan</option>
+                                                    <option value="Kab. Tapanuli Tengah">Kab. Tapanuli Tengah</option>
+                                                    <option value="Kab. Tapanuli Utara">Kab. Tapanuli Utara</option>
+                                                    <option value="Kab. Toba Samosir">Kab. Toba Samosir</option>
+                                                    <option value="Kab. Binjai">Kota Binjai</option>
+                                                    <option value="Kab. Gunung Sitoli">Kota Gunung Sitoli</option>
+                                                    <option value="Kota Medan">Kota Medan</option>
+                                                    <option value="Kota Padang Sidempuan">Kota Padang Sidempuan</option>
+                                                    <option value="Kota Pematang Siantar">Kota Pematang Siantar</option>
+                                                    <option value="Kota Siantar">Kota Siantar</option>
+                                                    <option value="Kota Sibolga">Kota Sibolga</option>
+                                                    <option value="Kota Tanjung Balai">Kota Tanjung Balai</option>
+                                                    <option value="Kota Tebing Tinggi">Kota Tebing Tinggi</option>
+                                                </select>
                                             </div>
                                         </div>
 
