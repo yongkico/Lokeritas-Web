@@ -60,74 +60,14 @@ curl_close($curl_get);
 
 $result_get_tipsKarir = json_decode($result_get_tipsKarir, true);
 
-//API Pencarian Lowongan Kerja
-function FILTER_ARRAY_VALUES_REGEXP($basis, $array, $flag_invert = 0)
-{
-    $found = [];
+//API Lowongan
+$curl_get = curl_init();
+curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
+curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
+$result_get = curl_exec($curl_get);
+curl_close($curl_get);
 
-    foreach ($array as $key => $val) {
-        if (isset($flag_invert) && $flag_invert == 1) {
-            if (!preg_match($basis, $val['judul'])) {
-                $found[] = $val;
-            }
-        } else {
-            if (preg_match($basis, $val['judul'])) {
-                $found[] = $val;
-            }
-        }
-    }
-    return $found;
-}
-
-function FILTER_ARRAY_VALUES_REGEXP_P($basis, $array, $flag_invert = 0)
-{
-    $found = [];
-
-    foreach ($array as $key => $val) {
-        if (isset($flag_invert) && $flag_invert == 1) {
-            if (!preg_match($basis, $val['judul'])) {
-                $found[] = $val;
-            }
-        } else {
-            if (preg_match($basis, $val['judul'])) {
-                $found[] = $val;
-            }
-        }
-    }
-    return $found;
-}
-
-
-$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
-$search = (isset($_GET['search'])) ? $_GET['search'] : "";
-
-$limit = 4;
-$limitStart = ($page - 1) * $limit;
-
-if ($search == "") {
-    $curl_get = curl_init();
-    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
-    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-    $result_get = curl_exec($curl_get);
-    curl_close($curl_get);
-
-    $result_tipskarir = json_decode($result_get, true);
-} else {
-    $curl_get = curl_init();
-    curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_lowongan.php');
-    curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
-    $result_get = curl_exec($curl_get);
-    curl_close($curl_get);
-
-    $search_result = json_decode($result_get, true);
-
-    $result_tipskarir = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
-}
-
-$jumlahData = count($result_tipskarir);
-$jumlahHalaman = ceil($jumlahData / $limit);
-$daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
-
+$daftar_tipskarir = json_decode($result_get, true);
 
 //API Semua Karyaku
 $curl_get = curl_init();
@@ -167,7 +107,7 @@ foreach ($result_karyaku as $row) {
                     // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
                     $('html, body').animate({
                         scrollTop: $(hash).offset().top
-                    }, 2000, function() {
+                    }, 4000, function() {
 
                         // Add hash (#) to URL when done scrolling (default click behavior)
                         window.location.hash = hash;
@@ -343,7 +283,10 @@ foreach ($result_karyaku as $row) {
                                 <div class="row">
                                     <div class="col-lg-12">
 
-                                        <?php foreach ($daftar_tipskarir as $row) : ?>
+                                        <?php $i = 0;
+                                        foreach ($daftar_tipskarir as $row) : if ($i == 5) {
+                                                break;
+                                            } ?>
                                             <?php
 
                                             $start_date = $row['tutup'];
@@ -414,7 +357,8 @@ foreach ($result_karyaku as $row) {
 
 
                                             ?>
-                                        <?php endforeach; ?>
+                                        <?php $i++;
+                                        endforeach; ?>
 
                                     </div>
                                 </div>
@@ -816,7 +760,10 @@ foreach ($result_karyaku as $row) {
                                 <div class="row">
                                     <div class="col-lg-12">
 
-                                        <?php foreach ($daftar_tipskarir as $row) : ?>
+                                        <?php $i = 0;
+                                        foreach ($daftar_tipskarir as $row) : if ($i == 5) {
+                                                break;
+                                            } ?>
                                             <?php
 
                                             $start_date = $row['tutup'];
@@ -887,7 +834,8 @@ foreach ($result_karyaku as $row) {
 
 
                                             ?>
-                                        <?php endforeach; ?>
+                                        <?php $i++;
+                                        endforeach; ?>
 
                                     </div>
                                 </div>
@@ -1230,7 +1178,7 @@ foreach ($result_karyaku as $row) {
                                 <div class="col-lg-6 bg-warning rounded" style="padding:50px 50px 50px 50px;border:7px solid white">
                                     <p class="text-white" style="font-size: 24px;text-align:center">Sebagai Penyedia Kerja
                                         Penyandang Disabilitas</p>
-                                    <p style="text-align: center;margin-top:30px"><a href="http://lokeritas.xyz/company" class="btn btn-light btn-lg" style="margin-right: 10px ! important" >Masuk</a>
+                                    <p style="text-align: center;margin-top:30px"><a href="http://lokeritas.xyz/company" class="btn btn-light btn-lg" style="margin-right: 10px ! important">Masuk</a>
                                     </p>
                                 </div>
 

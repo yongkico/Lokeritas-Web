@@ -16,9 +16,9 @@ if (isset($_SESSION['login'])) {
 
     $data = explode(",", $ktn);
 
-    $a = $data[0];
-    $data_a = explode(" ", $a);
-    $awal = $data_a[0];
+    $a = $data[0]; //mencetak satu ketunaan saja
+    $data_a = explode(" ", $a); //memecah disabilitas
+    $awal = $data_a[0]; //mencetak disabilitas
     $akhir = $data_a[1];
     $sisip = '%20';
     $ketunaan = $awal .= $sisip .= $akhir;
@@ -45,7 +45,6 @@ if (isset($_SESSION['login'])) {
     $jumlahData = count($hasil_lowongan);
     $jumlahHalaman = ceil($jumlahData / $limit);
     $hasil_lowongan = array_slice($hasil_lowongan, $limitStart, $limit);
-
 
 
     $curl_get = curl_init();

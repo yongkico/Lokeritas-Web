@@ -2,9 +2,7 @@
 session_start();
 
 
-//GET Parameter
-
-if (isset($_GET['id'])) {
+if (isset($_GET['id'])) { //Ngecek jika URL ada ID
     $id_lowongan = $_GET['id'];
 
     //API Pencarian Lowongan Kerja

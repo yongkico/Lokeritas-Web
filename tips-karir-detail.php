@@ -2,10 +2,11 @@
 
 session_start();
 
-$site_key = '6LcnNLEZAAAAANynkV3UH60dg7AgI_2Ccqrajvvk'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
-$secret_key = '6LcnNLEZAAAAALpYjEuQa8jrtpiOhvgFJuYMGrVD'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+$site_key = '6LcnNLEZAAAAANynkV3UH60dg7AgI_2Ccqrajvvk'; // Diisi dengan site_key API Google reCapthca yang dimiliki
+$secret_key = '6LcnNLEZAAAAALpYjEuQa8jrtpiOhvgFJuYMGrVD'; // Diisi dengan secret_key API Google reCapthca yang dimiliki
 
-//Tips Detail
+//API Tips Detail
+//GET id didapat dari <a href="tips-karir-detail.php?id=//
 if (isset($_GET['id'])) {
     $id_tips = $_GET['id'];
     $curl_get = curl_init();
@@ -16,7 +17,6 @@ if (isset($_GET['id'])) {
 
     $result_get = json_decode($result_get, true);
 
-    
     //Semua Tips
     $curl_get = curl_init();
     curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/semua_tips.php');
@@ -44,9 +44,7 @@ if (isset($_GET['id'])) {
     ));
 
     $response = curl_exec($curl);
-
     curl_close($curl);
-    /////////////////////////////
 
     if (isset($_POST['send'])) {
 
@@ -93,11 +91,7 @@ if (isset($_GET['id'])) {
         }
     }
 
-    /////////////////////////
-
-
-
-    //Semua Tips
+    //Semua Komentar
     $curl_get = curl_init();
     curl_setopt($curl_get, CURLOPT_URL, 'http://lokeritas.xyz/api-v1/comments.php?id_tips=' . $id_tips . '');
     curl_setopt($curl_get, CURLOPT_RETURNTRANSFER, 1);
@@ -105,8 +99,6 @@ if (isset($_GET['id'])) {
     curl_close($curl_get);
 
     $result_get_comment = json_decode($result_get_comment, true);
-
-    // echo $result_get_comment['2']['nama'];
 } else {
     header('location: 404.html');
 }

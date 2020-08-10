@@ -14,6 +14,8 @@ if (isset($_SESSION["login"])) {
 
     $pesan_detail_karyaku = json_decode($result, true)[0];
 
+    //pengecekan hak akses jika karyaku yg diedit mmg karyaku dr si user
+    //jika tidak ada post karyaku dan mengakses file edit karyaku lari ke index
     if ($pesan_detail_karyaku['id_user'] == $_SESSION['userdata']['user_id']) {
         $gambar = $pesan_detail_karyaku['gambar'];
         $komen = $pesan_detail_karyaku['komen'];

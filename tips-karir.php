@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//PENCARIAN
 function FILTER_ARRAY_VALUES_REGEXP($basis, $array, $flag_invert = 0)
 {
     $found = [];
@@ -19,6 +20,7 @@ function FILTER_ARRAY_VALUES_REGEXP($basis, $array, $flag_invert = 0)
     return $found;
 }
 
+//PENCARIAN
 function FILTER_ARRAY_VALUES_REGEXP_P($basis, $array, $flag_invert = 0)
 {
     $found = [];
@@ -37,12 +39,12 @@ function FILTER_ARRAY_VALUES_REGEXP_P($basis, $array, $flag_invert = 0)
     return $found;
 }
 
-
-$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+//DEFAULT
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1; //ANGKA 1 MENGAMBIL PAGE PERTAMA (1)
 $search = (isset($_GET['search'])) ? $_GET['search'] : "";
 
-$limit = 4;
-$limitStart = ($page - 1) * $limit;
+$limit = 4; //limit data = 4 per page
+$limitStart = ($page - 1) * $limit; // dimulai dari page 1 (1-1) * 4 = 0
 
 if ($search == "") {
     $curl_get = curl_init();
@@ -60,12 +62,11 @@ if ($search == "") {
     curl_close($curl_get);
 
     $search_result = json_decode($result_get, true);
-
     $result_tipskarir = FILTER_ARRAY_VALUES_REGEXP_P("/$search/i", $search_result);
 }
 
 $jumlahData = count($result_tipskarir);
-$jumlahHalaman = ceil($jumlahData / $limit);
+$jumlahHalaman = ceil($jumlahData / $limit); //ceil = pembulatan keatas
 $daftar_tipskarir = array_slice($result_tipskarir, $limitStart, $limit);
 
 ?>
